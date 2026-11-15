@@ -134,6 +134,17 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .howto .two{margin-top:8px}
 .howto .cta{margin-top:8px}
 .bkmsg{margin-top:8px;color:var(--ink)}
+.auto{position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;background:var(--soft);border-radius:12px;padding:12px 14px}
+.auto .at{flex:1;min-width:0;display:flex;flex-direction:column}
+.auto .at span{font-size:13px;color:var(--muted)}
+.auto .ghost.small{width:auto;flex:none;padding:8px 12px;background:var(--surface)}
+.cd{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--on-accent);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.auto.on .dot{flex:none;width:14px;height:14px;border-radius:50%;background:var(--bad);margin:0 15px;animation:pulse 1s ease-in-out infinite}
+.auto .limit{position:absolute;left:0;bottom:0;height:4px;background:var(--bad);animation:shrink 5s linear forwards}
+@keyframes pulse{50%{transform:scale(1.5);opacity:.5}}
+@keyframes shrink{from{width:100%}to{width:0}}
+@media (prefers-reduced-motion: reduce){.auto.on .dot,.auto .limit{animation:none}}
+.w-minor{color:var(--muted);text-decoration:underline dotted;text-underline-offset:4px}
 .fb.mid{background:var(--soft);color:var(--ink)}
 .three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .three .cta{font-size:14px;padding:14px 6px}
@@ -434,7 +445,7 @@ function enter(){
       return {x:x,sc:sc+Math.random()*0.9};
     }).sort(function(a,b){return b.sc-a.sc;}).slice(0,6).map(function(o){return o.x;});
     ses.st={opts:shuffle(shuffle(same).slice(0,3).concat([it])).map(function(x){return x.id;}),sel:null};
-  }else if(s.k==="recall"){ses.st={hint:0,text:"",partial:"",res:null,shown:false,listening:false};}
+  }else if(s.k==="recall"){ses.st={hint:0,text:"",partial:"",res:null,shown:false,listening:false,phase:"manual",tries:0};if(autoOn())setTimeout(beginThink,0);}
   else{ses.st={};speak(s.id);}
 }
 function answered(ok){
@@ -445,7 +456,7 @@ function answered(ok){
   if(ok===false&&!s.again)ses.steps.push({k:s.k,id:s.id,again:true});
 }
 function advance(){
-  stopDict();
+  clearAuto();stopDict();
   ses.i++;
   if(ses.i>=ses.steps.length){day().done[ses.n]=1;save();view="result";}
   else enter();
@@ -492,6 +503,18 @@ function homeHTML(){
   h+='<div class="block"><h2>듣기 속도</h2><div class="chips">'+
      '<button class="chip" data-act="speed" data-v="0" aria-pressed="'+!S.slow+'">보통</button>'+
      '<button class="chip" data-act="speed" data-v="1" aria-pressed="'+!!S.slow+'">느리게 (0.75배)</button></div></div>';
+  if(dictOK()||aiSupported()||WEBA){
+    var th=S.auto===false?"off":String(S.think||3);
+    h+='<div class="block"><h2>3판 자동 말하기</h2><div class="chips">'+
+      [["3","3초 생각 후"],["5","5초 생각 후"],["off","끄기 (직접 누르기)"]].map(function(c){return '<button class="chip" data-act="auto" data-v="'+c[0]+'" aria-pressed="'+(th===c[0])+'">'+c[1]+"</button>";}).join("")+
+      '</div><p class="note">문제가 나오면 생각할 시간 뒤에 마이크가 자동으로 켜지고, 말을 멈추면 바로 채점합니다.</p></div>';
+  }
+  if(aiSupported()){
+    h+='<div class="block"><h2>말하기 인식 방식</h2><div class="chips">'+
+      '<button class="chip" data-act="engine" data-v="web" aria-pressed="'+(S.engine!=="ai")+'">기본 (빠름)</button>'+
+      '<button class="chip" data-act="engine" data-v="ai" aria-pressed="'+(S.engine==="ai")+'">AI 정밀 (시험판)</button></div>'+
+      (S.engine==="ai"?'<p class="note" id="aistat">'+esc(aiStatusText())+"</p>"+(!AI.ready&&!AI.loading?'<button class="ghost small" data-act="aiload">AI 모델 미리 받기</button>':""):'<p class="note">AI 정밀은 폰 안에서 도는 음성 인식 AI가 정답 문장을 참고해 받아 적습니다. 발음이 서툴러도 더 잘 알아듣지만 문장마다 1~3초 더 걸립니다.</p>')+"</div>";
+  }
   if(C)h+='<div class="notice"><b>말하기 연습은 폰 주소에서</b><p>폰 브라우저에서 아래 주소를 열면 3판에서 바로 말할 수 있습니다. 이 링크와 학습 기록은 따로 저장됩니다.</p><a href="'+PAGES+'" target="_blank" rel="noopener">'+PAGES+'</a></div>';
   h+='<p class="note">'+(syncState==="synced"?"학습 기록이 내 계정에 저장됩니다. 다른 기기에서 열어도 이어집니다.":"학습 기록은 이 폰의 브라우저에 저장됩니다. 브라우저 기록을 지우면 사라지니 가끔 백업해 두세요.")+"</p>";
   h+=backupHTML();
@@ -557,11 +580,15 @@ function diff(answer,said){
   for(i=n-1;i>=0;i--)for(j=m-1;j>=0;j--){var sv=sim(A[i],B[j]);L[i][j]=Math.max(L[i+1][j],L[i][j+1],sv?L[i+1][j+1]+sv:0);}
   var hit=new Array(n).fill(0);i=0;j=0;
   while(i<n&&j<m){var s2=sim(A[i],B[j]);if(s2&&L[i][j]===L[i+1][j+1]+s2){hit[i]=s2;i++;j++;}else if(L[i+1][j]>=L[i][j+1])i++;else j++;}
-  var wst=words.map(function(){return 2;});
-  own.forEach(function(wi,k){wst[wi]=Math.min(wst[wi],hit[k]);});
+  var wst=words.map(function(){return 2;}),wmin=words.map(function(){return true;});
+  own.forEach(function(wi,k){wst[wi]=Math.min(wst[wi],hit[k]);if(!hit[k]&&!MINOR[A[k]])wmin[wi]=false;});
   var got=hit.filter(Boolean).length,exact=hit.filter(function(x){return x===2;}).length;
-  return {words:words,wst:wst,ratio:n?got/n:0,exact:n?exact/n:0,near:got-exact,extra:m-got};
+  var wsum=0,wgot=0,content=true;
+  A.forEach(function(p,k){var w=MINOR[p]?0.4:1;wsum+=w;if(hit[k])wgot+=w;else if(!MINOR[p])content=false;});
+  return {words:words,wst:wst,wmin:wmin,ratio:wsum?wgot/wsum:0,exact:n?exact/n:0,near:got-exact,extra:m-got,content:content,minorMiss:n-got>0&&content};
 }
+/* 인식기가 자주 빼먹는 짧은 단어: 틀려도 점수를 덜 깎는다 */
+var MINOR={a:1,an:1,the:1,to:1,of:1,for:1,in:1,on:1,at:1,by:1,is:1,are:1,am:1,it:1,that:1,this:1,with:1,and:1,be:1,so:1,some:1,any:1};
 function hintText(en,level){
   return en.split(" ").map(function(w,i){
     if(level>=2&&i%2===0)return w;
@@ -577,14 +604,15 @@ function recallHTML(it,st,cat){
   if(st.res){
     var r=st.res;
     h+='<p class="lbl">정답 · 빨강: 빠지거나 다른 단어'+(r.near?' · 주황: 발음이 비슷하게 인식된 단어':'')+'</p><p class="en" lang="en">';
-    h+=r.words.map(function(w,i){return '<span class="'+(r.wst[i]===2?"w-ok":r.wst[i]===1?"w-near":"w-no")+'">'+esc(w)+"</span>";}).join(" ")+"</p>";
+    h+=r.words.map(function(w,i){return '<span class="'+(r.wst[i]===2?"w-ok":r.wst[i]===1?"w-near":r.wmin[i]?"w-minor":"w-no")+'">'+esc(w)+"</span>";}).join(" ")+"</p>";
+    if(r.minorMiss)h+='<p class="lbl">회색: 인식기가 자주 빼먹는 짧은 단어라 점수를 조금만 깎았습니다</p>';
     h+='<p class="lbl">내 문장</p><p class="mine" lang="en">'+esc(st.text)+"</p>"+listenBtn(it.id,"정답 듣고 따라 말하기");
   }else if(st.shown){
     h+='<p class="en" lang="en">'+esc(it.en)+"</p>"+listenBtn(it.id,"듣고 따라 말하기");
   }
   h+="</div>";
   if(st.res){
-    var g=st.grade,msg=g===true?(st.res.near?"맞았습니다. 주황 단어는 정답을 듣고 발음을 한 번 더 연습하세요.":"정확합니다"):g==="mid"?(st.hint?"힌트를 보고 맞혔습니다. 내일 다시 나옵니다.":"거의 맞았습니다. 내일 다시 나옵니다."):"다시 연습이 필요합니다. 이 판 끝에 한 번 더 나옵니다.";
+    var g=st.grade,msg=st.timeout?"시간 초과입니다. 정답을 듣고 따라 말해 보세요. 이 판 끝에 한 번 더 나옵니다.":g===true?(st.res.near?"맞았습니다. 주황 단어는 정답을 듣고 발음을 한 번 더 연습하세요.":"정확합니다"):g==="mid"?(st.hint?"힌트를 보고 맞혔습니다. 내일 다시 나옵니다.":"거의 맞았습니다. 내일 다시 나옵니다."):"다시 연습이 필요합니다. 이 판 끝에 한 번 더 나옵니다.";
     h+='<div class="fb '+(g===true?"ok":g==="mid"?"mid":"no")+'" role="status">'+msg+' <span class="mono">'+Math.round(st.res.ratio*100)+"% 일치</span></div>";
     h+='<button class="cta" data-act="next">다음</button>';
   }else if(st.shown){
@@ -593,6 +621,12 @@ function recallHTML(it,st,cat){
        '<button class="cta alt" data-act="self" data-ok="mid">비슷하게 말했다</button>'+
        '<button class="cta" data-act="self" data-ok="'+(st.hint?"mid":"1")+'">맞게 말했다</button></div>';
   }else{
+    if(st.phase==="think"){
+      if(st.note)h+='<p class="fb mid">'+esc(st.note)+"</p>";
+      h+='<div class="auto" id="autobox"><span class="cd" id="cd">'+st.count+'</span><div class="at"><b>생각하세요</b><span>'+st.count+'초 뒤 듣기 시작</span></div><button class="ghost small" data-act="nowsay">바로 말하기</button></div>';
+    }else if(st.phase==="listen"){
+      h+='<div class="auto on" id="autobox"><span class="dot" aria-hidden="true"></span><div class="at"><b>'+(st.busy?"AI가 받아 적는 중…":st.heard?"듣고 있습니다":"지금 말하세요")+"</b><span>"+(st.busy?"잠시만 기다려 주세요":st.heard?"말을 멈추면 자동으로 채점합니다":"5초 안에 말을 시작하세요")+'</span></div><button class="ghost small" data-act="manual">직접 할게요</button>'+(st.heard||st.busy?"":'<i class="limit" aria-hidden="true"></i>')+"</div>";
+    }
     h+='<div class="say"><textarea id="ans" lang="en" rows="2" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="영어로 말하거나 입력하세요">'+esc(st.text+(st.partial?" "+st.partial:""))+"</textarea>";
     if(dictOK())h+='<button class="mic'+(st.listening?" on":"")+'" data-act="mic" aria-label="'+(st.listening?"말하기 멈추기":"말하기")+'">'+MIC+"<span>"+(st.listening?"멈추기":"말하기")+"</span></button>";
     h+="</div>";
@@ -606,7 +640,7 @@ function recallHTML(it,st,cat){
   }
   return h;
 }
-var DICT=null,dictOff=false;
+var DICT=null,dictOff=false,WEBA=null,CLA=null;
 function dictOK(){return !!DICT&&!dictOff;}
 function curRecall(){return view==="session"&&ses&&ses.steps[ses.i]&&ses.steps[ses.i].k==="recall"&&!ses.st.res&&!ses.st.shown?ses.st:null;}
 function syncBox(){
@@ -616,17 +650,178 @@ function syncBox(){
 }
 function stopDict(){if(DICT&&DICT.active()){DICT.stop().catch(function(){});}}
 function wireDict(d){
-  DICT=d;
-  d.onPartial(function(e){var st=curRecall();if(st){st.partial=e.text;syncBox();}});
-  d.onFinal(function(e){var st=curRecall();if(st){st.text=st.text?st.text+e.text:e.text.replace(/^\s+/,"");st.partial="";syncBox();}});
+  d.onPartial(function(e){if(d!==DICT)return;var st=curRecall();if(!st)return;
+    if(e.speech){if(!st.heard){st.heard=true;render();}return;}
+    if(e.text&&!st.heard){st.heard=true;st.partial=e.text;render();return;}
+    st.partial=e.text;syncBox();});
+  d.onFinal(function(e){if(d!==DICT)return;var st=curRecall();if(st){st.text=st.text?st.text+e.text:e.text.replace(/^\s+/,"");st.partial="";syncBox();}});
   d.onState(function(e){
+    if(d!==DICT)return;
     var st=curRecall(),on=e.state!=="idle";
     if(e.state==="idle"&&(e.reason==="not_granted"||e.reason==="unavailable"))dictOff=true;
-    if(st&&st.listening!==on){st.listening=on;if(!on)st.partial="";render();}
-    else if(st&&e.state==="idle"&&dictOff)render();
+    if(!st)return;
+    if(on){var busy=e.state==="finishing";if(!st.listening||busy!==!!st.busy){st.listening=true;st.busy=busy;render();}return;}
+    st.listening=false;st.busy=false;st.partial="";
+    if(st.phase==="listen"){
+      clearAuto();
+      if(st.text.trim()){doCheck();return;}
+      if(dictOff||(e.reason&&e.reason!=="no_speech"&&e.reason!=="stopped")){st.phase="manual";render();return;}
+      handleTimeout();return;
+    }
+    render();
   });
-  if(curRecall())render();
 }
+function pickDict(){
+  var want=(S.engine==="ai"&&aiSupported())?AIA:(CLA||WEBA);
+  if(DICT!==want){stopDict();DICT=want;dictOff=false;}
+}
+/* ---- 3판 자동 진행: 생각 시간 → 자동 듣기 → 자동 채점 ---- */
+var AUTO={iv:null,lt:null};
+function autoOn(){return S.auto!==false&&dictOK();}
+function clearAuto(){clearInterval(AUTO.iv);clearTimeout(AUTO.lt);AUTO.iv=AUTO.lt=null;}
+function beginThink(){
+  var st=curRecall();if(!st)return;
+  clearAuto();st.phase="think";st.count=S.think||3;st.heard=false;render();
+  AUTO.iv=setInterval(function(){
+    if(curRecall()!==st){clearAuto();return;}
+    st.count--;
+    if(st.count<=0){clearAuto();startListen();return;}
+    var el=document.getElementById("cd");if(el)el.textContent=st.count;
+    var b2=document.querySelector("#autobox .at span");if(b2)b2.textContent=st.count+"초 뒤 듣기 시작";
+  },1000);
+}
+function startListen(){
+  var st=curRecall();if(!st||!DICT)return;
+  clearAuto();st.phase="listen";st.heard=false;st.note="";render();
+  DICT.start({language:"en"}).catch(function(err){
+    var c=err&&err.code;if(c==="not_granted"||c==="unavailable")dictOff=true;
+    if(curRecall()===st){clearAuto();st.phase="manual";st.listening=false;st.note="";render();}
+  });
+  AUTO.lt=setTimeout(function(){if(curRecall()===st&&st.phase==="listen"&&!st.heard){stopDict();}},5500);
+}
+function handleTimeout(){
+  var st=curRecall();if(!st)return;
+  st.tries=(st.tries||0)+1;
+  if(st.tries===1){if(st.hint<1)st.hint=1;beginThink();st.note="5초 안에 말소리가 들리지 않았습니다. 힌트를 보고 한 번 더 해 보세요.";render();}
+  else{st.text="";doCheck(true);}
+}
+function doCheck(timeout){
+  var st=ses&&ses.st,s=ses&&ses.steps[ses.i];if(!st||!s)return;
+  clearAuto();stopDict();
+  st.text=st.text.trim();st.partial="";
+  st.res=diff(BYID[s.id].en,st.text);
+  var full=st.res.content&&st.res.ratio>=0.9&&st.res.extra<=2;
+  st.grade=timeout?false:full&&!st.hint?true:(full||st.res.ratio>=0.6)?"mid":false;
+  st.timeout=!!timeout;
+  answered(st.grade);render();speak(s.id);
+}
+/* ---- AI 정밀 인식: 폰 안에서 도는 Whisper(tiny.en)에 정답 문장을 문맥으로 귀띔 ---- */
+var AI={stream:null,ctx:null,worker:null,ready:false,loading:false,files:{},prog:0,err:"",act:false,rec:null,jobs:{},jid:0,denied:false,waitStart:null,cb:{p:[],f:[],s:[]}};
+function aiSupported(){return !C&&!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia)&&typeof Worker!=="undefined"&&typeof WebAssembly!=="undefined"&&!!(window.AudioContext||window.webkitAudioContext);}
+function aiEmit(a,e){a.forEach(function(f){try{f(e);}catch(x){}});}
+function aiStatusText(){
+  if(AI.err)return AI.err;
+  if(AI.ready)return "AI 인식 준비 완료. 이 폰에 저장되어 다음부터는 바로 시작합니다.";
+  if(AI.loading)return "AI 모델 내려받는 중 "+AI.prog+"% (처음 한 번, 약 65MB)";
+  return "처음 쓸 때 약 65MB를 한 번 내려받습니다. 와이파이에서 받는 것을 권합니다.";
+}
+function updateAIStatus(){var el=document.getElementById("aistat");if(el)el.textContent=aiStatusText();}
+function aiLoad(){
+  if(AI.worker||!aiSupported())return;
+  try{AI.worker=new Worker("lib/stt-worker.js",{type:"module"});}catch(x){AI.err="이 브라우저에서는 AI 정밀 인식을 쓸 수 없습니다.";updateAIStatus();return;}
+  AI.loading=true;AI.err="";
+  AI.worker.onmessage=function(e){
+    var m=e.data;
+    if(m.type==="progress"){
+      if(m.total)AI.files[m.file]=[m.loaded,m.total];
+      var a=0,t=0;for(var k in AI.files){a+=AI.files[k][0];t+=AI.files[k][1];}
+      AI.prog=t?Math.min(99,Math.floor(a/t*100)):0;updateAIStatus();
+    }else if(m.type==="ready"){AI.ready=true;AI.loading=false;updateAIStatus();}
+    else if(m.type==="result"||m.type==="error"){
+      var cb=AI.jobs[m.id];delete AI.jobs[m.id];
+      if(m.type==="error"&&m.id==null){AI.loading=false;AI.err="AI 모델을 불러오지 못했습니다. 기본 인식으로 바꿔 주세요.";updateAIStatus();}
+      if(cb)cb(m.type==="result"?(m.text||""):"");
+    }
+  };
+  AI.worker.onerror=function(){AI.loading=false;AI.err="AI 모델을 불러오지 못했습니다. 기본 인식으로 바꿔 주세요.";updateAIStatus();
+    for(var k in AI.jobs){var cb=AI.jobs[k];delete AI.jobs[k];cb("");}};
+  AI.worker.postMessage({type:"load"});
+}
+/* 마이크는 화면을 누르는 순간에 열어 두고, 이후 문제에서는 그대로 쓴다(자동 듣기용) */
+function aiPrepare(){
+  if(S.engine!=="ai"||!aiSupported())return;
+  aiLoad();
+  var Ctx=window.AudioContext||window.webkitAudioContext;
+  try{if(!AI.ctx)AI.ctx=new Ctx();if(AI.ctx.state==="suspended")AI.ctx.resume();}catch(x){}
+  if(AI.stream||AI.opening||AI.denied)return;
+  AI.opening=true;
+  navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}}).then(function(stream){
+    AI.stream=stream;AI.opening=false;
+    var src=AI.ctx.createMediaStreamSource(stream),pr=AI.ctx.createScriptProcessor(4096,1,1),g=AI.ctx.createGain();
+    g.gain.value=0;src.connect(pr);pr.connect(g);g.connect(AI.ctx.destination);
+    pr.onaudioprocess=function(ev){if(AI.rec)aiFrame(ev.inputBuffer.getChannelData(0));};
+    AI.proc=pr;AI.src=src;
+    if(AI.waitStart){var f=AI.waitStart;AI.waitStart=null;f(true);}
+  },function(){AI.opening=false;AI.denied=true;if(AI.waitStart){var f=AI.waitStart;AI.waitStart=null;f(false);}});
+}
+function aiFrame(x){
+  var r=AI.rec,sr=AI.ctx.sampleRate,dur=x.length/sr,s=0,i;
+  for(i=0;i<x.length;i++)s+=x[i]*x[i];
+  var rms=Math.sqrt(s/x.length),c=new Float32Array(x);
+  r.t+=dur;
+  if(r.floor===null)r.floor=rms;
+  var thr=Math.max(0.012,r.floor*2.5);
+  if(!r.speech){
+    r.floor=r.floor*0.9+rms*0.1;
+    r.pre.push(c);r.preDur+=dur;
+    while(r.preDur>0.5&&r.pre.length>1){r.preDur-=r.pre.shift().length/sr;}
+    r.loud=rms>thr?r.loud+1:0;
+    if(r.loud>=2){r.speech=true;r.buf=r.pre.slice();r.pre=[];aiEmit(AI.cb.p,{text:"",speech:true});}
+    else if(r.t>8){aiStopRec();}
+  }else{
+    r.buf.push(c);
+    r.sil=rms<thr*0.8?r.sil+dur:0;
+    if(r.sil>1.2||r.t>15)aiStopRec();
+  }
+}
+function aiConcat16(chunks,sr){
+  var n=0,o=0;chunks.forEach(function(c){n+=c.length;});
+  var all=new Float32Array(n);chunks.forEach(function(c){all.set(c,o);o+=c.length;});
+  var ratio=sr/16000,m=Math.floor(n/ratio),out=new Float32Array(m+4800);
+  for(var i=0;i<m;i++){var a=Math.floor(i*ratio),b=Math.min(n,Math.floor((i+1)*ratio)),t=0;for(var j=a;j<b;j++)t+=all[j];out[i]=t/Math.max(1,b-a);}
+  return out;
+}
+function aiEnd(reason){AI.act=false;aiEmit(AI.cb.p,{text:""});aiEmit(AI.cb.s,{state:"idle",reason:reason});}
+function aiStopRec(){
+  var r=AI.rec;AI.rec=null;if(!r)return;
+  if(!r.speech){aiEnd("no_speech");return;}
+  var audio=aiConcat16(r.buf,AI.ctx.sampleRate);
+  aiEmit(AI.cb.s,{state:"finishing"});
+  var id=++AI.jid,prompt=curTarget();
+  AI.jobs[id]=function(text){text=(text||"").trim();if(text)aiEmit(AI.cb.f,{text:" "+text});aiEnd(text?"stopped":"no_speech");};
+  aiLoad();
+  if(!AI.worker){var cb=AI.jobs[id];delete AI.jobs[id];cb("");return;}
+  AI.worker.postMessage({type:"run",id:id,audio:audio,prompt:prompt},[audio.buffer]);
+}
+var AIA={ai:true,
+  start:function(){
+    return new Promise(function(res,rej){
+      if(AI.act){res();return;}
+      if(AI.denied){rej({code:"not_granted"});return;}
+      AI.act=true;aiEmit(AI.cb.s,{state:"starting"});
+      var go=function(ok){
+        if(!ok){AI.act=false;aiEmit(AI.cb.s,{state:"idle",reason:"not_granted"});rej({code:"not_granted"});return;}
+        try{if(AI.ctx.state==="suspended")AI.ctx.resume();}catch(x){}
+        AI.rec={pre:[],preDur:0,buf:[],speech:false,t:0,sil:0,floor:null,loud:0};
+        aiEmit(AI.cb.s,{state:"listening"});res();
+      };
+      if(AI.stream)go(true);else{AI.waitStart=go;aiPrepare();}
+    });
+  },
+  stop:function(){if(AI.rec)aiStopRec();return Promise.resolve();},
+  active:function(){return AI.act;},
+  onPartial:function(f){AI.cb.p.push(f);},onFinal:function(f){AI.cb.f.push(f);},onState:function(f){AI.cb.s.push(f);}
+};
 /* Claude 밖(일반 웹 주소)에서 열었을 때: 브라우저 자체 음성 인식 사용 */
 function curTarget(){var st=curRecall();return st?BYID[ses.steps[ses.i].id].en:"";}
 /* 인식 후보 여러 개 중 정답 문장과 가장 가까운 것을 고른다 */
@@ -669,7 +864,7 @@ function webSpeech(){
             var fin=joined();if(interim.trim())fin=(fin+" "+interim.trim()).trim();
             emit(hp,{text:""});
             if(fin)emit(hf,{text:" "+fin});
-            var reason=(err==="not-allowed"||err==="service-not-allowed")?"not_granted":(err&&err!=="no-speech"&&err!=="aborted")?"upstream_error":"stopped";
+            var reason=(err==="not-allowed"||err==="service-not-allowed")?"not_granted":(err&&err!=="no-speech"&&err!=="aborted")?"upstream_error":fin?"stopped":"no_speech";
             emit(hs,{state:"idle",reason:reason});
             if(!started)rej({code:reason==="not_granted"?"not_granted":"upstream_error"});
           };
@@ -683,9 +878,10 @@ function webSpeech(){
   };
 }
 if(C){
-  C.use("dictation").then(function(d){if(d)wireDict(d);}).catch(function(){});
+  C.use("dictation").then(function(d){if(d){CLA=d;wireDict(d);pickDict();if(curRecall())render();}}).catch(function(){});
 }else{
-  var WS=webSpeech();if(WS)wireDict(WS);
+  WEBA=webSpeech();if(WEBA)wireDict(WEBA);
+  wireDict(AIA);pickDict();
 }
 function feedback(ok,it){
   return '<div class="fb '+(ok?"ok":"no")+'" role="status">'+(ok?"맞았습니다":"정답은 이렇습니다. 끝에 한 번 더 나옵니다.")+'<b lang="en">'+esc(it.en)+"</b></div>"+listenBtn(it.id,"듣기");
@@ -752,6 +948,7 @@ function listHTML(){
 app.addEventListener("click",function(e){
   var b=e.target.closest("[data-act]");if(!b||b.disabled)return;
   var a=b.getAttribute("data-act"),st=ses&&ses.st,s=ses&&ses.steps[ses.i];
+  if(S.engine==="ai"&&(a==="next"||a==="mic"||a==="redo"||a==="nowsay"||(a==="start"&&b.getAttribute("data-n")==="2")))aiPrepare();
   if(a==="start"){startRound(+b.getAttribute("data-n"));window.scrollTo(0,0);}
   else if(a==="focus"){S.focus=b.getAttribute("data-f");save();render();}
   else if(a==="list"){view="list";render();window.scrollTo(0,0);}
@@ -771,7 +968,7 @@ app.addEventListener("click",function(e){
     render();var bi2=document.getElementById("bkin");if(bi2)bi2.value=v;
   }
   else if(a==="bkdo"){if(bk.pending){S=bk.pending;bk.pending=null;save();bk.mode="";bk.msg="기록을 불러왔습니다.";render();}}
-  else if(a==="home"||a==="quit"){stopDict();view="home";ses=null;render();window.scrollTo(0,0);}
+  else if(a==="home"||a==="quit"){clearAuto();stopDict();view="home";ses=null;render();window.scrollTo(0,0);}
   else if(a==="speak"){speak(b.getAttribute("data-id"));}
   else if(a==="next"){advance();}
   else if(a==="pick"){var bi=+b.getAttribute("data-b");if(st.picked.indexOf(bi)<0){st.picked.push(bi);render();}}
@@ -781,12 +978,18 @@ app.addEventListener("click",function(e){
     st.res=made===st.toks.join(" ");answered(st.res);render();speak(s.id);
   }
   else if(a==="choose"){st.sel=b.getAttribute("data-id");answered(st.sel===s.id);render();speak(s.id);}
-  else if(a==="show"){stopDict();st.shown=true;render();}
+  else if(a==="show"){clearAuto();stopDict();st.shown=true;render();}
+  else if(a==="nowsay"){startListen();}
+  else if(a==="manual"){clearAuto();st.phase="manual";stopDict();render();}
+  else if(a==="auto"){var v2=b.getAttribute("data-v");if(v2==="off")S.auto=false;else{S.auto=true;S.think=+v2;}save();render();}
+  else if(a==="engine"){S.engine=b.getAttribute("data-v");pickDict();if(S.engine==="ai")aiLoad();save();render();}
+  else if(a==="aiload"){aiLoad();render();}
   else if(a==="self"){var v=b.getAttribute("data-ok");answered(v==="1"?true:v==="mid"?"mid":false);advance();}
   else if(a==="hint"){if(st.hint<2){st.hint++;render();}}
   else if(a==="mic"||a==="redo"){
     if(!DICT)return;
     if(a==="redo"){st.text="";st.partial="";syncBox();}
+    if(st.phase==="think"){startListen();return;}
     if(DICT.active()){DICT.stop().catch(function(){});return;}
     DICT.start({language:"en"}).catch(function(err){
       var c=err&&err.code;
@@ -795,18 +998,12 @@ app.addEventListener("click",function(e){
       render();
     });
   }
-  else if(a==="checkSay"){
-    stopDict();
-    var it3=BYID[s.id];st.text=st.text.trim();st.partial="";
-    st.res=diff(it3.en,st.text);
-    var full=st.res.ratio===1&&st.res.extra<=2;
-    st.grade=full&&!st.hint?true:(full||st.res.ratio>=0.6)?"mid":false;
-    answered(st.grade);render();speak(s.id);
-  }
+  else if(a==="checkSay"){doCheck();}
 });
 app.addEventListener("input",function(e){
   if(e.target.id!=="ans")return;
   var st=curRecall();if(!st)return;
+  if(st.phase==="think"||st.phase==="listen"){clearAuto();stopDict();st.phase="manual";var ab=document.getElementById("autobox");if(ab)ab.remove();}
   st.text=e.target.value;st.partial="";
   var b=app.querySelector('[data-act="checkSay"]');if(b)b.disabled=!st.text.trim();
 });
