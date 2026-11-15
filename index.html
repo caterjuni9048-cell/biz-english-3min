@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>3분 비즈니스 영어</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow phone column. Home = today's three rounds as a numbered sequence; a round = one card per screen with a single action at the bottom. */
+:root{
+  --bg:#EEF1F5; --surface:#FFFFFF; --ink:#141C26; --muted:#5A6878; --line:#D5DCE5;
+  --accent:#1B55C8; --on-accent:#FFFFFF; --soft:#E3EBFA;
+  --mail:#1B55C8; --phone:#0B7A6E; --meet:#8A3D8F;
+  --good:#12754A; --good-bg:#DDF2E6; --bad:#B3321F; --bad-bg:#FBE4DF;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F141A; --surface:#19212B; --ink:#E9EEF4; --muted:#96A4B4; --line:#2C3743;
+    --accent:#7BA6FF; --on-accent:#0B1322; --soft:#1E2B45;
+    --mail:#7BA6FF; --phone:#4FC9B8; --meet:#D08BD5;
+    --good:#62D39A; --good-bg:#143326; --bad:#FF8E7A; --bad-bg:#3A1B16;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F141A; --surface:#19212B; --ink:#E9EEF4; --muted:#96A4B4; --line:#2C3743;
+  --accent:#7BA6FF; --on-accent:#0B1322; --soft:#1E2B45;
+  --mail:#7BA6FF; --phone:#4FC9B8; --meet:#D08BD5;
+  --good:#62D39A; --good-bg:#143326; --bad:#FF8E7A; --bad-bg:#3A1B16;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+#app{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1{font-size:26px;line-height:1.2;margin:0;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:13px;margin:0;font-weight:600;color:var(--muted);letter-spacing:.04em}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--muted)}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.streak{font-family:var(--mono);font-size:13px;color:var(--accent);white-space:nowrap}
+.block{display:flex;flex-direction:column;gap:10px}
+
+/* today's rounds */
+.rounds{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.round{display:flex;align-items:center;gap:14px;padding:14px 16px;width:100%;background:none;border:0;text-align:left;border-top:1px solid var(--line)}
+.round:first-child{border-top:0}
+.round .n{font-family:var(--mono);font-size:15px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);color:var(--muted);flex:none}
+.round .t{flex:1;min-width:0}
+.round .t b{display:block;font-weight:600}
+.round .t span{font-size:13px;color:var(--muted)}
+.round .s{font-size:13px;color:var(--muted);white-space:nowrap}
+.round.done .n{background:var(--good-bg);border-color:transparent;color:var(--good)}
+.round.done .s{color:var(--good)}
+.round.next .n{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.round.next .s{color:var(--accent);font-weight:600}
+.cta{width:100%;padding:16px;border-radius:14px;border:0;background:var(--accent);color:var(--on-accent);font-weight:600;font-size:17px}
+.cta[disabled]{opacity:.4;cursor:default}
+.ghost{width:100%;padding:14px;border-radius:14px;border:1.5px solid var(--line);background:transparent;font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar{display:grid;grid-template-columns:44px 1fr 48px;align-items:center;gap:10px;font-size:14px}
+.bar i{display:block;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.bar i u{display:block;height:100%;border-radius:4px}
+.bar span:last-child{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--muted)}
+
+/* session */
+.sbar{display:flex;align-items:center;gap:12px}
+.x{width:40px;height:40px;border-radius:50%;border:0;background:transparent;font-size:22px;color:var(--muted);flex:none}
+.prog{flex:1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.prog u{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s}
+@media (prefers-reduced-motion: reduce){.prog u{transition:none}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 20px;display:flex;flex-direction:column;gap:14px}
+.cat{font-family:var(--mono);font-size:12px;letter-spacing:.06em}
+.cat.m{color:var(--mail)}.cat.p{color:var(--phone)}.cat.t{color:var(--meet)}
+.ko{font-size:17px;color:var(--muted)}
+.ko.big{font-size:21px;color:var(--ink);font-weight:600;line-height:1.4}
+.en{font-size:25px;line-height:1.3;font-weight:600;letter-spacing:-.01em;overflow-wrap:anywhere}
+.tip{font-size:14px;background:var(--soft);border-radius:10px;padding:10px 12px}
+.listen{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;font-size:14px}
+.listen svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{padding:14px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);text-align:left;font-size:16px;line-height:1.4}
+.opt.ok{border-color:var(--good);background:var(--good-bg);color:var(--good)}
+.opt.no{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.slot{min-height:58px;border-bottom:2px solid var(--line);padding-bottom:10px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.bank{display:flex;flex-wrap:wrap;gap:8px}
+.tok{padding:9px 13px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);font-size:17px;font-weight:500}
+.tok.used{visibility:hidden}
+.fb{border-radius:12px;padding:12px 14px;font-size:15px}
+.fb.ok{background:var(--good-bg);color:var(--good)}
+.fb.no{background:var(--bad-bg);color:var(--bad)}
+.fb b{display:block;font-size:17px;margin-top:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two .cta.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.sit{font-size:14px;color:var(--muted);margin-top:-4px}
+.hint{font-family:var(--mono);font-size:16px;letter-spacing:.04em;background:var(--soft);border-radius:10px;padding:10px 12px;overflow-wrap:anywhere}
+.lbl{font-size:12px;color:var(--muted);margin-bottom:-8px}
+.mine{font-size:17px;color:var(--muted);overflow-wrap:anywhere}
+.w-ok{color:var(--good)}
+.w-no{color:var(--bad);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.say{display:flex;gap:10px;align-items:stretch}
+.say textarea{flex:1;min-width:0;font:inherit;font-size:18px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);resize:none}
+.say textarea:focus{outline:none;border-color:var(--accent)}
+.mic{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:72px;border-radius:12px;border:1.5px solid var(--accent);background:var(--soft);color:var(--accent);font-size:13px;font-weight:600}
+.mic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.mic.on{background:var(--bad);border-color:var(--bad);color:#fff}
+.howto{font-size:14px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.howto summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.howto ol{margin:8px 0;padding-left:20px;display:flex;flex-direction:column;gap:4px;color:var(--ink)}
+.howto p{font-size:13px}
+.fb.mid{background:var(--soft);color:var(--ink)}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.three .cta{font-size:14px;padding:14px 6px}
+.three .cta.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.big-num{font-size:44px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+
+/* list */
+.li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.li div{flex:1;min-width:0}
+.li b{display:block;font-weight:600;overflow-wrap:anywhere}
+.li span{font-size:13px;color:var(--muted)}
+.li .listen{padding:8px;border-radius:50%;align-self:center}
+.li.new b{color:var(--muted);font-weight:500}
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+<script src="audio.js"></script>
+
+<script>
+(function(){
+"use strict";
+var DATA=[
+["m","첨부 파일 확인 부탁드립니다.","Please find the attached file.","Please find ~ : ~을 확인해 주세요 (메일에서 가장 흔한 표현)","거래처에 자료 파일을 붙여 메일을 보낼 때"],
+["m","발주서를 첨부합니다.","I have attached the purchase order.","purchase order = 발주서, 줄여서 PO","공급처에 발주서를 메일로 보낼 때"],
+["m","빠른 회신 부탁드립니다.","I look forward to your prompt reply.","prompt reply = 빠른 답장","급한 건이라 답장을 빨리 받고 싶을 때"],
+["m","납기일을 확인해 주시겠어요?","Could you confirm the delivery date?","Could you ~? : 정중하게 부탁할 때","물건이 언제 도착하는지 확인하고 싶을 때"],
+["m","견적서를 보내 주세요.","Please send us a quotation.","quotation = 견적서 (quote 라고도 함)","새 제품 가격을 알아보려고 메일을 쓸 때"],
+["m","메일 잘 받았습니다.","Thank you for your email.","답장의 첫 문장으로 그대로 쓰면 됩니다","거래처 메일에 답장을 시작할 때"],
+["m","답변이 늦어 죄송합니다.","I apologize for the late reply.","apologize for ~ : ~에 대해 사과하다","며칠 지나서야 답장을 쓸 때"],
+["m","수량을 변경하고 싶습니다.","We would like to change the quantity.","would like to ~ : ~하고 싶습니다 (want 보다 정중)","이미 넣은 주문의 개수를 바꾸고 싶을 때"],
+["m","출고 일정을 알려 주세요.","Please let us know the shipping schedule.","let us know = 알려 주세요","물건이 언제 나가는지 알고 싶을 때"],
+["m","다음 주까지 받을 수 있을까요?","Can we receive it by next week?","by ~ : ~까지 (기한)","기한을 정해 받을 수 있는지 물을 때"],
+["m","확인 후 다시 연락드리겠습니다.","I will get back to you after checking.","get back to you = 다시 연락드리다","바로 답하기 어려워 시간이 필요할 때"],
+["m","재고가 있는지 확인해 주세요.","Please check if it is in stock.","in stock = 재고 있음 / out of stock = 품절","주문 전에 물건이 있는지 물을 때"],
+["m","송장을 보내 드립니다.","I am sending you the invoice.","invoice = 송장, 청구서","대금 청구서를 보낼 때"],
+["m","문의 사항이 있으면 연락 주세요.","Please contact me if you have any questions.","메일 끝인사로 자주 씁니다","메일을 마무리할 때"],
+["m","주문을 확정하겠습니다.","We would like to confirm the order.","confirm = 확정하다, 확인하다","견적을 보고 주문하기로 결정했을 때"],
+["m","납기가 며칠 지연될 예정입니다.","The delivery will be delayed by a few days.","be delayed by ~ : ~만큼 늦어지다","우리 쪽 납품이 늦어진다고 알릴 때"],
+["m","불편을 드려 죄송합니다.","We apologize for the inconvenience.","inconvenience = 불편","문제가 생겨 상대에게 사과할 때"],
+["m","결제 조건을 알려 주세요.","Please let us know the payment terms.","payment terms = 결제 조건","대금을 언제 어떻게 내는지 물을 때"],
+["m","샘플을 받아 볼 수 있을까요?","Could we get a sample?","Could we ~? : 우리가 ~할 수 있을까요?","주문 전에 물건을 먼저 보고 싶을 때"],
+["m","협조에 감사드립니다.","Thank you for your cooperation.","cooperation = 협조","도움을 받은 뒤 메일을 끝낼 때"],
+
+["p","여보세요, 담당자 준입니다.","Hello, this is Jun speaking.","전화에서는 I am 대신 this is 를 씁니다","걸려 온 전화를 받으며 이름을 말할 때"],
+["p","누구를 찾으세요?","Who would you like to speak to?","speak to ~ : ~와 통화하다","전화한 사람이 누구를 찾는지 물을 때"],
+["p","잠시만 기다려 주세요.","Please hold on a moment.","hold on = (전화를 끊지 않고) 기다리다","확인할 동안 전화를 끊지 말라고 할 때"],
+["p","담당자를 바꿔 드리겠습니다.","I will put you through to the person in charge.","put through = 전화를 연결하다 / person in charge = 담당자","담당자에게 전화를 넘겨줄 때"],
+["p","지금 자리에 안 계십니다.","The manager is not available right now.","not available = 자리에 없다, 통화가 어렵다","찾는 사람이 자리에 없을 때"],
+["p","메시지를 남기시겠어요?","Would you like to leave a message?","leave a message = 메시지를 남기다","없는 사람 대신 말을 전해 줄지 물을 때"],
+["p","다시 전화드리겠습니다.","I will call you back.","call back = 다시 전화하다","지금은 통화가 어려워 나중에 걸겠다고 할 때"],
+["p","조금 천천히 말씀해 주시겠어요?","Could you speak a little more slowly?","못 알아들을 때 가장 먼저 쓸 문장","상대 말이 너무 빨라 못 알아들을 때"],
+["p","다시 한번 말씀해 주시겠어요?","Could you say that again, please?","say that again = 다시 말하다","방금 한 말을 놓쳤을 때"],
+["p","잘 안 들립니다.","I can't hear you very well.","통화 상태가 나쁠 때","통화 음질이 나쁠 때"],
+["p","성함 철자를 알려 주시겠어요?","Could you spell your name, please?","spell = 철자를 말하다","상대 이름을 정확히 받아 적어야 할 때"],
+["p","어떤 용건으로 전화하셨나요?","May I ask what this is regarding?","regarding = ~에 관하여","처음 전화한 사람의 용건을 물을 때"],
+["p","주문 건으로 전화드렸습니다.","I am calling about our order.","I am calling about ~ : ~ 건으로 전화드렸습니다","주문 건으로 거래처에 전화를 걸었을 때"],
+["p","전화번호를 알려 주시겠어요?","May I have your phone number?","May I have ~? : ~을 알려 주시겠어요?","나중에 연락하려고 번호를 받을 때"],
+["p","메일로 자세히 보내 드리겠습니다.","I will send you the details by email.","details = 자세한 내용","전화로 다 설명하기 어려운 내용이 있을 때"],
+["p","지금 통화 괜찮으세요?","Is this a good time to talk?","전화를 걸었을 때 첫 확인","전화를 건 직후 상대 상황을 물을 때"],
+["p","확인하고 바로 알려 드리겠습니다.","Let me check and get back to you.","Let me ~ : 제가 ~하겠습니다","바로 답을 모를 때"],
+["p","전화 주셔서 감사합니다.","Thank you for calling.","통화를 끝낼 때","통화를 마무리할 때"],
+["p","제가 제대로 이해했는지 확인하겠습니다.","Let me confirm what you said.","숫자, 날짜를 되짚을 때 먼저 하는 말","날짜나 수량을 되짚어 확인하기 전에"],
+["p","그분께 전해 드리겠습니다.","I will pass on your message.","pass on = 전달하다","자리에 없는 동료에게 말을 전하겠다고 할 때"],
+
+["t","회의를 시작하겠습니다.","Let's get started.","get started = 시작하다","회의를 여는 첫마디"],
+["t","오늘 안건은 납기 일정입니다.","Today's agenda is the delivery schedule.","agenda = 안건","오늘 논의할 주제를 알릴 때"],
+["t","제 의견은 이렇습니다.","Here is what I think.","의견을 꺼낼 때 여는 말","내 생각을 말하기 시작할 때"],
+["t","그 의견에 동의합니다.","I agree with that.","agree with ~ : ~에 동의하다","상대 의견이 맞다고 할 때"],
+["t","죄송하지만 생각이 조금 다릅니다.","I'm afraid I see it differently.","I'm afraid ~ : 죄송하지만 ~ (부드럽게 반대)","상대 의견에 정중하게 반대할 때"],
+["t","좀 더 자세히 설명해 주시겠어요?","Could you explain that in more detail?","in more detail = 더 자세히","설명이 부족해 더 듣고 싶을 때"],
+["t","질문이 하나 있습니다.","I have a question.","끼어들 때 가장 짧고 안전한 문장","회의 중 묻고 싶은 것이 생겼을 때"],
+["t","그 부분은 확인이 필요합니다.","We need to check on that.","check on ~ : ~을 확인하다","그 자리에서 답할 수 없는 내용일 때"],
+["t","다음 안건으로 넘어가겠습니다.","Let's move on to the next item.","move on to ~ : ~로 넘어가다","한 주제가 끝나고 다음으로 넘어갈 때"],
+["t","일정을 조정할 수 있을까요?","Can we adjust the schedule?","adjust = 조정하다","날짜를 바꾸자고 제안할 때"],
+["t","가격을 조금 낮춰 주실 수 있나요?","Could you lower the price a little?","lower the price = 가격을 낮추다","가격을 협상할 때"],
+["t","내부적으로 논의해 보겠습니다.","We will discuss it internally.","바로 답하기 어려울 때","바로 결정하기 어려울 때"],
+["t","요점을 정리하겠습니다.","Let me summarize the main points.","summarize = 요약하다","회의 끝에 결론을 정리할 때"],
+["t","언제까지 가능하신가요?","When can you have it done?","have it done = 끝내다, 완료하다","마감 날짜를 물을 때"],
+["t","다음 회의는 언제로 할까요?","When should we have the next meeting?","should we ~? : ~할까요?","다음 일정을 잡을 때"],
+["t","회의록을 메일로 보내겠습니다.","I will send the meeting notes by email.","meeting notes = 회의록 (minutes 라고도 함)","회의가 끝난 뒤 기록을 공유할 때"],
+["t","그 조건이면 가능합니다.","We can do it on those terms.","on those terms = 그 조건으로","상대 조건을 받아들일 때"],
+["t","시간 내 주셔서 감사합니다.","Thank you for your time.","회의를 마칠 때","회의를 마치며 인사할 때"],
+["t","한 가지 제안이 있습니다.","I have a suggestion.","suggestion = 제안","새로운 아이디어를 내고 싶을 때"],
+["t","오늘은 여기까지 하겠습니다.","That's all for today.","회의를 끝내는 말","회의를 끝낼 때"]
+];
+var CAT={m:"메일",p:"전화",t:"회의"}, CATEN={m:"MAIL",p:"PHONE",t:"MEETING"}, CATVAR={m:"--mail",p:"--phone",t:"--meet"};
+var ITEMS=DATA.map(function(d,i){return {id:d[0]+i,cat:d[0],ko:d[1],en:d[2],tip:d[3],sit:d[4]||"",ord:i%20};});
+var BYID={}; ITEMS.forEach(function(x){BYID[x.id]=x;});
+var ORDER=ITEMS.slice().sort(function(a,b){return a.ord-b.ord||"mpt".indexOf(a.cat)-"mpt".indexOf(b.cat);});
+var NEW_PER_DAY=5, INT=[0,1,2,4,7,15], KEY="bizeng3-v1";
+var ROUNDS=[
+  {name:"새 표현 5개 배우기",sub:"보고, 듣고, 단어 순서 맞추기 · 약 3분"},
+  {name:"골라 맞히기 복습",sub:"우리말 보고 영어 문장 고르기 · 약 2분"},
+  {name:"상황 보고 말하기",sub:"힌트 받아 영어로 말하고 단어별로 확인 · 약 3분"}
+];
+
+function pad(n){return n<10?"0"+n:""+n;}
+function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
+function today(){return dstr(new Date());}
+function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function fresh(){return {v:1,items:{},days:{},focus:"all",updatedAt:0};}
+function valid(s){return s&&typeof s==="object"&&s.items&&s.days;}
+var S=fresh();
+try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(valid(p))S=p;}}catch(e){}
+if(!S.focus)S.focus="all";
+
+/* ---- cross-device save (private per viewer) ---- */
+var docRef=null, writing=false, dirty=false, syncState="local";
+function pushRemote(){
+  if(!docRef)return;
+  if(writing){dirty=true;return;}
+  writing=true;dirty=false;
+  docRef.set({updatedAt:S.updatedAt,state:JSON.parse(JSON.stringify(S))}).then(function(){syncState="synced";},function(){syncState="local";})
+    .then(function(){writing=false;if(dirty)pushRemote();else if(view==="home")render();});
+}
+function save(){
+  S.updatedAt=Date.now();
+  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+  pushRemote();
+}
+var C=window.claude&&typeof window.claude.use==="function"?window.claude:null;
+if(C){
+  Promise.all([C.use("db"),C.use("user")]).then(function(r){
+    var db=r[0],user=r[1];
+    if(!db||!user)return;
+    return user.id().then(function(id){
+      if(!id)return;
+      docRef=db.doc("data/users/"+id+"/progress");
+      return docRef.get().then(function(snap){
+        var d=snap.exists?snap.data():null;
+        if(d&&valid(d.state)&&(d.updatedAt||0)>(S.updatedAt||0)){
+          if(view==="home"||view==="list"){
+            S=JSON.parse(JSON.stringify(d.state));
+            try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+          }
+          syncState="synced";
+        }else if((S.updatedAt||0)>0){pushRemote();}
+        else{syncState="synced";}
+        if(view==="home"||view==="list")render();
+      });
+    });
+  }).catch(function(){});
+}
+
+/* ---- listening ---- */
+/* 문장별 음성 파일을 페이지에 함께 실어 두고, 누르는 즉시 재생한다 */
+var AUD=window.BIZ_AUDIO||null, player=null;
+function speak(id){
+  if(!AUD||!AUD[id])return;
+  try{
+    if(!player)player=new Audio();
+    player.pause();player.src=AUD[id];player.currentTime=0;
+    var pr=player.play();if(pr&&pr.catch)pr.catch(function(){});
+  }catch(e){}
+}
+function canSpeak(){return !!AUD;}
+var ICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
+function listenBtn(id,label){
+  if(!canSpeak())return "";
+  return '<button class="listen" data-act="speak" data-id="'+id+'"'+(label?"":' aria-label="듣기"')+'>'+ICON+(label?"<span>"+label+"</span>":"")+"</button>";
+}
+
+/* ---- day / schedule logic ---- */
+function day(){var t=today();if(!S.days[t])S.days[t]={"new":[],done:[0,0,0]};return S.days[t];}
+function dueOld(){
+  var t=today(),out=[];
+  for(var id in S.items){var it=S.items[id];if(BYID[id]&&it.learned!==t&&it.due<=t)out.push(id);}
+  out.sort(function(a,b){return S.items[a].due<S.items[b].due?-1:S.items[a].due>S.items[b].due?1:0;});
+  return out.slice(0,5);
+}
+function pickNew(){
+  var un=ORDER.filter(function(x){return !S.items[x.id];});
+  var f=S.focus==="all"?un:un.filter(function(x){return x.cat===S.focus;});
+  if(f.length<NEW_PER_DAY)f=f.concat(un.filter(function(x){return f.indexOf(x)<0;}));
+  return f.slice(0,NEW_PER_DAY).map(function(x){return x.id;});
+}
+function learnedCount(cat){var n=0;for(var id in S.items){if(BYID[id]&&(!cat||BYID[id].cat===cat))n++;}return n;}
+function streak(){
+  var n=0,d=today();
+  function any(k){var x=S.days[k];return x&&x.done&&(x.done[0]||x.done[1]||x.done[2]);}
+  if(!any(d))d=addDays(d,-1);
+  while(any(d)){n++;d=addDays(d,-1);}
+  return n;
+}
+function nextRound(){var d=day();for(var i=0;i<3;i++)if(!d.done[i])return i;return -1;}
+function grade(id,ok){
+  var t=today(),it=S.items[id];
+  if(!it){it=S.items[id]={box:1,due:addDays(t,1),learned:t};}
+  if(it.learned===t)return;                 /* 오늘 배운 것은 내일부터 간격 복습 */
+  if(ok==="mid"){it.due=addDays(t,1);return;}  /* 힌트 보고 맞힘: 단계 유지, 내일 다시 */
+  if(ok===true){it.box=Math.min((it.box||1)+1,5);it.due=addDays(t,INT[it.box]);}
+  else{it.box=1;it.due=t;}
+}
+
+/* ---- session ---- */
+var view="home", ses=null;
+function startRound(n){
+  var d=day();
+  if(n>0&&!d.done[0])n=0;
+  var steps=[],ids;
+  if(n===0){
+    if(!d["new"].length){d["new"]=pickNew();}
+    ids=d["new"];
+    if(ids.length){
+      var t=today();
+      ids.forEach(function(id){if(!S.items[id])S.items[id]={box:1,due:addDays(t,1),learned:t};steps.push({k:"learn",id:id});});
+      shuffle(ids).forEach(function(id){steps.push({k:"order",id:id});});
+    }else{
+      ids=dueOld();
+      if(!ids.length){ids=Object.keys(S.items).filter(function(id){return BYID[id];}).sort(function(a,b){return (S.items[a].box||1)-(S.items[b].box||1);}).slice(0,5);}
+      shuffle(ids).forEach(function(id){steps.push({k:"order",id:id});});
+    }
+  }else{
+    ids=d["new"].concat(dueOld().filter(function(id){return d["new"].indexOf(id)<0;}));
+    shuffle(ids).forEach(function(id){steps.push({k:n===1?"choice":"recall",id:id});});
+  }
+  ses={n:n,steps:steps,i:0,total:0,right:0,st:null};
+  view="session";save();enter();render();
+}
+function enter(){
+  var s=ses.steps[ses.i];if(!s){return;}
+  var it=BYID[s.id];
+  if(s.k==="order"){
+    var toks=it.en.split(" "),sh=shuffle(toks.map(function(w,i){return {w:w,i:i};}));
+    if(toks.length>1&&sh.map(function(x){return x.w;}).join(" ")===it.en)sh.push(sh.shift());
+    ses.st={bank:sh,picked:[],res:null};
+  }else if(s.k==="choice"){
+    var same=ITEMS.filter(function(x){return x.cat===it.cat&&x.id!==it.id;});
+    ses.st={opts:shuffle(shuffle(same).slice(0,3).concat([it])).map(function(x){return x.id;}),sel:null};
+  }else if(s.k==="recall"){ses.st={hint:0,text:"",partial:"",res:null,shown:false,listening:false};}
+  else ses.st={};
+}
+function answered(ok){
+  var s=ses.steps[ses.i];
+  if(!s.again){ses.total++;if(ok===true)ses.right++;}
+  grade(s.id,ok);
+  if(ok===false&&!s.again)ses.steps.push({k:s.k,id:s.id,again:true});
+}
+function advance(){
+  stopDict();
+  ses.i++;
+  if(ses.i>=ses.steps.length){day().done[ses.n]=1;save();view="result";}
+  else enter();
+  render();window.scrollTo(0,0);
+}
+
+/* ---- views ---- */
+var app=document.getElementById("app");
+function render(){
+  if(view==="home")app.innerHTML=homeHTML();
+  else if(view==="session")app.innerHTML=sessionHTML();
+  else if(view==="result")app.innerHTML=resultHTML();
+  else if(view==="list")app.innerHTML=listHTML();
+}
+function homeHTML(){
+  var d=day(),nx=nextRound(),t=new Date(),st=streak(),h="";
+  h+='<div class="top"><div><p class="mono">'+(t.getMonth()+1)+"월 "+t.getDate()+"일 "+"일월화수목금토".charAt(t.getDay())+'요일</p><h1>3분 비즈니스 영어</h1></div>'+
+     '<p class="streak">'+(st?st+"일 연속":"오늘 시작")+"</p></div>";
+  h+='<div class="block"><h2>오늘의 세 판</h2><div class="rounds">';
+  ROUNDS.forEach(function(r,i){
+    var cls=d.done[i]?"done":(i===nx?"next":"");
+    var s=d.done[i]?"완료":(i===nx?"지금":"대기");
+    h+='<button class="round '+cls+'" data-act="start" data-n="'+i+'"><span class="n">'+(d.done[i]?"✓":(i+1))+'</span><span class="t"><b>'+r.name+"</b><span>"+r.sub+'</span></span><span class="s">'+s+"</span></button>";
+  });
+  h+="</div>";
+  if(nx>=0)h+='<button class="cta" data-act="start" data-n="'+nx+'">'+(nx+1)+"판 시작</button>";
+  else h+='<p class="note">오늘 세 판을 모두 끝냈습니다. 내일 새 표현 5개가 열립니다.</p>';
+  h+="</div>";
+  h+='<div class="block"><h2>새 표현을 고를 분야</h2><div class="chips">';
+  [["all","골고루"],["m","메일"],["p","전화"],["t","회의"]].forEach(function(c){
+    h+='<button class="chip" data-act="focus" data-f="'+c[0]+'" aria-pressed="'+(S.focus===c[0])+'">'+c[1]+"</button>";
+  });
+  h+='</div><p class="note">내일부터 배울 새 표현에 적용됩니다.</p></div>';
+  h+='<div class="block"><h2>배운 표현 '+learnedCount()+" / "+ITEMS.length+'</h2><div class="bars">';
+  ["m","p","t"].forEach(function(c){
+    var n=learnedCount(c);
+    h+='<div class="bar"><span>'+CAT[c]+'</span><i><u style="width:'+(n/20*100)+"%;background:var("+CATVAR[c]+')"></u></i><span>'+n+" / 20</span></div>";
+  });
+  h+="</div></div>";
+  h+='<button class="ghost" data-act="list">표현 목록 보기</button>';
+  h+='<p class="note">'+(syncState==="synced"?"학습 기록이 내 계정에 저장됩니다. 다른 기기에서 열어도 이어집니다.":"학습 기록이 이 기기에 저장됩니다.")+"</p>";
+  return h;
+}
+function sessionHTML(){
+  var s=ses.steps[ses.i],it=BYID[s.id],st=ses.st,h="";
+  h+='<div class="sbar"><button class="x" data-act="quit" aria-label="그만하기">×</button><div class="prog"><u style="width:'+(ses.i/ses.steps.length*100)+'%"></u></div><span class="mono">'+(ses.i+1)+"/"+ses.steps.length+"</span></div>";
+  var cat='<span class="cat '+it.cat+'">'+CATEN[it.cat]+" · "+CAT[it.cat]+"</span>";
+  if(s.k==="learn"){
+    h+='<div class="card">'+cat+'<p class="ko">'+esc(it.ko)+'</p><p class="en" lang="en">'+esc(it.en)+"</p>"+listenBtn(it.id,"듣기")+'<p class="tip">'+esc(it.tip)+"</p></div>";
+    h+='<p class="note">소리 내어 두 번 따라 읽고 넘어가세요.</p><button class="cta" data-act="next">다음</button>';
+  }else if(s.k==="order"){
+    h+='<div class="card">'+cat+'<p class="ko big">'+esc(it.ko)+'</p><div class="slot" aria-label="내가 만든 문장">';
+    st.picked.forEach(function(bi,pi){h+='<button class="tok" lang="en" data-act="unpick" data-p="'+pi+'"'+(st.res!==null?" disabled":"")+">"+esc(st.bank[bi].w)+"</button>";});
+    h+="</div></div>";
+    if(st.res===null){
+      h+='<div class="bank">';
+      st.bank.forEach(function(b,bi){h+='<button class="tok'+(st.picked.indexOf(bi)>=0?" used":"")+'" lang="en" data-act="pick" data-b="'+bi+'">'+esc(b.w)+"</button>";});
+      h+='</div><button class="cta" data-act="check"'+(st.picked.length===st.bank.length?"":" disabled")+">확인</button>";
+    }else{
+      h+=feedback(st.res,it)+'<button class="cta" data-act="next">다음</button>';
+    }
+  }else if(s.k==="choice"){
+    h+='<div class="card">'+cat+'<p class="ko big">'+esc(it.ko)+'</p></div><div class="opts">';
+    st.opts.forEach(function(id){
+      var c="";if(st.sel!==null){if(id===it.id)c=" ok";else if(id===st.sel)c=" no";}
+      h+='<button class="opt'+c+'" lang="en" data-act="choose" data-id="'+id+'"'+(st.sel!==null?" disabled":"")+">"+esc(BYID[id].en)+"</button>";
+    });
+    h+="</div>";
+    if(st.sel!==null)h+=listenBtn(it.id,"정답 듣기")+'<button class="cta" data-act="next">다음</button>';
+  }else{
+    h+=recallHTML(it,st,cat);
+  }
+  return h;
+}
+/* ---- 3판: 상황 보고 말하기 ---- */
+var CONTR={"i'm":"i am","can't":"can not","cannot":"can not","won't":"will not","don't":"do not","it's":"it is","that's":"that is","let's":"let us","i'll":"i will","we'll":"we will","you're":"you are","we're":"we are","i've":"i have","isn't":"is not","we'd":"we would","i'd":"i would"};
+function parts(w){
+  w=w.toLowerCase().replace(/[\u2018\u2019]/g,"'").replace(/[^a-z0-9']/g,"");
+  if(!w)return [];
+  var e=CONTR[w];return (e?e:w.replace(/'/g,"")).split(" ").filter(Boolean);
+}
+function diff(answer,said){
+  var words=answer.split(" "),A=[],own=[];
+  words.forEach(function(w,wi){parts(w).forEach(function(p){A.push(p);own.push(wi);});});
+  var B=[];said.split(/\s+/).forEach(function(w){B=B.concat(parts(w));});
+  var n=A.length,m=B.length,L=[],i,j;
+  for(i=0;i<=n;i++){L.push(new Array(m+1).fill(0));}
+  for(i=n-1;i>=0;i--)for(j=m-1;j>=0;j--)L[i][j]=A[i]===B[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
+  var hit=new Array(n).fill(false);i=0;j=0;
+  while(i<n&&j<m){if(A[i]===B[j]){hit[i]=true;i++;j++;}else if(L[i+1][j]>=L[i][j+1])i++;else j++;}
+  var wok=words.map(function(){return true;});
+  own.forEach(function(wi,k){if(!hit[k])wok[wi]=false;});
+  var got=hit.filter(Boolean).length;
+  return {words:words,wok:wok,ratio:n?got/n:0,extra:m-got};
+}
+function hintText(en,level){
+  return en.split(" ").map(function(w,i){
+    if(level>=2&&i%2===0)return w;
+    return w.replace(/[A-Za-z]/g,function(c,k){return k===0?c:"_";});
+  }).join(" ");
+}
+var MIC='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>';
+function recallHTML(it,st,cat){
+  var h='<div class="card">'+cat;
+  if(it.sit)h+='<p class="sit">상황 · '+esc(it.sit)+"</p>";
+  h+='<p class="ko big">'+esc(it.ko)+"</p>";
+  if(st.hint&&!st.res&&!st.shown)h+='<p class="hint" lang="en" aria-label="힌트">'+esc(hintText(it.en,st.hint))+"</p>";
+  if(st.res){
+    var r=st.res;
+    h+='<p class="lbl">정답 · 빨간 단어는 빠졌거나 다르게 말한 단어</p><p class="en" lang="en">';
+    h+=r.words.map(function(w,i){return '<span class="'+(r.wok[i]?"w-ok":"w-no")+'">'+esc(w)+"</span>";}).join(" ")+"</p>";
+    h+='<p class="lbl">내 문장</p><p class="mine" lang="en">'+esc(st.text)+"</p>"+listenBtn(it.id,"정답 듣고 따라 말하기");
+  }else if(st.shown){
+    h+='<p class="en" lang="en">'+esc(it.en)+"</p>"+listenBtn(it.id,"듣고 따라 말하기");
+  }
+  h+="</div>";
+  if(st.res){
+    var g=st.grade,msg=g===true?"정확합니다":g==="mid"?(st.hint?"힌트를 보고 맞혔습니다. 내일 다시 나옵니다.":"거의 맞았습니다. 내일 다시 나옵니다."):"다시 연습이 필요합니다. 이 판 끝에 한 번 더 나옵니다.";
+    h+='<div class="fb '+(g===true?"ok":g==="mid"?"mid":"no")+'" role="status">'+msg+' <span class="mono">'+Math.round(st.res.ratio*100)+"% 일치</span></div>";
+    h+='<button class="cta" data-act="next">다음</button>';
+  }else if(st.shown){
+    h+='<p class="note">입력 없이 정답을 봤습니다. 실제로 어땠는지 골라 주세요.</p><div class="three">'+
+       '<button class="cta alt" data-act="self" data-ok="0">못 말했다</button>'+
+       '<button class="cta alt" data-act="self" data-ok="mid">비슷하게 말했다</button>'+
+       '<button class="cta" data-act="self" data-ok="'+(st.hint?"mid":"1")+'">맞게 말했다</button></div>';
+  }else{
+    h+='<div class="say"><textarea id="ans" lang="en" rows="2" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="영어로 말하거나 입력하세요">'+esc(st.text+(st.partial?" "+st.partial:""))+"</textarea>";
+    if(dictOK())h+='<button class="mic'+(st.listening?" on":"")+'" data-act="mic" aria-label="'+(st.listening?"말하기 멈추기":"말하기")+'">'+MIC+"<span>"+(st.listening?"멈추기":"말하기")+"</span></button>";
+    h+="</div>";
+    h+='<p class="note">'+(dictOK()?"말하기 버튼을 누르고 영어로 말하거나, ":"")+"키보드의 마이크 버튼으로 말해도 됩니다.</p>";
+    if(!dictOK())h+='<details class="howto"><summary>폰에서 말로 입력하는 법</summary><ol><li>위 입력 칸을 누릅니다.</li><li>키보드를 <b>영어</b>로 바꿉니다. (지구본 버튼 또는 한/영 버튼)</li><li>키보드의 <b>마이크 버튼</b>을 누르고 영어로 말합니다.</li><li>다 말했으면 <b>확인</b>을 누릅니다.</li></ol><p>키보드가 한국어인 채로 말하면 영어를 한글로 받아 적습니다. 마이크 버튼 위치는 기종마다 다릅니다(아이폰: 키보드 아래쪽, 안드로이드: 키보드 위쪽 줄).</p></details>';
+    h+='<div class="two"><button class="cta alt" data-act="hint"'+(st.hint>=2?" disabled":"")+">힌트 "+(st.hint<2?(st.hint+1)+"/2":"끝")+'</button><button class="cta" data-act="checkSay"'+(st.text.trim()?"":" disabled")+">확인</button></div>";
+    h+='<button class="ghost" data-act="show">모르겠다, 정답 보기</button>';
+  }
+  return h;
+}
+var DICT=null,dictOff=false;
+function dictOK(){return !!DICT&&!dictOff;}
+function curRecall(){return view==="session"&&ses&&ses.steps[ses.i]&&ses.steps[ses.i].k==="recall"&&!ses.st.res&&!ses.st.shown?ses.st:null;}
+function syncBox(){
+  var st=curRecall(),ta=document.getElementById("ans");if(!st||!ta)return;
+  ta.value=st.text+(st.partial?(st.text?" ":"")+st.partial:"");
+  var b=app.querySelector('[data-act="checkSay"]');if(b)b.disabled=!st.text.trim();
+}
+function stopDict(){if(DICT&&DICT.active()){DICT.stop().catch(function(){});}}
+function wireDict(d){
+  DICT=d;
+  d.onPartial(function(e){var st=curRecall();if(st){st.partial=e.text;syncBox();}});
+  d.onFinal(function(e){var st=curRecall();if(st){st.text=st.text?st.text+e.text:e.text.replace(/^\s+/,"");st.partial="";syncBox();}});
+  d.onState(function(e){
+    var st=curRecall(),on=e.state!=="idle";
+    if(e.state==="idle"&&(e.reason==="not_granted"||e.reason==="unavailable"))dictOff=true;
+    if(st&&st.listening!==on){st.listening=on;if(!on)st.partial="";render();}
+    else if(st&&e.state==="idle"&&dictOff)render();
+  });
+  if(curRecall())render();
+}
+/* Claude 밖(일반 웹 주소)에서 열었을 때: 브라우저 자체 음성 인식 사용 */
+function webSpeech(){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR)return null;
+  var hp=[],hf=[],hs=[],rec=null,act=false;
+  function emit(a,e){a.forEach(function(f){try{f(e);}catch(x){}});}
+  function on(a){return function(f){a.push(f);return function(){var i=a.indexOf(f);if(i>=0)a.splice(i,1);};};}
+  return {
+    start:function(){
+      return new Promise(function(res,rej){
+        if(act){res();return;}
+        var err=null,started=false,pending="";
+        try{
+          rec=new SR();rec.lang="en-US";rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
+          rec.onstart=function(){started=true;emit(hs,{state:"listening"});res();};
+          rec.onresult=function(e){
+            var fin="",mid="";
+            for(var i=e.resultIndex;i<e.results.length;i++){var r=e.results[i];if(r.isFinal)fin+=r[0].transcript;else mid+=r[0].transcript;}
+            if(fin.trim()){pending="";emit(hp,{text:""});emit(hf,{text:" "+fin.trim()});}
+            else{pending=mid.trim();emit(hp,{text:pending});}
+          };
+          rec.onerror=function(e){err=e.error;};
+          rec.onend=function(){
+            act=false;
+            if(pending){emit(hp,{text:""});emit(hf,{text:" "+pending});pending="";}
+            var reason=(err==="not-allowed"||err==="service-not-allowed")?"not_granted":(err&&err!=="no-speech"&&err!=="aborted")?"upstream_error":"stopped";
+            emit(hs,{state:"idle",reason:reason});
+            if(!started)rej({code:reason==="not_granted"?"not_granted":"upstream_error"});
+          };
+          act=true;emit(hs,{state:"starting"});rec.start();
+        }catch(x){act=false;emit(hs,{state:"idle",reason:"unavailable"});rej({code:"unavailable"});}
+      });
+    },
+    stop:function(){if(rec&&act){try{rec.stop();}catch(x){}}return Promise.resolve();},
+    active:function(){return act;},
+    onPartial:on(hp),onFinal:on(hf),onState:on(hs)
+  };
+}
+if(C){
+  C.use("dictation").then(function(d){if(d)wireDict(d);}).catch(function(){});
+}else{
+  var WS=webSpeech();if(WS)wireDict(WS);
+}
+function feedback(ok,it){
+  return '<div class="fb '+(ok?"ok":"no")+'" role="status">'+(ok?"맞았습니다":"정답은 이렇습니다. 끝에 한 번 더 나옵니다.")+'<b lang="en">'+esc(it.en)+"</b></div>"+listenBtn(it.id,"듣기");
+}
+function resultHTML(){
+  var nx=nextRound(),h="";
+  h+='<div class="card"><span class="mono">'+(ses.n+1)+"판 완료</span>";
+  if(ses.total)h+='<p class="big-num">'+ses.right+" / "+ses.total+'</p><p class="ko">한 번에 맞힌 문제</p>';
+  else h+='<p class="ko big">오늘 복습할 표현이 없습니다.</p>';
+  h+="</div>";
+  if(nx>=0)h+='<p class="note">다음은 '+(nx+1)+"판 「"+ROUNDS[nx].name+"」입니다. 시간을 두고 하면 더 오래 기억됩니다.</p>";
+  else h+='<p class="note">오늘 세 판을 모두 끝냈습니다.</p>';
+  h+='<button class="cta" data-act="home">처음 화면으로</button>';
+  if(nx>=0)h+='<button class="ghost" data-act="start" data-n="'+nx+'">바로 '+(nx+1)+"판 하기</button>";
+  return h;
+}
+function listHTML(){
+  var h='<div class="sbar"><button class="x" data-act="home" aria-label="돌아가기">←</button><h1 style="font-size:20px">표현 목록</h1></div>';
+  ["m","p","t"].forEach(function(c){
+    h+='<div class="block"><h2>'+CAT[c]+" · "+learnedCount(c)+" / 20</h2>";
+    ITEMS.filter(function(x){return x.cat===c;}).forEach(function(it){
+      var got=!!S.items[it.id];
+      h+='<div class="li'+(got?"":" new")+'"><div><b lang="en">'+esc(it.en)+"</b><span>"+esc(it.ko)+(got?"":" · 아직 안 배움")+"</span></div>"+listenBtn(it.id,"")+"</div>";
+    });
+    h+="</div>";
+  });
+  return h;
+}
+
+app.addEventListener("click",function(e){
+  var b=e.target.closest("[data-act]");if(!b||b.disabled)return;
+  var a=b.getAttribute("data-act"),st=ses&&ses.st,s=ses&&ses.steps[ses.i];
+  if(a==="start"){startRound(+b.getAttribute("data-n"));window.scrollTo(0,0);}
+  else if(a==="focus"){S.focus=b.getAttribute("data-f");save();render();}
+  else if(a==="list"){view="list";render();window.scrollTo(0,0);}
+  else if(a==="home"||a==="quit"){stopDict();view="home";ses=null;render();window.scrollTo(0,0);}
+  else if(a==="speak"){speak(b.getAttribute("data-id"));}
+  else if(a==="next"){advance();}
+  else if(a==="pick"){var bi=+b.getAttribute("data-b");if(st.picked.indexOf(bi)<0){st.picked.push(bi);render();}}
+  else if(a==="unpick"){st.picked.splice(+b.getAttribute("data-p"),1);render();}
+  else if(a==="check"){
+    var made=st.picked.map(function(i){return st.bank[i].w;}).join(" ");
+    st.res=made===BYID[s.id].en;answered(st.res);render();
+  }
+  else if(a==="choose"){st.sel=b.getAttribute("data-id");answered(st.sel===s.id);render();}
+  else if(a==="show"){stopDict();st.shown=true;render();}
+  else if(a==="self"){var v=b.getAttribute("data-ok");answered(v==="1"?true:v==="mid"?"mid":false);advance();}
+  else if(a==="hint"){if(st.hint<2){st.hint++;render();}}
+  else if(a==="mic"){
+    if(!DICT)return;
+    if(DICT.active()){DICT.stop().catch(function(){});return;}
+    DICT.start({language:"en"}).catch(function(err){
+      var c=err&&err.code;
+      if(c==="not_granted"||c==="unavailable"){dictOff=true;}
+      var s2=curRecall();if(s2){s2.listening=false;}
+      render();
+    });
+  }
+  else if(a==="checkSay"){
+    stopDict();
+    var it3=BYID[s.id];st.text=st.text.trim();st.partial="";
+    st.res=diff(it3.en,st.text);
+    var full=st.res.ratio===1&&st.res.extra<=2;
+    st.grade=full&&!st.hint?true:(full||st.res.ratio>=0.6)?"mid":false;
+    answered(st.grade);render();
+  }
+});
+app.addEventListener("input",function(e){
+  if(e.target.id!=="ans")return;
+  var st=curRecall();if(!st)return;
+  st.text=e.target.value;st.partial="";
+  var b=app.querySelector('[data-act="checkSay"]');if(b)b.disabled=!st.text.trim();
+});
+render();
+})();
+</script>
+
+</body>
+</html>
