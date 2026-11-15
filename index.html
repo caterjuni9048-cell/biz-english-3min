@@ -145,6 +145,13 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 @keyframes shrink{from{width:100%}to{width:0}}
 @media (prefers-reduced-motion: reduce){.auto.on .dot,.auto .limit{animation:none}}
 .w-minor{color:var(--muted);text-decoration:underline dotted;text-underline-offset:4px}
+.install{background:var(--surface);border:1.5px solid var(--accent);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.ihead{display:flex;gap:12px;align-items:center}
+.ihead img{border-radius:10px;flex:none}
+.ihead div{display:flex;flex-direction:column;min-width:0}
+.ihead span{font-size:13px;color:var(--muted)}
+.install ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.sel{user-select:all;-webkit-user-select:all;color:var(--ink);overflow-wrap:anywhere}
 .fb.mid{background:var(--soft);color:var(--ink)}
 .three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .three .cta{font-size:14px;padding:14px 6px}
@@ -497,6 +504,7 @@ function homeHTML(){
     h+='<div class="bar"><span>'+CAT[c]+'</span><i><u style="width:'+(n/CATN[c]*100)+"%;background:var("+CATVAR[c]+')"></u></i><span>'+n+" / "+CATN[c]+"</span></div>";
   });
   h+="</div></div>";
+  h+=installHTML();
   var wn=(d.wrong||[]).length;
   if(wn)h+='<button class="ghost" data-act="wrong">오늘 틀린 문장 '+wn+'개 다시 보기</button>';
   h+='<button class="ghost" data-act="list">표현 목록 보기</button>';
@@ -919,6 +927,38 @@ function wrongHTML(){
     h+='<div class="li"><div><b lang="en">'+esc(it.en)+"</b><span>"+esc(it.ko)+"</span></div>"+listenBtn(it.id,"")+"</div>";});
   return h;
 }
+/* ---- 폰 홈 화면에 아이콘 추가 ---- */
+var INS={evt:null,open:false,done:false};
+function isStandalone(){try{return window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;}catch(x){return false;}}
+function phoneKind(){var u=navigator.userAgent||"";
+  if(/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\//i.test(u))return "inapp";
+  if(/iPhone|iPad|iPod/.test(u)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1))return /CriOS|FxiOS|EdgiOS/.test(u)?"ios-other":"ios";
+  if(/Android/.test(u))return /SamsungBrowser/.test(u)?"samsung":"android";
+  return "pc";}
+function installHTML(){
+  if(C||isStandalone()||INS.done)return "";
+  var k=phoneKind(),h='<div class="install"><div class="ihead"><img src="icon-192.png" alt="" width="44" height="44"><div><b>폰 홈 화면에 아이콘 만들기</b><span>다음부터 아이콘을 누르면 앱처럼 바로 열립니다.</span></div></div>';
+  if(INS.evt)h+='<button class="cta" data-act="install">홈 화면에 추가</button>';
+  else{
+    h+='<button class="ghost small" data-act="insguide">'+(INS.open?"방법 접기":"추가하는 방법 보기")+"</button>";
+    if(INS.open){
+      var steps=k==="ios"?["화면 아래(또는 위) 주소창 옆의 <b>공유 버튼</b>(네모에 위쪽 화살표)을 누릅니다.","목록을 아래로 내려 <b>홈 화면에 추가</b>를 누릅니다.","오른쪽 위 <b>추가</b>를 누릅니다."]:
+        k==="ios-other"?["아이폰은 <b>사파리</b>에서만 홈 화면에 추가할 수 있습니다.","이 주소를 복사해 사파리에서 연 뒤, 공유 버튼 → <b>홈 화면에 추가</b>를 누릅니다."]:
+        k==="inapp"?["카톡 같은 앱 안의 브라우저에서는 추가할 수 없습니다.","오른쪽 위(또는 아래) 메뉴에서 <b>다른 브라우저로 열기</b>를 누릅니다.","열린 크롬이나 사파리에서 다시 이 버튼을 누릅니다."]:
+        k==="samsung"?["아래쪽 <b>메뉴 버튼</b>(줄 세 개)을 누릅니다.","<b>현재 페이지 추가</b> → <b>홈 화면</b>을 누릅니다."]:
+        k==="android"?["크롬 오른쪽 위 <b>점 세 개 메뉴</b>를 누릅니다.","<b>홈 화면에 추가</b> 또는 <b>앱 설치</b>를 누릅니다.","<b>추가</b>(또는 설치)를 누릅니다."]:
+        ["폰에서 이 주소를 열어야 홈 화면에 추가할 수 있습니다."];
+      h+="<ol>"+steps.map(function(s){return "<li>"+s+"</li>";}).join("")+"</ol>";
+      h+='<p class="note">주소: <span class="sel">'+esc(location.href.split("#")[0])+"</span></p>";
+    }
+  }
+  return h+"</div>";
+}
+if(!C){
+  window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();INS.evt=e;if(view==="home")render();});
+  window.addEventListener("appinstalled",function(){INS.done=true;INS.evt=null;if(view==="home")render();});
+  if("serviceWorker" in navigator&&/^https:|^http:\/\/localhost/.test(location.href)){try{navigator.serviceWorker.register("sw.js").catch(function(){});}catch(x){}}
+}
 var bk={mode:"",msg:""};
 function backupHTML(){
   var h='<details class="howto" id="bkbox"'+(bk.mode?" open":"")+'><summary>기록 백업과 불러오기</summary>';
@@ -952,6 +992,8 @@ app.addEventListener("click",function(e){
   if(a==="start"){startRound(+b.getAttribute("data-n"));window.scrollTo(0,0);}
   else if(a==="focus"){S.focus=b.getAttribute("data-f");save();render();}
   else if(a==="list"){view="list";render();window.scrollTo(0,0);}
+  else if(a==="install"){var ev=INS.evt;INS.evt=null;if(ev){ev.prompt();(ev.userChoice||Promise.resolve({})).then(function(r){if(r&&r.outcome==="accepted")INS.done=true;render();});}render();}
+  else if(a==="insguide"){INS.open=!INS.open;render();}
   else if(a==="wrong"){view="wrong";render();window.scrollTo(0,0);}
   else if(a==="speed"){S.slow=b.getAttribute("data-v")==="1";save();render();}
   else if(a==="bkcopy"){
