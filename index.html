@@ -204,6 +204,12 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .sl p{margin:0}
 .sko{font-size:13px;color:var(--muted)}
 .qq{font-weight:600;margin-top:4px}
+.ver{text-align:center;font-family:var(--mono);font-size:12px}
+.fld textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0;resize:vertical}
+.fld textarea:focus{outline:none;border-color:var(--accent)}
+.two input{width:100%}
+.nlink{text-decoration:none;color:inherit}
+.nlink .go{flex:none;font-size:13px;color:var(--accent);font-weight:600}
 .chat{display:flex;flex-direction:column;gap:8px}
 .bub{max-width:88%;padding:10px 14px;border-radius:16px;display:flex;flex-direction:column;gap:4px}
 .bub p{margin:0}
@@ -382,6 +388,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
+var APP_VER="v12",APP_DATE="2026-11-16";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -571,10 +578,11 @@ function render(){
   else if(view==="dlg")app.innerHTML=dlgHTML();
   else if(view==="rp")app.innerHTML=rpHTML();
   else if(view==="mail")app.innerHTML=mailHTML();
+  else if(view==="news")app.innerHTML=newsHTML();
 }
 function homeHTML(){
   var d=day(),nx=nextRound(),t=new Date(),st=streak(),h="";
-  h+='<div class="top"><div><p class="mono">'+(t.getMonth()+1)+"월 "+t.getDate()+"일 "+"일월화수목금토".charAt(t.getDay())+'요일</p><h1>3분 비즈니스 영어</h1></div>'+
+  h+='<div class="top"><div><p class="mono">'+(t.getMonth()+1)+"월 "+t.getDate()+"일 "+"일월화수목금토".charAt(t.getDay())+'요일 · '+APP_VER+'</p><h1>3분 비즈니스 영어</h1></div>'+
      '<p class="streak">'+(st?st+"일 연속":"오늘 시작")+"</p></div>";
   var si=streakInfo(),gl=S.goal||5,wd=weekDone();
   h+='<div class="goal"><div class="gtop"><b>이번 주 목표 '+Math.min(wd,gl)+" / "+gl+'일</b><span>'+(wd>=gl?"목표 달성":"남은 "+(gl-wd)+"일")+'</span></div><i class="gbar"><u style="width:'+Math.min(100,wd/gl*100)+'%"></u></i><p class="note">연속 보호권: '+(si.usedThisWeek?"이번 주에 사용함":"이번 주 1개 남음")+' · 하루를 빠져도 주 1회는 연속 일수가 이어집니다.</p></div>';
@@ -627,6 +635,7 @@ function homeHTML(){
   if(C)h+='<div class="notice"><b>말하기 연습은 폰 주소에서</b><p>폰 브라우저에서 아래 주소를 열면 3판에서 바로 말할 수 있습니다. 이 링크와 학습 기록은 따로 저장됩니다.</p><a href="'+PAGES+'" target="_blank" rel="noopener">'+PAGES+'</a></div>';
   h+='<p class="note">'+(syncState==="synced"?"학습 기록이 내 계정에 저장됩니다. 다른 기기에서 열어도 이어집니다.":"학습 기록은 이 폰의 브라우저에 저장됩니다. 브라우저 기록을 지우면 사라지니 가끔 백업해 두세요.")+"</p>";
   h+=backupHTML();
+  h+='<p class="note ver">3분 영어 '+APP_VER+' · '+APP_DATE+'</p>';
   return h;
 }
 function sessionHTML(){
@@ -1223,6 +1232,7 @@ function extraHTML(){
   h+='<button class="xbtn" data-act="xdlg"><b>대화 듣기</b><span>전화·회의 대화를 듣고 문제 풀기</span></button>';
   h+='<button class="xbtn" data-act="xdict"><b>받아쓰기</b><span>들은 문장을 영어로 쓰기</span></button>';
   h+='<button class="xbtn" data-act="xrp"><b>AI 역할극</b><span>AI 거래처와 영어로 대화하기'+(C?"":" · Claude 링크 전용")+'</span></button>';
+  h+='<button class="xbtn" data-act="xnews"><b>뉴스 읽기</b><span>쉬운 영어 뉴스 읽고 문제 풀기</span></button>';
   h+='<button class="xbtn" data-act="xmail"><b>메일 첨삭</b><span>내 영어 메일 고치기'+(C?"":" · Claude 링크 전용")+'</span></button>';
   return h+"</div></div>";
 }
@@ -1335,7 +1345,7 @@ function dlgHTML(){
 
 /* ---- F. AI 역할극 / G. 메일 첨삭 (Claude 링크에서만: 내 Claude 계정으로 AI 호출) ---- */
 var SAMPLE=null;
-if(C){C.use("sample").then(function(s){SAMPLE=s||null;if(view==="home"||view==="rp"||view==="mail")render();}).catch(function(){});}
+if(C){C.use("sample").then(function(s){SAMPLE=s||null;if(view==="home"||view==="rp"||view==="mail"||view==="news")render();}).catch(function(){});}
 function aiErr(e){var c=e&&e.code;return c==="not_granted"?"Claude 사용을 허용해야 쓸 수 있습니다. 화면의 허용 버튼을 눌러 주세요.":c==="rate_limited"?"요청이 많습니다. 잠시 뒤 다시 눌러 주세요.":c==="invalid_json"?"AI 답을 읽지 못했습니다. 다시 눌러 주세요.":c==="cancelled"?"멈췄습니다.":"AI 응답에 실패했습니다. 잠시 뒤 다시 눌러 주세요.";}
 function claudeOnly(title){return backBar(title)+'<div class="notice"><b>Claude 링크에서 쓸 수 있습니다</b><p>이 기능은 준의 Claude 계정으로 AI를 불러 쓰기 때문에 Claude 링크에서만 동작합니다. 추가 비용은 없습니다.</p><a href="https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW" target="_blank" rel="noopener">https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW</a></div>';}
 var RPS=[
@@ -1435,6 +1445,100 @@ function mailGo(){
   var prompt="You are a business English email coach for a Korean office worker (CEFR A2-B1).\n"+task+"\nKeep it simple and natural, keep the original meaning, and do NOT invent facts, names, numbers or dates; if needed information is missing, write a placeholder like [date].\nReply with ONLY this JSON: {\"email\":\"the full email\",\"changes\":[{\"before\":\"original phrase\",\"after\":\"corrected phrase\",\"why_ko\":\"짧은 한국어 설명\"}],\"phrases\":[{\"en\":\"reusable sentence from the email\",\"ko\":\"한국어 뜻\",\"tip\":\"key phrase = 뜻\"}]}\nchanges: up to 6 most important changes (empty array is fine for a Korean draft). phrases: exactly 3.\n\nTEXT:\n\"\"\"\n"+tx.slice(0,6000)+"\n\"\"\"";
   SAMPLE.json(prompt,{cache:false,signal:ctl.signal}).then(function(r){if(ML.ctl!==ctl)return;ML.busy=false;ML.res=r||{};render();},function(e){if(ML.ctl!==ctl)return;ML.busy=false;ML.err=aiErr(e);render();});
 }
+
+/* ---- H. 뉴스 읽기 (사이트 퀴즈 + 기록 / Claude 링크: 붙여 넣은 기사로 AI 문제) ---- */
+var NEWS_SITES=[
+ {id:"bne",name:"Breaking News English",url:"https://breakingnewsenglish.com/",desc:"기사마다 퀴즈가 많음 · 7단계 · 새 기사 주 2회 · 문제 풀이용"},
+ {id:"nil",name:"News in Levels",url:"https://www.newsinlevels.com/",desc:"매일 새 기사 · 3단계(레벨 2 추천) · 짧게 매일 읽기용"},
+ {id:"voa",name:"VOA Learning English",url:"https://learningenglish.voanews.com/",desc:"학습자용 쉬운 영어 · 음성 있음 · 일부 기사에 퀴즈"}];
+var NSITE={bne:"Breaking News English",nil:"News in Levels",voa:"VOA",etc:"기타",ai:"AI 문제"};
+var NW={site:"bne",f:{title:"",ok:"",n:"",words:"",sum:""},msg:"",text:"",busy:false,err:"",res:null,ans:{},ctl:null,saved:false};
+function nwKeep(){["title","ok","n","words","sum"].forEach(function(k){var el=document.getElementById("nw_"+k);if(el)NW.f[k]=el.value;});var t=document.getElementById("nwin");if(t)NW.text=t.value;}
+function parseWords(t){return String(t||"").split(/\n/).map(function(l){l=l.trim();if(!l)return null;var m=l.split(/\s*(?:=|:|-|–|—)\s+|\s+(?:=|:)\s*/);return {en:(m[0]||"").trim().slice(0,80),ko:(m.slice(1).join(" ")||"").trim().slice(0,80)};}).filter(function(w){return w&&w.en;}).slice(0,20);}
+function newsWeek(){var s=weekStart(today());return (S.news||[]).filter(function(r){return r.d>=s;}).length;}
+function newsHTML(){
+  var L=S.news||[],h=backBar("뉴스 읽기","이번 주 "+newsWeek()+"회 · 전체 "+L.length+"회");
+  h+='<p class="note">① 아래 사이트에서 기사 1개를 읽고 그 사이트의 퀴즈를 풉니다. ② 돌아와서 점수와 기억할 단어를 적어 둡니다. 기록하면 그날은 공부한 날로 칩니다.</p>';
+  h+='<div class="block"><h2>뉴스 사이트</h2>';
+  NEWS_SITES.forEach(function(x){h+='<a class="li nlink" href="'+x.url+'" target="_blank" rel="noopener"><div><b lang="en">'+x.name+"</b><span>"+x.desc+'</span></div><span class="go">열기 ↗</span></a>';});
+  h+='<p class="note">퀴즈는 각 사이트 화면에서 풉니다. 점수는 앱이 자동으로 가져올 수 없어 직접 적습니다.</p></div>';
+  h+='<div class="block"><h2>읽은 기록 남기기</h2><div class="chips">'+["bne","nil","voa","etc"].map(function(k){return '<button class="chip" data-act="nwsite" data-v="'+k+'" aria-pressed="'+(NW.site===k)+'">'+NSITE[k]+"</button>";}).join("")+"</div>";
+  h+='<label class="fld"><span>기사 제목 (필수, 몇 단어만 적어도 됩니다)</span><input id="nw_title" lang="en" autocomplete="off" value="'+esc(NW.f.title)+'" placeholder="예: Shipping costs rise"></label>';
+  h+='<div class="two"><label class="fld"><span>맞힌 수 (선택)</span><input id="nw_ok" type="number" inputmode="numeric" min="0" value="'+esc(NW.f.ok)+'" placeholder="8"></label><label class="fld"><span>전체 문제 수</span><input id="nw_n" type="number" inputmode="numeric" min="1" value="'+esc(NW.f.n)+'" placeholder="10"></label></div>';
+  h+='<label class="fld"><span>기억할 단어 (선택, 한 줄에 하나: 단어 = 뜻)</span><textarea id="nw_words" rows="3" lang="en" placeholder="shipping cost = 운송비&#10;rise = 오르다">'+esc(NW.f.words)+"</textarea></label>";
+  h+='<label class="fld"><span>한 줄 요약 (선택, 영어나 한국어)</span><input id="nw_sum" autocomplete="off" value="'+esc(NW.f.sum)+'" placeholder="예: 운송비가 올라 수출 업체가 어렵다"></label>';
+  if(NW.msg)h+='<p class="bkmsg" role="status">'+esc(NW.msg)+"</p>";
+  h+='<button class="cta" data-act="nwsave">기록하기</button></div>';
+  // AI quiz
+  h+='<div class="block"><h2>기사로 AI 문제 만들기</h2>';
+  if(!C)h+='<div class="notice"><b>Claude 링크 전용</b><p>기사 글을 붙여 넣으면 AI가 핵심 문제 3개와 단어 5개를 만들어 줍니다. 퀴즈가 없는 기사나 업무 관련 영어 글에 쓰세요. 이 기능은 Claude 링크에서만 동작합니다.</p><a href="https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW" target="_blank" rel="noopener">https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW</a></div>';
+  else if(!NW.res){
+    h+='<p class="note">퀴즈가 없는 기사나 업무 관련 영어 글을 붙여 넣으면, AI가 핵심 내용 문제 3개와 단어 5개를 만듭니다. 문제는 붙여 넣은 글 안의 내용으로만 만듭니다.</p>';
+    h+='<textarea id="nwin" class="code big" rows="7" lang="en" placeholder="영어 기사 본문을 붙여 넣으세요">'+esc(NW.text)+"</textarea>";
+    h+='<button class="cta" data-act="nwgo"'+(NW.busy?" disabled":"")+">"+(NW.busy?"AI가 문제 만드는 중… (최대 1분)":"문제 만들기")+"</button>";
+    if(NW.err)h+='<p class="fb no">'+esc(NW.err)+"</p>";
+  }else{
+    var r=NW.res,qs=r.qs,nA=Object.keys(NW.ans).length,all=nA>=qs.length;
+    if(r.title)h+='<p lang="en"><b>'+esc(r.title)+"</b></p>";
+    qs.forEach(function(q,qi){
+      h+='<p class="qq" lang="en">'+(qi+1)+". "+esc(q.q)+'</p><div class="opts">';
+      q.opts.forEach(function(o,oi){var a=NW.ans[qi],c="";if(a!=null){if(oi===q.a)c=" ok";else if(oi===a)c=" no";}
+        h+='<button class="opt'+c+'" lang="en" data-act="nwans" data-q="'+qi+'" data-o="'+oi+'"'+(a!=null?" disabled":"")+">"+esc(o)+"</button>";});
+      h+="</div>";
+      if(NW.ans[qi]!=null&&q.why_ko)h+='<p class="sko">'+esc(q.why_ko)+"</p>";
+    });
+    if(all){
+      var sc=qs.filter(function(q,qi){return NW.ans[qi]===q.a;}).length;
+      h+='<div class="fb '+(sc===qs.length?"ok":"mid")+'">'+qs.length+"문제 중 "+sc+"개 맞혔습니다."+(NW.saved?" 기록에 저장했습니다.":"")+"</div>";
+      if(r.gist_ko)h+='<div class="notice"><b>기사 핵심</b><p>'+esc(r.gist_ko)+"</p></div>";
+      if(r.words.length){h+='<h2 style="margin-top:8px">기사 단어</h2>';r.words.forEach(function(w){h+='<div class="li"><div><b lang="en">'+esc(w.en)+"</b><span>"+esc(w.ko)+"</span></div></div>";});}
+    }
+    h+='<button class="ghost" data-act="nwnew">다른 기사로 다시 하기</button>';
+  }
+  h+="</div>";
+  // word book
+  var W=[];L.slice().reverse().forEach(function(rec){(rec.words||[]).forEach(function(w){if(W.length<40)W.push(w);});});
+  if(W.length){h+='<details class="howto"><summary>뉴스 단어장 '+W.length+"개 (최근 순)</summary>";W.forEach(function(w){h+='<div class="li"><div><b lang="en">'+esc(w.en)+"</b><span>"+esc(w.ko||"")+"</span></div></div>";});h+="</details>";}
+  if(L.length){
+    h+='<div class="block"><h2>최근 기록</h2>';
+    L.slice(-10).reverse().forEach(function(rec){h+='<div class="li"><div><b lang="en">'+esc(rec.title)+"</b><span>"+rec.d.slice(5).replace("-","/")+" · "+esc(NSITE[rec.site]||rec.site)+(rec.sum?" · "+esc(rec.sum):"")+"</span></div>"+(rec.n?'<span class="badge">'+rec.ok+"/"+rec.n+"</span>":"")+"</div>";});
+    h+="</div>";
+  }
+  return h;
+}
+function nwSave(){
+  nwKeep();var f=NW.f,t=f.title.trim();
+  if(!t){NW.msg="기사 제목을 적어 주세요. 몇 단어만 적어도 됩니다.";render();return;}
+  var ok=f.ok===""?null:Math.max(0,parseInt(f.ok,10)||0),n=f.n===""?null:Math.max(1,parseInt(f.n,10)||0);
+  if((ok!=null)!==(n!=null)){NW.msg="점수를 적으려면 맞힌 수와 전체 문제 수를 둘 다 적어 주세요.";render();return;}
+  if(ok!=null&&ok>n){NW.msg="맞힌 수가 전체 문제 수보다 많습니다.";render();return;}
+  S.news=S.news||[];S.news.push({d:today(),site:NW.site,title:t.slice(0,120),ok:ok,n:n,words:parseWords(f.words),sum:f.sum.trim().slice(0,200)});
+  markExtra();NW.f={title:"",ok:"",n:"",words:"",sum:""};NW.msg="기록했습니다. 오늘은 공부한 날로 칩니다.";render();
+}
+function nwGo(){
+  var tx=(NW.text||"").trim();if(!SAMPLE||NW.busy)return;
+  if(tx.split(/\s+/).length<40){NW.err="기사가 너무 짧습니다. 본문을 40단어 이상 붙여 넣어 주세요.";render();return;}
+  NW.busy=true;NW.err="";NW.res=null;NW.ans={};NW.saved=false;render();
+  var ctl=NW.ctl=new AbortController();
+  var prompt="You are an English reading coach for a Korean office worker (CEFR A2-B1).\nMake a short reading quiz using ONLY the article below. Do NOT add facts that are not in the article.\nReply with ONLY this JSON: {\"title\":\"short English title of the article\",\"gist_ko\":\"기사 핵심을 한두 문장 한국어로\",\"qs\":[{\"q\":\"question in simple English\",\"opts\":[\"option\",\"option\",\"option\"],\"a\":0,\"why_ko\":\"정답 근거를 짧은 한국어로\"}],\"words\":[{\"en\":\"useful word or phrase from the article\",\"ko\":\"한국어 뜻\"}]}\nqs: exactly 3 questions, each with exactly 3 options; question 1 asks for the main point of the article; vary the position of the correct answer (a = index 0-2). words: exactly 5.\n\nARTICLE:\n\"\"\"\n"+tx.slice(0,8000)+"\n\"\"\"";
+  SAMPLE.json(prompt,{cache:false,signal:ctl.signal}).then(function(r){
+    if(NW.ctl!==ctl)return;NW.busy=false;
+    var qs=((r&&r.qs)||[]).filter(function(q){return q&&q.q&&Array.isArray(q.opts)&&q.opts.length>=2&&q.a>=0&&q.a<q.opts.length;}).slice(0,5);
+    if(!qs.length){NW.err="AI 문제를 읽지 못했습니다. 다시 눌러 주세요.";render();return;}
+    qs.forEach(function(q){q.opts=q.opts.map(String);q.a=+q.a;});
+    NW.res={title:String(r.title||"").slice(0,120),gist_ko:String(r.gist_ko||""),qs:qs,words:((r.words)||[]).filter(function(w){return w&&w.en;}).slice(0,8).map(function(w){return {en:String(w.en),ko:String(w.ko||"")};})};
+    render();
+  },function(e){if(NW.ctl!==ctl)return;NW.busy=false;NW.err=aiErr(e);render();});
+}
+function nwAnswer(qi,oi){
+  var r=NW.res;if(!r||NW.ans[qi]!=null)return;NW.ans[qi]=oi;
+  if(Object.keys(NW.ans).length>=r.qs.length&&!NW.saved){
+    var sc=r.qs.filter(function(q,k){return NW.ans[k]===q.a;}).length;
+    S.news=S.news||[];S.news.push({d:today(),site:"ai",title:r.title||"붙여 넣은 기사",ok:sc,n:r.qs.length,words:r.words.slice(0,8),sum:r.gist_ko.slice(0,200)});
+    NW.saved=true;markExtra();
+  }
+  render();
+}
 var bk={mode:"",msg:""};
 function backupHTML(){
   var h='<details class="howto" id="bkbox"'+(bk.mode?" open":"")+'><summary>기록 백업과 불러오기</summary>';
@@ -1523,6 +1627,12 @@ app.addEventListener("click",function(e){
     DICT.start({language:"en"}).catch(function(){OVR=null;render();});
   }
   else if(a==="xmail"){view="mail";render();window.scrollTo(0,0);}
+  else if(a==="xnews"){NW.msg="";view="news";render();window.scrollTo(0,0);}
+  else if(a==="nwsite"){nwKeep();NW.site=b.getAttribute("data-v");NW.msg="";render();}
+  else if(a==="nwsave"){nwSave();}
+  else if(a==="nwgo"){nwKeep();nwGo();}
+  else if(a==="nwans"){nwAnswer(+b.getAttribute("data-q"),+b.getAttribute("data-o"));}
+  else if(a==="nwnew"){if(NW.ctl)NW.ctl.abort();NW.res=null;NW.ans={};NW.text="";NW.err="";NW.saved=false;render();}
   else if(a==="mlmode"){ML.text=(document.getElementById("mlin")||{}).value||ML.text;ML.mode=b.getAttribute("data-v");render();}
   else if(a==="mlgo"){ML.text=(document.getElementById("mlin")||{}).value||"";mailGo();}
   else if(a==="mlcopy"){var mt=(ML.res&&ML.res.email)||"";var okc=function(){ML.copied="복사했습니다.";render();},noc=function(){ML.copied="자동 복사가 안 됩니다. 메일 글을 길게 눌러 복사해 주세요.";render();};try{navigator.clipboard.writeText(mt).then(okc,noc);}catch(x){noc();}}
