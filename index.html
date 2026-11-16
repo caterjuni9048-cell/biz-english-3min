@@ -179,6 +179,40 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .fld input:focus{outline:none;border-color:var(--accent)}
 .ghost.small.danger{border-color:var(--bad);color:var(--bad);width:auto}
 .li .ghost.small{width:auto;flex:none}
+.goal{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.gtop{display:flex;justify-content:space-between;gap:8px}
+.gtop span{font-size:13px;color:var(--muted)}
+.gbar{display:block;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.gbar u{display:block;height:100%;background:var(--good);border-radius:4px}
+.xgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.xbtn{display:flex;flex-direction:column;gap:4px;text-align:left;padding:14px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface)}
+.xbtn b{font-size:16px}
+.xbtn span{font-size:13px;color:var(--muted);line-height:1.4}
+.cmp{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.sbar .tt{display:flex;flex-direction:column;min-width:0}
+.tries{display:flex;flex-direction:column;gap:8px}
+.try{display:grid;grid-template-columns:36px 1fr 48px;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.try .en.small{font-size:16px;margin:0}
+.code.big{font-family:var(--sans);font-size:17px;padding:12px 14px;background:var(--surface)}
+.btnli{width:100%;text-align:left;cursor:pointer}
+.badge{flex:none;font-family:var(--mono);font-size:12px;padding:4px 8px;border-radius:999px;background:var(--good-bg);color:var(--good)}
+.script{display:flex;flex-direction:column;gap:8px}
+.sl{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.sl.now{border-color:var(--accent);background:var(--soft)}
+.sl .who{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:var(--accent);color:var(--on-accent)}
+.sl.b .who{background:var(--phone)}
+.sl p{margin:0}
+.sko{font-size:13px;color:var(--muted)}
+.qq{font-weight:600;margin-top:4px}
+.chat{display:flex;flex-direction:column;gap:8px}
+.bub{max-width:88%;padding:10px 14px;border-radius:16px;display:flex;flex-direction:column;gap:4px}
+.bub p{margin:0}
+.bub.ai{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:4px}
+.bub.me{align-self:flex-end;background:var(--accent);color:var(--on-accent);border-bottom-right-radius:4px}
+.lnk{align-self:flex-start;background:none;border:0;padding:0;font-size:13px;color:var(--accent);text-decoration:underline}
+.fixbox{align-self:flex-end;max-width:88%;background:var(--good-bg);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:2px}
+.fixbox p{margin:0}
+.mailout{white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--sans);font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0}
 .fb.mid{background:var(--soft);color:var(--ink)}
 .three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .three .cta{font-size:14px;padding:14px 6px}
@@ -326,6 +360,7 @@ var DATA=[
 ["t","다른 질문 있으신가요?","Are there any other questions?","any other = 다른","회의를 마치기 전에"],
 ["t","성과 있는 회의였습니다.","It was a productive meeting.","productive = 성과 있는","회의를 좋게 마무리할 때"]
 ];
+var DIALOGS=[{"id":"d1","cat":"p","title":"납기 확인 전화","lines":[["A","Hello, this is Jun from the purchasing team. Is this a good time to talk?","안녕하세요, 구매팀 준입니다. 지금 통화 괜찮으세요?"],["B","Sure. How can I help you?","네. 무엇을 도와드릴까요?"],["A","I'm calling about our order of five hundred boxes. When will it be shipped?","500상자 주문 건으로 전화드렸습니다. 언제 출고되나요?"],["B","Let me check. It will be shipped this Thursday.","확인해 보겠습니다. 이번 주 목요일에 출고됩니다."],["A","Great. Could you send me the tracking number by email?","좋네요. 운송장 번호를 메일로 보내 주시겠어요?"],["B","Of course. I'll send it on Thursday afternoon.","물론이죠. 목요일 오후에 보내 드리겠습니다."]],"qs":[["주문 수량은 얼마인가요?",["500상자","50상자","1,500상자"],0],["언제 출고되나요?",["이번 주 목요일","이번 주 화요일","다음 주 금요일"],0],["운송장 번호는 어떻게 받기로 했나요?",["메일로","전화로","문자로"],0]]},{"id":"d2","cat":"p","title":"담당자가 자리에 없을 때","lines":[["A","Good morning. May I speak to Mr. Lee?","안녕하세요. 이 과장님과 통화할 수 있을까요?"],["B","I'm sorry, he is in a meeting right now.","죄송하지만 지금 회의 중이십니다."],["A","I see. When will he be available?","그렇군요. 언제 통화 가능하실까요?"],["B","He should be back around three o'clock. Would you like to leave a message?","3시쯤 돌아오실 겁니다. 메시지를 남기시겠어요?"],["A","Yes, please tell him to call me back about the price change.","네, 가격 변경 건으로 다시 전화 달라고 전해 주세요."],["B","Sure. Could I have your phone number?","알겠습니다. 전화번호를 알려 주시겠어요?"]],"qs":[["이 과장은 지금 무엇을 하고 있나요?",["회의 중","출장 중","휴가 중"],0],["몇 시쯤 돌아오나요?",["3시쯤","1시쯤","5시쯤"],0],["남긴 메시지 내용은?",["가격 변경 건으로 전화 요청","주문 취소 요청","샘플 요청"],0]]},{"id":"d3","cat":"p","title":"파손 제품 문의","lines":[["A","Hi, I'm calling because some of the items arrived damaged.","안녕하세요, 일부 제품이 파손된 채 도착해서 전화드렸습니다."],["B","I'm very sorry to hear that. How many items were damaged?","정말 죄송합니다. 몇 개가 파손되었나요?"],["A","About twenty out of two hundred.","200개 중 약 20개입니다."],["B","Could you send us some photos? We will replace them right away.","사진을 보내 주시겠어요? 바로 교체해 드리겠습니다."],["A","Okay. I'll email the photos today.","네. 오늘 사진을 메일로 보내겠습니다."],["B","Thank you. We'll ship the replacements by Friday.","감사합니다. 교체품은 금요일까지 보내 드리겠습니다."]],"qs":[["파손된 제품은 몇 개인가요?",["약 20개","약 200개","약 2개"],0],["상대가 요청한 것은?",["사진","환불 신청서","새 주문서"],0],["교체품은 언제까지 보내나요?",["금요일까지","오늘","다음 달"],0]]},{"id":"d4","cat":"p","title":"번호 다시 확인하기","lines":[["A","Hello? I'm sorry, I can't hear you very well.","여보세요? 죄송하지만 잘 안 들립니다."],["B","Can you hear me now?","지금은 들리세요?"],["A","Yes, much better. Could you repeat the order number?","네, 훨씬 낫네요. 주문 번호를 다시 말씀해 주시겠어요?"],["B","Sure. It's seven, four, two, nine.","네. 칠, 사, 이, 구입니다."],["A","Seven, four, two, nine. Got it. I'll check and call you back in ten minutes.","7429, 알겠습니다. 확인하고 10분 뒤에 다시 전화드리겠습니다."]],"qs":[["주문 번호는?",["7429","7249","4729"],0],["다시 전화하기로 한 때는?",["10분 뒤","내일","1시간 뒤"],0]]},{"id":"d5","cat":"t","title":"가격 협상","lines":[["A","Thank you for your quote. However, the price is higher than we expected.","견적 감사합니다. 그런데 가격이 예상보다 높습니다."],["B","I understand. What price were you thinking of?","이해합니다. 어느 정도 가격을 생각하셨나요?"],["A","If we order one thousand units, can you offer a ten percent discount?","1,000개를 주문하면 10% 할인이 가능할까요?"],["B","Ten percent is difficult. How about five percent?","10%는 어렵습니다. 5%는 어떠세요?"],["A","Let me discuss it with my manager. I'll get back to you tomorrow.","매니저와 상의해 보겠습니다. 내일 다시 연락드리겠습니다."]],"qs":[["할인 조건으로 말한 주문 수량은?",["1,000개","100개","10,000개"],0],["상대가 제안한 할인율은?",["5%","10%","15%"],0],["준은 언제 답하기로 했나요?",["내일","오늘 오후","다음 주"],0]]},{"id":"d6","cat":"t","title":"납기 앞당기기","lines":[["A","Can we move up the delivery date to next Monday?","납기를 다음 주 월요일로 앞당길 수 있을까요?"],["B","That might be difficult. Our factory is very busy this month.","어려울 수도 있습니다. 이번 달은 공장이 아주 바쁩니다."],["A","We really need it before our customer's event.","고객 행사 전에 꼭 필요합니다."],["B","I see. We can ship half of the order on Monday and the rest on Wednesday.","알겠습니다. 절반은 월요일에, 나머지는 수요일에 보내 드릴 수 있습니다."],["A","That works for us. Thank you.","그렇게 하면 됩니다. 감사합니다."]],"qs":[["원래 원한 납기는?",["다음 주 월요일","이번 주 금요일","다음 주 수요일"],0],["정해진 해결 방법은?",["절반은 월요일, 나머지는 수요일","전부 수요일","전부 월요일"],0],["어렵다고 한 이유는?",["공장이 바빠서","재료가 부족해서","운송 파업 때문에"],0]]},{"id":"d7","cat":"t","title":"회의 시작","lines":[["A","Good morning, everyone. Let's get started.","안녕하세요, 여러분. 시작하겠습니다."],["B","Before we begin, can everyone hear me clearly?","시작하기 전에, 모두 제 목소리 잘 들리시나요?"],["A","Yes, we can. Today we have two items: the new price list and the shipping schedule.","네, 들립니다. 오늘 안건은 두 가지입니다. 새 가격표와 출고 일정입니다."],["B","Let's start with the shipping schedule.","출고 일정부터 시작하죠."],["A","Sure. The next shipment will leave on the fifteenth.","좋습니다. 다음 출고는 15일에 나갑니다."]],"qs":[["오늘 안건은 몇 가지인가요?",["2가지","3가지","1가지"],0],["먼저 다루기로 한 안건은?",["출고 일정","새 가격표","샘플"],0],["다음 출고일은?",["15일","5일","50일"],0]]},{"id":"d8","cat":"t","title":"회의 마무리","lines":[["A","To sum up, we agreed on the new design.","정리하면, 새 디자인으로 합의했습니다."],["B","What are the next steps?","다음 할 일은 무엇인가요?"],["A","Our team will send the final drawings by Wednesday.","저희 팀이 수요일까지 최종 도면을 보내겠습니다."],["B","And we will check the costs and reply by Friday.","그리고 저희는 비용을 확인해서 금요일까지 답하겠습니다."],["A","Great. I'll send the meeting notes this afternoon.","좋습니다. 회의록은 오늘 오후에 보내겠습니다."]],"qs":[["무엇에 합의했나요?",["새 디자인","새 가격","새 공장"],0],["수요일까지 할 일은?",["최종 도면 보내기","비용 확인","회의록 보내기"],0],["회의록은 언제 보내나요?",["오늘 오후","금요일","내일 아침"],0]]},{"id":"d9","cat":"m","title":"수정 견적서 메일","lines":[["A","Did you get the email from the supplier?","공급처에서 온 메일 받았어요?"],["B","Yes. They sent the revised quotation this morning.","네. 오늘 아침에 수정 견적서를 보냈어요."],["A","Is the price lower than before?","가격이 전보다 낮아졌나요?"],["B","Yes, about three percent lower. But the minimum order quantity is now two hundred.","네, 약 3% 낮아요. 그런데 최소 주문 수량이 이제 200개예요."],["A","Okay. Please forward it to me. I'll review it before lunch.","알겠어요. 저에게 전달해 주세요. 점심 전에 검토할게요."]],"qs":[["수정 견적서는 언제 왔나요?",["오늘 아침","어제 저녁","지난주"],0],["가격은 어떻게 바뀌었나요?",["약 3% 낮아짐","약 3% 높아짐","그대로"],0],["최소 주문 수량은?",["200개","300개","100개"],0]]},{"id":"d10","cat":"m","title":"늦어진 답장","lines":[["A","The customer is asking about the invoice again.","고객이 송장에 대해 또 묻고 있어요."],["B","Oh no, I haven't replied yet.","이런, 아직 답장을 못 했어요."],["A","Please reply today and apologize for the late reply.","오늘 답장하고 늦어서 죄송하다고 해 주세요."],["B","Okay. Should I attach the invoice again?","알겠어요. 송장을 다시 첨부할까요?"],["A","Yes, and copy me on the email.","네, 그리고 메일 참조에 저를 넣어 주세요."]],"qs":[["고객이 묻는 것은?",["송장","샘플","배송"],0],["B가 해야 할 일은?",["오늘 답장하고 사과하기","내일 전화하기","주문 취소하기"],0],["메일 참조에 넣을 사람은?",["A","고객사 사장","아무도 없음"],0]]},{"id":"d11","cat":"m","title":"샘플 요청","lines":[["A","The client wants to see a sample before they order.","고객이 주문 전에 샘플을 보고 싶어 해요."],["B","How many samples do they need?","샘플이 몇 개 필요하대요?"],["A","Just three. Can we send them by express?","세 개만요. 빠른 배송으로 보낼 수 있을까요?"],["B","Sure, they will arrive in two days.","네, 이틀 뒤에 도착할 거예요."],["A","Perfect. I'll let them know by email.","좋아요. 메일로 알려 줄게요."]],"qs":[["필요한 샘플 수는?",["3개","2개","5개"],0],["샘플은 언제 도착하나요?",["이틀 뒤","일주일 뒤","오늘"],0],["고객에게 어떻게 알리나요?",["메일로","전화로","직접 방문해서"],0]]},{"id":"d12","cat":"p","title":"결제 조건 문의","lines":[["A","Hello, I have a question about the payment terms.","안녕하세요, 결제 조건에 대해 질문이 있습니다."],["B","Sure. We usually ask for payment within thirty days.","네. 보통 30일 안에 결제를 요청드립니다."],["A","Can we pay half now and half after delivery?","지금 절반, 납품 후에 절반을 내도 될까요?"],["B","That should be fine for the first order.","첫 주문이니 괜찮을 것 같습니다."],["A","Great, thank you. Please send the details by email.","좋네요, 감사합니다. 자세한 내용은 메일로 보내 주세요."]],"qs":[["보통 결제 기한은?",["30일 안","13일 안","60일 안"],0],["준이 요청한 결제 방식은?",["지금 절반, 납품 후 절반","전액 먼저","전액 나중에"],0],["상대의 답은?",["첫 주문이라 괜찮다","불가능하다","매니저 확인이 필요하다"],0]]}];
 var CAT={m:"메일",p:"전화",t:"회의"}, CATEN={m:"MAIL",p:"PHONE",t:"MEETING"}, CATVAR={m:"--mail",p:"--phone",t:"--meet"};
 var ITEMS,CATN,BYID,ORDER;
 /* 기본 문장 + 내가 추가한 문장(먼저 배움) */
@@ -436,13 +471,22 @@ function pickNew(){
   return f.slice(0,perDay()).map(function(x){return x.id;});
 }
 function learnedCount(cat){var n=0;for(var id in S.items){if(BYID[id]&&(!cat||BYID[id].cat===cat))n++;}return n;}
-function streak(){
-  var n=0,d=today();
-  function any(k){var x=S.days[k];return x&&x.done&&(x.done[0]||x.done[1]||x.done[2]);}
-  if(!any(d))d=addDays(d,-1);
-  while(any(d)){n++;d=addDays(d,-1);}
-  return n;
+function studied(k){var x=S.days[k];return !!(x&&((x.done&&(x.done[0]||x.done[1]||x.done[2]))||x.extra));}
+function weekStart(k){var p=k.split("-"),d=new Date(+p[0],+p[1]-1,+p[2]),w=(d.getDay()+6)%7;return addDays(k,-w);}
+/* 연속 일수: 한 주에 하루는 빠져도 이어진다(보호권) */
+function streakInfo(){
+  var n=0,d=today(),used={};
+  if(!studied(d))d=addDays(d,-1);
+  for(var g=0;g<4000;g++){
+    if(studied(d)){n++;d=addDays(d,-1);continue;}
+    var wk=weekStart(d),prev=addDays(d,-1);
+    if(n>0&&!used[wk]&&studied(prev)){used[wk]=d;d=prev;continue;}
+    break;
+  }
+  return {n:n,usedThisWeek:!!used[weekStart(today())]};
 }
+function streak(){return streakInfo().n;}
+function weekDone(){var s=weekStart(today()),c=0;for(var i=0;i<7;i++){var k=addDays(s,i);if(k>today())break;if(studied(k))c++;}return c;}
 function nextRound(){var d=day();for(var i=0;i<3;i++)if(!d.done[i])return i;return -1;}
 function grade(id,ok){
   var t=today(),it=S.items[id];
@@ -522,11 +566,18 @@ function render(){
   else if(view==="list")app.innerHTML=listHTML();
   else if(view==="wrong")app.innerHTML=wrongHTML();
   else if(view==="add")app.innerHTML=addHTML();
+  else if(view==="shadow")app.innerHTML=shadowHTML();
+  else if(view==="dict")app.innerHTML=dictHTML();
+  else if(view==="dlg")app.innerHTML=dlgHTML();
+  else if(view==="rp")app.innerHTML=rpHTML();
+  else if(view==="mail")app.innerHTML=mailHTML();
 }
 function homeHTML(){
   var d=day(),nx=nextRound(),t=new Date(),st=streak(),h="";
   h+='<div class="top"><div><p class="mono">'+(t.getMonth()+1)+"월 "+t.getDate()+"일 "+"일월화수목금토".charAt(t.getDay())+'요일</p><h1>3분 비즈니스 영어</h1></div>'+
      '<p class="streak">'+(st?st+"일 연속":"오늘 시작")+"</p></div>";
+  var si=streakInfo(),gl=S.goal||5,wd=weekDone();
+  h+='<div class="goal"><div class="gtop"><b>이번 주 목표 '+Math.min(wd,gl)+" / "+gl+'일</b><span>'+(wd>=gl?"목표 달성":"남은 "+(gl-wd)+"일")+'</span></div><i class="gbar"><u style="width:'+Math.min(100,wd/gl*100)+'%"></u></i><p class="note">연속 보호권: '+(si.usedThisWeek?"이번 주에 사용함":"이번 주 1개 남음")+' · 하루를 빠져도 주 1회는 연속 일수가 이어집니다.</p></div>';
   h+='<div class="block"><h2>오늘의 세 판</h2><div class="rounds">';
   ROUNDS.forEach(function(r,i){
     var cls=d.done[i]?"done":(i===nx?"next":"");
@@ -540,6 +591,7 @@ function homeHTML(){
   h+=weekHTML();
   var left=ITEMS.filter(function(x){return !S.items[x.id];}).length;
   h+='<div class="block"><h2>새로 배울 표현 '+left+'개 남음</h2>'+(left<perDay()*5?'<p class="note">'+(left?"곧 새 표현이 바닥납니다. ":"새 표현을 모두 배웠습니다. 복습은 계속됩니다. ")+"실제로 쓰는 문장을 직접 추가할 수 있습니다.</p>":"")+'<button class="ghost small" data-act="add">내 문장 추가</button></div>';
+  h+='<div class="block"><h2>주간 목표</h2><div class="chips">'+[3,5,7].map(function(n){return '<button class="chip" data-act="goal" data-v="'+n+'" aria-pressed="'+((S.goal||5)===n)+'">주 '+n+"일</button>";}).join("")+'</div><p class="note">세 판이나 추가 연습을 하나라도 하면 그날은 공부한 날로 칩니다.</p></div>';
   h+='<div class="block"><h2>하루 새 표현 개수</h2><div class="chips">'+[3,5,7].map(function(n){return '<button class="chip" data-act="perday" data-v="'+n+'" aria-pressed="'+(perDay()===n)+'">'+n+"개</button>";}).join("")+'</div><p class="note">'+(d["new"].length?"오늘은 이미 정해져 있어 내일부터 적용됩니다.":"바로 적용됩니다.")+"</p></div>";
   h+='<div class="block"><h2>새 표현을 고를 분야</h2><div class="chips">';
   [["all","골고루"],["m","메일"],["p","전화"],["t","회의"]].forEach(function(c){
@@ -552,6 +604,7 @@ function homeHTML(){
     h+='<div class="bar"><span>'+CAT[c]+'</span><i><u style="width:'+(n/CATN[c]*100)+"%;background:var("+CATVAR[c]+')"></u></i><span>'+n+" / "+CATN[c]+"</span></div>";
   });
   h+="</div></div>";
+  h+=extraHTML();
   h+=installHTML();
   var wn=(d.wrong||[]).length;
   if(wn)h+='<button class="ghost" data-act="wrong">오늘 틀린 문장 '+wn+'개 다시 보기</button>';
@@ -582,7 +635,7 @@ function sessionHTML(){
   var cat='<span class="cat '+it.cat+'">'+CATEN[it.cat]+" · "+CAT[it.cat]+"</span>";
   if(s.k==="learn"){
     h+='<div class="card">'+cat+'<p class="ko">'+esc(it.ko)+'</p><p class="en" lang="en">'+esc(it.en)+"</p>"+listenBtn(it.id,"듣기")+'<p class="tip">'+esc(it.tip)+"</p></div>";
-    h+='<p class="note">소리 내어 두 번 따라 읽고 넘어가세요.</p><button class="cta" data-act="next">다음</button>';
+    h+='<p class="note">소리 내어 두 번 따라 읽고 넘어가세요.</p>'+cmpHTML(it.id)+'<button class="cta" data-act="next">다음</button>';
   }else if(s.k==="order"){
     h+='<div class="card">'+cat+'<p class="ko big">'+esc(it.ko)+'</p><div class="slot" aria-label="내가 만든 문장">';
     st.picked.forEach(function(bi,pi){h+='<button class="tok" lang="en" data-act="unpick" data-p="'+pi+'"'+(st.res!==null?" disabled":"")+">"+esc(st.bank[bi].w)+"</button>";});
@@ -689,6 +742,7 @@ function recallHTML(it,st,cat){
     var g=st.grade,msg=st.timeout?"시간 초과입니다. 정답을 듣고 따라 말해 보세요. 이 판 끝에 한 번 더 나옵니다.":g===true?(st.res.near?"맞았습니다. 주황 단어는 정답을 듣고 발음을 한 번 더 연습하세요.":"정확합니다"):g==="mid"?(st.hint?"힌트를 보고 맞혔습니다. 내일 다시 나옵니다.":"거의 맞았습니다. 내일 다시 나옵니다."):"다시 연습이 필요합니다. 이 판 끝에 한 번 더 나옵니다.";
     h+='<div class="fb '+(g===true?"ok":g==="mid"?"mid":"no")+'" role="status">'+msg+' <span class="mono">'+Math.round(st.res.ratio*100)+"% 일치</span></div>";
     if(dictOK())h+=pracHTML(st.prac);
+    h+=cmpHTML(it.id);
     h+='<button class="cta" data-act="next">다음</button>';
   }else if(st.shown){
     h+='<p class="note">입력 없이 정답을 봤습니다. 실제로 어땠는지 골라 주세요.</p><div class="three">'+
@@ -731,7 +785,9 @@ function pracHTML(p){
 }
 var DICT=null,dictOff=false,WEBA=null,CLA=null;
 /* 말소리를 받을 곳: 3판 문제 칸, 또는 결과 화면의 연습 칸 */
+var OVR=null;
 function sink(){
+  if(OVR)return OVR;
   if(view!=="session"||!ses)return null;
   var st=ses.st,s=ses.steps[ses.i];if(!st||!s||s.k!=="recall")return null;
   if(st.res&&st.prac&&st.prac.on)return st.prac;
@@ -742,6 +798,7 @@ function dictOK(){return !!DICT&&!dictOff;}
 function curRecall(){return view==="session"&&ses&&ses.steps[ses.i]&&ses.steps[ses.i].k==="recall"&&!ses.st.res&&!ses.st.shown?ses.st:null;}
 function syncBox(){
   var t=sink();
+  if(t&&t===OVR){if(OVR.onUpdate)OVR.onUpdate();return;}
   if(t&&ses&&t===ses.st.prac){var pe=document.getElementById("pracText");if(pe)pe.textContent=(t.text+" "+(t.partial||"")).trim()||"듣고 있습니다…";return;}
   var st=curRecall(),ta=document.getElementById("ans");if(!st||!ta)return;
   ta.value=st.text+(st.partial?(st.text?" ":"")+st.partial:"");
@@ -750,6 +807,7 @@ function syncBox(){
 function stopDict(){if(DICT&&DICT.active()){DICT.stop().catch(function(){});}}
 function wireDict(d){
   d.onPartial(function(e){if(d!==DICT)return;var st=sink();if(!st)return;
+    if(st===OVR){if(e.speech||e.text)st.heard=true;if(!e.speech)st.partial=e.text;if(OVR.onUpdate)OVR.onUpdate();return;}
     if(ses&&st===ses.st.prac){if(!e.speech){st.partial=e.text;syncBox();}return;}
     if(e.speech){if(!st.heard){st.heard=true;render();}return;}
     if(e.text&&!st.heard){st.heard=true;st.partial=e.text;render();return;}
@@ -760,6 +818,10 @@ function wireDict(d){
     var st=sink(),on=e.state!=="idle";
     if(e.state==="idle"&&(e.reason==="not_granted"||e.reason==="unavailable"))dictOff=true;
     if(!st)return;
+    if(st===OVR){
+      if(on){st.listening=true;st.busy=e.state==="finishing";if(OVR.onUpdate)OVR.onUpdate(true);return;}
+      st.listening=false;st.busy=false;st.partial="";var o=OVR;OVR=null;if(o.done)o.done(o);return;
+    }
     if(ses&&st===ses.st.prac){
       if(on){var bz=e.state==="finishing";if(!st.listening||bz!==!!st.busy){st.listening=true;st.busy=bz;render();}return;}
       st.listening=false;st.busy=false;st.partial="";st.on=false;
@@ -856,7 +918,10 @@ function aiLoad(){
 /* 마이크는 화면을 누르는 순간에 열어 두고, 이후 문제에서는 그대로 쓴다(자동 듣기용) */
 function aiPrepare(){
   if(S.engine!=="ai"||!aiSupported())return;
-  aiLoad();
+  aiLoad();micPrepare();
+}
+function micPrepare(){
+  if(!aiSupported())return;
   var Ctx=window.AudioContext||window.webkitAudioContext;
   try{if(!AI.ctx)AI.ctx=new Ctx();if(AI.ctx.state==="suspended")AI.ctx.resume();}catch(x){}
   if(AI.stream||AI.opening||AI.denied)return;
@@ -882,7 +947,7 @@ function aiFrame(x){
     r.pre.push(c);r.preDur+=dur;
     while(r.preDur>0.5&&r.pre.length>1){r.preDur-=r.pre.shift().length/sr;}
     r.loud=rms>thr?r.loud+1:0;
-    if(r.loud>=2){r.speech=true;r.buf=r.pre.slice();r.pre=[];aiEmit(AI.cb.p,{text:"",speech:true});}
+    if(r.loud>=2){r.speech=true;r.buf=r.pre.slice();r.pre=[];if(r.mode!=="rec")aiEmit(AI.cb.p,{text:"",speech:true});else render();}
     else if(r.t>8){aiStopRec();}
   }else{
     r.buf.push(c);
@@ -900,7 +965,15 @@ function aiConcat16(chunks,sr){
 function aiEnd(reason){AI.act=false;aiEmit(AI.cb.p,{text:""});aiEmit(AI.cb.s,{state:"idle",reason:reason});}
 function aiStopRec(){
   var r=AI.rec;AI.rec=null;if(!r)return;
+  if(r.mode==="rec"){
+    REC.act=false;
+    if(r.speech){REC.last={id:REC.id,data:rawConcat(r.buf)};REC.err="";}else REC.err="말소리가 들리지 않았습니다. 다시 녹음해 보세요.";
+    render();if(REC.last&&REC.last.id===REC.id&&r.speech)setTimeout(function(){playBoth(REC.id);},300);
+    return;
+  }
   if(!r.speech){aiEnd("no_speech");return;}
+  var cur=sink();if(cur&&ses&&ses.steps[ses.i]&&cur!==OVR)REC.last={id:ses.steps[ses.i].id,data:rawConcat(r.buf)};
+  else if(cur&&cur===OVR&&OVR.id)REC.last={id:OVR.id,data:rawConcat(r.buf)};
   var audio=aiConcat16(r.buf,AI.ctx.sampleRate);
   aiEmit(AI.cb.s,{state:"finishing"});
   var id=++AI.jid,prompt=curTarget();
@@ -929,7 +1002,7 @@ var AIA={ai:true,
   onPartial:function(f){AI.cb.p.push(f);},onFinal:function(f){AI.cb.f.push(f);},onState:function(f){AI.cb.s.push(f);}
 };
 /* Claude 밖(일반 웹 주소)에서 열었을 때: 브라우저 자체 음성 인식 사용 */
-function curTarget(){var st=sink();return st?BYID[ses.steps[ses.i].id].en:"";}
+function curTarget(){var st=sink();if(st&&st===OVR)return OVR.target||"";return st?BYID[ses.steps[ses.i].id].en:"";}
 /* 인식 후보 여러 개 중 정답 문장과 가장 가까운 것을 고른다 */
 function pickBest(prefix,alts){
   var t=curTarget(),best=alts[0]||"",bs=-1;
@@ -1093,6 +1166,275 @@ function addHTML(){
   }
   return h;
 }
+
+/* ================= 추가 연습 ================= */
+var REC={act:false,id:null,last:null,err:"",src:null};
+function rawConcat(chunks){var n=0,o=0;chunks.forEach(function(c){n+=c.length;});var a=new Float32Array(n);chunks.forEach(function(c){a.set(c,o);o+=c.length;});var pk=0;for(var i=0;i<n;i++)pk=Math.max(pk,Math.abs(a[i]));if(pk>0.01){var g=0.9/pk;for(i=0;i<n;i++)a[i]*=g;}return a;}
+function recStart(id){
+  if(REC.act||AI.act)return;
+  REC.err="";micPrepare();
+  var go=function(ok){
+    if(!ok){REC.err="마이크를 쓸 수 없습니다. 브라우저에서 마이크를 허용해 주세요.";render();return;}
+    try{if(AI.ctx.state==="suspended")AI.ctx.resume();}catch(x){}
+    REC.act=true;REC.id=id;AI.rec={mode:"rec",pre:[],preDur:0,buf:[],speech:false,t:0,sil:0,floor:null,loud:0};render();
+  };
+  if(AI.stream)go(true);else if(AI.denied)go(false);else AI.waitStart=go;
+}
+function stopMine(){try{if(REC.src){REC.src.onended=null;REC.src.stop();}}catch(x){}REC.src=null;}
+function playMine(cb){
+  if(!REC.last||!AI.ctx)return;
+  try{if(AI.ctx.state==="suspended")AI.ctx.resume();}catch(x){}
+  stopMine();
+  var a=REC.last.data,b=AI.ctx.createBuffer(1,a.length,AI.ctx.sampleRate);
+  if(b.copyToChannel)b.copyToChannel(a,0);else b.getChannelData(0).set(a);
+  var s=AI.ctx.createBufferSource();s.buffer=b;s.connect(AI.ctx.destination);s.onended=function(){REC.src=null;if(cb)cb();};s.start();REC.src=s;
+}
+/* 원어민 → 내 목소리 순서로 이어 듣기 */
+function playBoth(id){
+  if(!(AUD&&AUD[id])||!REC.last||REC.last.id!==id){playMine();return;}
+  speak(id);
+  var done=function(){player.removeEventListener("ended",done);setTimeout(function(){playMine();},350);};
+  player.addEventListener("ended",done);
+}
+function cmpHTML(id){
+  if(!aiSupported())return "";
+  var has=REC.last&&REC.last.id===id,h='<div class="cmp"><div class="ph"><b>녹음해서 비교하기</b><span>내 발음을 녹음해 원어민 발음과 이어 들어 보세요</span></div>';
+  if(REC.act&&REC.id===id){h+='<button class="mic on wide" data-act="recstop">'+MIC+"<span>녹음 중… 말을 마치면 자동으로 끝납니다</span></button>";}
+  else{
+    h+='<div class="three"><button class="cta alt" data-act="recgo" data-id="'+id+'">'+(has?"다시 녹음":"녹음하기")+'</button><button class="cta alt" data-act="speak" data-id="'+id+'">원어민</button><button class="cta alt" data-act="mine"'+(has?"":" disabled")+'>내 목소리</button></div>';
+    if(has)h+='<button class="ghost small" data-act="both" data-id="'+id+'">원어민 → 내 목소리 이어 듣기</button>';
+  }
+  if(REC.err)h+='<p class="note">'+esc(REC.err)+"</p>";
+  return h+"</div>";
+}
+/* 연습할 문장 고르기: 배운 문장 중 복습이 급한 순, 부족하면 다음에 배울 문장 */
+function pickPractice(n){
+  var learned=Object.keys(S.items).filter(function(id){return BYID[id];});
+  learned.sort(function(a,b){var x=S.items[a],y=S.items[b];return (x.box||1)-(y.box||1)||(x.due<y.due?-1:1);});
+  var out=shuffle(learned.slice(0,Math.max(n*2,n))).slice(0,n);
+  if(out.length<n)ORDER.forEach(function(x){if(out.length<n&&out.indexOf(x.id)<0)out.push(x.id);});
+  return out;
+}
+function markExtra(){var d=day();d.extra=(d.extra||0)+1;save();}
+function backBar(title,sub){return '<div class="sbar"><button class="x" data-act="home" aria-label="돌아가기">←</button><div class="tt"><h1 style="font-size:20px">'+title+"</h1>"+(sub?'<span class="mono">'+sub+"</span>":"")+"</div></div>";}
+function extraHTML(){
+  var h='<div class="block"><h2>추가 연습</h2><div class="xgrid">';
+  h+='<button class="xbtn" data-act="xshadow"><b>따라 말하기</b><span>듣자마자 3번 따라 말하고 일치율 확인</span></button>';
+  h+='<button class="xbtn" data-act="xdlg"><b>대화 듣기</b><span>전화·회의 대화를 듣고 문제 풀기</span></button>';
+  h+='<button class="xbtn" data-act="xdict"><b>받아쓰기</b><span>들은 문장을 영어로 쓰기</span></button>';
+  h+='<button class="xbtn" data-act="xrp"><b>AI 역할극</b><span>AI 거래처와 영어로 대화하기'+(C?"":" · Claude 링크 전용")+'</span></button>';
+  h+='<button class="xbtn" data-act="xmail"><b>메일 첨삭</b><span>내 영어 메일 고치기'+(C?"":" · Claude 링크 전용")+'</span></button>';
+  return h+"</div></div>";
+}
+
+/* ---- B. 따라 말하기 ---- */
+var SH={list:[],i:0,tries:[],phase:"idle",msg:""};
+function shadowHTML(){
+  var id=SH.list[SH.i],it=BYID[id];if(!it)return backBar("따라 말하기")+'<p class="note">연습할 문장이 없습니다.</p>';
+  var h=backBar("따라 말하기",(SH.i+1)+" / "+SH.list.length);
+  h+='<div class="card"><span class="cat '+it.cat+'">'+CATEN[it.cat]+" · "+CAT[it.cat]+'</span><p class="ko">'+esc(it.ko)+'</p><p class="en" lang="en">'+esc(it.en)+"</p></div>";
+  var n=SH.tries.length;
+  if(SH.phase==="play")h+='<div class="auto"><span class="cd">♪</span><div class="at"><b>잘 들으세요</b><span>끝나면 바로 따라 말합니다</span></div></div>';
+  else if(SH.phase==="listen")h+='<div class="auto on"><span class="dot" aria-hidden="true"></span><div class="at"><b>'+(OVR&&OVR.busy?"받아 적는 중…":"지금 따라 말하세요")+'</b><span id="shlive">'+esc(OVR?((OVR.text+" "+(OVR.partial||"")).trim()):"")+'</span></div><button class="ghost small" data-act="shstop">멈추기</button></div>';
+  else if(n<3)h+='<button class="cta" data-act="shgo">'+(n?"한 번 더 ("+(n+1)+"/3)":"듣고 따라 말하기 (1/3)")+"</button>";
+  if(!dictOK())h+='<p class="note">이 화면에서는 말소리 인식을 쓸 수 없어 일치율은 나오지 않습니다. 듣고 소리 내어 따라 말해 보세요.</p>';
+  if(SH.msg)h+='<p class="note">'+esc(SH.msg)+"</p>";
+  if(n){h+='<div class="tries">';SH.tries.forEach(function(t,k){
+    h+='<div class="try"><span class="mono">'+(k+1)+'회</span><p class="en small" lang="en">'+(t.res?t.res.words.map(function(w,i){return '<span class="'+(t.res.wst[i]===2?"w-ok":t.res.wst[i]===1?"w-near":t.res.wmin[i]?"w-minor":"w-no")+'">'+esc(w)+"</span>";}).join(" "):"(인식 없음)")+'</p><b class="mono">'+(t.res?Math.round(t.res.ratio*100)+"%":"–")+"</b></div>";});h+="</div>";}
+  h+=cmpHTML(id);
+  h+='<button class="'+(n>=3?"cta":"ghost")+'" data-act="shnext">'+(SH.i+1<SH.list.length?"다음 문장":"끝내기")+"</button>";
+  return h;
+}
+function shadowListen(){
+  var id=SH.list[SH.i];
+  if(!dictOK()){SH.tries.push({res:null});SH.phase="idle";render();return;}
+  SH.phase="listen";
+  OVR={id:id,target:BYID[id].en,text:"",partial:"",heard:false,listening:false,busy:false,
+    onUpdate:function(full){if(full){render();return;}var el=document.getElementById("shlive");if(el&&OVR)el.textContent=(OVR.text+" "+(OVR.partial||"")).trim();},
+    done:function(o){clearTimeout(SH.t);var tx=o.text.trim();SH.tries.push({res:tx?diff(BYID[id].en,tx):null});SH.phase="idle";SH.msg=tx?"":"말소리가 들리지 않았습니다.";render();}};
+  render();
+  DICT.start({language:"en"}).catch(function(){OVR=null;SH.phase="idle";SH.msg="마이크를 켜지 못했습니다. 다시 눌러 주세요.";render();});
+  clearTimeout(SH.t);SH.t=setTimeout(function(){if(OVR&&!OVR.heard)stopDict();},6000);
+}
+function shadowGo(){
+  var id=SH.list[SH.i];SH.msg="";
+  if(!(AUD&&AUD[id])){speak(id);setTimeout(shadowListen,2500);SH.phase="play";render();return;}
+  SH.phase="play";render();speak(id);
+  var fin=function(){player.removeEventListener("ended",fin);if(SH.phase==="play")shadowListen();};
+  player.addEventListener("ended",fin);
+}
+
+/* ---- D. 받아쓰기 ---- */
+var DC={list:[],i:0,text:"",res:null,ko:false,score:[]};
+function dictHTML(){
+  var id=DC.list[DC.i],it=BYID[id];
+  if(DC.i>=DC.list.length){var tot=DC.score.reduce(function(a,b){return a+b;},0);return backBar("받아쓰기")+'<div class="card"><span class="mono">완료</span><p class="big-num">'+Math.round(tot/Math.max(1,DC.score.length)*100)+'%</p><p class="ko">평균 일치율</p></div><button class="cta" data-act="home">처음 화면으로</button>';}
+  var h=backBar("받아쓰기",(DC.i+1)+" / "+DC.list.length);
+  h+='<div class="card"><span class="cat '+it.cat+'">'+CATEN[it.cat]+" · "+CAT[it.cat]+'</span><p class="ko">들은 문장을 영어로 쓰세요</p><button class="listen big" data-act="speak" data-id="'+id+'">'+ICON+"<span>다시 듣기</span></button>";
+  if(DC.ko||DC.res)h+='<p class="ko">뜻: '+esc(it.ko)+"</p>";
+  if(DC.res){h+='<p class="lbl">정답</p><p class="en" lang="en">'+DC.res.words.map(function(w,i){return '<span class="'+(DC.res.wst[i]===2?"w-ok":DC.res.wst[i]===1?"w-near":DC.res.wmin[i]?"w-minor":"w-no")+'">'+esc(w)+"</span>";}).join(" ")+'</p><p class="lbl">내가 쓴 문장</p><p class="mine" lang="en">'+esc(DC.text||"(비어 있음)")+"</p>";}
+  h+="</div>";
+  if(!DC.res){
+    h+='<textarea id="dcin" class="code big" lang="en" rows="3" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="여기에 영어로 입력하세요">'+esc(DC.text)+"</textarea>";
+    h+='<div class="two"><button class="cta alt" data-act="dcko"'+(DC.ko?" disabled":"")+'>뜻 보기</button><button class="cta" data-act="dccheck">확인</button></div>';
+  }else{
+    h+='<div class="fb '+(DC.res.ratio>=0.9?"ok":DC.res.ratio>=0.6?"mid":"no")+'">'+Math.round(DC.res.ratio*100)+"% 일치</div>";
+    h+='<button class="cta" data-act="dcnext">'+(DC.i+1<DC.list.length?"다음 문장":"결과 보기")+"</button>";
+  }
+  return h;
+}
+
+/* ---- C. 대화 듣기 ---- */
+var DG={pick:-1,line:-1,ans:{},show:false,order:{},err:"",loading:false};
+var dlgPlayer=null;
+function ensureDlgAudio(cb){
+  if(window.BIZ_DIALOG_AUDIO){cb();return;}
+  if(DG.loading)return;DG.loading=true;render();
+  var s=document.createElement("script");s.src="dialog-audio.js";
+  s.onload=function(){DG.loading=false;cb();};
+  s.onerror=function(){DG.loading=false;DG.err="대화 음성을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.";render();};
+  document.head.appendChild(s);
+}
+function dlgStop(){if(dlgPlayer){dlgPlayer.onended=null;dlgPlayer.pause();}DG.line=-1;}
+function dlgPlay(i){
+  var d=DIALOGS[DG.pick];
+  if(i>=d.lines.length){DG.line=-1;render();return;}
+  var src=window.BIZ_DIALOG_AUDIO&&window.BIZ_DIALOG_AUDIO[d.id+"-"+i];if(!src){DG.line=-1;render();return;}
+  if(!dlgPlayer)dlgPlayer=new Audio();
+  dlgPlayer.pause();dlgPlayer.src=src;dlgPlayer.playbackRate=S.slow?0.8:1;DG.line=i;render();
+  dlgPlayer.onended=function(){dlgPlay(i+1);};
+  var pr=dlgPlayer.play();if(pr&&pr.catch)pr.catch(function(){DG.line=-1;render();});
+}
+function dlgHTML(){
+  if(DG.pick<0){
+    var h=backBar("대화 듣기")+'<p class="note">짧은 업무 대화를 듣고 내용을 묻는 문제를 풉니다. 처음에는 대본 없이 들어 보세요.</p>';
+    DIALOGS.forEach(function(d,k){var sc=(S.dlgDone||{})[d.id];
+      h+='<button class="li btnli" data-act="dlgopen" data-k="'+k+'"><div><b>'+esc(d.title)+"</b><span>"+CAT[d.cat]+" · "+d.lines.length+"줄 · 문제 "+d.qs.length+"개</span></div>"+(sc!=null?'<span class="badge">'+sc+"/"+d.qs.length+"</span>":"")+"</button>";});
+    return h;
+  }
+  var d=DIALOGS[DG.pick],h=backBar(d.title,CAT[d.cat]);
+  if(DG.err)h+='<p class="fb no">'+esc(DG.err)+"</p>";
+  var nAns=Object.keys(DG.ans).length,all=nAns>=d.qs.length;
+  h+='<button class="listen big" data-act="'+(DG.line>=0?"dlgstop":"dlgplay")+'">'+ICON+"<span>"+(DG.loading?"음성 불러오는 중…":DG.line>=0?"멈추기 ("+(DG.line+1)+"/"+d.lines.length+"줄)":"대화 듣기")+"</span></button>";
+  if(DG.show||all){
+    h+='<div class="script">';d.lines.forEach(function(l,i){h+='<div class="sl'+(l[0]==="B"?" b":"")+(DG.line===i?" now":"")+'"><span class="who">'+l[0]+'</span><div><p lang="en">'+esc(l[1])+"</p><p class=\"sko\">"+esc(l[2])+"</p></div></div>";});h+="</div>";
+  }else h+='<button class="ghost small" data-act="dlgshow">대본 보기</button>';
+  h+='<div class="block"><h2>문제</h2>';
+  d.qs.forEach(function(q,qi){
+    if(!DG.order[qi])DG.order[qi]=shuffle([0,1,2]);
+    h+='<p class="qq">'+(qi+1)+". "+esc(q[0])+'</p><div class="opts">';
+    DG.order[qi].forEach(function(oi){var a=DG.ans[qi],c="";if(a!=null){if(oi===q[2])c=" ok";else if(oi===a)c=" no";}
+      h+='<button class="opt'+c+'" data-act="dlgans" data-q="'+qi+'" data-o="'+oi+'"'+(a!=null?" disabled":"")+">"+esc(q[1][oi])+"</button>";});
+    h+="</div>";
+  });
+  h+="</div>";
+  if(all){var sc=d.qs.filter(function(q,qi){return DG.ans[qi]===q[2];}).length;h+='<div class="fb '+(sc===d.qs.length?"ok":"mid")+'">'+d.qs.length+"문제 중 "+sc+"개 맞혔습니다. 대본을 보며 한 번 더 들어 보세요.</div>";}
+  h+='<button class="ghost" data-act="dlglist">다른 대화 고르기</button>';
+  return h;
+}
+
+/* ---- F. AI 역할극 / G. 메일 첨삭 (Claude 링크에서만: 내 Claude 계정으로 AI 호출) ---- */
+var SAMPLE=null;
+if(C){C.use("sample").then(function(s){SAMPLE=s||null;if(view==="home"||view==="rp"||view==="mail")render();}).catch(function(){});}
+function aiErr(e){var c=e&&e.code;return c==="not_granted"?"Claude 사용을 허용해야 쓸 수 있습니다. 화면의 허용 버튼을 눌러 주세요.":c==="rate_limited"?"요청이 많습니다. 잠시 뒤 다시 눌러 주세요.":c==="invalid_json"?"AI 답을 읽지 못했습니다. 다시 눌러 주세요.":c==="cancelled"?"멈췄습니다.":"AI 응답에 실패했습니다. 잠시 뒤 다시 눌러 주세요.";}
+function claudeOnly(title){return backBar(title)+'<div class="notice"><b>Claude 링크에서 쓸 수 있습니다</b><p>이 기능은 준의 Claude 계정으로 AI를 불러 쓰기 때문에 Claude 링크에서만 동작합니다. 추가 비용은 없습니다.</p><a href="https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW" target="_blank" rel="noopener">https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW</a></div>';}
+var RPS=[
+ {id:"r1",cat:"p",title:"납기 지연 알리기",goal_ko:"출고가 3일 늦어진다고 알리고 새 날짜를 합의하세요.",goal:"The learner is a supplier. They must tell the buyer that shipment of the order will be delayed by three days, apologize, and agree on a new date.",partner:"a buyer at an overseas customer company who calls to ask about their order",open:"Hello, this is Alex from the purchasing team. Is there any update on our order?",open_ko:"안녕하세요, 구매팀 알렉스입니다. 저희 주문 진행 상황이 어떻게 되나요?"},
+ {id:"r2",cat:"p",title:"담당자 부재 전화 받기",goal_ko:"찾는 사람이 자리에 없다고 알리고, 메시지와 연락처를 받으세요.",goal:"The learner answers the phone. The person the caller wants (Mr. Park) is out. The learner should explain, offer to take a message, and get the caller's name and phone number.",partner:"a caller from a partner company who wants to speak to Mr. Park",open:"Hi, may I speak to Mr. Park, please?",open_ko:"안녕하세요, 박 과장님과 통화할 수 있을까요?"},
+ {id:"r3",cat:"t",title:"가격 협상",goal_ko:"대량 주문을 조건으로 할인을 요청하고 합의점을 찾으세요.",goal:"The learner is the buyer. They want a discount for a larger order and should negotiate to a reasonable agreement.",partner:"a sales manager at a supplier who has sent a price quote",open:"Thank you for reviewing our quote. Do you have any questions?",open_ko:"견적서를 검토해 주셔서 감사합니다. 궁금한 점 있으신가요?"},
+ {id:"r4",cat:"p",title:"불량품 항의 받기",goal_ko:"사과하고 사진을 요청한 뒤, 교체 일정을 안내하세요.",goal:"The learner works at the supplier. The customer complains that some items arrived damaged. The learner should apologize, ask for details and photos, and explain when replacements will be sent.",partner:"an unhappy customer whose items arrived damaged",open:"Hello. I'm calling because many of the items we received are damaged.",open_ko:"안녕하세요. 받은 제품 상당수가 파손되어 전화드렸습니다."},
+ {id:"r5",cat:"m",title:"견적 요청 확인",goal_ko:"제품, 수량, 원하는 납기를 확인해 견적을 준비하세요.",goal:"The learner works at the supplier. A new customer asks for a quotation. The learner should confirm the product, quantity and delivery date they need.",partner:"a new customer who wants a quotation",open:"Hi, I'd like to get a quotation for your products.",open_ko:"안녕하세요, 제품 견적을 받고 싶습니다."},
+ {id:"r6",cat:"t",title:"회의 마무리",goal_ko:"합의한 내용을 정리하고, 다음 할 일과 마감일을 정하세요.",goal:"At the end of a meeting, the learner should summarize what was agreed, and decide next steps, who does them and deadlines.",partner:"a project partner at the end of an online meeting",open:"I think we covered everything. What should we do next?",open_ko:"다 다룬 것 같네요. 다음에는 무엇을 하면 될까요?"}
+];
+var RP={sc:null,turns:[],busy:false,err:"",sum:null,input:"",ctl:null,added:{},showKo:{}};
+function rpPrompt(){
+  var s=RPS[RP.sc],log=RP.turns.map(function(t){return (t.who==="ai"?"PARTNER: ":"LEARNER: ")+t.en;}).join("\n");
+  return "You are role-playing a short business English conversation to help a Korean office worker (CEFR A2-B1) practice.\nScenario: "+s.goal+"\nYou play: "+s.partner+".\nRules: stay in your role; use simple, natural business English; 1-2 short sentences per turn; react to what the learner actually said; do not invent prices or company names unless the learner mentions them; if the learner writes in Korean, answer in role in English and put a good English version of their message in fix.better.\nAlso check the learner's LAST message. If it has a grammar mistake or sounds unnatural, give a better version; otherwise fix is null.\nSet done to true when the goal is reached or the learner has spoken 6 times.\nReply with ONLY this JSON: {\"reply\":\"your next line\",\"reply_ko\":\"Korean translation of reply\",\"fix\":null or {\"better\":\"natural English version of the learner's last message\",\"why_ko\":\"짧은 한국어 설명\"},\"done\":false}\n\nConversation so far:\n"+log;
+}
+function rpSummaryPrompt(){
+  var s=RPS[RP.sc],log=RP.turns.map(function(t){return (t.who==="ai"?"PARTNER: ":"LEARNER: ")+t.en;}).join("\n");
+  return "A Korean office worker (CEFR A2-B1) just practiced this business English role-play.\nScenario: "+s.goal+"\n\nConversation:\n"+log+"\n\nGive short, encouraging feedback in Korean. Reply with ONLY this JSON: {\"score\":1-5,\"good_ko\":\"잘한 점 한두 문장\",\"fixes\":[{\"mine\":\"learner sentence\",\"better\":\"better English\",\"why_ko\":\"짧은 설명\"}],\"phrases\":[{\"en\":\"useful sentence for this situation\",\"ko\":\"한국어 뜻\",\"tip\":\"key phrase = 뜻\"}]}\nfixes: at most 3, only real problems. phrases: exactly 3 short sentences the learner can reuse at work.";
+}
+function rpSend(){
+  var tx=(RP.input||"").trim();if(!tx||RP.busy||!SAMPLE)return;
+  RP.turns.push({who:"me",en:tx});RP.input="";RP.busy=true;RP.err="";render();
+  var ctl=RP.ctl=new AbortController(),mine=RP.turns[RP.turns.length-1];
+  SAMPLE.json(rpPrompt(),{modelTier:"quick",cache:false,signal:ctl.signal}).then(function(r){
+    if(RP.ctl!==ctl)return;RP.busy=false;
+    if(r&&r.fix&&r.fix.better)mine.fix=r.fix;
+    if(r&&r.reply)RP.turns.push({who:"ai",en:String(r.reply),ko:String(r.reply_ko||"")});
+    var mineN=RP.turns.filter(function(t){return t.who==="me";}).length;
+    if((r&&r.done)||mineN>=6)rpFinish();else render();
+  },function(e){if(RP.ctl!==ctl)return;RP.busy=false;RP.err=aiErr(e);render();});
+}
+function rpFinish(){
+  if(!SAMPLE)return;RP.busy=true;RP.err="";RP.sum={loading:true};render();
+  var ctl=RP.ctl=new AbortController();
+  SAMPLE.json(rpSummaryPrompt(),{cache:false,signal:ctl.signal}).then(function(r){if(RP.ctl!==ctl)return;RP.busy=false;RP.sum=r||{};render();},function(e){if(RP.ctl!==ctl)return;RP.busy=false;RP.sum=null;RP.err=aiErr(e);render();});
+}
+function phraseRows(list,cat,key){
+  var h="";(list||[]).forEach(function(ph,k){if(!ph||!ph.en)return;var done=RP.added[key+k];
+    h+='<div class="li"><div><b lang="en">'+esc(ph.en)+"</b><span>"+esc(ph.ko||"")+(ph.tip?" · "+esc(ph.tip):"")+"</span></div>"+(done?'<span class="badge">추가됨</span>':'<button class="ghost small" data-act="phadd" data-key="'+key+k+'" data-cat="'+cat+'" data-i="'+k+'" data-src="'+key+'">내 문장에 추가</button>')+"</div>";});
+  return h;
+}
+function rpHTML(){
+  if(!C)return claudeOnly("AI 역할극");
+  if(RP.sc===null){
+    var h=backBar("AI 역할극")+'<p class="note">AI가 거래처 역할을 맡습니다. 영어로 답하면 더 자연스러운 표현도 알려 줍니다. 한국어로 써도 영어 표현을 알려 줍니다.</p>';
+    if(!SAMPLE)h+='<p class="note">AI를 불러오는 중입니다. 잠시 기다려도 안 되면 이 화면에서는 쓸 수 없습니다.</p>';
+    RPS.forEach(function(s,k){h+='<button class="li btnli" data-act="rpopen" data-k="'+k+'"><div><b>'+esc(s.title)+"</b><span>"+CAT[s.cat]+" · "+esc(s.goal_ko)+"</span></div></button>";});
+    return h;
+  }
+  var s=RPS[RP.sc],h=backBar(s.title,CAT[s.cat]);
+  h+='<div class="notice"><b>목표</b><p>'+esc(s.goal_ko)+"</p></div>";
+  h+='<div class="chat">';
+  RP.turns.forEach(function(t,k){
+    if(t.who==="ai")h+='<div class="bub ai"><p lang="en">'+esc(t.en)+"</p>"+(RP.showKo[k]?'<p class="sko">'+esc(t.ko||"")+"</p>":'<button class="lnk" data-act="rpko" data-k="'+k+'">뜻 보기</button>')+"</div>";
+    else{h+='<div class="bub me"><p lang="en">'+esc(t.en)+"</p></div>";if(t.fix)h+='<div class="fixbox"><span class="lbl2">더 자연스럽게</span><p lang="en">'+esc(t.fix.better)+"</p>"+(t.fix.why_ko?'<p class="sko">'+esc(t.fix.why_ko)+"</p>":"")+"</div>";}
+  });
+  if(RP.busy&&!RP.sum)h+='<div class="bub ai"><p class="sko">생각 중…</p></div>';
+  h+="</div>";
+  if(RP.err)h+='<p class="fb no">'+esc(RP.err)+"</p>";
+  if(RP.sum){
+    if(RP.sum.loading)h+='<div class="notice"><b>대화 평가 중…</b><p>최대 1분 정도 걸릴 수 있습니다.</p></div>';
+    else{
+      h+='<div class="notice"><b>평가 '+(RP.sum.score?("★".repeat(Math.max(1,Math.min(5,+RP.sum.score||0)))):"")+"</b><p>"+esc(RP.sum.good_ko||"")+"</p></div>";
+      (RP.sum.fixes||[]).forEach(function(f){h+='<div class="fixbox"><p class="sko">내 문장: '+esc(f.mine||"")+'</p><p lang="en">→ '+esc(f.better||"")+'</p><p class="sko">'+esc(f.why_ko||"")+"</p></div>";});
+      h+='<div class="block"><h2>이 상황에서 쓸 표현</h2>'+phraseRows(RP.sum.phrases,s.cat,"rp")+"</div>";
+      h+='<button class="cta" data-act="rpagain">다시 하기</button><button class="ghost" data-act="rplist">다른 상황 고르기</button>';
+    }
+    return h;
+  }
+  h+='<div class="say"><textarea id="rpin" lang="en" rows="2" autocapitalize="sentences" placeholder="영어로 답하세요 (키보드 마이크도 됩니다)">'+esc(RP.input)+"</textarea>";
+  if(dictOK())h+='<button class="mic'+(OVR&&OVR.rp?" on":"")+'" data-act="rpmic">'+MIC+"<span>"+(OVR&&OVR.rp?"멈추기":"말하기")+"</span></button>";
+  h+="</div>";
+  h+='<div class="two"><button class="cta alt" data-act="rpend"'+(RP.turns.length<3||RP.busy?" disabled":"")+'>대화 끝내고 평가</button><button class="cta" data-act="rpsend"'+(RP.busy?" disabled":"")+">보내기</button></div>";
+  return h;
+}
+var ML={mode:"fix",text:"",busy:false,err:"",res:null,ctl:null};
+function mailHTML(){
+  if(!C)return claudeOnly("메일 첨삭");
+  var h=backBar("메일 첨삭");
+  h+='<div class="chips"><button class="chip" data-act="mlmode" data-v="fix" aria-pressed="'+(ML.mode==="fix")+'">영어 메일 고치기</button><button class="chip" data-act="mlmode" data-v="ko" aria-pressed="'+(ML.mode==="ko")+'">한국어로 쓰고 영어로 바꾸기</button></div>';
+  h+='<textarea id="mlin" class="code big" rows="8" placeholder="'+(ML.mode==="fix"?"고칠 영어 메일을 붙여 넣으세요":"보낼 내용을 한국어로 쓰세요")+'">'+esc(ML.text)+"</textarea>";
+  h+='<p class="note">회사 기밀이나 개인 정보(금액, 연락처 등)는 빼고 넣어 주세요. 숫자나 날짜는 AI가 지어내지 않도록 [ ]로 비워 둡니다.</p>';
+  h+='<button class="cta" data-act="mlgo"'+(ML.busy?" disabled":"")+">"+(ML.busy?"AI가 고치는 중… (최대 1분)":"AI에게 고쳐 달라고 하기")+"</button>";
+  if(ML.err)h+='<p class="fb no">'+esc(ML.err)+"</p>";
+  if(ML.res){
+    h+='<div class="block"><h2>고친 메일</h2><pre class="mailout" id="mlout" lang="en">'+esc(ML.res.email||"")+'</pre><button class="ghost small" data-act="mlcopy">복사하기</button>'+(ML.copied?'<p class="note">'+esc(ML.copied)+"</p>":"")+"</div>";
+    if((ML.res.changes||[]).length){h+='<div class="block"><h2>고친 부분</h2>';ML.res.changes.forEach(function(c){h+='<div class="fixbox"><p class="sko">'+esc(c.before||"")+'</p><p lang="en">→ '+esc(c.after||"")+'</p><p class="sko">'+esc(c.why_ko||"")+"</p></div>";});h+="</div>";}
+    h+='<div class="block"><h2>다시 쓸 만한 표현</h2>'+phraseRows(ML.res.phrases,"m","ml")+"</div>";
+  }
+  return h;
+}
+function mailGo(){
+  var tx=(ML.text||"").trim();if(!tx||!SAMPLE||ML.busy)return;
+  ML.busy=true;ML.err="";ML.res=null;ML.copied="";RP.added={};render();
+  var ctl=ML.ctl=new AbortController();
+  var task=ML.mode==="fix"?"Correct and polish the English business email below.":"Write a clear, polite business English email from the Korean draft below.";
+  var prompt="You are a business English email coach for a Korean office worker (CEFR A2-B1).\n"+task+"\nKeep it simple and natural, keep the original meaning, and do NOT invent facts, names, numbers or dates; if needed information is missing, write a placeholder like [date].\nReply with ONLY this JSON: {\"email\":\"the full email\",\"changes\":[{\"before\":\"original phrase\",\"after\":\"corrected phrase\",\"why_ko\":\"짧은 한국어 설명\"}],\"phrases\":[{\"en\":\"reusable sentence from the email\",\"ko\":\"한국어 뜻\",\"tip\":\"key phrase = 뜻\"}]}\nchanges: up to 6 most important changes (empty array is fine for a Korean draft). phrases: exactly 3.\n\nTEXT:\n\"\"\"\n"+tx.slice(0,6000)+"\n\"\"\"";
+  SAMPLE.json(prompt,{cache:false,signal:ctl.signal}).then(function(r){if(ML.ctl!==ctl)return;ML.busy=false;ML.res=r||{};render();},function(e){if(ML.ctl!==ctl)return;ML.busy=false;ML.err=aiErr(e);render();});
+}
 var bk={mode:"",msg:""};
 function backupHTML(){
   var h='<details class="howto" id="bkbox"'+(bk.mode?" open":"")+'><summary>기록 백업과 불러오기</summary>';
@@ -1122,7 +1464,7 @@ function listHTML(){
 app.addEventListener("click",function(e){
   var b=e.target.closest("[data-act]");if(!b||b.disabled)return;
   var a=b.getAttribute("data-act"),st=ses&&ses.st,s=ses&&ses.steps[ses.i];
-  if(S.engine==="ai"&&(a==="next"||a==="mic"||a==="redo"||a==="nowsay"||a==="prac"||(a==="start"&&b.getAttribute("data-n")==="2")))aiPrepare();
+  if(S.engine==="ai"&&(a==="next"||a==="mic"||a==="redo"||a==="nowsay"||a==="prac"||a==="rpmic"||(a==="start"&&b.getAttribute("data-n")==="2")))aiPrepare();
   if(a==="start"){startRound(+b.getAttribute("data-n"));window.scrollTo(0,0);}
   else if(a==="focus"){S.focus=b.getAttribute("data-f");save();render();}
   else if(a==="list"){view="list";render();window.scrollTo(0,0);}
@@ -1141,6 +1483,54 @@ app.addEventListener("click",function(e){
   }
   else if(a==="cdel"){addf.del=b.getAttribute("data-id");render();}
   else if(a==="cdelok"){var did=b.getAttribute("data-id");S.custom=(S.custom||[]).filter(function(c){return c.id!==did;});delete S.items[did];buildItems();addf.del=null;addf.msg="삭제했습니다.";save();render();}
+  else if(a==="goal"){S.goal=+b.getAttribute("data-v");save();render();}
+  else if(a==="recgo"){recStart(b.getAttribute("data-id"));}
+  else if(a==="recstop"){aiStopRec();}
+  else if(a==="mine"){if(player)player.pause();playMine();}
+  else if(a==="both"){playBoth(b.getAttribute("data-id"));}
+  else if(a==="xshadow"){SH={list:pickPractice(5),i:0,tries:[],phase:"idle",msg:""};REC.last=null;view="shadow";markExtra();render();window.scrollTo(0,0);}
+  else if(a==="shgo"){if(S.engine==="ai")aiPrepare();shadowGo();}
+  else if(a==="shstop"){stopDict();}
+  else if(a==="shnext"){if(OVR){OVR.done=null;stopDict();OVR=null;}SH.i++;SH.tries=[];SH.phase="idle";SH.msg="";if(SH.i>=SH.list.length){view="home";}render();window.scrollTo(0,0);}
+  else if(a==="xdict"){DC={list:pickPractice(5),i:0,text:"",res:null,ko:false,score:[]};view="dict";markExtra();render();speak(DC.list[0]);window.scrollTo(0,0);}
+  else if(a==="dcko"){DC.text=(document.getElementById("dcin")||{}).value||DC.text;DC.ko=true;render();}
+  else if(a==="dccheck"){DC.text=((document.getElementById("dcin")||{}).value||"").trim();DC.res=diff(BYID[DC.list[DC.i]].en,DC.text);DC.score.push(DC.res.ratio);render();}
+  else if(a==="dcnext"){DC.i++;DC.text="";DC.res=null;DC.ko=false;render();if(DC.i<DC.list.length)speak(DC.list[DC.i]);window.scrollTo(0,0);}
+  else if(a==="xdlg"){DG={pick:-1,line:-1,ans:{},show:false,order:{},err:"",loading:false};view="dlg";render();window.scrollTo(0,0);}
+  else if(a==="dlgopen"){dlgStop();DG.pick=+b.getAttribute("data-k");DG.ans={};DG.show=false;DG.order={};DG.err="";markExtra();render();window.scrollTo(0,0);
+    if(!dlgPlayer)dlgPlayer=new Audio();try{dlgPlayer.play().catch(function(){});}catch(x){}
+    ensureDlgAudio(function(){dlgPlay(0);});}
+  else if(a==="dlgplay"){if(!dlgPlayer)dlgPlayer=new Audio();ensureDlgAudio(function(){dlgPlay(0);});}
+  else if(a==="dlgstop"){dlgStop();render();}
+  else if(a==="dlgshow"){DG.show=true;render();}
+  else if(a==="dlgans"){var qi=+b.getAttribute("data-q");DG.ans[qi]=+b.getAttribute("data-o");var dd=DIALOGS[DG.pick];if(Object.keys(DG.ans).length>=dd.qs.length){S.dlgDone=S.dlgDone||{};S.dlgDone[dd.id]=dd.qs.filter(function(q,k){return DG.ans[k]===q[2];}).length;save();}render();}
+  else if(a==="dlglist"){dlgStop();DG.pick=-1;render();window.scrollTo(0,0);}
+  else if(a==="xrp"){RP.sc=null;view="rp";render();window.scrollTo(0,0);}
+  else if(a==="rpopen"||a==="rpagain"){if(a==="rpopen")RP.sc=+b.getAttribute("data-k");var sc=RPS[RP.sc];RP.turns=[{who:"ai",en:sc.open,ko:sc.open_ko}];RP.sum=null;RP.err="";RP.input="";RP.busy=false;RP.added={};RP.showKo={};markExtra();render();window.scrollTo(0,0);}
+  else if(a==="rplist"){if(RP.ctl)RP.ctl.abort();RP.sc=null;render();}
+  else if(a==="rpko"){RP.showKo[+b.getAttribute("data-k")]=true;render();}
+  else if(a==="rpsend"){RP.input=(document.getElementById("rpin")||{}).value||RP.input;rpSend();}
+  else if(a==="rpend"){rpFinish();}
+  else if(a==="rpmic"){
+    if(!DICT)return;
+    if(OVR&&OVR.rp){stopDict();return;}
+    RP.input=(document.getElementById("rpin")||{}).value||RP.input;
+    var base=RP.input;
+    OVR={rp:true,target:"",text:"",partial:"",heard:false,
+      onUpdate:function(full){var el=document.getElementById("rpin");if(el)el.value=(base+" "+OVR.text+" "+(OVR.partial||"")).trim();if(full)render();},
+      done:function(o){RP.input=(base+" "+o.text).trim();render();}};
+    render();
+    DICT.start({language:"en"}).catch(function(){OVR=null;render();});
+  }
+  else if(a==="xmail"){view="mail";render();window.scrollTo(0,0);}
+  else if(a==="mlmode"){ML.text=(document.getElementById("mlin")||{}).value||ML.text;ML.mode=b.getAttribute("data-v");render();}
+  else if(a==="mlgo"){ML.text=(document.getElementById("mlin")||{}).value||"";mailGo();}
+  else if(a==="mlcopy"){var mt=(ML.res&&ML.res.email)||"";var okc=function(){ML.copied="복사했습니다.";render();},noc=function(){ML.copied="자동 복사가 안 됩니다. 메일 글을 길게 눌러 복사해 주세요.";render();};try{navigator.clipboard.writeText(mt).then(okc,noc);}catch(x){noc();}}
+  else if(a==="phadd"){
+    var src=b.getAttribute("data-src"),pi=+b.getAttribute("data-i"),list=src==="rp"?(RP.sum&&RP.sum.phrases):(ML.res&&ML.res.phrases),ph=list&&list[pi];
+    if(ph&&ph.en){S.custom=S.custom||[];S.custom.push({id:"u"+Date.now().toString(36)+pi,cat:b.getAttribute("data-cat")||"m",ko:String(ph.ko||ph.en),en:String(ph.en),tip:String(ph.tip||""),sit:""});buildItems();save();RP.added[b.getAttribute("data-key")]=true;}
+    render();
+  }
   else if(a==="speed"){S.slow=b.getAttribute("data-v")==="1";save();render();}
   else if(a==="bkcopy"){
     bk.mode="copy";var code=JSON.stringify(S);bk.msg="";
@@ -1156,7 +1546,7 @@ app.addEventListener("click",function(e){
     render();var bi2=document.getElementById("bkin");if(bi2)bi2.value=v;
   }
   else if(a==="bkdo"){if(bk.pending){S=bk.pending;buildItems();bk.pending=null;save();bk.mode="";bk.msg="기록을 불러왔습니다.";render();}}
-  else if(a==="home"||a==="quit"){clearAuto();stopDict();view="home";ses=null;render();window.scrollTo(0,0);}
+  else if(a==="home"||a==="quit"){clearAuto();if(OVR){OVR.done=null;}stopDict();OVR=null;dlgStop();stopMine();if(REC.act)aiStopRec();if(RP.ctl)RP.ctl.abort();if(ML.ctl&&ML.busy)ML.ctl.abort();SH.phase="idle";view="home";ses=null;render();window.scrollTo(0,0);}
   else if(a==="speak"){speak(b.getAttribute("data-id"));}
   else if(a==="next"){advance();}
   else if(a==="pick"){var bi=+b.getAttribute("data-b");if(st.picked.indexOf(bi)<0){st.picked.push(bi);render();}}
