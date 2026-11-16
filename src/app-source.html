@@ -195,7 +195,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .fld textarea:focus{outline:none;border-color:var(--accent)}
 .two input{width:100%}
 .nlink{text-decoration:none;color:inherit}
-.nlink .go{flex:none;font-size:13px;color:var(--accent);font-weight:600}
+.li .go,.nlink .go{flex:none;font-size:13px;color:var(--accent);font-weight:600}
 .chat{display:flex;flex-direction:column;gap:8px}
 .bub{max-width:88%;padding:10px 14px;border-radius:16px;display:flex;flex-direction:column;gap:4px}
 .bub p{margin:0}
@@ -372,7 +372,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v12.1",APP_DATE="2026-11-16";
+var APP_VER="v13",APP_DATE="2026-11-16";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -580,6 +580,7 @@ function homeHTML(){
   if(nx>=0)h+='<button class="cta" data-act="start" data-n="'+nx+'">'+(nx+1)+"판 시작</button>";
   else h+='<p class="note">오늘 세 판을 모두 끝냈습니다. 내일 새 표현 '+perDay()+'개가 열립니다.</p>';
   h+="</div>";
+  h+=newsCardHTML();
   h+=weekHTML();
   var left=ITEMS.filter(function(x){return !S.items[x.id];}).length;
   h+='<div class="block"><h2>새로 배울 표현 '+left+'개 남음</h2>'+(left<perDay()*5?'<p class="note">'+(left?"곧 새 표현이 바닥납니다. ":"새 표현을 모두 배웠습니다. 복습은 계속됩니다. ")+"실제로 쓰는 문장을 직접 추가할 수 있습니다.</p>":"")+'<button class="ghost small" data-act="add">내 문장 추가</button></div>';
@@ -1216,7 +1217,6 @@ function extraHTML(){
   h+='<button class="xbtn" data-act="xdlg"><b>대화 듣기</b><span>전화·회의 대화를 듣고 문제 풀기</span></button>';
   h+='<button class="xbtn" data-act="xdict"><b>받아쓰기</b><span>들은 문장을 영어로 쓰기</span></button>';
   h+='<button class="xbtn" data-act="xrp"><b>AI 역할극</b><span>AI 거래처와 영어로 대화하기'+(C?"":" · Claude 링크 전용")+'</span></button>';
-  h+='<button class="xbtn" data-act="xnews"><b>뉴스 읽기</b><span>쉬운 영어 뉴스 읽고 문제 풀기</span></button>';
   h+='<button class="xbtn" data-act="xmail"><b>메일 첨삭</b><span>내 영어 메일 고치기'+(C?"":" · Claude 링크 전용")+'</span></button>';
   return h+"</div></div>";
 }
@@ -1430,98 +1430,91 @@ function mailGo(){
   SAMPLE.json(prompt,{cache:false,signal:ctl.signal}).then(function(r){if(ML.ctl!==ctl)return;ML.busy=false;ML.res=r||{};render();},function(e){if(ML.ctl!==ctl)return;ML.busy=false;ML.err=aiErr(e);render();});
 }
 
-/* ---- H. 뉴스 읽기 (사이트 퀴즈 + 기록 / Claude 링크: 붙여 넣은 기사로 AI 문제) ---- */
-var NEWS_SITES=[
- {id:"bne",name:"Breaking News English",url:"https://breakingnewsenglish.com/",desc:"기사마다 퀴즈가 많음 · 7단계 · 새 기사 주 2회 · 문제 풀이용"},
- {id:"nil",name:"News in Levels",url:"https://www.newsinlevels.com/",desc:"매일 새 기사 · 3단계(레벨 2 추천) · 짧게 매일 읽기용"},
- {id:"voa",name:"VOA Learning English",url:"https://learningenglish.voanews.com/",desc:"학습자용 쉬운 영어 · 음성 있음 · 일부 기사에 퀴즈"}];
-var NSITE={bne:"Breaking News English",nil:"News in Levels",voa:"VOA",etc:"기타",ai:"AI 문제"};
-var NW={site:"bne",f:{title:"",ok:"",n:"",words:"",sum:""},msg:"",text:"",busy:false,err:"",res:null,ans:{},ctl:null,saved:false};
-function nwKeep(){["title","ok","n","words","sum"].forEach(function(k){var el=document.getElementById("nw_"+k);if(el)NW.f[k]=el.value;});var t=document.getElementById("nwin");if(t)NW.text=t.value;}
-function parseWords(t){return String(t||"").split(/\n/).map(function(l){l=l.trim();if(!l)return null;var m=l.split(/\s*(?:=|:|-|–|—)\s+|\s+(?:=|:)\s*/);return {en:(m[0]||"").trim().slice(0,80),ko:(m.slice(1).join(" ")||"").trim().slice(0,80)};}).filter(function(w){return w&&w.en;}).slice(0,20);}
-function newsWeek(){var s=weekStart(today());return (S.news||[]).filter(function(r){return r.d>=s;}).length;}
+/* ---- H. 오늘의 뉴스 (매일 아침 예약 작업이 news/ 폴더에 올림: 실제 뉴스를 쉬운 영어로 새로 쓴 글 + 문제 3 + 단어 5 + 음성) ---- */
+var NBASE=(location.protocol==="https:"||location.protocol==="http:")&&!C?"":PAGES;
+var NW={idx:null,err:"",cur:null,date:"",loading:false,ans:{},ko:false,playing:false,added:{}};
+var nwPlayer=null;
+function nwFetch(path){return fetch(NBASE+path,{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();});}
+function nwInit(){
+  if(NW.idx||NW.loading)return;NW.loading=true;
+  nwFetch("news/index.json").then(function(x){NW.loading=false;NW.idx=Array.isArray(x)?x:[];NW.err="";if(view==="home"||view==="news")render();},
+    function(){NW.loading=false;NW.idx=[];NW.err=C?"claude":"net";if(view==="home"||view==="news")render();});
+}
+function nwDone(d){return (S.news||[]).filter(function(r){return r.site==="today"&&r.date===d;})[0];}
+function newsCardHTML(){
+  nwInit();
+  var h='<div class="block"><h2>오늘의 뉴스</h2>';
+  if(NW.idx===null)return h+'<p class="note">불러오는 중…</p></div>';
+  if(!NW.idx.length){
+    if(NW.err==="claude")return h+'<div class="notice"><b>폰 아이콘(GitHub 주소)에서 볼 수 있습니다</b><p>오늘의 뉴스는 GitHub 주소의 앱에 매일 아침 올라옵니다.</p><a href="'+PAGES+'" target="_blank" rel="noopener">'+PAGES+"</a></div></div>";
+    return h+'<p class="note">'+(NW.err?"뉴스를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.":"아직 올라온 뉴스가 없습니다. 매일 아침 7시쯤 올라옵니다.")+"</p></div>";
+  }
+  var last=NW.idx[NW.idx.length-1],isToday=last.date===today(),dn=nwDone(last.date);
+  h+='<button class="li btnli" data-act="nwopen" data-d="'+last.date+'"><div><b lang="en">'+esc(last.title)+"</b><span>"+esc(last.title_ko||"")+" · "+(isToday?"오늘":last.date.slice(5).replace("-","/"))+"</span></div>"+(dn?'<span class="badge">'+dn.ok+"/"+dn.n+"</span>":'<span class="go">읽기 →</span>')+"</button>";
+  if(!isToday)h+='<p class="note">오늘 뉴스는 아침 7시쯤 올라옵니다. 지금은 가장 최근 뉴스입니다.</p>';
+  return h+"</div>";
+}
+function nwOpen(d){
+  nwStop();NW.date=d;NW.cur=null;NW.ans={};NW.ko=false;NW.added={};NW.err2="";view="news";render();window.scrollTo(0,0);
+  nwFetch("news/"+d+".json").then(function(x){if(NW.date!==d)return;NW.cur=x;var dn=nwDone(d);if(dn&&dn.ans)NW.ans=dn.ans;render();},function(){if(NW.date!==d)return;NW.err2="뉴스를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.";render();});
+}
+function nwStop(){if(nwPlayer){nwPlayer.onended=null;nwPlayer.pause();}NW.playing=false;}
+function nwPlay(){
+  if(NW.playing){nwStop();render();return;}
+  if(player)player.pause();dlgStop();
+  if(!nwPlayer)nwPlayer=new Audio();
+  nwPlayer.src=NBASE+"news/audio/"+NW.date+".mp3";nwPlayer.playbackRate=S.slow?0.8:1;
+  nwPlayer.onended=function(){NW.playing=false;if(view==="news")render();};
+  NW.playing=true;render();
+  var pr=nwPlayer.play();if(pr&&pr.catch)pr.catch(function(){NW.playing=false;NW.err2="음성을 재생하지 못했습니다.";render();});
+}
 function newsHTML(){
-  var L=S.news||[],h=backBar("뉴스 읽기","이번 주 "+newsWeek()+"회 · 전체 "+L.length+"회");
-  h+='<p class="note">① 아래 사이트에서 기사 1개를 읽고 그 사이트의 퀴즈를 풉니다. ② 돌아와서 점수와 기억할 단어를 적어 둡니다. 기록하면 그날은 공부한 날로 칩니다.</p>';
-  h+='<div class="block"><h2>뉴스 사이트</h2>';
-  NEWS_SITES.forEach(function(x){h+='<a class="li nlink" href="'+x.url+'" target="_blank" rel="noopener"><div><b lang="en">'+x.name+"</b><span>"+x.desc+'</span></div><span class="go">열기 ↗</span></a>';});
-  h+='<p class="note">퀴즈는 각 사이트 화면에서 풉니다. 점수는 앱이 자동으로 가져올 수 없어 직접 적습니다.</p></div>';
-  h+='<div class="block"><h2>읽은 기록 남기기</h2><div class="chips">'+["bne","nil","voa","etc"].map(function(k){return '<button class="chip" data-act="nwsite" data-v="'+k+'" aria-pressed="'+(NW.site===k)+'">'+NSITE[k]+"</button>";}).join("")+"</div>";
-  h+='<label class="fld"><span>기사 제목 (필수, 몇 단어만 적어도 됩니다)</span><input id="nw_title" lang="en" autocomplete="off" value="'+esc(NW.f.title)+'" placeholder="예: Shipping costs rise"></label>';
-  h+='<div class="two"><label class="fld"><span>맞힌 수 (선택)</span><input id="nw_ok" type="number" inputmode="numeric" min="0" value="'+esc(NW.f.ok)+'" placeholder="8"></label><label class="fld"><span>전체 문제 수</span><input id="nw_n" type="number" inputmode="numeric" min="1" value="'+esc(NW.f.n)+'" placeholder="10"></label></div>';
-  h+='<label class="fld"><span>기억할 단어 (선택, 한 줄에 하나: 단어 = 뜻)</span><textarea id="nw_words" rows="3" lang="en" placeholder="shipping cost = 운송비&#10;rise = 오르다">'+esc(NW.f.words)+"</textarea></label>";
-  h+='<label class="fld"><span>한 줄 요약 (선택, 영어나 한국어)</span><input id="nw_sum" autocomplete="off" value="'+esc(NW.f.sum)+'" placeholder="예: 운송비가 올라 수출 업체가 어렵다"></label>';
-  if(NW.msg)h+='<p class="bkmsg" role="status">'+esc(NW.msg)+"</p>";
-  h+='<button class="cta" data-act="nwsave">기록하기</button></div>';
-  // AI quiz
-  h+='<div class="block"><h2>기사로 AI 문제 만들기</h2>';
-  if(!C)h+='<div class="notice"><b>Claude 링크 전용</b><p>기사 글을 붙여 넣으면 AI가 핵심 문제 3개와 단어 5개를 만들어 줍니다. 퀴즈가 없는 기사나 업무 관련 영어 글에 쓰세요. 이 기능은 Claude 링크에서만 동작합니다.</p><a href="https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW" target="_blank" rel="noopener">https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW</a></div>';
-  else if(!NW.res){
-    h+='<p class="note">퀴즈가 없는 기사나 업무 관련 영어 글을 붙여 넣으면, AI가 핵심 내용 문제 3개와 단어 5개를 만듭니다. 문제는 붙여 넣은 글 안의 내용으로만 만듭니다.</p>';
-    h+='<textarea id="nwin" class="code big" rows="7" lang="en" placeholder="영어 기사 본문을 붙여 넣으세요">'+esc(NW.text)+"</textarea>";
-    h+='<button class="cta" data-act="nwgo"'+(NW.busy?" disabled":"")+">"+(NW.busy?"AI가 문제 만드는 중… (최대 1분)":"문제 만들기")+"</button>";
-    if(NW.err)h+='<p class="fb no">'+esc(NW.err)+"</p>";
-  }else{
-    var r=NW.res,qs=r.qs,nA=Object.keys(NW.ans).length,all=nA>=qs.length;
-    if(r.title)h+='<p lang="en"><b>'+esc(r.title)+"</b></p>";
-    qs.forEach(function(q,qi){
-      h+='<p class="qq" lang="en">'+(qi+1)+". "+esc(q.q)+'</p><div class="opts">';
-      q.opts.forEach(function(o,oi){var a=NW.ans[qi],c="";if(a!=null){if(oi===q.a)c=" ok";else if(oi===a)c=" no";}
-        h+='<button class="opt'+c+'" lang="en" data-act="nwans" data-q="'+qi+'" data-o="'+oi+'"'+(a!=null?" disabled":"")+">"+esc(o)+"</button>";});
-      h+="</div>";
-      if(NW.ans[qi]!=null&&q.why_ko)h+='<p class="sko">'+esc(q.why_ko)+"</p>";
-    });
-    if(all){
-      var sc=qs.filter(function(q,qi){return NW.ans[qi]===q.a;}).length;
-      h+='<div class="fb '+(sc===qs.length?"ok":"mid")+'">'+qs.length+"문제 중 "+sc+"개 맞혔습니다."+(NW.saved?" 기록에 저장했습니다.":"")+"</div>";
-      if(r.gist_ko)h+='<div class="notice"><b>기사 핵심</b><p>'+esc(r.gist_ko)+"</p></div>";
-      if(r.words.length){h+='<h2 style="margin-top:8px">기사 단어</h2>';r.words.forEach(function(w){h+='<div class="li"><div><b lang="en">'+esc(w.en)+"</b><span>"+esc(w.ko)+"</span></div></div>";});}
-    }
-    h+='<button class="ghost" data-act="nwnew">다른 기사로 다시 하기</button>';
-  }
-  h+="</div>";
-  // word book
-  var W=[];L.slice().reverse().forEach(function(rec){(rec.words||[]).forEach(function(w){if(W.length<40)W.push(w);});});
-  if(W.length){h+='<details class="howto"><summary>뉴스 단어장 '+W.length+"개 (최근 순)</summary>";W.forEach(function(w){h+='<div class="li"><div><b lang="en">'+esc(w.en)+"</b><span>"+esc(w.ko||"")+"</span></div></div>";});h+="</details>";}
-  if(L.length){
-    h+='<div class="block"><h2>최근 기록</h2>';
-    L.slice(-10).reverse().forEach(function(rec){h+='<div class="li"><div><b lang="en">'+esc(rec.title)+"</b><span>"+rec.d.slice(5).replace("-","/")+" · "+esc(NSITE[rec.site]||rec.site)+(rec.sum?" · "+esc(rec.sum):"")+"</span></div>"+(rec.n?'<span class="badge">'+rec.ok+"/"+rec.n+"</span>":"")+"</div>";});
+  var n=NW.cur,h=backBar("오늘의 뉴스",NW.date);
+  if(NW.err2)h+='<p class="fb no">'+esc(NW.err2)+"</p>";
+  if(!n)return h+(NW.err2?"":'<p class="note">불러오는 중…</p>')+nwPastHTML();
+  h+='<div class="card"><p class="cat" style="color:var(--accent)">NEWS · '+esc(n.date)+'</p><h1 lang="en" style="font-size:22px">'+esc(n.title)+'</h1><p class="sko">'+esc(n.title_ko)+"</p>";
+  h+='<button class="listen big" data-act="nwplay">'+ICON+"<span>"+(NW.playing?"멈추기":"듣기 (약 1분)")+"</span></button>";
+  n.paras.forEach(function(pa,i){h+='<p lang="en" style="font-size:17px">'+esc(pa)+"</p>"+(NW.ko?'<p class="sko">'+esc((n.paras_ko||[])[i]||"")+"</p>":"");});
+  h+='<button class="ghost small" data-act="nwko">'+(NW.ko?"한국어 뜻 숨기기":"한국어 뜻 보기")+"</button>";
+  h+='<p class="note">출처(원문을 쉬운 영어로 새로 쓴 글): '+n.sources.map(function(x){return '<a href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(x.name)+"</a>";}).join(", ")+"</p></div>";
+  var all=Object.keys(NW.ans).length>=n.qs.length;
+  h+='<div class="block"><h2>문제</h2>';
+  n.qs.forEach(function(q,qi){
+    h+='<p class="qq" lang="en">'+(qi+1)+". "+esc(q.q)+'</p><div class="opts">';
+    q.opts.forEach(function(o,oi){var a=NW.ans[qi],c="";if(a!=null){if(oi===q.a)c=" ok";else if(oi===a)c=" no";}
+      h+='<button class="opt'+c+'" lang="en" data-act="nwans" data-q="'+qi+'" data-o="'+oi+'"'+(a!=null?" disabled":"")+">"+esc(o)+"</button>";});
     h+="</div>";
-  }
-  return h;
+    if(NW.ans[qi]!=null)h+='<p class="sko">'+esc(q.why_ko||"")+"</p>";
+  });
+  if(all){var sc=n.qs.filter(function(q,qi){return NW.ans[qi]===q.a;}).length;h+='<div class="fb '+(sc===n.qs.length?"ok":"mid")+'">'+n.qs.length+"문제 중 "+sc+"개 맞혔습니다. 오늘은 공부한 날로 칩니다.</div>";}
+  h+="</div>";
+  h+='<div class="block"><h2>핵심 단어 5개</h2>';
+  n.words.forEach(function(w,k){var on=NW.added[k]||(S.custom||[]).some(function(c){return c.en===w.ex;});
+    h+='<div class="li"><div><b lang="en">'+esc(w.en)+"</b><span>"+esc(w.ko)+'</span><p lang="en" style="margin-top:4px">'+esc(w.ex)+'</p><span>'+esc(w.ex_ko)+" · "+CAT[w.cat]+"</span></div>"+(on?'<span class="badge">추가됨</span>':'<button class="ghost small" data-act="nwadd" data-k="'+k+'">내 문장에 추가</button>')+"</div>";});
+  h+='<p class="note">추가하면 예문이 다음 날부터 매일 세 판에 먼저 나옵니다.</p></div>';
+  return h+nwPastHTML();
 }
-function nwSave(){
-  nwKeep();var f=NW.f,t=f.title.trim();
-  if(!t){NW.msg="기사 제목을 적어 주세요. 몇 단어만 적어도 됩니다.";render();return;}
-  var ok=f.ok===""?null:Math.max(0,parseInt(f.ok,10)||0),n=f.n===""?null:Math.max(1,parseInt(f.n,10)||0);
-  if((ok!=null)!==(n!=null)){NW.msg="점수를 적으려면 맞힌 수와 전체 문제 수를 둘 다 적어 주세요.";render();return;}
-  if(ok!=null&&ok>n){NW.msg="맞힌 수가 전체 문제 수보다 많습니다.";render();return;}
-  S.news=S.news||[];S.news.push({d:today(),site:NW.site,title:t.slice(0,120),ok:ok,n:n,words:parseWords(f.words),sum:f.sum.trim().slice(0,200)});
-  markExtra();NW.f={title:"",ok:"",n:"",words:"",sum:""};NW.msg="기록했습니다. 오늘은 공부한 날로 칩니다.";render();
-}
-function nwGo(){
-  var tx=(NW.text||"").trim();if(!SAMPLE||NW.busy)return;
-  if(tx.split(/\s+/).length<40){NW.err="기사가 너무 짧습니다. 본문을 40단어 이상 붙여 넣어 주세요.";render();return;}
-  NW.busy=true;NW.err="";NW.res=null;NW.ans={};NW.saved=false;render();
-  var ctl=NW.ctl=new AbortController();
-  var prompt="You are an English reading coach for a Korean office worker (CEFR A2-B1).\nMake a short reading quiz using ONLY the article below. Do NOT add facts that are not in the article.\nReply with ONLY this JSON: {\"title\":\"short English title of the article\",\"gist_ko\":\"기사 핵심을 한두 문장 한국어로\",\"qs\":[{\"q\":\"question in simple English\",\"opts\":[\"option\",\"option\",\"option\"],\"a\":0,\"why_ko\":\"정답 근거를 짧은 한국어로\"}],\"words\":[{\"en\":\"useful word or phrase from the article\",\"ko\":\"한국어 뜻\"}]}\nqs: exactly 3 questions, each with exactly 3 options; question 1 asks for the main point of the article; vary the position of the correct answer (a = index 0-2). words: exactly 5.\n\nARTICLE:\n\"\"\"\n"+tx.slice(0,8000)+"\n\"\"\"";
-  SAMPLE.json(prompt,{cache:false,signal:ctl.signal}).then(function(r){
-    if(NW.ctl!==ctl)return;NW.busy=false;
-    var qs=((r&&r.qs)||[]).filter(function(q){return q&&q.q&&Array.isArray(q.opts)&&q.opts.length>=2&&q.a>=0&&q.a<q.opts.length;}).slice(0,5);
-    if(!qs.length){NW.err="AI 문제를 읽지 못했습니다. 다시 눌러 주세요.";render();return;}
-    qs.forEach(function(q){q.opts=q.opts.map(String);q.a=+q.a;});
-    NW.res={title:String(r.title||"").slice(0,120),gist_ko:String(r.gist_ko||""),qs:qs,words:((r.words)||[]).filter(function(w){return w&&w.en;}).slice(0,8).map(function(w){return {en:String(w.en),ko:String(w.ko||"")};})};
-    render();
-  },function(e){if(NW.ctl!==ctl)return;NW.busy=false;NW.err=aiErr(e);render();});
+function nwPastHTML(){
+  var L=(NW.idx||[]).slice().reverse().filter(function(x){return x.date!==NW.date;}).slice(0,14);
+  if(!L.length)return "";
+  var h='<div class="block"><h2>지난 뉴스</h2>';
+  L.forEach(function(x){var dn=nwDone(x.date);h+='<button class="li btnli" data-act="nwopen" data-d="'+x.date+'"><div><b lang="en">'+esc(x.title)+"</b><span>"+x.date.slice(5).replace("-","/")+" · "+esc(x.title_ko||"")+"</span></div>"+(dn?'<span class="badge">'+dn.ok+"/"+dn.n+"</span>":"")+"</button>";});
+  return h+"</div>";
 }
 function nwAnswer(qi,oi){
-  var r=NW.res;if(!r||NW.ans[qi]!=null)return;NW.ans[qi]=oi;
-  if(Object.keys(NW.ans).length>=r.qs.length&&!NW.saved){
-    var sc=r.qs.filter(function(q,k){return NW.ans[k]===q.a;}).length;
-    S.news=S.news||[];S.news.push({d:today(),site:"ai",title:r.title||"붙여 넣은 기사",ok:sc,n:r.qs.length,words:r.words.slice(0,8),sum:r.gist_ko.slice(0,200)});
-    NW.saved=true;markExtra();
+  var n=NW.cur;if(!n||NW.ans[qi]!=null)return;NW.ans[qi]=oi;
+  if(Object.keys(NW.ans).length>=n.qs.length&&!nwDone(n.date)){
+    var sc=n.qs.filter(function(q,k){return NW.ans[k]===q.a;}).length,a2={};for(var k in NW.ans)a2[k]=NW.ans[k];
+    S.news=S.news||[];S.news.push({d:today(),site:"today",date:n.date,title:String(n.title).slice(0,120),ok:sc,n:n.qs.length,ans:a2});
+    markExtra();
   }
   render();
+}
+function nwAdd(k){
+  var w=NW.cur&&NW.cur.words[k];if(!w)return;
+  S.custom=S.custom||[];
+  if(!S.custom.some(function(c){return c.en===w.ex;})){S.custom.push({id:"u"+Date.now().toString(36)+k,cat:/^[mpt]$/.test(w.cat)?w.cat:"m",ko:String(w.ex_ko),en:String(w.ex),tip:String(w.en)+" = "+String(w.ko),sit:"뉴스 단어"});buildItems();save();}
+  NW.added[k]=true;render();
 }
 var bk={mode:"",msg:""};
 function backupHTML(){
@@ -1611,12 +1604,11 @@ app.addEventListener("click",function(e){
     DICT.start({language:"en"}).catch(function(){OVR=null;render();});
   }
   else if(a==="xmail"){view="mail";render();window.scrollTo(0,0);}
-  else if(a==="xnews"){NW.msg="";view="news";render();window.scrollTo(0,0);}
-  else if(a==="nwsite"){nwKeep();NW.site=b.getAttribute("data-v");NW.msg="";render();}
-  else if(a==="nwsave"){nwSave();}
-  else if(a==="nwgo"){nwKeep();nwGo();}
+  else if(a==="nwopen"){nwOpen(b.getAttribute("data-d"));}
+  else if(a==="nwplay"){nwPlay();}
+  else if(a==="nwko"){NW.ko=!NW.ko;render();}
   else if(a==="nwans"){nwAnswer(+b.getAttribute("data-q"),+b.getAttribute("data-o"));}
-  else if(a==="nwnew"){if(NW.ctl)NW.ctl.abort();NW.res=null;NW.ans={};NW.text="";NW.err="";NW.saved=false;render();}
+  else if(a==="nwadd"){nwAdd(+b.getAttribute("data-k"));}
   else if(a==="mlmode"){ML.text=(document.getElementById("mlin")||{}).value||ML.text;ML.mode=b.getAttribute("data-v");render();}
   else if(a==="mlgo"){ML.text=(document.getElementById("mlin")||{}).value||"";mailGo();}
   else if(a==="mlcopy"){var mt=(ML.res&&ML.res.email)||"";var okc=function(){ML.copied="복사했습니다.";render();},noc=function(){ML.copied="자동 복사가 안 됩니다. 메일 글을 길게 눌러 복사해 주세요.";render();};try{navigator.clipboard.writeText(mt).then(okc,noc);}catch(x){noc();}}
@@ -1640,7 +1632,7 @@ app.addEventListener("click",function(e){
     render();var bi2=document.getElementById("bkin");if(bi2)bi2.value=v;
   }
   else if(a==="bkdo"){if(bk.pending){S=bk.pending;buildItems();bk.pending=null;save();bk.mode="";bk.msg="기록을 불러왔습니다.";render();}}
-  else if(a==="home"||a==="quit"){clearAuto();if(OVR){OVR.done=null;}stopDict();OVR=null;dlgStop();stopMine();if(REC.act)aiStopRec();if(RP.ctl)RP.ctl.abort();if(ML.ctl&&ML.busy)ML.ctl.abort();SH.phase="idle";view="home";ses=null;render();window.scrollTo(0,0);}
+  else if(a==="home"||a==="quit"){clearAuto();if(OVR){OVR.done=null;}stopDict();OVR=null;dlgStop();stopMine();if(REC.act)aiStopRec();if(RP.ctl)RP.ctl.abort();if(ML.ctl&&ML.busy)ML.ctl.abort();nwStop();SH.phase="idle";view="home";ses=null;render();window.scrollTo(0,0);}
   else if(a==="speak"){speak(b.getAttribute("data-id"));}
   else if(a==="next"){advance();}
   else if(a==="pick"){var bi=+b.getAttribute("data-b");if(st.picked.indexOf(bi)<0){st.picked.push(bi);render();}}
