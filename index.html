@@ -388,7 +388,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v12",APP_DATE="2026-11-16";
+var APP_VER="v12.1",APP_DATE="2026-11-16";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -1137,7 +1137,7 @@ function installHTML(){
 if(!C){
   window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();INS.evt=e;if(view==="home")render();});
   window.addEventListener("appinstalled",function(){INS.done=true;INS.evt=null;if(view==="home")render();});
-  if("serviceWorker" in navigator&&/^https:|^http:\/\/localhost/.test(location.href)){try{navigator.serviceWorker.register("sw.js").catch(function(){});}catch(x){}}
+  if("serviceWorker" in navigator&&/^https:|^http:\/\/localhost/.test(location.href)){try{var hadSW=!!navigator.serviceWorker.controller,swReloaded=false;navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){try{r.update();}catch(x){}}).catch(function(){});navigator.serviceWorker.addEventListener("controllerchange",function(){if(hadSW&&!swReloaded&&view==="home"){swReloaded=true;location.reload();}});}catch(x){}}
 }
 function weekHTML(){
   var t=today(),cells="",sd=0,a=[0,0],b=[0,0];
