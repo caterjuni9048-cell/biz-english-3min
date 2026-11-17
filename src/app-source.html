@@ -192,6 +192,13 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .qq{font-weight:600;margin-top:4px}
 .ipas{font-size:14px;color:var(--muted);line-height:1.7}
 .ipa{font-family:"Noto Sans","Segoe UI","Arial Unicode MS",var(--sans);color:var(--ink)}
+.lvsteps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.lvsteps span{font-size:12px;text-align:center;padding:7px 2px;border-radius:10px;border:1.5px solid var(--line);color:var(--muted)}
+.lvsteps span.on{border-color:var(--accent);color:var(--ink);background:var(--soft);font-weight:700}
+.lvsteps span.done{border-color:var(--good);color:var(--good)}
+#lvwords span{color:var(--muted)}#lvwords span.past{color:var(--ink)}#lvwords span.cur{color:var(--accent);text-decoration:underline;text-underline-offset:5px}
+#lvsvg{width:100%;height:auto;display:block;background:var(--bg);border-radius:10px}
+.cmp .cta{font-size:15px;padding:13px}
 .pg{display:flex;flex-direction:column;gap:6px}
 .pg svg{width:100%;height:auto;display:block;background:var(--bg);border-radius:10px}
 .pgleg{display:flex;gap:14px;font-size:13px;flex-wrap:wrap}
@@ -385,7 +392,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v14.1",APP_DATE="2026-11-17";
+var APP_VER="v15",APP_DATE="2026-11-17";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -960,6 +967,7 @@ function aiFrame(x){
     else if(r.t>8){aiStopRec();}
   }else{
     r.buf.push(c);
+    if(r.mode==="rec"&&LV.phase==="rec"&&REC.id===LV.id)lvFeed(c,sr);
     r.sil=rms<thr*0.8?r.sil+dur:0;
     if(r.sil>1.2||r.t>15)aiStopRec();
   }
@@ -1206,73 +1214,163 @@ function playBoth(id){
   player.addEventListener("ended",done);
 }
 
-/* ---- 발음 비교 그래프: 억양(목소리 높낮이 선) + 리듬(소리 크기) + 속도 ---- */
-var PG={key:"",html:"",busy:false};
+/* ---- 따라 말하기 그래프 (A안): ① 원어민 선이 소리에 맞춰 그려짐 → ② 흐린 길잡이 위에 내 목소리 선이 실시간으로 → ③ 겹쳐 비교 + 차이 큰 곳 ---- */
 function b64buf(u){var b=atob(u.split(",")[1]),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a.buffer;}
 function decodeAud(ctx,buf){return new Promise(function(ok,no){try{var r=ctx.decodeAudioData(buf,ok,no);if(r&&r.then)r.then(ok,no);}catch(e){no(e);}});}
-function pgAnalyze(x,sr){
-  var st=Math.max(1,Math.round(sr/16000)),fs=sr/st,n=Math.floor(x.length/st),y=new Float32Array(n),i,j,k;
-  for(i=0;i<n;i++)y[i]=x[i*st];
-  var W=Math.round(fs*0.04),H=Math.round(fs*0.01),F=Math.max(0,Math.floor((n-W)/H)),db=[],f0=[],mx=-200;
-  for(k=0;k<F;k++){var o=k*H,e=0;for(j=0;j<W;j++)e+=y[o+j]*y[o+j];var d=10*Math.log10(e/W+1e-10);db.push(d);if(d>mx)mx=d;}
-  var thr=mx-35,a=0,b=F-1;while(a<F&&db[a]<thr)a++;while(b>a&&db[b]<thr)b--;
-  var lo=Math.floor(fs/400),hi=Math.ceil(fs/75);
-  for(k=a;k<=b;k++){
-    if(db[k]<mx-25){f0.push(0);continue;}
-    var o2=k*H,best=0,bl=0,e0=0;for(j=0;j<W;j++)e0+=y[o2+j]*y[o2+j];
-    for(var L=lo;L<=hi;L++){var c=0,e1=0;for(j=0;j<W-L;j++){c+=y[o2+j]*y[o2+j+L];e1+=y[o2+j+L]*y[o2+j+L];}var r=c/Math.sqrt(e0*e1+1e-12);if(r>best){best=r;bl=L;}}
-    f0.push(best>0.6&&bl?fs/bl:0);
-  }
-  return {db:db.slice(a,b+1),f0:f0,dur:(b-a+1)*H/fs,mx:mx};
+function pitchAt(y,o,W,fs){
+  var lo=Math.floor(fs/400),hi=Math.ceil(fs/75),best=0,bl=0,e0=0,j;for(j=0;j<W;j++)e0+=y[o+j]*y[o+j];
+  for(var L=lo;L<=hi;L+=1){var c=0,e1=0;for(j=0;j<W-L;j+=2){c+=y[o+j]*y[o+j+L];e1+=y[o+j+L]*y[o+j+L];}var r=c/Math.sqrt(e0*e1/2+1e-12)/1;if(r>best){best=r;bl=L;}}
+  return best>0.6&&bl?fs/bl:0;
 }
+function down16(x,sr){var st=Math.max(1,Math.round(sr/16000)),n=Math.floor(x.length/st),y=new Float32Array(n);for(var i=0;i<n;i++)y[i]=x[i*st];return {y:y,fs:sr/st};}
+/* 전체 분석: 앞뒤 무음을 잘라 낸 구간의 프레임별 소리 크기(db)와 높낮이(f0) */
+function pgAnalyze(x,sr){
+  var d=down16(x,sr),y=d.y,fs=d.fs,n=y.length,j,k;
+  var W=Math.round(fs*0.04),H=Math.round(fs*0.01),F=Math.max(0,Math.floor((n-W)/H)),db=[],f0=[],mx=-200;
+  for(k=0;k<F;k++){var o=k*H,e=0;for(j=0;j<W;j++)e+=y[o+j]*y[o+j];var dd=10*Math.log10(e/W+1e-10);db.push(dd);if(dd>mx)mx=dd;}
+  var thr=mx-35,a=0,b=F-1;while(a<F&&db[a]<thr)a++;while(b>a&&db[b]<thr)b--;
+  var sp=0;for(k=a;k<=b;k++){if(db[k]>=mx-30)sp++;f0.push(db[k]<mx-25?0:pitchAt(y,k*H,W,fs));}
+  return {db:db.slice(a,b+1),f0:f0,t0:a*H/fs,hop:H/fs,dur:(b-a+1)*H/fs,speech:sp*H/fs,mx:mx};
+}
+function semis(f0){var v=f0.filter(function(f){return f>0;}).sort(function(p,q){return p-q;}),med=v.length?v[Math.floor(v.length/2)]:0;
+  return f0.map(function(f){return f>0&&med?Math.max(-9,Math.min(9,12*Math.log(f/med)/Math.LN2)):null;});}
+function smoothLine(p,gap){var N=p.length,i,q,out=p.slice();
+  for(i=0;i<N;i++){if(p[i]===null)continue;var w=[];for(q=i-2;q<=i+2;q++)if(q>=0&&q<N&&p[q]!==null)w.push(p[q]);if(w.length>=3){w.sort(function(a,b){return a-b;});out[i]=w[Math.floor(w.length/2)];}}
+  for(i=0;i<N;i++){if(out[i]!==null)continue;var a=i-1;while(i<N&&out[i]===null)i++;if(a>=0&&i<N&&i-a-1<=gap){for(q=a+1;q<i;q++)out[q]=out[a]+(out[i]-out[a])*(q-a)/(i-a);}}
+  return out;}
 function pgCurve(an,N){
-  var v=an.f0.filter(function(f){return f>0;}).sort(function(p,q){return p-q;}),med=v.length?v[Math.floor(v.length/2)]:0,M=an.f0.length,pit=[],en=[];
+  var st=semis(an.f0),M=st.length,pit=[],en=[];
   for(var i=0;i<N;i++){var a=Math.floor(i*M/N),b=Math.max(a+1,Math.floor((i+1)*M/N)),s=0,c=0,e=-200;
-    for(var k=a;k<b&&k<M;k++){if(an.f0[k]>0&&med){s+=12*Math.log(an.f0[k]/med)/Math.LN2;c++;}if(an.db[k]>e)e=an.db[k];}
-    pit.push(c?Math.max(-9,Math.min(9,s/c)):null);en.push(Math.max(0,Math.min(1,(e-(an.mx-40))/40)));}
-  for(i=1;i<N-1;i++)if(pit[i]===null&&pit[i-1]!==null&&pit[i+1]!==null)pit[i]=(pit[i-1]+pit[i+1])/2;
-  var sm=pit.slice();for(i=0;i<N;i++){if(pit[i]===null)continue;var w=[];for(var q=i-2;q<=i+2;q++)if(q>=0&&q<N&&pit[q]!==null)w.push(pit[q]);if(w.length>=3){w.sort(function(p,q){return p-q;});sm[i]=w[Math.floor(w.length/2)];}}
-  return {pit:sm,en:en};
+    for(var k=a;k<b&&k<M;k++){if(st[k]!==null){s+=st[k];c++;}if(an.db[k]>e)e=an.db[k];}
+    pit.push(c?s/c:null);en.push(Math.max(0,Math.min(1,(e-(an.mx-40))/40)));}
+  return {pit:smoothLine(pit,6),en:en};
 }
 function pgCorr(a,b){var x=[],y=[];for(var i=0;i<a.length;i++)if(a[i]!==null&&b[i]!==null){x.push(a[i]);y.push(b[i]);}
   if(x.length<12)return null;var mx=0,my=0;x.forEach(function(v,i){mx+=v;my+=y[i];});mx/=x.length;my/=y.length;var sxy=0,sx=0,sy=0;x.forEach(function(v,i){sxy+=(v-mx)*(y[i]-my);sx+=(v-mx)*(v-mx);sy+=(y[i]-my)*(y[i]-my);});return sxy/Math.sqrt(sx*sy+1e-9);}
-function pgSVG(A,B){
-  var N=A.pit.length,Wd=320,top=10,ph=80,eb=128,eh=30,X=function(i){return 6+i*(Wd-12)/(N-1);},Y=function(v){return top+ph/2-v*(ph/2)/9;};
-  var area=function(en){var d="M"+X(0)+" "+eb;en.forEach(function(v,i){d+=" L"+X(i).toFixed(1)+" "+(eb-v*eh).toFixed(1);});return d+" L"+X(N-1)+" "+eb+" Z";};
-  var line=function(p){var d="",on=false;p.forEach(function(v,i){if(v===null){on=false;return;}d+=(on?" L":" M")+X(i).toFixed(1)+" "+Y(v).toFixed(1);on=true;});return d;};
-  return '<svg viewBox="0 0 '+Wd+' 136" role="img" aria-label="원어민과 내 발음의 억양·리듬 비교 그래프">'+
-    '<line x1="6" x2="'+(Wd-6)+'" y1="'+Y(0)+'" y2="'+Y(0)+'" style="stroke:var(--line)" stroke-dasharray="3 4"/>'+
-    '<path d="'+area(A.en)+'" style="fill:var(--accent);opacity:.22"/><path d="'+area(B.en)+'" style="fill:var(--near);opacity:.28"/>'+
-    '<path d="'+line(A.pit)+'" fill="none" style="stroke:var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'+
-    '<path d="'+line(B.pit)+'" fill="none" style="stroke:var(--near)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'+
-    '<text x="8" y="'+(top+8)+'" font-size="10" style="fill:var(--muted)">높게</text><text x="8" y="'+(top+ph-2)+'" font-size="10" style="fill:var(--muted)">낮게</text>'+
-    '<text x="'+(Wd-8)+'" y="'+(eb-eh-2)+'" font-size="10" text-anchor="end" style="fill:var(--muted)">소리 크기</text></svg>';
+var LV={id:"",phase:"idle",nat:null,natErr:"",raf:0,live:null,res:null,busy:false,dctx:null};
+function lvReset(id){if(LV.raf)cancelAnimationFrame(LV.raf);LV={id:id,phase:"idle",nat:null,natErr:"",raf:0,live:null,res:null,busy:false,dctx:LV.dctx,head:null,word:-1};}
+function lvCtx(){if(!LV.dctx){var A=window.AudioContext||window.webkitAudioContext;LV.dctx=A?new A():null;}return LV.dctx;}
+function lvNative(id){
+  if(LV.nat)return Promise.resolve(LV.nat);
+  var src=audSrc(id),ctx=lvCtx();if(!src||!ctx)return Promise.reject(0);
+  var get=/^data:/.test(src)?Promise.resolve(b64buf(src)):fetch(src).then(function(r){if(!r.ok)throw 0;return r.arrayBuffer();});
+  return get.then(function(ab){return decodeAud(ctx,ab);}).then(function(nb){
+    var an=pgAnalyze(nb.getChannelData(0),nb.sampleRate);an.st=smoothLine(semis(an.f0).map(function(v,i,a){return v;}),15);an.total=nb.duration;
+    if(LV.id===id)LV.nat=an;return an;});
 }
-function pgRun(id){
-  var key=id+":"+(REC.last?REC.last.data.length:0);
-  if(PG.key===key||PG.busy)return;
-  if(!audSrc(id)){PG.key=key;PG.html='<p class="note">직접 입력한 문장은 원어민 음성 파일이 없어 그래프를 그릴 수 없습니다. 기본 문장이나 뉴스 단어 문장으로 해 보세요.</p>';return;}
-  PG.busy=true;PG.key=key;PG.html='<p class="note">그래프 계산 중…</p>';
-  var ctx=AI.ctx,mine=REC.last.data,msr=ctx.sampleRate;
-  var src=audSrc(id),getBuf=/^data:/.test(src)?Promise.resolve(b64buf(src)):fetch(src).then(function(r){if(!r.ok)throw 0;return r.arrayBuffer();});
-  getBuf.then(function(ab){return decodeAud(ctx,ab);}).then(function(nb){
-    var na=pgAnalyze(nb.getChannelData(0),nb.sampleRate),ma=pgAnalyze(mine,msr),A=pgCurve(na,120),B=pgCurve(ma,120);
-    var ri=pgCorr(A.pit,B.pit),rr=pgCorr(A.en,B.en),sp=ma.dur/Math.max(0.2,na.dur);
-    var pct=function(r){return r===null?"–":Math.round(Math.max(0,r)*100)+"%";};
-    var spd=Math.abs(sp-1)<0.1?"비슷함":(sp>1?sp.toFixed(1)+"배 느림":(1/sp).toFixed(1)+"배 빠름");
-    PG.html='<div class="pg">'+pgSVG(A,B)+'<div class="pgleg"><span><i style="background:var(--accent)"></i>원어민</span><span><i style="background:var(--near)"></i>내 목소리</span></div>'+
-      '<div class="pgstat"><div><b>'+pct(ri)+'</b><span>억양 비슷함</span></div><div><b>'+pct(rr)+'</b><span>리듬 비슷함</span></div><div><b>'+spd+'</b><span>속도 '+na.dur.toFixed(1)+'초 / '+ma.dur.toFixed(1)+'초</span></div></div>'+
-      '<p class="note">선은 목소리 높낮이(억양), 아래 색칠은 소리 크기(리듬)입니다. 두 선의 오르내림이 비슷할수록 좋습니다. 발음이 맞았는지 채점하는 것은 아닙니다.</p></div>';
-    PG.busy=false;render();
-  }).catch(function(){PG.busy=false;PG.html='<p class="note">그래프를 그리지 못했습니다.</p>';render();});
+/* 그림: 가로축은 원어민 말하기 시간 × 1.3 */
+var LVW=320,LVH=150;
+function lvX(t,T){return 8+Math.max(0,Math.min(1,t/T))*(LVW-16);}
+function lvY(v){return LVH/2-v*(LVH/2-14)/9;}
+function lvPath(pts){var d="",on=false;pts.forEach(function(p){if(p[1]===null){on=false;return;}d+=(on?" L":" M")+p[0].toFixed(1)+" "+lvY(p[1]).toFixed(1);on=true;});return d;}
+function lvSVG(){
+  var n=LV.nat,h='<svg id="lvsvg" viewBox="0 0 '+LVW+' '+LVH+'" role="img" aria-label="원어민과 내 목소리 높낮이 그래프"><line x1="8" x2="'+(LVW-8)+'" y1="'+lvY(0)+'" y2="'+lvY(0)+'" style="stroke:var(--line)" stroke-dasharray="3 4"/>';
+  h+='<text x="10" y="14" font-size="10" style="fill:var(--muted)">높게</text><text x="10" y="'+(LVH-6)+'" font-size="10" style="fill:var(--muted)">낮게</text>';
+  if(LV.phase==="done"&&LV.res){
+    var R=LV.res,N=R.A.pit.length,X=function(i){return 8+i*(LVW-16)/(N-1);};
+    if(R.mark)h+='<rect data-act="lvseg" x="'+X(R.mark[0])+'" y="6" width="'+(X(R.mark[1])-X(R.mark[0]))+'" height="'+(LVH-12)+'" rx="6" style="fill:var(--bad);opacity:.16;cursor:pointer"/>';
+    h+='<path d="'+lvPath(R.A.pit.map(function(v,i){return [X(i),v];}))+'" fill="none" style="stroke:var(--accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>';
+    h+='<path d="'+lvPath(R.B.pit.map(function(v,i){return [X(i),v];}))+'" fill="none" style="stroke:var(--near)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+    return h+"</svg>";
+  }
+  if(!n)return h+'<text x="'+LVW/2+'" y="'+LVH/2+'" font-size="12" text-anchor="middle" style="fill:var(--muted)">'+(LV.natErr||"원어민 듣기를 누르면 선이 그려집니다")+"</text></svg>";
+  var T=n.dur*1.3,np=n.st.map(function(v,k){return [lvX(k*n.hop,T),v];});
+  if(LV.phase==="native"){var hd=LV.head||0;h+='<path d="'+lvPath(np.filter(function(p,k){return k*n.hop<=hd;}))+'" fill="none" style="stroke:var(--accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>';h+=lvHead(lvX(hd,T),"var(--accent)");}
+  else if(LV.phase==="ready")h+='<path d="'+lvPath(np)+'" fill="none" style="stroke:var(--accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>';
+  else if(LV.phase==="rec"){
+    h+='<path d="'+lvPath(np)+'" fill="none" style="stroke:var(--accent);opacity:.32" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>';
+    var L=LV.live;if(L&&L.fr.length){var st=lvLiveSemis(L);h+='<path d="'+lvPath(st.map(function(v,k){return [lvX(k*L.hop,T),v];}))+'" fill="none" style="stroke:var(--near)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';h+=lvHead(lvX(L.fr.length*L.hop,T),"var(--near)");}
+    else h+='<text x="'+LVW/2+'" y="'+(LVH-24)+'" font-size="12" text-anchor="middle" style="fill:var(--ink)">말을 시작하면 주황 선이 그려집니다</text>';
+  }
+  return h+"</svg>";
+}
+function lvHead(x,col){return '<line x1="'+x+'" x2="'+x+'" y1="6" y2="'+(LVH-6)+'" style="stroke:var(--ink)" stroke-width="1.5"/><circle cx="'+x+'" cy="'+(LVH-10)+'" r="4" style="fill:'+col+'"/>';}
+function lvLiveSemis(L){var v=L.fr.filter(function(f){return f>0;});if(v.length<3)return L.fr.map(function(){return null;});
+  if(!L.med||v.length%10===0){var s=v.slice().sort(function(a,b){return a-b;});L.med=s[Math.floor(s.length/2)];}
+  var st=smoothLine(L.fr.map(function(f){return f>0?12*Math.log(f/L.med)/Math.LN2:null;}),15),n=LV.nat,sh=0;
+  if(n){var d=0,c=0;st.forEach(function(v,k){var q=Math.round(k*L.hop/n.hop);if(v!==null&&n.st[q]!==null&&n.st[q]!==undefined){d+=n.st[q]-v;c++;}});if(c>=5)sh=Math.max(-6,Math.min(6,d/c));}
+  return st.map(function(v){return v===null?null:Math.max(-9,Math.min(9,v+sh));});}
+function lvDraw(){var el=document.getElementById("lvsvg");if(el)el.outerHTML=lvSVG();
+  var ws=document.querySelectorAll("#lvwords span");if(ws.length){var k=LV.word;for(var i=0;i<ws.length;i++)ws[i].className=i<k?"past":i===k?"cur":"";}}
+function lvWordAt(id,frac){var w=BYID[id].en.split(/\s+/),tot=0,c=0;w.forEach(function(x){tot+=x.length+1;});for(var i=0;i<w.length;i++){c+=w[i].length+1;if(frac*tot<c)return i;}return w.length-1;}
+/* ① 원어민 듣기 */
+function lvPlayNative(id){
+  if(LV.phase==="native"){if(player)player.pause();LV.phase=LV.nat?"ready":"idle";render();return;}
+  lvCtx();speak(id);LV.phase="native";LV.head=0;LV.word=0;render();
+  var started=Date.now(),tick=function(){
+    if(LV.phase!=="native"||LV.id!==id)return;
+    var n=LV.nat,ct=player?player.currentTime:0;
+    if(n){LV.head=Math.max(0,ct-n.t0);LV.word=lvWordAt(id,Math.min(0.999,LV.head/n.dur));}
+    lvDraw();
+    if(player&&(player.ended||(player.paused&&Date.now()-started>600))){LV.phase=LV.nat?"ready":"idle";LV.word=-1;render();return;}
+    LV.raf=requestAnimationFrame(tick);};
+  lvNative(id).then(function(){},function(){LV.natErr="원어민 음성을 분석하지 못했습니다";});
+  LV.raf=requestAnimationFrame(tick);
+}
+/* ② 따라 말하기: 마이크 소리를 받아 실시간으로 높낮이 계산 */
+function lvStartRec(id){
+  if(player)player.pause();
+  lvNative(id).catch(function(){});
+  LV.phase="rec";LV.res=null;LV.live={fr:[],hop:0.01,buf:null,pos:0,fs:16000,med:0};LV.word=-1;
+  recStart(id);render();
+}
+function lvFeed(x,sr){
+  var L=LV.live;if(!L||LV.phase!=="rec")return;
+  var d=down16(x,sr),fs=d.fs,W=Math.round(fs*0.04),H=Math.round(fs*0.01);L.fs=fs;L.hop=H/fs;
+  var old=L.buf?L.buf.subarray(L.pos):new Float32Array(0),nb=new Float32Array(old.length+d.y.length);nb.set(old,0);nb.set(d.y,old.length);L.buf=nb;L.pos=0;
+  while(L.pos+W<=L.buf.length){var o=L.pos,e=0;for(var j=0;j<W;j++)e+=L.buf[o+j]*L.buf[o+j];var rms=Math.sqrt(e/W);L.fr.push(rms>0.01?pitchAt(L.buf,o,W,fs):0);L.pos+=H;}
+  var n=LV.nat;if(n)LV.word=lvWordAt(LV.id,Math.min(0.999,L.fr.length*L.hop/n.dur));
+  if(!LV.raf2){LV.raf2=requestAnimationFrame(function(){LV.raf2=0;lvDraw();});}
+}
+/* ③ 결과 */
+function lvResult(id){
+  if(LV.busy)return;LV.busy=true;
+  var mine=REC.last.data,msr=AI.ctx.sampleRate;
+  lvNative(id).then(function(n){
+    var ma=pgAnalyze(mine,msr),A=pgCurve(n,120),B=pgCurve(ma,120);
+    var ri=pgCorr(A.pit,B.pit),rr=pgCorr(A.en,B.en),sp=ma.speech/Math.max(0.2,n.speech),best=0,mark=null;
+    for(var i=0;i+16<=120;i+=2){var s=0,c=0;for(var k=i;k<i+16;k++)if(A.pit[k]!==null&&B.pit[k]!==null){s+=Math.abs(A.pit[k]-B.pit[k]);c++;}if(c>=8&&s/c>best){best=s/c;mark=[i,i+15];}}
+    if(best<2.5)mark=null;
+    LV.res={A:A,B:B,ri:ri,rr:rr,sp:sp,nd:n.speech,md:ma.speech,mark:mark,na:n,ma:ma};LV.busy=false;if(LV.id===id)render();
+  },function(){LV.busy=false;LV.res={none:true};render();});
+}
+function lvPlaySeg(){
+  var R=LV.res;if(!R||!R.mark||!player)return;
+  var f0=R.mark[0]/120,f1=(R.mark[1]+1)/120,n=R.na,m=R.ma,rate=player.playbackRate||1;
+  speak(LV.id);player.currentTime=n.t0+f0*n.dur;
+  setTimeout(function(){player.pause();setTimeout(function(){
+    if(!REC.last||!AI.ctx)return;stopMine();var a=REC.last.data,b=AI.ctx.createBuffer(1,a.length,AI.ctx.sampleRate);if(b.copyToChannel)b.copyToChannel(a,0);else b.getChannelData(0).set(a);
+    var s2=AI.ctx.createBufferSource();s2.buffer=b;s2.connect(AI.ctx.destination);s2.start(0,m.t0+f0*m.dur,(f1-f0)*m.dur+0.05);REC.src=s2;},350);},((f1-f0)*n.dur/rate)*1000+60);
 }
 function cmpHTML(id){
   if(!aiSupported())return "";
-  var has=REC.last&&REC.last.id===id,h='<div class="cmp"><div class="ph"><b>녹음해서 비교하기</b><span>내 발음을 녹음해 원어민 발음과 이어 들어 보세요</span></div>';
-  if(REC.act&&REC.id===id){h+='<button class="mic on wide" data-act="recstop">'+MIC+"<span>녹음 중… 말을 마치면 자동으로 끝납니다</span></button>";}
-  else{
-    h+='<div class="three"><button class="cta alt" data-act="recgo" data-id="'+id+'">'+(has?"다시 녹음":"녹음하기")+'</button><button class="cta alt" data-act="speak" data-id="'+id+'">원어민</button><button class="cta alt" data-act="mine"'+(has?"":" disabled")+'>내 목소리</button></div>';
-    if(has){h+='<button class="ghost small" data-act="both" data-id="'+id+'">원어민 → 내 목소리 이어 듣기</button>';pgRun(id);h+=PG.html;}
+  if(LV.id!==id)lvReset(id);
+  var hasN=!!audSrc(id),has=REC.last&&REC.last.id===id;
+  if(LV.phase==="rec"&&!(REC.act&&REC.id===id)&&!AI.waitStart){if(has&&!REC.err){LV.phase="done";lvResult(id);}else LV.phase=LV.nat?"ready":"idle";}
+  var ph=LV.phase,stp=ph==="done"?2:(ph==="rec"?1:0),h='<div class="cmp"><div class="ph"><b>따라 말하기 그래프</b><span>'+(hasN?"원어민 선을 보고 듣고, 같은 모양으로 따라 말해 보세요":"이 문장은 원어민 음성 파일이 없어 녹음만 할 수 있습니다")+"</span></div>";
+  if(hasN){
+    h+='<div class="lvsteps">'+["① 원어민 듣기","② 따라 말하기","③ 결과"].map(function(l,i){return '<span class="'+(i<stp||(i===0&&ph==="ready")?"done":i===stp?"on":"")+'">'+l+"</span>";}).join("")+"</div>";
+    if(ph!=="done")h+='<p class="en small" id="lvwords" lang="en">'+BYID[id].en.split(/\s+/).map(function(w,i){return '<span class="'+(i<LV.word?"past":i===LV.word?"cur":"")+'">'+esc(w)+"</span>";}).join(" ")+"</p>";
+    h+=lvSVG();
+    h+='<div class="pgleg"><span><i style="background:var(--accent)'+(ph==="rec"?";opacity:.4":"")+'"></i>원어민'+(ph==="rec"?" 길잡이":"")+'</span>'+(ph==="rec"||ph==="done"?'<span><i style="background:var(--near)"></i>내 목소리'+(ph==="rec"?" (실시간)":"")+"</span>":"")+(ph==="done"&&LV.res&&LV.res.mark?'<span><i style="background:var(--bad);opacity:.5"></i>차이 큰 곳</span>':"")+"</div>";
+  }
+  if(REC.act&&REC.id===id){h+='<button class="mic on wide" data-act="recstop">'+MIC+"<span>녹음 중 — 말을 마치면 자동으로 끝납니다</span></button>";}
+  else if(ph==="done"){
+    var R=LV.res;
+    if(!R)h+='<p class="note">결과 계산 중…</p>';
+    else if(!R.none){var pct=function(r){return r===null?"–":Math.round(Math.max(0,r)*100)+"%";};
+      var spd=Math.abs(R.sp-1)<0.1?"비슷함":(R.sp>1?R.sp.toFixed(1)+"배 느림":(1/R.sp).toFixed(1)+"배 빠름");
+      h+='<div class="pgstat"><div><b>'+pct(R.ri)+'</b><span>억양 비슷함</span></div><div><b>'+pct(R.rr)+'</b><span>리듬 비슷함</span></div><div><b>'+spd+'</b><span>말한 시간 '+R.nd.toFixed(1)+'초 / '+R.md.toFixed(1)+'초</span></div></div>';
+      h+='<p class="note">'+(R.mark?'붉은 칸이 원어민과 가장 다른 부분입니다. 붉은 칸이나 아래 버튼을 누르면 그 부분만 원어민 → 내 목소리로 들려줍니다.':'크게 다른 부분이 없습니다. 잘했습니다.')+' 발음이 맞았는지 채점하는 것은 아닙니다.</p>';
+      if(R.mark)h+='<button class="ghost small" data-act="lvseg">차이 큰 부분만 비교해 듣기</button>';}
+    h+='<div class="two"><button class="cta alt" data-act="lvrec" data-id="'+id+'">다시 따라 말하기</button><button class="cta alt" data-act="both" data-id="'+id+'">원어민 → 나 이어 듣기</button></div>';
+    h+='<div class="two"><button class="ghost small" data-act="lvnat" data-id="'+id+'">원어민 다시 보기</button><button class="ghost small" data-act="mine">내 목소리만</button></div>';
+  }
+  else if(hasN){
+    h+='<button class="cta'+(ph==="ready"?" alt":"")+'" data-act="lvnat" data-id="'+id+'">'+(ph==="native"?"■ 멈추기":ph==="ready"?"① 원어민 다시 듣기":"① 원어민 듣기 ▶")+"</button>";
+    h+='<button class="cta'+(ph==="ready"?"":" alt")+'" data-act="lvrec" data-id="'+id+'">② 따라 말하기 ●</button>';
+  }else{
+    h+='<div class="two"><button class="cta alt" data-act="recgo" data-id="'+id+'">'+(has?"다시 녹음":"녹음하기")+'</button><button class="cta alt" data-act="mine"'+(has?"":" disabled")+'>내 목소리</button></div>';
   }
   if(REC.err)h+='<p class="note">'+esc(REC.err)+"</p>";
   return h+"</div>";
@@ -1653,6 +1751,9 @@ app.addEventListener("click",function(e){
   else if(a==="cdelok"){var did=b.getAttribute("data-id");S.custom=(S.custom||[]).filter(function(c){return c.id!==did;});delete S.items[did];buildItems();addf.del=null;addf.msg="삭제했습니다.";save();render();}
   else if(a==="goal"){S.goal=+b.getAttribute("data-v");save();render();}
   else if(a==="recgo"){recStart(b.getAttribute("data-id"));}
+  else if(a==="lvnat"){lvPlayNative(b.getAttribute("data-id"));}
+  else if(a==="lvrec"){lvStartRec(b.getAttribute("data-id"));}
+  else if(a==="lvseg"){lvPlaySeg();}
   else if(a==="recstop"){aiStopRec();}
   else if(a==="mine"){if(player)player.pause();playMine();}
   else if(a==="both"){playBoth(b.getAttribute("data-id"));}
