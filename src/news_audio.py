@@ -1,6 +1,6 @@
-"""오늘의 뉴스 음성 만들기: python3 src/news_audio.py news/2026-11-16.json
+"""오늘의 뉴스 음성 + 단어 발음기호 만들기: python3 src/news_audio.py news/2026-11-18.json (핫이슈는 news/2026-11-18-hot.json)
 - 음성 AI(Kokoro-82M, af_heart 목소리)를 처음 한 번 huggingface.co 에서 받아 ~/.cache/bizeng-kokoro 에 둔다.
-- 결과: news/audio/<날짜>.mp3
+- 결과: news/audio/<파일이름>.mp3, 그리고 words 마다 ipa(발음기호)를 채워 넣는다.
 """
 import sys, os, json, subprocess, urllib.request
 import numpy as np
@@ -24,6 +24,13 @@ def main(jpath):
     from kokoro_onnx import Kokoro
     k = Kokoro(D + '/model_q8.onnx', D + '/voices.npz')
     n = json.load(open(jpath, encoding='utf-8'))
+    nid = os.path.splitext(os.path.basename(jpath))[0]
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from ipa import ipa
+    ws = n.get('words', [])
+    if ws:
+        for w, p in zip(ws, ipa([w['en'] for w in ws])): w['ipa'] = p
+        json.dump(n, open(jpath, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     parts = []
     for para in [n['title']] + n['paras']:
         s, sr = k.create(para, voice='af_heart', speed=0.9, lang='en-us')
@@ -31,7 +38,7 @@ def main(jpath):
         parts += [s.astype(np.float32), np.zeros(int(sr * 0.6), np.float32)]
     root = os.path.dirname(os.path.dirname(os.path.abspath(jpath)))
     os.makedirs(root + '/news/audio', exist_ok=True)
-    wav = D + '/tmp.wav'; mp3 = root + '/news/audio/' + n['date'] + '.mp3'
+    wav = D + '/tmp.wav'; mp3 = root + '/news/audio/' + nid + '.mp3'
     sf.write(wav, np.concatenate([np.zeros(int(sr * 0.15), np.float32)] + parts), sr)
     subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', wav, '-ac', '1', '-ar', '24000', '-b:a', '48k', mp3], check=True)
     print('audio:', mp3, os.path.getsize(mp3), 'bytes')

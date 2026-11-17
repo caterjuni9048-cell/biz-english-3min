@@ -204,6 +204,16 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .sl p{margin:0}
 .sko{font-size:13px;color:var(--muted)}
 .qq{font-weight:600;margin-top:4px}
+.ipas{font-size:14px;color:var(--muted);line-height:1.7}
+.ipa{font-family:"Noto Sans","Segoe UI","Arial Unicode MS",var(--sans);color:var(--ink)}
+.pg{display:flex;flex-direction:column;gap:6px}
+.pg svg{width:100%;height:auto;display:block;background:var(--bg);border-radius:10px}
+.pgleg{display:flex;gap:14px;font-size:13px;flex-wrap:wrap}
+.pgleg i{display:inline-block;width:14px;height:4px;border-radius:2px;vertical-align:middle;margin-right:4px}
+.pgstat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.pgstat div{background:var(--soft);border-radius:10px;padding:8px;text-align:center;display:flex;flex-direction:column}
+.pgstat b{font-size:18px;font-variant-numeric:tabular-nums}
+.pgstat span{font-size:12px;color:var(--muted)}
 .ver{text-align:center;font-family:var(--mono);font-size:12px}
 .fld textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0;resize:vertical}
 .fld textarea:focus{outline:none;border-color:var(--accent)}
@@ -367,6 +377,9 @@ var DATA=[
 ["t","성과 있는 회의였습니다.","It was a productive meeting.","productive = 성과 있는","회의를 좋게 마무리할 때"]
 ];
 var DIALOGS=[{"id":"d1","cat":"p","title":"납기 확인 전화","lines":[["A","Hello, this is Jun from the purchasing team. Is this a good time to talk?","안녕하세요, 구매팀 준입니다. 지금 통화 괜찮으세요?"],["B","Sure. How can I help you?","네. 무엇을 도와드릴까요?"],["A","I'm calling about our order of five hundred boxes. When will it be shipped?","500상자 주문 건으로 전화드렸습니다. 언제 출고되나요?"],["B","Let me check. It will be shipped this Thursday.","확인해 보겠습니다. 이번 주 목요일에 출고됩니다."],["A","Great. Could you send me the tracking number by email?","좋네요. 운송장 번호를 메일로 보내 주시겠어요?"],["B","Of course. I'll send it on Thursday afternoon.","물론이죠. 목요일 오후에 보내 드리겠습니다."]],"qs":[["주문 수량은 얼마인가요?",["500상자","50상자","1,500상자"],0],["언제 출고되나요?",["이번 주 목요일","이번 주 화요일","다음 주 금요일"],0],["운송장 번호는 어떻게 받기로 했나요?",["메일로","전화로","문자로"],0]]},{"id":"d2","cat":"p","title":"담당자가 자리에 없을 때","lines":[["A","Good morning. May I speak to Mr. Lee?","안녕하세요. 이 과장님과 통화할 수 있을까요?"],["B","I'm sorry, he is in a meeting right now.","죄송하지만 지금 회의 중이십니다."],["A","I see. When will he be available?","그렇군요. 언제 통화 가능하실까요?"],["B","He should be back around three o'clock. Would you like to leave a message?","3시쯤 돌아오실 겁니다. 메시지를 남기시겠어요?"],["A","Yes, please tell him to call me back about the price change.","네, 가격 변경 건으로 다시 전화 달라고 전해 주세요."],["B","Sure. Could I have your phone number?","알겠습니다. 전화번호를 알려 주시겠어요?"]],"qs":[["이 과장은 지금 무엇을 하고 있나요?",["회의 중","출장 중","휴가 중"],0],["몇 시쯤 돌아오나요?",["3시쯤","1시쯤","5시쯤"],0],["남긴 메시지 내용은?",["가격 변경 건으로 전화 요청","주문 취소 요청","샘플 요청"],0]]},{"id":"d3","cat":"p","title":"파손 제품 문의","lines":[["A","Hi, I'm calling because some of the items arrived damaged.","안녕하세요, 일부 제품이 파손된 채 도착해서 전화드렸습니다."],["B","I'm very sorry to hear that. How many items were damaged?","정말 죄송합니다. 몇 개가 파손되었나요?"],["A","About twenty out of two hundred.","200개 중 약 20개입니다."],["B","Could you send us some photos? We will replace them right away.","사진을 보내 주시겠어요? 바로 교체해 드리겠습니다."],["A","Okay. I'll email the photos today.","네. 오늘 사진을 메일로 보내겠습니다."],["B","Thank you. We'll ship the replacements by Friday.","감사합니다. 교체품은 금요일까지 보내 드리겠습니다."]],"qs":[["파손된 제품은 몇 개인가요?",["약 20개","약 200개","약 2개"],0],["상대가 요청한 것은?",["사진","환불 신청서","새 주문서"],0],["교체품은 언제까지 보내나요?",["금요일까지","오늘","다음 달"],0]]},{"id":"d4","cat":"p","title":"번호 다시 확인하기","lines":[["A","Hello? I'm sorry, I can't hear you very well.","여보세요? 죄송하지만 잘 안 들립니다."],["B","Can you hear me now?","지금은 들리세요?"],["A","Yes, much better. Could you repeat the order number?","네, 훨씬 낫네요. 주문 번호를 다시 말씀해 주시겠어요?"],["B","Sure. It's seven, four, two, nine.","네. 칠, 사, 이, 구입니다."],["A","Seven, four, two, nine. Got it. I'll check and call you back in ten minutes.","7429, 알겠습니다. 확인하고 10분 뒤에 다시 전화드리겠습니다."]],"qs":[["주문 번호는?",["7429","7249","4729"],0],["다시 전화하기로 한 때는?",["10분 뒤","내일","1시간 뒤"],0]]},{"id":"d5","cat":"t","title":"가격 협상","lines":[["A","Thank you for your quote. However, the price is higher than we expected.","견적 감사합니다. 그런데 가격이 예상보다 높습니다."],["B","I understand. What price were you thinking of?","이해합니다. 어느 정도 가격을 생각하셨나요?"],["A","If we order one thousand units, can you offer a ten percent discount?","1,000개를 주문하면 10% 할인이 가능할까요?"],["B","Ten percent is difficult. How about five percent?","10%는 어렵습니다. 5%는 어떠세요?"],["A","Let me discuss it with my manager. I'll get back to you tomorrow.","매니저와 상의해 보겠습니다. 내일 다시 연락드리겠습니다."]],"qs":[["할인 조건으로 말한 주문 수량은?",["1,000개","100개","10,000개"],0],["상대가 제안한 할인율은?",["5%","10%","15%"],0],["준은 언제 답하기로 했나요?",["내일","오늘 오후","다음 주"],0]]},{"id":"d6","cat":"t","title":"납기 앞당기기","lines":[["A","Can we move up the delivery date to next Monday?","납기를 다음 주 월요일로 앞당길 수 있을까요?"],["B","That might be difficult. Our factory is very busy this month.","어려울 수도 있습니다. 이번 달은 공장이 아주 바쁩니다."],["A","We really need it before our customer's event.","고객 행사 전에 꼭 필요합니다."],["B","I see. We can ship half of the order on Monday and the rest on Wednesday.","알겠습니다. 절반은 월요일에, 나머지는 수요일에 보내 드릴 수 있습니다."],["A","That works for us. Thank you.","그렇게 하면 됩니다. 감사합니다."]],"qs":[["원래 원한 납기는?",["다음 주 월요일","이번 주 금요일","다음 주 수요일"],0],["정해진 해결 방법은?",["절반은 월요일, 나머지는 수요일","전부 수요일","전부 월요일"],0],["어렵다고 한 이유는?",["공장이 바빠서","재료가 부족해서","운송 파업 때문에"],0]]},{"id":"d7","cat":"t","title":"회의 시작","lines":[["A","Good morning, everyone. Let's get started.","안녕하세요, 여러분. 시작하겠습니다."],["B","Before we begin, can everyone hear me clearly?","시작하기 전에, 모두 제 목소리 잘 들리시나요?"],["A","Yes, we can. Today we have two items: the new price list and the shipping schedule.","네, 들립니다. 오늘 안건은 두 가지입니다. 새 가격표와 출고 일정입니다."],["B","Let's start with the shipping schedule.","출고 일정부터 시작하죠."],["A","Sure. The next shipment will leave on the fifteenth.","좋습니다. 다음 출고는 15일에 나갑니다."]],"qs":[["오늘 안건은 몇 가지인가요?",["2가지","3가지","1가지"],0],["먼저 다루기로 한 안건은?",["출고 일정","새 가격표","샘플"],0],["다음 출고일은?",["15일","5일","50일"],0]]},{"id":"d8","cat":"t","title":"회의 마무리","lines":[["A","To sum up, we agreed on the new design.","정리하면, 새 디자인으로 합의했습니다."],["B","What are the next steps?","다음 할 일은 무엇인가요?"],["A","Our team will send the final drawings by Wednesday.","저희 팀이 수요일까지 최종 도면을 보내겠습니다."],["B","And we will check the costs and reply by Friday.","그리고 저희는 비용을 확인해서 금요일까지 답하겠습니다."],["A","Great. I'll send the meeting notes this afternoon.","좋습니다. 회의록은 오늘 오후에 보내겠습니다."]],"qs":[["무엇에 합의했나요?",["새 디자인","새 가격","새 공장"],0],["수요일까지 할 일은?",["최종 도면 보내기","비용 확인","회의록 보내기"],0],["회의록은 언제 보내나요?",["오늘 오후","금요일","내일 아침"],0]]},{"id":"d9","cat":"m","title":"수정 견적서 메일","lines":[["A","Did you get the email from the supplier?","공급처에서 온 메일 받았어요?"],["B","Yes. They sent the revised quotation this morning.","네. 오늘 아침에 수정 견적서를 보냈어요."],["A","Is the price lower than before?","가격이 전보다 낮아졌나요?"],["B","Yes, about three percent lower. But the minimum order quantity is now two hundred.","네, 약 3% 낮아요. 그런데 최소 주문 수량이 이제 200개예요."],["A","Okay. Please forward it to me. I'll review it before lunch.","알겠어요. 저에게 전달해 주세요. 점심 전에 검토할게요."]],"qs":[["수정 견적서는 언제 왔나요?",["오늘 아침","어제 저녁","지난주"],0],["가격은 어떻게 바뀌었나요?",["약 3% 낮아짐","약 3% 높아짐","그대로"],0],["최소 주문 수량은?",["200개","300개","100개"],0]]},{"id":"d10","cat":"m","title":"늦어진 답장","lines":[["A","The customer is asking about the invoice again.","고객이 송장에 대해 또 묻고 있어요."],["B","Oh no, I haven't replied yet.","이런, 아직 답장을 못 했어요."],["A","Please reply today and apologize for the late reply.","오늘 답장하고 늦어서 죄송하다고 해 주세요."],["B","Okay. Should I attach the invoice again?","알겠어요. 송장을 다시 첨부할까요?"],["A","Yes, and copy me on the email.","네, 그리고 메일 참조에 저를 넣어 주세요."]],"qs":[["고객이 묻는 것은?",["송장","샘플","배송"],0],["B가 해야 할 일은?",["오늘 답장하고 사과하기","내일 전화하기","주문 취소하기"],0],["메일 참조에 넣을 사람은?",["A","고객사 사장","아무도 없음"],0]]},{"id":"d11","cat":"m","title":"샘플 요청","lines":[["A","The client wants to see a sample before they order.","고객이 주문 전에 샘플을 보고 싶어 해요."],["B","How many samples do they need?","샘플이 몇 개 필요하대요?"],["A","Just three. Can we send them by express?","세 개만요. 빠른 배송으로 보낼 수 있을까요?"],["B","Sure, they will arrive in two days.","네, 이틀 뒤에 도착할 거예요."],["A","Perfect. I'll let them know by email.","좋아요. 메일로 알려 줄게요."]],"qs":[["필요한 샘플 수는?",["3개","2개","5개"],0],["샘플은 언제 도착하나요?",["이틀 뒤","일주일 뒤","오늘"],0],["고객에게 어떻게 알리나요?",["메일로","전화로","직접 방문해서"],0]]},{"id":"d12","cat":"p","title":"결제 조건 문의","lines":[["A","Hello, I have a question about the payment terms.","안녕하세요, 결제 조건에 대해 질문이 있습니다."],["B","Sure. We usually ask for payment within thirty days.","네. 보통 30일 안에 결제를 요청드립니다."],["A","Can we pay half now and half after delivery?","지금 절반, 납품 후에 절반을 내도 될까요?"],["B","That should be fine for the first order.","첫 주문이니 괜찮을 것 같습니다."],["A","Great, thank you. Please send the details by email.","좋네요, 감사합니다. 자세한 내용은 메일로 보내 주세요."]],"qs":[["보통 결제 기한은?",["30일 안","13일 안","60일 안"],0],["준이 요청한 결제 방식은?",["지금 절반, 납품 후 절반","전액 먼저","전액 나중에"],0],["상대의 답은?",["첫 주문이라 괜찮다","불가능하다","매니저 확인이 필요하다"],0]]}];
+var HARDIPA={"apologize": "/əˈpɑːləˌdʒaɪz/", "attached": "/əˈtætʃt/", "available": "/əˈveɪləbəl/", "consider": "/kənˈsɪdər/", "cooperation": "/koʊˌɑːpəˈreɪʃən/", "deadline": "/ˈdɛdlaɪn/", "delivery": "/dɪˈlɪvəri/", "discount": "/ˈdɪskaʊnt/", "exchange": "/ɪksˈtʃeɪndʒ/", "inconvenience": "/ˌɪnkənˈviːniəns/", "increased": "/ɪnˈkriːst/", "internally": "/ɪnˈtɜːrnəli/", "interrupt": "/ˌɪntəˈrʌpt/", "invoice": "/ˈɪnvɔɪs/", "minimum": "/ˈmɪnɪməm/", "possible": "/ˈpɑːsɪbəl/", "productive": "/prəˈdʌktɪv/", "purchase": "/ˈpɜːrtʃəs/", "purpose": "/ˈpɜːrpəs/", "quantity": "/ˈkwɑːntəti/", "question": "/ˈkwɛstʃən/", "quotation": "/kwoʊˈteɪʃən/", "receive": "/rɪˈsiːv/", "reference": "/ˈrɛfrəns/", "regarding": "/rɪˈɡɑːrdɪŋ/", "responsible": "/rɪˈspɑːnsɪbəl/", "schedule": "/ˈskɛdʒuːl/", "specifications": "/ˌspɛsɪfɪˈkeɪʃənz/", "suggestion": "/səˈdʒɛstʃən/", "summarize": "/ˈsʌməˌraɪz/", "understand": "/ˌʌndərˈstænd/"};
+/* 문장 속 어려운 단어의 발음기호 줄 */
+function ipaLine(en){var seen={},out=[];String(en).replace(/[A-Za-z]+/g,function(w){var k=w.toLowerCase();if(HARDIPA[k]&&!seen[k]){seen[k]=1;out.push('<span lang="en">'+esc(w)+'</span> <span class="ipa">'+esc(HARDIPA[k])+"</span>");}return w;});return out.length?'<p class="ipas">'+out.join(" · ")+"</p>":"";}
 var CAT={m:"메일",p:"전화",t:"회의"}, CATEN={m:"MAIL",p:"PHONE",t:"MEETING"}, CATVAR={m:"--mail",p:"--phone",t:"--meet"};
 var ITEMS,CATN,BYID,ORDER;
 /* 기본 문장 + 내가 추가한 문장(먼저 배움) */
@@ -388,7 +401,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v13",APP_DATE="2026-11-16";
+var APP_VER="v14",APP_DATE="2026-11-17";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -644,7 +657,7 @@ function sessionHTML(){
   h+='<div class="sbar"><button class="x" data-act="quit" aria-label="그만하기">×</button><div class="prog"><u style="width:'+(ses.i/ses.steps.length*100)+'%"></u></div><span class="mono">'+(ses.i+1)+"/"+ses.steps.length+"</span></div>";
   var cat='<span class="cat '+it.cat+'">'+CATEN[it.cat]+" · "+CAT[it.cat]+"</span>";
   if(s.k==="learn"){
-    h+='<div class="card">'+cat+'<p class="ko">'+esc(it.ko)+'</p><p class="en" lang="en">'+esc(it.en)+"</p>"+listenBtn(it.id,"듣기")+'<p class="tip">'+esc(it.tip)+"</p></div>";
+    h+='<div class="card">'+cat+'<p class="ko">'+esc(it.ko)+'</p><p class="en" lang="en">'+esc(it.en)+"</p>"+ipaLine(it.en)+listenBtn(it.id,"듣기")+'<p class="tip">'+esc(it.tip)+"</p></div>";
     h+='<p class="note">소리 내어 두 번 따라 읽고 넘어가세요.</p>'+cmpHTML(it.id)+'<button class="cta" data-act="next">다음</button>';
   }else if(s.k==="order"){
     h+='<div class="card">'+cat+'<p class="ko big">'+esc(it.ko)+'</p><div class="slot" aria-label="내가 만든 문장">';
@@ -745,7 +758,7 @@ function recallHTML(it,st,cat){
     if(r.minorMiss)h+='<p class="lbl">회색: 인식기가 자주 빼먹는 짧은 단어라 점수를 조금만 깎았습니다</p>';
     h+='<p class="lbl">내 문장</p><p class="mine" lang="en">'+esc(st.text)+"</p>"+listenBtn(it.id,"정답 듣고 따라 말하기");
   }else if(st.shown){
-    h+='<p class="en" lang="en">'+esc(it.en)+"</p>"+listenBtn(it.id,"듣고 따라 말하기");
+    h+='<p class="en" lang="en">'+esc(it.en)+"</p>"+ipaLine(it.en)+listenBtn(it.id,"듣고 따라 말하기");
   }
   h+="</div>";
   if(st.res){
@@ -1206,13 +1219,73 @@ function playBoth(id){
   var done=function(){player.removeEventListener("ended",done);setTimeout(function(){playMine();},350);};
   player.addEventListener("ended",done);
 }
+
+/* ---- 발음 비교 그래프: 억양(목소리 높낮이 선) + 리듬(소리 크기) + 속도 ---- */
+var PG={key:"",html:"",busy:false};
+function b64buf(u){var b=atob(u.split(",")[1]),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a.buffer;}
+function decodeAud(ctx,buf){return new Promise(function(ok,no){try{var r=ctx.decodeAudioData(buf,ok,no);if(r&&r.then)r.then(ok,no);}catch(e){no(e);}});}
+function pgAnalyze(x,sr){
+  var st=Math.max(1,Math.round(sr/16000)),fs=sr/st,n=Math.floor(x.length/st),y=new Float32Array(n),i,j,k;
+  for(i=0;i<n;i++)y[i]=x[i*st];
+  var W=Math.round(fs*0.04),H=Math.round(fs*0.01),F=Math.max(0,Math.floor((n-W)/H)),db=[],f0=[],mx=-200;
+  for(k=0;k<F;k++){var o=k*H,e=0;for(j=0;j<W;j++)e+=y[o+j]*y[o+j];var d=10*Math.log10(e/W+1e-10);db.push(d);if(d>mx)mx=d;}
+  var thr=mx-35,a=0,b=F-1;while(a<F&&db[a]<thr)a++;while(b>a&&db[b]<thr)b--;
+  var lo=Math.floor(fs/400),hi=Math.ceil(fs/75);
+  for(k=a;k<=b;k++){
+    if(db[k]<mx-25){f0.push(0);continue;}
+    var o2=k*H,best=0,bl=0,e0=0;for(j=0;j<W;j++)e0+=y[o2+j]*y[o2+j];
+    for(var L=lo;L<=hi;L++){var c=0,e1=0;for(j=0;j<W-L;j++){c+=y[o2+j]*y[o2+j+L];e1+=y[o2+j+L]*y[o2+j+L];}var r=c/Math.sqrt(e0*e1+1e-12);if(r>best){best=r;bl=L;}}
+    f0.push(best>0.6&&bl?fs/bl:0);
+  }
+  return {db:db.slice(a,b+1),f0:f0,dur:(b-a+1)*H/fs,mx:mx};
+}
+function pgCurve(an,N){
+  var v=an.f0.filter(function(f){return f>0;}).sort(function(p,q){return p-q;}),med=v.length?v[Math.floor(v.length/2)]:0,M=an.f0.length,pit=[],en=[];
+  for(var i=0;i<N;i++){var a=Math.floor(i*M/N),b=Math.max(a+1,Math.floor((i+1)*M/N)),s=0,c=0,e=-200;
+    for(var k=a;k<b&&k<M;k++){if(an.f0[k]>0&&med){s+=12*Math.log(an.f0[k]/med)/Math.LN2;c++;}if(an.db[k]>e)e=an.db[k];}
+    pit.push(c?Math.max(-9,Math.min(9,s/c)):null);en.push(Math.max(0,Math.min(1,(e-(an.mx-40))/40)));}
+  for(i=1;i<N-1;i++)if(pit[i]===null&&pit[i-1]!==null&&pit[i+1]!==null)pit[i]=(pit[i-1]+pit[i+1])/2;
+  var sm=pit.slice();for(i=0;i<N;i++){if(pit[i]===null)continue;var w=[];for(var q=i-2;q<=i+2;q++)if(q>=0&&q<N&&pit[q]!==null)w.push(pit[q]);if(w.length>=3){w.sort(function(p,q){return p-q;});sm[i]=w[Math.floor(w.length/2)];}}
+  return {pit:sm,en:en};
+}
+function pgCorr(a,b){var x=[],y=[];for(var i=0;i<a.length;i++)if(a[i]!==null&&b[i]!==null){x.push(a[i]);y.push(b[i]);}
+  if(x.length<12)return null;var mx=0,my=0;x.forEach(function(v,i){mx+=v;my+=y[i];});mx/=x.length;my/=y.length;var sxy=0,sx=0,sy=0;x.forEach(function(v,i){sxy+=(v-mx)*(y[i]-my);sx+=(v-mx)*(v-mx);sy+=(y[i]-my)*(y[i]-my);});return sxy/Math.sqrt(sx*sy+1e-9);}
+function pgSVG(A,B){
+  var N=A.pit.length,Wd=320,top=10,ph=80,eb=128,eh=30,X=function(i){return 6+i*(Wd-12)/(N-1);},Y=function(v){return top+ph/2-v*(ph/2)/9;};
+  var area=function(en){var d="M"+X(0)+" "+eb;en.forEach(function(v,i){d+=" L"+X(i).toFixed(1)+" "+(eb-v*eh).toFixed(1);});return d+" L"+X(N-1)+" "+eb+" Z";};
+  var line=function(p){var d="",on=false;p.forEach(function(v,i){if(v===null){on=false;return;}d+=(on?" L":" M")+X(i).toFixed(1)+" "+Y(v).toFixed(1);on=true;});return d;};
+  return '<svg viewBox="0 0 '+Wd+' 136" role="img" aria-label="원어민과 내 발음의 억양·리듬 비교 그래프">'+
+    '<line x1="6" x2="'+(Wd-6)+'" y1="'+Y(0)+'" y2="'+Y(0)+'" style="stroke:var(--line)" stroke-dasharray="3 4"/>'+
+    '<path d="'+area(A.en)+'" style="fill:var(--accent);opacity:.22"/><path d="'+area(B.en)+'" style="fill:var(--near);opacity:.28"/>'+
+    '<path d="'+line(A.pit)+'" fill="none" style="stroke:var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'+
+    '<path d="'+line(B.pit)+'" fill="none" style="stroke:var(--near)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+    '<text x="8" y="'+(top+8)+'" font-size="10" style="fill:var(--muted)">높게</text><text x="8" y="'+(top+ph-2)+'" font-size="10" style="fill:var(--muted)">낮게</text>'+
+    '<text x="'+(Wd-8)+'" y="'+(eb-eh-2)+'" font-size="10" text-anchor="end" style="fill:var(--muted)">소리 크기</text></svg>';
+}
+function pgRun(id){
+  var key=id+":"+(REC.last?REC.last.data.length:0);
+  if(PG.key===key||PG.busy)return;
+  if(!(AUD&&AUD[id])){PG.key=key;PG.html='<p class="note">직접 추가한 문장은 원어민 음성 파일이 없어 그래프를 그릴 수 없습니다.</p>';return;}
+  PG.busy=true;PG.key=key;PG.html='<p class="note">그래프 계산 중…</p>';
+  var ctx=AI.ctx,mine=REC.last.data,msr=ctx.sampleRate;
+  decodeAud(ctx,b64buf(AUD[id])).then(function(nb){
+    var na=pgAnalyze(nb.getChannelData(0),nb.sampleRate),ma=pgAnalyze(mine,msr),A=pgCurve(na,120),B=pgCurve(ma,120);
+    var ri=pgCorr(A.pit,B.pit),rr=pgCorr(A.en,B.en),sp=ma.dur/Math.max(0.2,na.dur);
+    var pct=function(r){return r===null?"–":Math.round(Math.max(0,r)*100)+"%";};
+    var spd=Math.abs(sp-1)<0.1?"비슷함":(sp>1?sp.toFixed(1)+"배 느림":(1/sp).toFixed(1)+"배 빠름");
+    PG.html='<div class="pg">'+pgSVG(A,B)+'<div class="pgleg"><span><i style="background:var(--accent)"></i>원어민</span><span><i style="background:var(--near)"></i>내 목소리</span></div>'+
+      '<div class="pgstat"><div><b>'+pct(ri)+'</b><span>억양 비슷함</span></div><div><b>'+pct(rr)+'</b><span>리듬 비슷함</span></div><div><b>'+spd+'</b><span>속도 '+na.dur.toFixed(1)+'초 / '+ma.dur.toFixed(1)+'초</span></div></div>'+
+      '<p class="note">선은 목소리 높낮이(억양), 아래 색칠은 소리 크기(리듬)입니다. 두 선의 오르내림이 비슷할수록 좋습니다. 발음이 맞았는지 채점하는 것은 아닙니다.</p></div>';
+    PG.busy=false;render();
+  }).catch(function(){PG.busy=false;PG.html='<p class="note">그래프를 그리지 못했습니다.</p>';render();});
+}
 function cmpHTML(id){
   if(!aiSupported())return "";
   var has=REC.last&&REC.last.id===id,h='<div class="cmp"><div class="ph"><b>녹음해서 비교하기</b><span>내 발음을 녹음해 원어민 발음과 이어 들어 보세요</span></div>';
   if(REC.act&&REC.id===id){h+='<button class="mic on wide" data-act="recstop">'+MIC+"<span>녹음 중… 말을 마치면 자동으로 끝납니다</span></button>";}
   else{
     h+='<div class="three"><button class="cta alt" data-act="recgo" data-id="'+id+'">'+(has?"다시 녹음":"녹음하기")+'</button><button class="cta alt" data-act="speak" data-id="'+id+'">원어민</button><button class="cta alt" data-act="mine"'+(has?"":" disabled")+'>내 목소리</button></div>';
-    if(has)h+='<button class="ghost small" data-act="both" data-id="'+id+'">원어민 → 내 목소리 이어 듣기</button>';
+    if(has){h+='<button class="ghost small" data-act="both" data-id="'+id+'">원어민 → 내 목소리 이어 듣기</button>';pgRun(id);h+=PG.html;}
   }
   if(REC.err)h+='<p class="note">'+esc(REC.err)+"</p>";
   return h+"</div>";
@@ -1242,7 +1315,7 @@ var SH={list:[],i:0,tries:[],phase:"idle",msg:""};
 function shadowHTML(){
   var id=SH.list[SH.i],it=BYID[id];if(!it)return backBar("따라 말하기")+'<p class="note">연습할 문장이 없습니다.</p>';
   var h=backBar("따라 말하기",(SH.i+1)+" / "+SH.list.length);
-  h+='<div class="card"><span class="cat '+it.cat+'">'+CATEN[it.cat]+" · "+CAT[it.cat]+'</span><p class="ko">'+esc(it.ko)+'</p><p class="en" lang="en">'+esc(it.en)+"</p></div>";
+  h+='<div class="card"><span class="cat '+it.cat+'">'+CATEN[it.cat]+" · "+CAT[it.cat]+'</span><p class="ko">'+esc(it.ko)+'</p><p class="en" lang="en">'+esc(it.en)+"</p>"+ipaLine(it.en)+"</div>";
   var n=SH.tries.length;
   if(SH.phase==="play")h+='<div class="auto"><span class="cd">♪</span><div class="at"><b>잘 들으세요</b><span>끝나면 바로 따라 말합니다</span></div></div>';
   else if(SH.phase==="listen")h+='<div class="auto on"><span class="dot" aria-hidden="true"></span><div class="at"><b>'+(OVR&&OVR.busy?"받아 적는 중…":"지금 따라 말하세요")+'</b><span id="shlive">'+esc(OVR?((OVR.text+" "+(OVR.partial||"")).trim()):"")+'</span></div><button class="ghost small" data-act="shstop">멈추기</button></div>';
@@ -1446,17 +1519,20 @@ function mailGo(){
   SAMPLE.json(prompt,{cache:false,signal:ctl.signal}).then(function(r){if(ML.ctl!==ctl)return;ML.busy=false;ML.res=r||{};render();},function(e){if(ML.ctl!==ctl)return;ML.busy=false;ML.err=aiErr(e);render();});
 }
 
-/* ---- H. 오늘의 뉴스 (매일 아침 예약 작업이 news/ 폴더에 올림: 실제 뉴스를 쉬운 영어로 새로 쓴 글 + 문제 3 + 단어 5 + 음성) ---- */
+/* ---- H. 오늘의 뉴스 (매일 아침 예약 작업이 news/ 폴더에 올림: 경제 1 + 해외 핫이슈 1, 실제 뉴스를 쉬운 영어로 새로 쓴 글 + 문제 3 + 단어 5 + 음성) ---- */
 var NBASE=(location.protocol==="https:"||location.protocol==="http:")&&!C?"":PAGES;
-var NW={idx:null,err:"",cur:null,date:"",loading:false,ans:{},ko:false,playing:false,added:{}};
+var NW={idx:null,err:"",cur:null,id:"",loading:false,ans:{},ko:false,playing:false,added:{}};
+var NKIND={biz:"경제",hot:"핫이슈"},NRATES=[0.75,0.9,1,1.2];
 var nwPlayer=null;
 function nwFetch(path){return fetch(NBASE+path,{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();});}
+function nwNorm(x){return {id:x.id||x.date,date:x.date,kind:x.kind||"biz",title:x.title,title_ko:x.title_ko};}
 function nwInit(){
   if(NW.idx||NW.loading)return;NW.loading=true;
-  nwFetch("news/index.json").then(function(x){NW.loading=false;NW.idx=Array.isArray(x)?x:[];NW.err="";if(view==="home"||view==="news")render();},
+  nwFetch("news/index.json").then(function(x){NW.loading=false;NW.idx=(Array.isArray(x)?x:[]).map(nwNorm);NW.err="";if(view==="home"||view==="news")render();},
     function(){NW.loading=false;NW.idx=[];NW.err=C?"claude":"net";if(view==="home"||view==="news")render();});
 }
-function nwDone(d){return (S.news||[]).filter(function(r){return r.site==="today"&&r.date===d;})[0];}
+function nwDone(id){return (S.news||[]).filter(function(r){return r.site==="today"&&r.date===id;})[0];}
+function nwRow(x,showDate){var dn=nwDone(x.id);return '<button class="li btnli" data-act="nwopen" data-d="'+x.id+'"><div><b lang="en">'+esc(x.title)+"</b><span>"+NKIND[x.kind]+" · "+(showDate?x.date.slice(5).replace("-","/")+" · ":"")+esc(x.title_ko||"")+"</span></div>"+(dn?'<span class="badge">'+dn.ok+"/"+dn.n+"</span>":'<span class="go">읽기 →</span>')+"</button>";}
 function newsCardHTML(){
   nwInit();
   var h='<div class="block"><h2>오늘의 뉴스</h2>';
@@ -1465,31 +1541,36 @@ function newsCardHTML(){
     if(NW.err==="claude")return h+'<div class="notice"><b>폰 아이콘(GitHub 주소)에서 볼 수 있습니다</b><p>오늘의 뉴스는 GitHub 주소의 앱에 매일 아침 올라옵니다.</p><a href="'+PAGES+'" target="_blank" rel="noopener">'+PAGES+"</a></div></div>";
     return h+'<p class="note">'+(NW.err?"뉴스를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.":"아직 올라온 뉴스가 없습니다. 매일 아침 7시쯤 올라옵니다.")+"</p></div>";
   }
-  var last=NW.idx[NW.idx.length-1],isToday=last.date===today(),dn=nwDone(last.date);
-  h+='<button class="li btnli" data-act="nwopen" data-d="'+last.date+'"><div><b lang="en">'+esc(last.title)+"</b><span>"+esc(last.title_ko||"")+" · "+(isToday?"오늘":last.date.slice(5).replace("-","/"))+"</span></div>"+(dn?'<span class="badge">'+dn.ok+"/"+dn.n+"</span>":'<span class="go">읽기 →</span>')+"</button>";
+  var lastDate=NW.idx[NW.idx.length-1].date,isToday=lastDate===today();
+  NW.idx.filter(function(x){return x.date===lastDate;}).forEach(function(x){h+=nwRow(x,!isToday);});
   if(!isToday)h+='<p class="note">오늘 뉴스는 아침 7시쯤 올라옵니다. 지금은 가장 최근 뉴스입니다.</p>';
   return h+"</div>";
 }
-function nwOpen(d){
-  nwStop();NW.date=d;NW.cur=null;NW.ans={};NW.ko=false;NW.added={};NW.err2="";view="news";render();window.scrollTo(0,0);
-  nwFetch("news/"+d+".json").then(function(x){if(NW.date!==d)return;NW.cur=x;var dn=nwDone(d);if(dn&&dn.ans)NW.ans=dn.ans;render();},function(){if(NW.date!==d)return;NW.err2="뉴스를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.";render();});
+function nwOpen(id){
+  nwStop();NW.id=id;NW.cur=null;NW.ans={};NW.ko=false;NW.added={};NW.err2="";view="news";render();window.scrollTo(0,0);
+  nwFetch("news/"+id+".json").then(function(x){if(NW.id!==id)return;NW.cur=x;var dn=nwDone(id);if(dn&&dn.ans)NW.ans=dn.ans;render();},function(){if(NW.id!==id)return;NW.err2="뉴스를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.";render();});
 }
+function nwRate(){var r=+S.nwRate;return NRATES.indexOf(r)>=0?r:1;}
 function nwStop(){if(nwPlayer){nwPlayer.onended=null;nwPlayer.pause();}NW.playing=false;}
 function nwPlay(){
   if(NW.playing){nwStop();render();return;}
   if(player)player.pause();dlgStop();
   if(!nwPlayer)nwPlayer=new Audio();
-  nwPlayer.src=NBASE+"news/audio/"+NW.date+".mp3";nwPlayer.playbackRate=S.slow?0.8:1;
-  nwPlayer.onended=function(){NW.playing=false;if(view==="news")render();};
+  var src=NBASE+"news/audio/"+NW.id+".mp3";if(nwPlayer.getAttribute("src")!==src)nwPlayer.src=src;
+  try{nwPlayer.preservesPitch=true;nwPlayer.webkitPreservesPitch=true;}catch(x){}
+  nwPlayer.playbackRate=nwRate();
+  nwPlayer.onended=function(){NW.playing=false;nwPlayer.currentTime=0;if(view==="news")render();};
   NW.playing=true;render();
   var pr=nwPlayer.play();if(pr&&pr.catch)pr.catch(function(){NW.playing=false;NW.err2="음성을 재생하지 못했습니다.";render();});
 }
 function newsHTML(){
-  var n=NW.cur,h=backBar("오늘의 뉴스",NW.date);
+  var n=NW.cur,h=backBar("오늘의 뉴스",NW.id.slice(0,10));
   if(NW.err2)h+='<p class="fb no">'+esc(NW.err2)+"</p>";
   if(!n)return h+(NW.err2?"":'<p class="note">불러오는 중…</p>')+nwPastHTML();
-  h+='<div class="card"><p class="cat" style="color:var(--accent)">NEWS · '+esc(n.date)+'</p><h1 lang="en" style="font-size:22px">'+esc(n.title)+'</h1><p class="sko">'+esc(n.title_ko)+"</p>";
+  var kind=n.kind||(NW.id.slice(-4)==="-hot"?"hot":"biz");
+  h+='<div class="card"><p class="cat" style="color:var(--'+(kind==="hot"?"meet":"accent")+')">'+(kind==="hot"?"HOT TOPIC":"BUSINESS")+" · "+NKIND[kind]+" · "+esc(n.date)+'</p><h1 lang="en" style="font-size:22px">'+esc(n.title)+'</h1><p class="sko">'+esc(n.title_ko)+"</p>";
   h+='<button class="listen big" data-act="nwplay">'+ICON+"<span>"+(NW.playing?"멈추기":"듣기 (약 1분)")+"</span></button>";
+  h+='<div class="chips" role="group" aria-label="듣기 속도">'+NRATES.map(function(r){return '<button class="chip" data-act="nwrate" data-v="'+r+'" aria-pressed="'+(nwRate()===r)+'">'+r+"배</button>";}).join("")+"</div>";
   n.paras.forEach(function(pa,i){h+='<p lang="en" style="font-size:17px">'+esc(pa)+"</p>"+(NW.ko?'<p class="sko">'+esc((n.paras_ko||[])[i]||"")+"</p>":"");});
   h+='<button class="ghost small" data-act="nwko">'+(NW.ko?"한국어 뜻 숨기기":"한국어 뜻 보기")+"</button>";
   h+='<p class="note">출처(원문을 쉬운 영어로 새로 쓴 글): '+n.sources.map(function(x){return '<a href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(x.name)+"</a>";}).join(", ")+"</p></div>";
@@ -1506,22 +1587,22 @@ function newsHTML(){
   h+="</div>";
   h+='<div class="block"><h2>핵심 단어 5개</h2>';
   n.words.forEach(function(w,k){var on=NW.added[k]||(S.custom||[]).some(function(c){return c.en===w.ex;});
-    h+='<div class="li"><div><b lang="en">'+esc(w.en)+"</b><span>"+esc(w.ko)+'</span><p lang="en" style="margin-top:4px">'+esc(w.ex)+'</p><span>'+esc(w.ex_ko)+" · "+CAT[w.cat]+"</span></div>"+(on?'<span class="badge">추가됨</span>':'<button class="ghost small" data-act="nwadd" data-k="'+k+'">내 문장에 추가</button>')+"</div>";});
-  h+='<p class="note">추가하면 예문이 다음 날부터 매일 세 판에 먼저 나옵니다.</p></div>';
+    h+='<div class="li"><div><b lang="en">'+esc(w.en)+(w.ipa?' <span class="ipa" style="font-weight:400">'+esc(w.ipa)+"</span>":"")+"</b><span>"+esc(w.ko)+'</span><p lang="en" style="margin-top:4px">'+esc(w.ex)+'</p><span>'+esc(w.ex_ko)+" · "+CAT[w.cat]+"</span></div>"+(on?'<span class="badge">추가됨</span>':'<button class="ghost small" data-act="nwadd" data-k="'+k+'">내 문장에 추가</button>')+"</div>";});
+  h+='<p class="note">추가하면 예문이 다음 날부터 매일 세 판에 먼저 나옵니다. 발음기호는 미국식이며 자동으로 만든 것입니다.</p></div>';
   return h+nwPastHTML();
 }
 function nwPastHTML(){
-  var L=(NW.idx||[]).slice().reverse().filter(function(x){return x.date!==NW.date;}).slice(0,14);
+  var L=(NW.idx||[]).slice().reverse().filter(function(x){return x.id!==NW.id;}).slice(0,20);
   if(!L.length)return "";
-  var h='<div class="block"><h2>지난 뉴스</h2>';
-  L.forEach(function(x){var dn=nwDone(x.date);h+='<button class="li btnli" data-act="nwopen" data-d="'+x.date+'"><div><b lang="en">'+esc(x.title)+"</b><span>"+x.date.slice(5).replace("-","/")+" · "+esc(x.title_ko||"")+"</span></div>"+(dn?'<span class="badge">'+dn.ok+"/"+dn.n+"</span>":"")+"</button>";});
+  var h='<div class="block"><h2>다른 뉴스</h2>';
+  L.forEach(function(x){h+=nwRow(x,true);});
   return h+"</div>";
 }
 function nwAnswer(qi,oi){
   var n=NW.cur;if(!n||NW.ans[qi]!=null)return;NW.ans[qi]=oi;
-  if(Object.keys(NW.ans).length>=n.qs.length&&!nwDone(n.date)){
+  if(Object.keys(NW.ans).length>=n.qs.length&&!nwDone(NW.id)){
     var sc=n.qs.filter(function(q,k){return NW.ans[k]===q.a;}).length,a2={};for(var k in NW.ans)a2[k]=NW.ans[k];
-    S.news=S.news||[];S.news.push({d:today(),site:"today",date:n.date,title:String(n.title).slice(0,120),ok:sc,n:n.qs.length,ans:a2});
+    S.news=S.news||[];S.news.push({d:today(),site:"today",date:NW.id,title:String(n.title).slice(0,120),ok:sc,n:n.qs.length,ans:a2});
     markExtra();
   }
   render();
@@ -1529,7 +1610,7 @@ function nwAnswer(qi,oi){
 function nwAdd(k){
   var w=NW.cur&&NW.cur.words[k];if(!w)return;
   S.custom=S.custom||[];
-  if(!S.custom.some(function(c){return c.en===w.ex;})){S.custom.push({id:"u"+Date.now().toString(36)+k,cat:/^[mpt]$/.test(w.cat)?w.cat:"m",ko:String(w.ex_ko),en:String(w.ex),tip:String(w.en)+" = "+String(w.ko),sit:"뉴스 단어"});buildItems();save();}
+  if(!S.custom.some(function(c){return c.en===w.ex;})){S.custom.push({id:"u"+Date.now().toString(36)+k,cat:/^[mpt]$/.test(w.cat)?w.cat:"m",ko:String(w.ex_ko),en:String(w.ex),tip:String(w.en)+(w.ipa?" "+w.ipa:"")+" = "+String(w.ko),sit:"뉴스 단어"});buildItems();save();}
   NW.added[k]=true;render();
 }
 var bk={mode:"",msg:""};
@@ -1623,6 +1704,7 @@ app.addEventListener("click",function(e){
   else if(a==="nwopen"){nwOpen(b.getAttribute("data-d"));}
   else if(a==="nwplay"){nwPlay();}
   else if(a==="nwko"){NW.ko=!NW.ko;render();}
+  else if(a==="nwrate"){S.nwRate=+b.getAttribute("data-v");save();if(nwPlayer)nwPlayer.playbackRate=nwRate();render();}
   else if(a==="nwans"){nwAnswer(+b.getAttribute("data-q"),+b.getAttribute("data-o"));}
   else if(a==="nwadd"){nwAdd(+b.getAttribute("data-k"));}
   else if(a==="mlmode"){ML.text=(document.getElementById("mlin")||{}).value||ML.text;ML.mode=b.getAttribute("data-v");render();}

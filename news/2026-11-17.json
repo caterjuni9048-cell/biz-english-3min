@@ -13,20 +13,95 @@
   "1월부터 지금까지 한국의 수출액은 약 9,640억 달러입니다. 이렇게 빠르게 늘면서 연간 수출이 처음으로 1조 달러를 넘을 것으로 예상됩니다. 이 자료는 관세청이 발표했습니다."
  ],
  "sources": [
-  {"name": "Korea Times", "url": "https://www.koreatimes.co.kr/economy/others/20261111/exports-more-than-double-in-1st-10-days-of-november", "published": "2026-11-11"},
-  {"name": "Herald Corp", "url": "https://biz.heraldcorp.com/article/10933308", "published": "2026-11-11"},
-  {"name": "Korea Herald", "url": "https://www.koreaherald.com/article/10933213", "published": "2026-11-11"}
+  {
+   "name": "Korea Times",
+   "url": "https://www.koreatimes.co.kr/economy/others/20261111/exports-more-than-double-in-1st-10-days-of-november",
+   "published": "2026-11-11"
+  },
+  {
+   "name": "Herald Corp",
+   "url": "https://biz.heraldcorp.com/article/10933308",
+   "published": "2026-11-11"
+  },
+  {
+   "name": "Korea Herald",
+   "url": "https://www.koreaherald.com/article/10933213",
+   "published": "2026-11-11"
+  }
  ],
  "qs": [
-  {"q": "What is the main point of this news?", "opts": ["Korea's imports fell a lot in November", "Korea's exports were the highest ever for early November", "Korea stopped selling computer chips"], "a": 1, "why_ko": "첫 문단: 11월 첫 열흘 수출이 이 기간 최고 기록입니다."},
-  {"q": "About how much of Korea's exports were computer chips?", "opts": ["About half", "About 10 percent", "Almost all"], "a": 0, "why_ko": "둘째 문단: 반도체가 49.7%, 약 절반입니다."},
-  {"q": "What may happen to Korea's yearly exports?", "opts": ["They may fall below last year", "They may stay the same", "They may pass one trillion dollars for the first time"], "a": 2, "why_ko": "셋째 문단: 처음으로 1조 달러를 넘을 것으로 예상됩니다."}
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Korea's imports fell a lot in November",
+    "Korea's exports were the highest ever for early November",
+    "Korea stopped selling computer chips"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 11월 첫 열흘 수출이 이 기간 최고 기록입니다."
+  },
+  {
+   "q": "About how much of Korea's exports were computer chips?",
+   "opts": [
+    "About half",
+    "About 10 percent",
+    "Almost all"
+   ],
+   "a": 0,
+   "why_ko": "둘째 문단: 반도체가 49.7%, 약 절반입니다."
+  },
+  {
+   "q": "What may happen to Korea's yearly exports?",
+   "opts": [
+    "They may fall below last year",
+    "They may stay the same",
+    "They may pass one trillion dollars for the first time"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 처음으로 1조 달러를 넘을 것으로 예상됩니다."
+  }
  ],
  "words": [
-  {"en": "export", "ko": "수출(하다)", "ex": "Our exports to Vietnam increased this quarter.", "ex_ko": "이번 분기 베트남 수출이 늘었습니다.", "cat": "t"},
-  {"en": "import", "ko": "수입(하다)", "ex": "We import the raw materials from China.", "ex_ko": "원자재는 중국에서 수입합니다.", "cat": "p"},
-  {"en": "record", "ko": "기록, 최고 기록", "ex": "This month's sales are a new record for our team.", "ex_ko": "이번 달 매출은 우리 팀의 새 기록입니다.", "cat": "t"},
-  {"en": "percent", "ko": "퍼센트", "ex": "The price went up by five percent.", "ex_ko": "가격이 5% 올랐습니다.", "cat": "m"},
-  {"en": "expected", "ko": "예상되는", "ex": "The shipment is expected to arrive on Friday.", "ex_ko": "화물은 금요일에 도착할 예정입니다.", "cat": "m"}
- ]
+  {
+   "en": "export",
+   "ko": "수출(하다)",
+   "ex": "Our exports to Vietnam increased this quarter.",
+   "ex_ko": "이번 분기 베트남 수출이 늘었습니다.",
+   "cat": "t",
+   "ipa": "/ˈɛkspɔːrt/"
+  },
+  {
+   "en": "import",
+   "ko": "수입(하다)",
+   "ex": "We import the raw materials from China.",
+   "ex_ko": "원자재는 중국에서 수입합니다.",
+   "cat": "p",
+   "ipa": "/ɪmˈpɔːrt/"
+  },
+  {
+   "en": "record",
+   "ko": "기록, 최고 기록",
+   "ex": "This month's sales are a new record for our team.",
+   "ex_ko": "이번 달 매출은 우리 팀의 새 기록입니다.",
+   "cat": "t",
+   "ipa": "/ˈrɛkərd/"
+  },
+  {
+   "en": "percent",
+   "ko": "퍼센트",
+   "ex": "The price went up by five percent.",
+   "ex_ko": "가격이 5% 올랐습니다.",
+   "cat": "m",
+   "ipa": "/pərˈsɛnt/"
+  },
+  {
+   "en": "expected",
+   "ko": "예상되는",
+   "ex": "The shipment is expected to arrive on Friday.",
+   "ex_ko": "화물은 금요일에 도착할 예정입니다.",
+   "cat": "m",
+   "ipa": "/ɛkˈspɛktɪd/"
+  }
+ ],
+ "kind": "biz"
 }
