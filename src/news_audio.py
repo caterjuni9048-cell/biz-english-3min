@@ -22,7 +22,7 @@ def main(jpath):
         np.savez(D + '/voices.npz', af_heart=v)
     import soundfile as sf
     from kokoro_onnx import Kokoro
-    k = Kokoro(D + '/model_q8.onnx', D + '/voices.npz')
+    kok = Kokoro(D + '/model_q8.onnx', D + '/voices.npz')
     n = json.load(open(jpath, encoding='utf-8'))
     nid = os.path.splitext(os.path.basename(jpath))[0]
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -33,7 +33,7 @@ def main(jpath):
         json.dump(n, open(jpath, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     parts = []
     for para in [n['title']] + n['paras']:
-        s, sr = k.create(para, voice='af_heart', speed=0.9, lang='en-us')
+        s, sr = kok.create(para, voice='af_heart', speed=0.9, lang='en-us')
         s = s / max(1e-6, float(abs(s).max())) * 0.85
         parts += [s.astype(np.float32), np.zeros(int(sr * 0.6), np.float32)]
     root = os.path.dirname(os.path.dirname(os.path.abspath(jpath)))
@@ -42,6 +42,20 @@ def main(jpath):
     sf.write(wav, np.concatenate([np.zeros(int(sr * 0.15), np.float32)] + parts), sr)
     subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', wav, '-ac', '1', '-ar', '24000', '-b:a', '48k', mp3], check=True)
     print('audio:', mp3, os.path.getsize(mp3), 'bytes')
+    # 단어 예문마다 원어민 음성(내 문장에 추가했을 때 듣기·발음 비교 그래프에 씀)
+    mp = root + '/news/ex-audio.json'
+    exmap = json.load(open(mp, encoding='utf-8')) if os.path.exists(mp) else {}
+    for k, w in enumerate(ws):
+        s2, sr2 = kok.create(w['ex'], voice='af_heart', speed=0.9, lang='en-us')
+        s2 = s2 / max(1e-6, float(abs(s2).max())) * 0.85
+        pad = np.zeros(int(sr2 * 0.12), np.float32)
+        sf.write(wav, np.concatenate([pad, s2.astype(np.float32), pad]), sr2)
+        rel = 'news/audio/' + nid + '-w' + str(k) + '.mp3'
+        subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', wav, '-ac', '1', '-ar', '24000', '-b:a', '64k', root + '/' + rel], check=True)
+        w['aud'] = rel; exmap[w['ex']] = rel
+    json.dump(n, open(jpath, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    json.dump(exmap, open(mp, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+    print('word audio:', len(ws))
 
 if __name__ == '__main__':
     main(sys.argv[1])

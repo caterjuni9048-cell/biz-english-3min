@@ -68,7 +68,8 @@
    "ex": "Our exports to Vietnam increased this quarter.",
    "ex_ko": "이번 분기 베트남 수출이 늘었습니다.",
    "cat": "t",
-   "ipa": "/ˈɛkspɔːrt/"
+   "ipa": "/ˈɛkspɔːrt/",
+   "aud": "news/audio/2026-11-17-w0.mp3"
   },
   {
    "en": "import",
@@ -76,7 +77,8 @@
    "ex": "We import the raw materials from China.",
    "ex_ko": "원자재는 중국에서 수입합니다.",
    "cat": "p",
-   "ipa": "/ɪmˈpɔːrt/"
+   "ipa": "/ɪmˈpɔːrt/",
+   "aud": "news/audio/2026-11-17-w1.mp3"
   },
   {
    "en": "record",
@@ -84,7 +86,8 @@
    "ex": "This month's sales are a new record for our team.",
    "ex_ko": "이번 달 매출은 우리 팀의 새 기록입니다.",
    "cat": "t",
-   "ipa": "/ˈrɛkərd/"
+   "ipa": "/ˈrɛkərd/",
+   "aud": "news/audio/2026-11-17-w2.mp3"
   },
   {
    "en": "percent",
@@ -92,7 +95,8 @@
    "ex": "The price went up by five percent.",
    "ex_ko": "가격이 5% 올랐습니다.",
    "cat": "m",
-   "ipa": "/pərˈsɛnt/"
+   "ipa": "/pərˈsɛnt/",
+   "aud": "news/audio/2026-11-17-w3.mp3"
   },
   {
    "en": "expected",
@@ -100,7 +104,8 @@
    "ex": "The shipment is expected to arrive on Friday.",
    "ex_ko": "화물은 금요일에 도착할 예정입니다.",
    "cat": "m",
-   "ipa": "/ɛkˈspɛktɪd/"
+   "ipa": "/ɛkˈspɛktɪd/",
+   "aud": "news/audio/2026-11-17-w4.mp3"
   }
  ],
  "kind": "biz"

@@ -369,7 +369,7 @@ var ITEMS,CATN,BYID,ORDER;
 /* 기본 문장 + 내가 추가한 문장(먼저 배움) */
 function buildItems(){
   var base=DATA.map(function(d,i){return {id:d[0]+i,cat:d[0],ko:d[1],en:d[2],tip:d[3],sit:d[4]||"",ord:Math.floor(i/60)*20+i%20};});
-  var cu=((S&&S.custom)||[]).map(function(c,k){return {id:c.id,cat:c.cat,ko:c.ko,en:c.en,tip:c.tip||"",sit:c.sit||"",ord:-1000+k,custom:true};});
+  var cu=((S&&S.custom)||[]).map(function(c,k){return {id:c.id,cat:c.cat,ko:c.ko,en:c.en,tip:c.tip||"",sit:c.sit||"",ord:-1000+k,custom:true,aud:c.aud||""};});
   ITEMS=cu.concat(base);
   CATN={m:0,p:0,t:0};BYID={};
   ITEMS.forEach(function(x){CATN[x.cat]++;BYID[x.id]=x;});
@@ -385,7 +385,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v14",APP_DATE="2026-11-17";
+var APP_VER="v14.1",APP_DATE="2026-11-17";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -440,15 +440,17 @@ if(C){
 /* ---- listening ---- */
 /* 문장별 음성 파일을 페이지에 함께 실어 두고, 누르는 즉시 재생한다 */
 var AUD=window.BIZ_AUDIO||null, player=null;
-function hasAudio(id){return !!(AUD&&AUD[id])||!!(BYID[id]&&BYID[id].custom&&window.speechSynthesis&&window.SpeechSynthesisUtterance);}
+/* 원어민 음성 주소: 기본 문장은 내장 음성, 뉴스에서 추가한 문장은 news/audio 의 mp3 */
+function audSrc(id){return (AUD&&AUD[id])||(BYID[id]&&BYID[id].aud?NBASE+BYID[id].aud:null);}
+function hasAudio(id){return !!audSrc(id)||!!(BYID[id]&&BYID[id].custom&&window.speechSynthesis&&window.SpeechSynthesisUtterance);}
 function speak(id){
-  if(!(AUD&&AUD[id])){
+  if(!audSrc(id)){
     if(hasAudio(id)){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(BYID[id].en);u.lang="en-US";u.rate=S.slow?0.7:0.9;speechSynthesis.speak(u);}catch(x){}}
     return;
   }
   try{
     if(!player)player=new Audio();
-    player.pause();player.src=AUD[id];player.currentTime=0;
+    player.pause();player.src=audSrc(id);player.currentTime=0;
     player.playbackRate=S.slow?0.75:1;
     var pr=player.play();if(pr&&pr.catch)pr.catch(function(){});
   }catch(e){}
@@ -1198,7 +1200,7 @@ function playMine(cb){
 }
 /* 원어민 → 내 목소리 순서로 이어 듣기 */
 function playBoth(id){
-  if(!(AUD&&AUD[id])||!REC.last||REC.last.id!==id){playMine();return;}
+  if(!audSrc(id)||!REC.last||REC.last.id!==id){playMine();return;}
   speak(id);
   var done=function(){player.removeEventListener("ended",done);setTimeout(function(){playMine();},350);};
   player.addEventListener("ended",done);
@@ -1249,10 +1251,11 @@ function pgSVG(A,B){
 function pgRun(id){
   var key=id+":"+(REC.last?REC.last.data.length:0);
   if(PG.key===key||PG.busy)return;
-  if(!(AUD&&AUD[id])){PG.key=key;PG.html='<p class="note">직접 추가한 문장은 원어민 음성 파일이 없어 그래프를 그릴 수 없습니다.</p>';return;}
+  if(!audSrc(id)){PG.key=key;PG.html='<p class="note">직접 입력한 문장은 원어민 음성 파일이 없어 그래프를 그릴 수 없습니다. 기본 문장이나 뉴스 단어 문장으로 해 보세요.</p>';return;}
   PG.busy=true;PG.key=key;PG.html='<p class="note">그래프 계산 중…</p>';
   var ctx=AI.ctx,mine=REC.last.data,msr=ctx.sampleRate;
-  decodeAud(ctx,b64buf(AUD[id])).then(function(nb){
+  var src=audSrc(id),getBuf=/^data:/.test(src)?Promise.resolve(b64buf(src)):fetch(src).then(function(r){if(!r.ok)throw 0;return r.arrayBuffer();});
+  getBuf.then(function(ab){return decodeAud(ctx,ab);}).then(function(nb){
     var na=pgAnalyze(nb.getChannelData(0),nb.sampleRate),ma=pgAnalyze(mine,msr),A=pgCurve(na,120),B=pgCurve(ma,120);
     var ri=pgCorr(A.pit,B.pit),rr=pgCorr(A.en,B.en),sp=ma.dur/Math.max(0.2,na.dur);
     var pct=function(r){return r===null?"–":Math.round(Math.max(0,r)*100)+"%";};
@@ -1510,8 +1513,11 @@ var NKIND={biz:"경제",hot:"핫이슈"},NRATES=[0.75,0.9,1,1.2];
 var nwPlayer=null;
 function nwFetch(path){return fetch(NBASE+path,{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();});}
 function nwNorm(x){return {id:x.id||x.date,date:x.date,kind:x.kind||"biz",title:x.title,title_ko:x.title_ko};}
+function nwLinkAud(){
+  nwFetch("news/ex-audio.json").then(function(m){var ch=false;(S.custom||[]).forEach(function(c){if(!c.aud&&m&&m[c.en]){c.aud=m[c.en];ch=true;}});if(ch){buildItems();save();if(view!=="session")render();}},function(){});
+}
 function nwInit(){
-  if(NW.idx||NW.loading)return;NW.loading=true;
+  if(NW.idx||NW.loading)return;NW.loading=true;nwLinkAud();
   nwFetch("news/index.json").then(function(x){NW.loading=false;NW.idx=(Array.isArray(x)?x:[]).map(nwNorm);NW.err="";if(view==="home"||view==="news")render();},
     function(){NW.loading=false;NW.idx=[];NW.err=C?"claude":"net";if(view==="home"||view==="news")render();});
 }
@@ -1594,7 +1600,7 @@ function nwAnswer(qi,oi){
 function nwAdd(k){
   var w=NW.cur&&NW.cur.words[k];if(!w)return;
   S.custom=S.custom||[];
-  if(!S.custom.some(function(c){return c.en===w.ex;})){S.custom.push({id:"u"+Date.now().toString(36)+k,cat:/^[mpt]$/.test(w.cat)?w.cat:"m",ko:String(w.ex_ko),en:String(w.ex),tip:String(w.en)+(w.ipa?" "+w.ipa:"")+" = "+String(w.ko),sit:"뉴스 단어"});buildItems();save();}
+  if(!S.custom.some(function(c){return c.en===w.ex;})){S.custom.push({id:"u"+Date.now().toString(36)+k,cat:/^[mpt]$/.test(w.cat)?w.cat:"m",ko:String(w.ex_ko),en:String(w.ex),tip:String(w.en)+(w.ipa?" "+w.ipa:"")+" = "+String(w.ko),sit:"뉴스 단어",aud:w.aud||""});buildItems();save();}
   NW.added[k]=true;render();
 }
 var bk={mode:"",msg:""};

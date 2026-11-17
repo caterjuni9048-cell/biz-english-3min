@@ -32,6 +32,7 @@ for w in ws if isinstance(ws, list) else []:
     need(all(w.get(k) for k in ['en', 'ko', 'ex', 'ex_ko', 'ipa']) and w.get('cat') in ('m', 'p', 't'), '단어 형식 오류(ipa 없으면 news_audio.py 먼저): %r' % w)
     need(str(w.get('en', '')).lower().split()[0][:4] in body, '단어가 본문에 없음: %s' % w.get('en'))
     need(str(w.get('en', '')).lower().split()[0][:4] in str(w.get('ex', '')).lower(), '예문에 단어가 없음: %s' % w.get('ex'))
+    need(w.get('aud') and os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(p))), w['aud'])), '예문 음성 없음 (src/news_audio.py 먼저 실행): %s' % w.get('ex'))
 root = os.path.dirname(os.path.dirname(os.path.abspath(p)))
 need(os.path.exists(root + '/news/audio/' + nid + '.mp3'), '음성 파일 없음 (src/news_audio.py 먼저 실행)')
 if err:
