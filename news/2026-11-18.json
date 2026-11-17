@@ -1,0 +1,112 @@
+{
+ "date": "2026-11-18",
+ "kind": "biz",
+ "title": "Korean Grape Exports Pass 100 Million Dollars",
+ "title_ko": "한국 포도 수출, 처음으로 1억 달러 넘어",
+ "paras": [
+  "Korean grapes are selling well in other countries. This year, grape exports went over 100 million dollars for the first time. Korea's farm ministry shared the news on November 16. It is the first time one kind of fresh Korean fruit or vegetable has reached this level.",
+  "From January to October, Korea shipped grapes worth 90.65 million dollars. That is 85.2 percent more than the same months last year. Taiwan was the biggest buyer. It bought 51.3 million dollars of Korean grapes, which is more than half of the total. Most of the exported grapes are Shine Muscat, a sweet green grape.",
+  "There is one more change. Korea usually buys more grapes from abroad than it sells. But this year, from January to October, exports were bigger than imports for the first time. Imports were 64.13 million dollars, so Korea now has a trade surplus in grapes."
+ ],
+ "paras_ko": [
+  "한국 포도가 해외에서 잘 팔리고 있습니다. 올해 포도 수출이 처음으로 1억 달러를 넘었습니다. 농림축산식품부가 11월 16일 이 소식을 발표했습니다. 한국의 신선 농산물 한 품목이 이 수준에 이른 것은 처음입니다.",
+  "1월부터 10월까지 한국은 9,065만 달러어치 포도를 수출했습니다. 작년 같은 기간보다 85.2% 늘어난 금액입니다. 가장 큰 구매국은 대만이었습니다. 대만은 한국 포도를 5,130만 달러어치 샀고, 이는 전체의 절반이 넘습니다. 수출 포도의 대부분은 달콤한 청포도인 샤인머스캣입니다.",
+  "변화가 하나 더 있습니다. 한국은 보통 포도를 파는 것보다 해외에서 더 많이 사 옵니다. 하지만 올해 1~10월에는 처음으로 수출이 수입보다 많았습니다. 수입은 6,413만 달러여서, 한국은 이제 포도에서 무역 흑자를 내고 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "Seoul Economic Daily",
+   "url": "https://en.sedaily.com/economy/2026/11/17/korean-grape-exports-top-100-million-for-first-time-20261117",
+   "published": "2026-11-17"
+  },
+  {
+   "name": "FreshPlaza",
+   "url": "https://www.freshplaza.com/north-america/article/9893504/south-korean-grape-exports-hit-100-million-milestone-for-the-first-time/",
+   "published": "2026-11-17"
+  },
+  {
+   "name": "Korea Daily",
+   "url": "https://en.koreadaily.com/korea-grape-exports-shine-muscat-100m/",
+   "published": "2026-11-17"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Korea stopped selling grapes to Taiwan",
+    "Korean grape exports passed 100 million dollars for the first time",
+    "Korea bought more grapes than ever this year"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 포도 수출이 처음으로 1억 달러를 넘었습니다."
+  },
+  {
+   "q": "Which place bought the most Korean grapes?",
+   "opts": [
+    "Taiwan",
+    "The United States",
+    "Japan"
+   ],
+   "a": 0,
+   "why_ko": "둘째 문단: 가장 큰 구매국은 대만으로 전체의 절반이 넘습니다."
+  },
+  {
+   "q": "What happened for the first time from January to October?",
+   "opts": [
+    "Grape prices fell by half",
+    "Korea stopped importing grapes",
+    "Grape exports were bigger than grape imports"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 처음으로 수출이 수입보다 많았습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "shipped",
+   "ko": "선적했다, 보냈다",
+   "ex": "We shipped the goods to Taiwan yesterday.",
+   "ex_ko": "어제 대만으로 물건을 선적했습니다.",
+   "cat": "m",
+   "ipa": "/ʃɪpt/",
+   "aud": "news/audio/2026-11-18-w0.mp3"
+  },
+  {
+   "en": "exports",
+   "ko": "수출(품)",
+   "ex": "Our exports to Asia grew a lot this quarter.",
+   "ex_ko": "이번 분기 아시아 수출이 많이 늘었습니다.",
+   "cat": "t",
+   "ipa": "/ˈɛkspɔːrts/",
+   "aud": "news/audio/2026-11-18-w1.mp3"
+  },
+  {
+   "en": "imports",
+   "ko": "수입(품)",
+   "ex": "Could you send me the imports data for October?",
+   "ex_ko": "10월 수입 자료를 보내 주시겠어요?",
+   "cat": "m",
+   "ipa": "/ɪmˈpɔːrts/",
+   "aud": "news/audio/2026-11-18-w2.mp3"
+  },
+  {
+   "en": "trade surplus",
+   "ko": "무역 흑자",
+   "ex": "The country had a trade surplus last month.",
+   "ex_ko": "그 나라는 지난달 무역 흑자를 냈습니다.",
+   "cat": "t",
+   "ipa": "/ˈtreɪd ˈsɜːrplʌs/",
+   "aud": "news/audio/2026-11-18-w3.mp3"
+  },
+  {
+   "en": "buyer",
+   "ko": "구매자, 바이어",
+   "ex": "Our biggest buyer wants to order more next month.",
+   "ex_ko": "가장 큰 바이어가 다음 달 더 주문하고 싶어 합니다.",
+   "cat": "p",
+   "ipa": "/baɪər/",
+   "aud": "news/audio/2026-11-18-w4.mp3"
+  }
+ ]
+}

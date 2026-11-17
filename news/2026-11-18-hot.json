@@ -1,0 +1,112 @@
+{
+ "date": "2026-11-18",
+ "kind": "hot",
+ "title": "RAYE Leads the New Grammy Nominations",
+ "title_ko": "레이, 새 그래미 후보 최다 지명",
+ "paras": [
+  "The nominations for the next Grammy Awards came out on Monday, November 16. The Grammys are the biggest music awards in the United States. This year, the British singer RAYE got the most nominations. She was named in 11 categories, including Album of the Year.",
+  "The Spanish singer Rosalía came second with nine nominations. Several artists got seven each, including the country singer Ella Langley and the pop star Olivia Rodrigo. Many news reports said that women artists stood out on this year's list.",
+  "Being nominated does not mean winning. A large group of music industry members will vote, and the winners will be announced at the ceremony early next year. Until then, fans will keep talking about their favorite songs and guessing who will take home the famous golden trophy."
+ ],
+ "paras_ko": [
+  "다음 그래미 시상식 후보가 11월 16일 월요일에 발표됐습니다. 그래미는 미국에서 가장 큰 음악상입니다. 올해는 영국 가수 레이가 가장 많은 후보에 올랐습니다. 레이는 '올해의 앨범'을 포함해 11개 부문 후보가 됐습니다.",
+  "스페인 가수 로살리아가 9개 부문으로 2위를 차지했습니다. 컨트리 가수 엘라 랭글리와 팝 스타 올리비아 로드리고 등 여러 가수가 각각 7개 부문 후보에 올랐습니다. 많은 언론은 올해 후보 명단에서 여성 가수들이 돋보였다고 전했습니다.",
+  "후보에 올랐다고 상을 받는 것은 아닙니다. 음악 업계 관계자들이 투표하고, 수상자는 내년 초 시상식에서 발표됩니다. 그때까지 팬들은 좋아하는 노래 이야기를 나누며 누가 그 유명한 황금 트로피를 가져갈지 예상할 것입니다."
+ ],
+ "sources": [
+  {
+   "name": "NPR",
+   "url": "https://www.npr.org/2026/11/16/nx-s1-6037518/2027-grammy-nominations-complete-list",
+   "published": "2026-11-16"
+  },
+  {
+   "name": "Variety",
+   "url": "https://variety.com/2026/music/news/grammy-nominations-2027-complete-list-2-1236948743/",
+   "published": "2026-11-16"
+  },
+  {
+   "name": "Recording Academy (Grammy.com)",
+   "url": "https://www.grammy.com/news/who-has-the-most-grammy-nominations-at-the-2027-grammys/",
+   "published": "2026-11-16"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "RAYE got the most nominations for the next Grammys",
+    "The Grammy Awards were cancelled this year",
+    "Rosalía won Album of the Year"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 레이가 11개 부문으로 가장 많은 후보에 올랐습니다."
+  },
+  {
+   "q": "How many nominations did Rosalía get?",
+   "opts": [
+    "Seven",
+    "Eleven",
+    "Nine"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: 로살리아는 9개 부문 후보입니다."
+  },
+  {
+   "q": "Who will choose the winners?",
+   "opts": [
+    "Only the fans online",
+    "Music industry members who vote",
+    "The singers themselves"
+   ],
+   "a": 1,
+   "why_ko": "셋째 문단: 음악 업계 관계자들이 투표합니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "nomination",
+   "ko": "후보 지명",
+   "ex": "Did you hear about RAYE's Grammy nominations?",
+   "ex_ko": "레이의 그래미 후보 소식 들으셨어요?",
+   "cat": "p",
+   "ipa": "/ˌnɑːmɪˈneɪʃən/",
+   "aud": "news/audio/2026-11-18-hot-w0.mp3"
+  },
+  {
+   "en": "categories",
+   "ko": "부문, 범주",
+   "ex": "There are so many categories at the Grammys this year.",
+   "ex_ko": "올해 그래미에는 부문이 정말 많네요.",
+   "cat": "t",
+   "ipa": "/ˈkætɪɡəriz/",
+   "aud": "news/audio/2026-11-18-hot-w1.mp3"
+  },
+  {
+   "en": "stood out",
+   "ko": "눈에 띄었다",
+   "ex": "Your presentation really stood out at the meeting.",
+   "ex_ko": "회의에서 발표가 정말 돋보였어요.",
+   "cat": "t",
+   "ipa": "/ˈstʊdˈ aʊt/",
+   "aud": "news/audio/2026-11-18-hot-w2.mp3"
+  },
+  {
+   "en": "ceremony",
+   "ko": "시상식, 의식",
+   "ex": "Are you going to watch the ceremony this year?",
+   "ex_ko": "올해 시상식 보실 건가요?",
+   "cat": "p",
+   "ipa": "/ˈsɛrɪməni/",
+   "aud": "news/audio/2026-11-18-hot-w3.mp3"
+  },
+  {
+   "en": "trophy",
+   "ko": "트로피",
+   "ex": "I think she will take home the trophy this time.",
+   "ex_ko": "이번엔 그녀가 트로피를 가져갈 것 같아요.",
+   "cat": "p",
+   "ipa": "/ˈtroʊfi/",
+   "aud": "news/audio/2026-11-18-hot-w4.mp3"
+  }
+ ]
+}
