@@ -1,0 +1,112 @@
+{
+ "date": "2026-11-19",
+ "kind": "biz",
+ "title": "Korea Is About to Export 1 Trillion Dollars in a Year",
+ "title_ko": "한국, 연간 수출 1조 달러 돌파 눈앞",
+ "paras": [
+  "South Korea is very close to a big goal. For the first time, its exports in one year are expected to pass one trillion dollars. The government said this could happen as early as November 19 or 20.",
+  "By November 10, Korea had already sold more than 960 billion dollars of goods to other countries this year. Computer chips are the main reason for the fast growth. Because of strong demand for AI, chips now make up about half of all Korean exports.",
+  "Only three countries have reached this level before: the United States, China and Germany. Korea will be the fourth. It is a long way from 1995, when Korea's yearly exports first went over 100 billion dollars. Now, the chip boom is pushing exports to new records."
+ ],
+ "paras_ko": [
+  "한국이 큰 목표에 아주 가까워졌습니다. 처음으로 한 해 수출이 1조 달러를 넘을 것으로 예상됩니다. 정부는 이르면 11월 19일이나 20일에 달성할 수 있다고 밝혔습니다.",
+  "11월 10일까지 한국은 올해 이미 9,600억 달러가 넘는 물건을 해외에 팔았습니다. 빠른 성장의 가장 큰 이유는 반도체입니다. 인공지능(AI) 수요가 강해서, 반도체가 이제 한국 전체 수출의 약 절반을 차지합니다.",
+  "지금까지 이 수준에 이른 나라는 미국, 중국, 독일 세 나라뿐입니다. 한국은 네 번째가 됩니다. 한국의 연간 수출이 처음 1,000억 달러를 넘었던 1995년과 비교하면 먼 길을 왔습니다. 이제 반도체 호황이 수출을 새 기록으로 이끌고 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "Korea Times",
+   "url": "https://www.koreatimes.co.kr/economy/20261117/korea-set-to-achieve-1-tril-export-milestone-for-1st-time",
+   "published": "2026-11-17"
+  },
+  {
+   "name": "Seoul Economic Daily",
+   "url": "https://en.sedaily.com/economy/2026/11/18/korea-nears-1-trillion-in-annual-exports-worlds-fourth",
+   "published": "2026-11-18"
+  },
+  {
+   "name": "Korea JoongAng Daily",
+   "url": "https://www.koreajoongangdaily.com/business/korea-closes-in-on-1-trillion-export-milestone/12977160",
+   "published": "2026-11-17"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Korea's exports fell below last year",
+    "Korea's yearly exports will soon pass one trillion dollars",
+    "Korea stopped selling computer chips"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 처음으로 연간 수출 1조 달러를 넘을 전망입니다."
+  },
+  {
+   "q": "Which countries reached this level before Korea?",
+   "opts": [
+    "The United States, China and Germany",
+    "Japan, France and India",
+    "Only the United States"
+   ],
+   "a": 0,
+   "why_ko": "셋째 문단: 미국, 중국, 독일 세 나라입니다."
+  },
+  {
+   "q": "Why are Korea's exports growing so fast?",
+   "opts": [
+    "Car sales doubled",
+    "Oil prices went up",
+    "Demand for computer chips is strong"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: AI 수요로 반도체 수출이 크게 늘었습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "expected",
+   "ko": "예상되는",
+   "ex": "The shipment is expected to arrive on Friday.",
+   "ex_ko": "화물은 금요일에 도착할 예정입니다.",
+   "cat": "m",
+   "ipa": "/ɛkˈspɛktɪd/",
+   "aud": "news/audio/2026-11-19-w0.mp3"
+  },
+  {
+   "en": "demand",
+   "ko": "수요",
+   "ex": "Demand for this product is very strong this month.",
+   "ex_ko": "이번 달 이 제품 수요가 아주 강합니다.",
+   "cat": "t",
+   "ipa": "/dɪˈmænd/",
+   "aud": "news/audio/2026-11-19-w1.mp3"
+  },
+  {
+   "en": "goods",
+   "ko": "물품, 상품",
+   "ex": "We will send the goods by sea next week.",
+   "ex_ko": "다음 주에 물품을 해상으로 보내겠습니다.",
+   "cat": "m",
+   "ipa": "/ɡʊdz/",
+   "aud": "news/audio/2026-11-19-w2.mp3"
+  },
+  {
+   "en": "growth",
+   "ko": "성장, 증가",
+   "ex": "We saw strong growth in orders from Asia this year.",
+   "ex_ko": "올해 아시아 주문이 크게 늘었습니다.",
+   "cat": "t",
+   "ipa": "/ɡroʊθ/",
+   "aud": "news/audio/2026-11-19-w3.mp3"
+  },
+  {
+   "en": "records",
+   "ko": "기록",
+   "ex": "Our sales broke records last quarter.",
+   "ex_ko": "지난 분기 매출이 기록을 깼습니다.",
+   "cat": "p",
+   "ipa": "/ˈrɛkərdz/",
+   "aud": "news/audio/2026-11-19-w4.mp3"
+  }
+ ]
+}

@@ -1,0 +1,112 @@
+{
+ "date": "2026-11-19",
+ "kind": "hot",
+ "title": "Voyager 1 Is Now One Light-Day From Earth",
+ "title_ko": "보이저 1호, 지구에서 1광일 거리 도달",
+ "paras": [
+  "NASA's Voyager 1 spacecraft reached a new milestone on November 18. It is now one light-day away from Earth. This means that light, the fastest thing in the universe, needs a full day to travel from the spacecraft to us. No other human-made object has ever gone this far.",
+  "One light-day is about 26 billion kilometers. Because of this huge distance, a radio message from Earth now takes about one day to reach Voyager 1. Its answer takes another day to come back.",
+  "Voyager 1 left Earth almost 50 years ago, and it is still sending data home. To celebrate, NASA asked people around the world to shine lights at the sky and send a message in Morse code. Many space fans joined in and shared photos online."
+ ],
+ "paras_ko": [
+  "미국 항공우주국(NASA)의 보이저 1호가 11월 18일 새 이정표에 도달했습니다. 이제 지구에서 1광일 떨어져 있습니다. 우주에서 가장 빠른 빛이 우주선에서 우리에게 오는 데 꼬박 하루가 걸린다는 뜻입니다. 사람이 만든 물체가 이렇게 멀리 간 것은 처음입니다.",
+  "1광일은 약 260억 킬로미터입니다. 이 엄청난 거리 때문에 지구에서 보낸 무선 메시지가 보이저 1호에 닿는 데 약 하루가 걸립니다. 답이 돌아오는 데 또 하루가 걸립니다.",
+  "보이저 1호는 거의 50년 전에 지구를 떠났고, 지금도 자료를 보내오고 있습니다. 이를 기념해 NASA는 전 세계 사람들에게 하늘을 향해 불빛을 비추며 모스 부호로 메시지를 보내자고 했습니다. 많은 우주 팬이 참여해 온라인에 사진을 올렸습니다."
+ ],
+ "sources": [
+  {
+   "name": "CNN",
+   "url": "https://www.cnn.com/2026/11/18/science/voyager-1-light-day",
+   "published": "2026-11-18"
+  },
+  {
+   "name": "Smithsonian Magazine",
+   "url": "https://www.smithsonianmag.com/blogs/air-space-museum/2026/11/18/nasas-voyager-1-has-reached-1-lightday-from-earth-it-is-the-first-humanmade-object-in-space-to-reach-that-distance/",
+   "published": "2026-11-18"
+  },
+  {
+   "name": "WRAL",
+   "url": "https://www.wral.com/weather/voyager-light-day-nov-2026/",
+   "published": "2026-11-18"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Voyager 1 came back to Earth",
+    "Voyager 1 is now one light-day away from Earth",
+    "NASA launched a new spacecraft"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 보이저 1호가 지구에서 1광일 거리에 도달했습니다."
+  },
+  {
+   "q": "How long does a radio message from Earth take to reach Voyager 1?",
+   "opts": [
+    "About one hour",
+    "About one week",
+    "About one day"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: 메시지가 닿는 데 약 하루가 걸립니다."
+  },
+  {
+   "q": "How did NASA celebrate?",
+   "opts": [
+    "It asked people to shine lights and send Morse code",
+    "It held a big concert",
+    "It sent a new robot to Mars"
+   ],
+   "a": 0,
+   "why_ko": "셋째 문단: 불빛으로 모스 부호를 보내자고 했습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "milestone",
+   "ko": "이정표, 중요한 단계",
+   "ex": "Did you hear about Voyager's big milestone?",
+   "ex_ko": "보이저의 큰 이정표 소식 들으셨어요?",
+   "cat": "p",
+   "ipa": "/ˈmaɪlstoʊn/",
+   "aud": "news/audio/2026-11-19-hot-w0.mp3"
+  },
+  {
+   "en": "spacecraft",
+   "ko": "우주선",
+   "ex": "It's amazing that the spacecraft still works after so many years.",
+   "ex_ko": "그 우주선이 그렇게 오랜 세월이 지나도 작동한다니 놀라워요.",
+   "cat": "p",
+   "ipa": "/ˈspeɪskræft/",
+   "aud": "news/audio/2026-11-19-hot-w1.mp3"
+  },
+  {
+   "en": "distance",
+   "ko": "거리",
+   "ex": "The distance between our offices is not that far.",
+   "ex_ko": "우리 사무실 사이 거리는 그렇게 멀지 않아요.",
+   "cat": "t",
+   "ipa": "/ˈdɪstəns/",
+   "aud": "news/audio/2026-11-19-hot-w2.mp3"
+  },
+  {
+   "en": "celebrate",
+   "ko": "기념하다, 축하하다",
+   "ex": "Let's celebrate the end of the project together.",
+   "ex_ko": "프로젝트 마무리를 함께 축하해요.",
+   "cat": "t",
+   "ipa": "/ˈsɛləˌbreɪt/",
+   "aud": "news/audio/2026-11-19-hot-w3.mp3"
+  },
+  {
+   "en": "huge",
+   "ko": "엄청난, 거대한",
+   "ex": "That was huge news in the space world this week.",
+   "ex_ko": "이번 주 우주 분야에서 엄청난 뉴스였어요.",
+   "cat": "p",
+   "ipa": "/hjuːdʒ/",
+   "aud": "news/audio/2026-11-19-hot-w4.mp3"
+  }
+ ]
+}
