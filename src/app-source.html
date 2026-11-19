@@ -4,6 +4,7 @@
 <style>
 /* Layout: one narrow phone column. Home = today's three rounds as a numbered sequence; a round = one card per screen with a single action at the bottom. */
 :root{
+  color-scheme:light dark;
   --bg:#EEF1F5; --surface:#FFFFFF; --ink:#141C26; --muted:#5A6878; --line:#D5DCE5;
   --accent:#1B55C8; --on-accent:#FFFFFF; --soft:#E3EBFA;
   --mail:#1B55C8; --phone:#0B7A6E; --meet:#8A3D8F;
@@ -59,7 +60,10 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .ghost{width:100%;padding:14px;border-radius:14px;border:1.5px solid var(--line);background:transparent;font-weight:500}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;font-size:14px}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:700}
+.chip[aria-pressed="true"]::before{content:"✓ "}
+.chip[aria-pressed="false"]{color:var(--muted)}
+.chip.tm{border-color:var(--accent);color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
 .bars{display:flex;flex-direction:column;gap:10px}
 .bar{display:grid;grid-template-columns:44px 1fr 48px;align-items:center;gap:10px;font-size:14px}
 .bar i{display:block;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
@@ -393,7 +397,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v16",APP_DATE="2026-11-19";
+var APP_VER="v16.1",APP_DATE="2026-11-19";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -1783,7 +1787,7 @@ function notifyHTML(){
   if(P.on)h+='<button class="ghost small" data-act="nftest">시험 알림 보내기</button>';
   if(NF.msg)h+='<p class="bkmsg" role="status">'+esc(NF.msg)+"</p>";
   h+="</div>";
-  h+='<div class="block"><h2>알림 시각</h2><div class="chips">'+c.times.map(function(tm,i){return '<button class="chip" aria-pressed="true" data-act="nfdel" data-i="'+i+'">'+tm+" ×</button>";}).join("")+(c.times.length?"":'<span class="note">시각이 없습니다</span>')+'</div><div class="two"><input id="nftime" type="time" value="09:00" step="300" class="code big" style="margin:0"><button class="cta alt" data-act="nfadd">시각 추가</button></div><p class="note">× 를 누르면 그 시각이 지워집니다. 한국 시간 기준, 1분 안쪽으로 옵니다.</p></div>';
+  h+='<div class="block"><h2>알림 시각</h2><div class="chips">'+c.times.map(function(tm,i){return '<button class="chip tm" data-act="nfdel" data-i="'+i+'" aria-label="'+tm+' 지우기">'+tm+" ×</button>";}).join("")+(c.times.length?"":'<span class="note">시각이 없습니다</span>')+'</div><div class="two"><input id="nftime" type="time" value="09:00" step="300" class="code big" style="margin:0"><button class="cta alt" data-act="nfadd">시각 추가</button></div><p class="note">× 를 누르면 그 시각이 지워집니다. 한국 시간 기준, 1분 안쪽으로 옵니다.</p></div>';
   var hs=[];for(var i=0;i<24;i++)hs.push(i);
   var sel=function(id,v){return '<select id="'+id+'" class="nfsel">'+hs.map(function(x){return '<option value="'+x+'"'+(x===+v?" selected":"")+">"+x+"시</option>";}).join("")+"</select>";};
   h+='<div class="block"><h2>매시간 알림</h2><div class="chips"><button class="chip" data-act="nfhourly" aria-pressed="'+!!c.hourly.on+'">'+(c.hourly.on?"켜짐":"꺼짐")+"</button></div>"+(c.hourly.on?'<div class="two">'+sel("nffrom",c.hourly.from)+sel("nfto",c.hourly.to)+'</div><p class="note">'+c.hourly.from+"시부터 "+c.hourly.to+"시까지 매 정각에 알립니다.</p>":"")+"</div>";
