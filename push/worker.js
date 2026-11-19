@@ -150,14 +150,16 @@ export default {
   },
   async scheduled(event, env) {
     const now = event.scheduledTime || Date.now();
+    if (kstParts(now).min % 30 === 0) await env.KV.put('health', JSON.stringify({ lastCron: now })); // 30분마다 살아 있음 기록(쓰기 하루 48회)
     const ids = await getIds(env); let changed = false;
     for (const id of ids.slice()) {
       const rec = await getRec(env, id); if (!rec || !rec.sub) continue;
       const msg = decide(rec, now); if (!msg) continue;
       try {
         const st = await sendPush(rec.sub, { ...msg, url: APP_URL }, env);
+        rec.lastSend = { t: now, status: st }; await putRec(env, id, rec);
         if (st === 404 || st === 410) { await env.KV.delete('sub:' + id); ids.splice(ids.indexOf(id), 1); changed = true; }
-      } catch (e) { /* 다음 분에 다시 */ }
+      } catch (e) { rec.lastSend = { t: now, error: String(e).slice(0, 120) }; await putRec(env, id, rec); }
     }
     if (changed) await env.KV.put('subs', JSON.stringify(ids));
   },
