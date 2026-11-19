@@ -33,5 +33,19 @@
 "kind": "hot",
 "title": "Voyager 1 Is Now One Light-Day From Earth",
 "title_ko": "보이저 1호, 지구에서 1광일 거리 도달"
+},
+{
+"id": "2026-11-20",
+"date": "2026-11-20",
+"kind": "biz",
+"title": "Container Shipping Prices Fall for Another Week",
+"title_ko": "컨테이너 운임, 또 한 주 하락"
+},
+{
+"id": "2026-11-20-hot",
+"date": "2026-11-20",
+"kind": "hot",
+"title": "Americans Get Ready for Busy Thanksgiving Travel",
+"title_ko": "미국, 바쁜 추수감사절 여행 준비"
 }
 ]

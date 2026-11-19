@@ -1,0 +1,122 @@
+{
+ "date": "2026-11-20",
+ "kind": "biz",
+ "title": "Container Shipping Prices Fall for Another Week",
+ "title_ko": "컨테이너 운임, 또 한 주 하락",
+ "paras": [
+  "The price of shipping a container by sea went down again this week. Drewry's World Container Index, a well-known measure of ocean freight rates, fell 3 percent to 4,176 dollars for a 40-foot container. This is the fourth weekly drop in a row.",
+  "The biggest fall was on routes from Asia to the United States. The rate from Shanghai to New York dropped 9 percent to 8,194 dollars. That is its lowest level in 15 weeks. The rate from Shanghai to Los Angeles fell 5 percent to 7,026 dollars.",
+  "Shipping lines are trying to stop prices from falling. They are cancelling some planned sailings to cut the space on their ships. Even so, Drewry expects rates to go down further next week. For importers and exporters, this may be a good time to compare quotes before booking."
+ ],
+ "paras_ko": [
+  "이번 주에도 바닷길로 컨테이너를 보내는 가격이 내려갔습니다. 해상 운임을 보여 주는 잘 알려진 지표인 드루리 세계 컨테이너 지수(WCI)는 40피트 컨테이너당 3% 내린 4,176달러였습니다. 4주 연속 하락입니다.",
+  "가장 크게 떨어진 곳은 아시아에서 미국으로 가는 항로였습니다. 상하이–뉴욕 운임은 9% 내린 8,194달러로, 15주 만에 가장 낮았습니다. 상하이–로스앤젤레스 운임은 5% 내린 7,026달러였습니다.",
+  "선사들은 가격 하락을 막으려 하고 있습니다. 계획했던 운항 일부를 취소해 배의 공간을 줄이고 있습니다. 그래도 드루리는 다음 주에 운임이 더 내릴 것으로 봅니다. 수입·수출 업체에게는 예약 전에 견적을 비교해 보기 좋은 때일 수 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "Drewry",
+   "url": "https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry",
+   "published": "2026-11-19"
+  },
+  {
+   "name": "Interior Daily",
+   "url": "https://www.interiordaily.com/article/9887754/drewry-container-freight-index-falls-3-as-transpacific-rates-slide/",
+   "published": "2026-11-19"
+  },
+  {
+   "name": "DataPortuaria",
+   "url": "https://dataportuaria.com/en/destacadas/drewry-wci-freight-index-falls-3-on-transpacific-weakness-905a42",
+   "published": "2026-11-19"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Container shipping prices fell again this week",
+    "Container shipping prices doubled this week",
+    "Shipping lines added many new ships"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 컨테이너 운임이 이번 주에도 내려갔습니다."
+  },
+  {
+   "q": "Which route had the biggest drop?",
+   "opts": [
+    "Shanghai to Rotterdam",
+    "Shanghai to Los Angeles",
+    "Shanghai to New York"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: 상하이–뉴욕이 9%로 가장 크게 내렸습니다."
+  },
+  {
+   "q": "What are shipping lines doing to stop prices from falling?",
+   "opts": [
+    "Building bigger ports",
+    "Cancelling some sailings",
+    "Lowering fuel costs"
+   ],
+   "a": 1,
+   "why_ko": "셋째 문단: 운항 일부를 취소해 공간을 줄이고 있습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "freight rates",
+   "ko": "운임",
+   "easy": "shipping prices",
+   "ex": "Could you send me the latest freight rates for Shanghai?",
+   "ex_ko": "상하이 최신 운임을 보내 주시겠어요?",
+   "cat": "m",
+   "ipa": "/ˈfreɪt ˈreɪts/",
+   "aud": "news/audio/2026-11-20-w0.mp3",
+   "wa": "news/audio/2026-11-20-k0.mp3"
+  },
+  {
+   "en": "route",
+   "ko": "항로, 경로",
+   "easy": "way",
+   "ex": "Which route is the fastest to Los Angeles?",
+   "ex_ko": "로스앤젤레스까지 어느 항로가 가장 빠른가요?",
+   "cat": "p",
+   "ipa": "/raʊt/",
+   "aud": "news/audio/2026-11-20-w1.mp3",
+   "wa": "news/audio/2026-11-20-k1.mp3"
+  },
+  {
+   "en": "sailings",
+   "ko": "운항(편)",
+   "easy": "ship trips",
+   "ex": "Two sailings next week have been cancelled.",
+   "ex_ko": "다음 주 운항 두 편이 취소됐습니다.",
+   "cat": "m",
+   "ipa": "/ˈseɪlɪŋz/",
+   "aud": "news/audio/2026-11-20-w2.mp3",
+   "wa": "news/audio/2026-11-20-k2.mp3"
+  },
+  {
+   "en": "quotes",
+   "ko": "견적",
+   "easy": "price offers",
+   "ex": "Let's compare quotes from three forwarders.",
+   "ex_ko": "포워더 세 곳의 견적을 비교해 봅시다.",
+   "cat": "t",
+   "ipa": "/kwoʊts/",
+   "aud": "news/audio/2026-11-20-w3.mp3",
+   "wa": "news/audio/2026-11-20-k3.mp3"
+  },
+  {
+   "en": "booking",
+   "ko": "예약, 부킹",
+   "easy": "reserving",
+   "ex": "Please confirm the booking by Friday.",
+   "ex_ko": "금요일까지 부킹을 확정해 주세요.",
+   "cat": "m",
+   "ipa": "/ˈbʊkɪŋ/",
+   "aud": "news/audio/2026-11-20-w4.mp3",
+   "wa": "news/audio/2026-11-20-k4.mp3"
+  }
+ ]
+}
