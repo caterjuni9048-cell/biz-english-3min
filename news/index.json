@@ -42,10 +42,24 @@
 "title_ko": "컨테이너 운임, 또 한 주 하락"
 },
 {
+"id": "2026-11-20-biz2",
+"date": "2026-11-20",
+"kind": "biz",
+"title": "Oil Prices Stay Around 92 Dollars",
+"title_ko": "국제 유가, 배럴당 92달러 안팎에서 멈춰"
+},
+{
 "id": "2026-11-20-hot",
 "date": "2026-11-20",
 "kind": "hot",
 "title": "Americans Get Ready for Busy Thanksgiving Travel",
 "title_ko": "미국, 바쁜 추수감사절 여행 준비"
+},
+{
+"id": "2026-11-20-ent",
+"date": "2026-11-20",
+"kind": "ent",
+"title": "India Wins a Record 10th SAFF Football Title",
+"title_ko": "인도, 남아시아 축구 대회 역대 최다 10번째 우승"
 }
 ]

@@ -1,0 +1,122 @@
+{
+ "date": "2026-11-20",
+ "kind": "ent",
+ "title": "India Wins a Record 10th SAFF Football Title",
+ "title_ko": "인도, 남아시아 축구 대회 역대 최다 10번째 우승",
+ "paras": [
+  "India beat Pakistan 2-1 in the final of the SAFF Championship, a football tournament for South Asian countries. India and Pakistan are long-time football rivals. The match was played in Dhaka, Bangladesh, on November 17. It was India's tenth title, which is a record, and their third title in a row.",
+  "Pakistan scored first, near the end of the first half. India came back in the second half. Sandip Mandi scored the winning goal with a header in the 88th minute.",
+  "It was Pakistan's first time in the final, so many fans were proud of the team even after the loss. For India, the win continues a long and strong history in this tournament. No other team has won this championship as many times."
+ ],
+ "paras_ko": [
+  "인도가 남아시아 나라들의 축구 대회인 SAFF 챔피언십 결승에서 파키스탄을 2대1로 이겼습니다. 인도와 파키스탄은 오랜 축구 라이벌입니다. 경기는 11월 17일 방글라데시 다카에서 열렸습니다. 인도의 열 번째 우승으로 역대 최다 기록이며, 3회 연속 우승입니다.",
+  "파키스탄이 전반전 끝 무렵 먼저 골을 넣었습니다. 인도는 후반전에 따라잡았습니다. 산딥 만디가 후반 88분에 헤딩으로 결승골을 넣었습니다.",
+  "파키스탄은 처음으로 결승에 올라서, 진 뒤에도 많은 팬이 팀을 자랑스러워했습니다. 인도는 이번 우승으로 이 대회에서 길고 강한 역사를 이어 갔습니다. 이 대회를 이만큼 많이 우승한 팀은 없습니다."
+ ],
+ "sources": [
+  {
+   "name": "Onmanorama",
+   "url": "https://www.onmanorama.com/sports/football/2026/11/17/india-beat-pakistan-2-1-to-clinch-record-10th-saff-championship-title.html",
+   "published": "2026-11-17"
+  },
+  {
+   "name": "MyKhel",
+   "url": "https://www.mykhel.com/football/india-beat-pakistan-in-dramatic-final-to-win-record-10th-saff-championship-title-459335.html",
+   "published": "2026-11-17"
+  },
+  {
+   "name": "Gulf News",
+   "url": "https://gulfnews.com/sport/football/pakistan-gives-guard-of-honour-to-champions-india-at-saff-championship-1.500751193",
+   "published": "2026-11-18"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Pakistan won its first title",
+    "India won a record 10th SAFF title",
+    "The final was cancelled"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 인도가 역대 최다 10번째 우승을 했습니다."
+  },
+  {
+   "q": "How did India score the winning goal?",
+   "opts": [
+    "With a header in the 88th minute",
+    "With a penalty",
+    "In extra time"
+   ],
+   "a": 0,
+   "why_ko": "둘째 문단: 88분 헤딩 결승골입니다."
+  },
+  {
+   "q": "Why were Pakistan fans proud?",
+   "opts": [
+    "Pakistan won the match",
+    "Pakistan scored three goals",
+    "It was Pakistan's first final"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 파키스탄의 첫 결승 진출이었습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "record",
+   "ko": "(최고) 기록",
+   "easy": "best ever",
+   "ex": "Did you hear India won a record tenth title?",
+   "ex_ko": "인도가 역대 최다 열 번째 우승을 한 거 들으셨어요?",
+   "cat": "p",
+   "ipa": "/ˈrɛkərd/",
+   "aud": "news/audio/2026-11-20-ent-w0.mp3",
+   "wa": "news/audio/2026-11-20-ent-k0.mp3"
+  },
+  {
+   "en": "in a row",
+   "ko": "연속으로",
+   "easy": "one after another",
+   "ex": "Our team won three games in a row.",
+   "ex_ko": "우리 팀이 세 경기 연속으로 이겼어요.",
+   "cat": "t",
+   "ipa": "/ˌɪnə ˈroʊ/",
+   "aud": "news/audio/2026-11-20-ent-w1.mp3",
+   "wa": "news/audio/2026-11-20-ent-k1.mp3"
+  },
+  {
+   "en": "came back",
+   "ko": "역전하다, 따라잡다",
+   "easy": "caught up",
+   "ex": "They came back in the second half.",
+   "ex_ko": "그 팀이 후반에 따라잡았어요.",
+   "cat": "p",
+   "ipa": "/ˈkeɪm ˈbæk/",
+   "aud": "news/audio/2026-11-20-ent-w2.mp3",
+   "wa": "news/audio/2026-11-20-ent-k2.mp3"
+  },
+  {
+   "en": "final",
+   "ko": "결승전",
+   "easy": "last game",
+   "ex": "Are you going to watch the final this weekend?",
+   "ex_ko": "이번 주말 결승전 보실 거예요?",
+   "cat": "p",
+   "ipa": "/ˈfaɪnəl/",
+   "aud": "news/audio/2026-11-20-ent-w3.mp3",
+   "wa": "news/audio/2026-11-20-ent-k3.mp3"
+  },
+  {
+   "en": "proud",
+   "ko": "자랑스러운",
+   "easy": "happy and pleased",
+   "ex": "We are proud of our team.",
+   "ex_ko": "우리 팀이 자랑스럽습니다.",
+   "cat": "t",
+   "ipa": "/praʊd/",
+   "aud": "news/audio/2026-11-20-ent-w4.mp3",
+   "wa": "news/audio/2026-11-20-ent-k4.mp3"
+  }
+ ]
+}

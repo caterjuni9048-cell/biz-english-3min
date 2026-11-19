@@ -7,9 +7,11 @@ err = []
 def need(c, m):
     if not c: err.append(m)
 nid = os.path.splitext(os.path.basename(p))[0]
-need(re.fullmatch(r'\d{4}-\d{2}-\d{2}', n.get('date', '')) and nid in (n['date'], n['date'] + '-hot'), '파일 이름은 <date>.json(경제) 또는 <date>-hot.json(핫이슈)')
-kind = 'hot' if nid.endswith('-hot') else 'biz'
-need(n.get('kind', kind) == kind, 'kind 가 파일 이름과 맞지 않음(biz/hot)')
+SUF = {'': 'biz', '-biz2': 'biz', '-hot': 'hot', '-ent': 'ent'}
+suf = nid[len(n.get('date', '')):] if nid.startswith(n.get('date', '') or '#') else None
+need(re.fullmatch(r'\d{4}-\d{2}-\d{2}', n.get('date', '')) and suf in SUF, '파일 이름은 <date>.json(경제1), <date>-biz2.json(경제2), <date>-hot.json(핫이슈), <date>-ent.json(스포츠·연예)')
+kind = SUF.get(suf, 'biz')
+need(n.get('kind', kind) == kind, 'kind 가 파일 이름과 맞지 않음(biz/hot/ent)')
 for k in ['title', 'title_ko']: need(isinstance(n.get(k), str) and n[k].strip(), k + ' 없음')
 paras, ko = n.get('paras', []), n.get('paras_ko', [])
 need(isinstance(paras, list) and 2 <= len(paras) <= 4, 'paras 는 2~4문단')
@@ -41,6 +43,7 @@ ip = root + '/news/index.json'
 idx = json.load(open(ip, encoding='utf-8')) if os.path.exists(ip) else []
 for x in idx: x.setdefault('id', x['date']); x.setdefault('kind', 'biz')
 idx = [x for x in idx if x['id'] != nid] + [{'id': nid, 'date': n['date'], 'kind': kind, 'title': n['title'], 'title_ko': n['title_ko']}]
-idx.sort(key=lambda x: (x['date'], x['kind'] != 'biz')); idx = idx[-120:]
+ORD = {'biz': 0, 'hot': 1, 'ent': 2}
+idx.sort(key=lambda x: (x['date'], ORD.get(x['kind'], 9), x['id'])); idx = idx[-200:]
 json.dump(idx, open(ip, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
 print('검사 통과: 본문 %d단어, 목록 %d개' % (wc, len(idx)))

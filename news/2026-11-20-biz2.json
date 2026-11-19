@@ -1,0 +1,122 @@
+{
+ "date": "2026-11-20",
+ "kind": "biz",
+ "title": "Oil Prices Stay Around 92 Dollars",
+ "title_ko": "국제 유가, 배럴당 92달러 안팎에서 멈춰",
+ "paras": [
+  "The price of Brent crude oil stayed at about 92 dollars a barrel on November 19. Brent is a global benchmark, so many companies watch it to plan their fuel and shipping costs.",
+  "Two forces are pulling the price in different directions. Many traders worry that the world will have too much oil soon, and stocks of crude oil in the United States are rising. This pushes the price down. At the same time, there are threats to oil tankers near the Strait of Hormuz, an important sea route for oil. This keeps the price from falling more.",
+  "For importers and exporters, oil prices matter because they affect fuel surcharges on shipping. Many companies are checking prices every day."
+ ],
+ "paras_ko": [
+  "11월 19일 브렌트유 가격은 배럴당 약 92달러에 머물렀습니다. 브렌트유는 세계 기준 유가라서, 많은 회사가 연료비와 운송비를 계획할 때 이 가격을 봅니다.",
+  "두 가지 힘이 가격을 서로 다른 방향으로 당기고 있습니다. 많은 거래자들은 곧 세계에 석유가 너무 많아질까 걱정하고, 미국의 원유 재고도 늘고 있습니다. 이것은 가격을 낮춥니다. 동시에 중요한 석유 바닷길인 호르무즈 해협 근처에서 유조선에 대한 위협이 있습니다. 이것은 가격이 더 떨어지지 않게 막습니다.",
+  "수입·수출 회사에게 유가가 중요한 이유는 운송의 유류할증료에 영향을 주기 때문입니다. 많은 회사가 매일 가격을 확인하고 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "OilPrice.com",
+   "url": "https://oilprice.com/Latest-Energy-News/World-News/Oil-Prices-Steady-as-Hormuz-Tanker-Threats-Offset-Supply-Glut-Fears.html",
+   "published": "2026-11-19"
+  },
+  {
+   "name": "Trading Economics",
+   "url": "https://tradingeconomics.com/commodity/brent-crude-oil",
+   "published": "2026-11-19"
+  },
+  {
+   "name": "Traders Union",
+   "url": "https://tradersunion.com/news/commodities/show/4316122-brent-crude-oil-rises-0-82percent/",
+   "published": "2026-11-19"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Oil prices doubled in one day",
+    "Brent oil stayed at about 92 dollars a barrel",
+    "The Strait of Hormuz closed"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 브렌트유가 배럴당 약 92달러에 머물렀습니다."
+  },
+  {
+   "q": "What pushes the oil price down?",
+   "opts": [
+    "Worries about too much oil",
+    "Threats to tankers",
+    "Cold weather"
+   ],
+   "a": 0,
+   "why_ko": "둘째 문단: 석유가 너무 많아질 걱정과 미국 재고 증가가 가격을 낮춥니다."
+  },
+  {
+   "q": "Why do importers and exporters care about oil prices?",
+   "opts": [
+    "They sell oil",
+    "They pay for oil stations",
+    "Oil prices affect fuel surcharges on shipping"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 유가가 운송 유류할증료에 영향을 줍니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "benchmark",
+   "ko": "기준(가격)",
+   "easy": "standard",
+   "ex": "We use last year's price as a benchmark.",
+   "ex_ko": "작년 가격을 기준으로 씁니다.",
+   "cat": "t",
+   "ipa": "/ˈbɛntʃmɑːrk/",
+   "aud": "news/audio/2026-11-20-biz2-w0.mp3",
+   "wa": "news/audio/2026-11-20-biz2-k0.mp3"
+  },
+  {
+   "en": "surcharge",
+   "ko": "할증료, 추가 요금",
+   "easy": "extra fee",
+   "ex": "Is there a fuel surcharge on this shipment?",
+   "ex_ko": "이 화물에 유류할증료가 있나요?",
+   "cat": "m",
+   "ipa": "/ˈsɜːrtʃɑːrdʒ/",
+   "aud": "news/audio/2026-11-20-biz2-w1.mp3",
+   "wa": "news/audio/2026-11-20-biz2-k1.mp3"
+  },
+  {
+   "en": "importer",
+   "ko": "수입업체",
+   "easy": "buyer from abroad",
+   "ex": "The importer asked for a new price.",
+   "ex_ko": "수입업체가 새 가격을 요청했습니다.",
+   "cat": "p",
+   "ipa": "/ɪmˈpɔːrtər/",
+   "aud": "news/audio/2026-11-20-biz2-w2.mp3",
+   "wa": "news/audio/2026-11-20-biz2-k2.mp3"
+  },
+  {
+   "en": "threat",
+   "ko": "위협",
+   "easy": "danger",
+   "ex": "Bad weather is a threat to our schedule.",
+   "ex_ko": "궂은 날씨가 일정에 위협이 됩니다.",
+   "cat": "t",
+   "ipa": "/θrɛt/",
+   "aud": "news/audio/2026-11-20-biz2-w3.mp3",
+   "wa": "news/audio/2026-11-20-biz2-k3.mp3"
+  },
+  {
+   "en": "affect",
+   "ko": "영향을 주다",
+   "easy": "change",
+   "ex": "The new tax will affect our prices.",
+   "ex_ko": "새 세금이 가격에 영향을 줄 것입니다.",
+   "cat": "m",
+   "ipa": "/əˈfɛkt/",
+   "aud": "news/audio/2026-11-20-biz2-w4.mp3",
+   "wa": "news/audio/2026-11-20-biz2-k4.mp3"
+  }
+ ]
+}
