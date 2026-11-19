@@ -192,6 +192,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .qq{font-weight:600;margin-top:4px}
 .ipas{font-size:14px;color:var(--muted);line-height:1.7}
 .ipa{font-family:"Noto Sans","Segoe UI","Arial Unicode MS",var(--sans);color:var(--ink)}
+.nfsel{font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;width:100%}
 .lvsteps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
 .lvsteps span{font-size:12px;text-align:center;padding:7px 2px;border-radius:10px;border:1.5px solid var(--line);color:var(--muted)}
 .lvsteps span.on{border-color:var(--accent);color:var(--ink);background:var(--soft);font-weight:700}
@@ -392,7 +393,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v15.1",APP_DATE="2026-11-17";
+var APP_VER="v16",APP_DATE="2026-11-19";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -564,7 +565,7 @@ function answered(ok){
 function advance(){
   clearAuto();stopDict();
   ses.i++;
-  if(ses.i>=ses.steps.length){day().done[ses.n]=1;save();view="result";}
+  if(ses.i>=ses.steps.length){day().done[ses.n]=1;save();nfPing();view="result";}
   else enter();
   render();window.scrollTo(0,0);
 }
@@ -585,6 +586,7 @@ function render(){
   else if(view==="rp")app.innerHTML=rpHTML();
   else if(view==="mail")app.innerHTML=mailHTML();
   else if(view==="news")app.innerHTML=newsHTML();
+  else if(view==="notify")app.innerHTML=notifyHTML();
 }
 function homeHTML(){
   var d=day(),nx=nextRound(),t=new Date(),st=streak(),h="";
@@ -603,6 +605,7 @@ function homeHTML(){
   else h+='<p class="note">오늘 세 판을 모두 끝냈습니다. 내일 새 표현 '+perDay()+'개가 열립니다.</p>';
   h+="</div>";
   h+=newsCardHTML();
+  h+=nfCardHTML();
   h+=weekHTML();
   var left=ITEMS.filter(function(x){return !S.items[x.id];}).length;
   h+='<div class="block"><h2>새로 배울 표현 '+left+'개 남음</h2>'+(left<perDay()*5?'<p class="note">'+(left?"곧 새 표현이 바닥납니다. ":"새 표현을 모두 배웠습니다. 복습은 계속됩니다. ")+"실제로 쓰는 문장을 직접 추가할 수 있습니다.</p>":"")+'<button class="ghost small" data-act="add">내 문장 추가</button></div>';
@@ -1410,7 +1413,7 @@ function pickPractice(n){
   if(out.length<n)ORDER.forEach(function(x){if(out.length<n&&out.indexOf(x.id)<0)out.push(x.id);});
   return out;
 }
-function markExtra(){var d=day();d.extra=(d.extra||0)+1;save();}
+function markExtra(){var d=day();d.extra=(d.extra||0)+1;save();nfPing();}
 function backBar(title,sub){return '<div class="sbar"><button class="x" data-act="home" aria-label="돌아가기">←</button><div class="tt"><h1 style="font-size:20px">'+title+"</h1>"+(sub?'<span class="mono">'+sub+"</span>":"")+"</div></div>";}
 function extraHTML(){
   var h='<div class="block"><h2>추가 연습</h2><div class="xgrid">';
@@ -1728,6 +1731,70 @@ function nwAdd(k){
   if(!S.custom.some(function(c){return c.en===w.ex;})){S.custom.push({id:"u"+Date.now().toString(36)+k,cat:/^[mpt]$/.test(w.cat)?w.cat:"m",ko:String(w.ex_ko),en:String(w.ex),tip:String(w.en)+(w.ipa?" "+w.ipa:"")+" = "+String(w.ko),sit:"뉴스 단어",aud:w.aud||""});buildItems();save();}
   NW.added[k]=true;render();
 }
+
+/* ---- 푸시 알림 (알림 서버: Cloudflare Workers, 1분마다 한국 시간으로 확인해 보냄) ---- */
+var NF_URL="https://bizeng-push.bizeng3min.workers.dev",NF={msg:"",busy:false,perm:(window.Notification&&Notification.permission)||"default"};
+var NF_DAYS=["일","월","화","수","목","금","토"];
+function nfOK(){return !C&&"serviceWorker" in navigator&&"PushManager" in window&&window.Notification&&/^https:|^http:\/\/localhost/.test(location.href);}
+function nfIOSBrowser(){return /iPhone|iPad|iPod/.test(navigator.userAgent)&&!(window.navigator.standalone||matchMedia("(display-mode: standalone)").matches);}
+function nfState(){if(!S.push)S.push={id:"",on:false,cfg:{times:["08:30","12:30","21:00"],hourly:{on:false,from:9,to:18},days:[0,1,2,3,4,5,6],repeat:{on:true,every:10,max:2},stopWhenDone:true}};return S.push;}
+function nfId(){var P=nfState();if(!P.id){var a=new Uint8Array(18);crypto.getRandomValues(a);P.id=Array.prototype.map.call(a,function(b){return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_".charAt(b%64);}).join("");save();}return P.id;}
+function nfPost(path,body){return fetch(NF_URL+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||r.status);return j;});});}
+function u8(b64){var s=b64.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";var r=atob(s),a=new Uint8Array(r.length);for(var i=0;i<r.length;i++)a[i]=r.charCodeAt(i);return a;}
+function nfSubscribe(){
+  return navigator.serviceWorker.ready.then(function(reg){
+    return reg.pushManager.getSubscription().then(function(old){if(old)return old;
+      return fetch(NF_URL+"/vapid").then(function(r){return r.json();}).then(function(j){return reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:u8(j.key)});});});
+  });
+}
+function nfSave(){
+  var P=nfState();if(!P.on)return Promise.resolve();
+  return nfSubscribe().then(function(sub){var cfg=JSON.parse(JSON.stringify(P.cfg));cfg.on=true;return nfPost("/sub",{id:nfId(),sub:sub.toJSON(),cfg:cfg});});
+}
+function nfOn(){
+  if(!nfOK()||NF.busy)return;NF.busy=true;NF.msg="알림 권한을 묻는 중…";render();
+  Notification.requestPermission().then(function(p){NF.perm=p;
+    if(p!=="granted")throw new Error("perm");
+    var P=nfState();P.on=true;save();return nfSave();
+  }).then(function(){NF.busy=false;NF.msg="알림을 켰습니다. '시험 알림 보내기'로 확인해 보세요.";nfPing();render();},
+    function(e){NF.busy=false;var P=nfState();if(e&&e.message==="perm"){P.on=false;NF.msg="알림이 허용되지 않았습니다. 폰 설정 → 앱 → 크롬(또는 3분 영어) → 알림에서 허용한 뒤 다시 눌러 주세요.";}else NF.msg="알림 서버에 등록하지 못했습니다. 인터넷 연결을 확인하고 다시 눌러 주세요.";save();render();});
+}
+function nfOff(){
+  var P=nfState();P.on=false;save();NF.msg="알림을 껐습니다.";render();
+  if(P.id)nfPost("/unsub",{id:P.id}).catch(function(){});
+  try{navigator.serviceWorker.ready.then(function(reg){return reg.pushManager.getSubscription();}).then(function(s){if(s)s.unsubscribe();});}catch(x){}
+}
+var nfT=0;
+function nfChanged(){save();render();clearTimeout(nfT);var P=nfState();if(!P.on)return;NF.msg="저장 중…";nfT=setTimeout(function(){nfSave().then(function(){NF.msg="저장했습니다.";render();},function(){NF.msg="저장하지 못했습니다. 인터넷 연결을 확인해 주세요.";render();});},600);}
+/* 한 판(또는 추가 연습)을 끝내면 서버에 알려 반복 알림을 멈춘다 */
+function nfPing(){var P=S.push;if(!P||!P.on||!P.id||!nfOK())return;var d=day(),n=(d.done||[]).filter(function(x){return x;}).length;
+  nfPost("/done",{id:P.id,count:n,all:n>=3}).catch(function(){});}
+function nfCardHTML(){
+  if(!nfOK())return "";
+  var P=nfState(),t=P.on?(P.cfg.times.join(", ")||"")+(P.cfg.hourly.on?(P.cfg.times.length?" + ":"")+"매시간 "+P.cfg.hourly.from+"~"+P.cfg.hourly.to+"시":""):"꺼짐";
+  return '<div class="block"><h2>알림</h2><button class="li btnli" data-act="nfopen"><div><b>'+(P.on?"알림 켜짐":"알림 꺼짐")+"</b><span>"+esc(t||"시각 없음")+(P.on&&P.cfg.repeat.on?" · 다시 알림 "+P.cfg.repeat.every+"분×"+P.cfg.repeat.max+"회":"")+'</span></div><span class="go">설정 →</span></button></div>';
+}
+function notifyHTML(){
+  var h=backBar("알림 설정");
+  if(!nfOK())return h+'<div class="notice"><b>폰 아이콘(GitHub 주소) 앱에서 쓸 수 있습니다</b><p>푸시 알림은 홈 화면에 설치한 3분 영어 앱에서만 동작합니다.</p><a href="'+PAGES+'" target="_blank" rel="noopener">'+PAGES+"</a></div>";
+  var P=nfState(),c=P.cfg;
+  if(nfIOSBrowser())h+='<div class="notice"><b>아이폰은 홈 화면 아이콘으로 연 앱에서만 알림이 옵니다</b><p>사파리 공유 버튼 → 홈 화면에 추가 → 그 아이콘으로 열어 주세요.</p></div>';
+  h+='<div class="block"><div class="two"><button class="cta'+(P.on?" alt":"")+'" data-act="nfon"'+(NF.busy?" disabled":"")+'>'+(P.on?"알림 다시 연결":"알림 켜기")+'</button><button class="cta alt" data-act="'+(P.on?"nfoff":"nftest")+'"'+(P.on?"":" disabled")+'>'+(P.on?"알림 끄기":"시험 알림")+"</button></div>";
+  if(P.on)h+='<button class="ghost small" data-act="nftest">시험 알림 보내기</button>';
+  if(NF.msg)h+='<p class="bkmsg" role="status">'+esc(NF.msg)+"</p>";
+  h+="</div>";
+  h+='<div class="block"><h2>알림 시각</h2><div class="chips">'+c.times.map(function(tm,i){return '<button class="chip" aria-pressed="true" data-act="nfdel" data-i="'+i+'">'+tm+" ×</button>";}).join("")+(c.times.length?"":'<span class="note">시각이 없습니다</span>')+'</div><div class="two"><input id="nftime" type="time" value="09:00" step="300" class="code big" style="margin:0"><button class="cta alt" data-act="nfadd">시각 추가</button></div><p class="note">× 를 누르면 그 시각이 지워집니다. 한국 시간 기준, 1분 안쪽으로 옵니다.</p></div>';
+  var hs=[];for(var i=0;i<24;i++)hs.push(i);
+  var sel=function(id,v){return '<select id="'+id+'" class="nfsel">'+hs.map(function(x){return '<option value="'+x+'"'+(x===+v?" selected":"")+">"+x+"시</option>";}).join("")+"</select>";};
+  h+='<div class="block"><h2>매시간 알림</h2><div class="chips"><button class="chip" data-act="nfhourly" aria-pressed="'+!!c.hourly.on+'">'+(c.hourly.on?"켜짐":"꺼짐")+"</button></div>"+(c.hourly.on?'<div class="two">'+sel("nffrom",c.hourly.from)+sel("nfto",c.hourly.to)+'</div><p class="note">'+c.hourly.from+"시부터 "+c.hourly.to+"시까지 매 정각에 알립니다.</p>":"")+"</div>";
+  h+='<div class="block"><h2>요일</h2><div class="chips">'+[1,2,3,4,5,6,0].map(function(d){return '<button class="chip" data-act="nfday" data-v="'+d+'" aria-pressed="'+(c.days.indexOf(d)>=0)+'">'+NF_DAYS[d]+"</button>";}).join("")+"</div></div>";
+  h+='<div class="block"><h2>연속 알람 (다시 알림)</h2><div class="chips"><button class="chip" data-act="nfrep" aria-pressed="'+!!c.repeat.on+'">'+(c.repeat.on?"켜짐":"꺼짐")+"</button></div>";
+  if(c.repeat.on)h+='<div class="chips">'+[10,20,30].map(function(m){return '<button class="chip" data-act="nfevery" data-v="'+m+'" aria-pressed="'+(c.repeat.every===m)+'">'+m+"분 뒤</button>";}).join("")+'</div><div class="chips">'+[1,2,3].map(function(m){return '<button class="chip" data-act="nfmax" data-v="'+m+'" aria-pressed="'+(c.repeat.max===m)+'">최대 '+m+"번</button>";}).join("")+'</div><p class="note">알림 시각 뒤에 공부를 안 하면 '+c.repeat.every+"분마다 최대 "+c.repeat.max+"번 다시 알립니다. 한 판이라도 하면 그 알림의 반복은 멈춥니다.</p>";
+  h+="</div>";
+  h+='<div class="block"><h2>세 판을 다 끝낸 날</h2><div class="chips"><button class="chip" data-act="nfstop" aria-pressed="'+(c.stopWhenDone!==false)+'">남은 알림 끄기</button><button class="chip" data-act="nfstop2" aria-pressed="'+(c.stopWhenDone===false)+'">계속 알림</button></div></div>';
+  h+='<p class="note">알림은 홈 화면에 설치한 앱에서 옵니다. 폰 절전 설정에 따라 조금 늦게 올 수 있습니다. 구글 캘린더의 "3분 영어" 알림과 겹치면 캘린더 쪽을 꺼 주세요.</p>';
+  return h;
+}
 var bk={mode:"",msg:""};
 function backupHTML(){
   var h='<details class="howto" id="bkbox"'+(bk.mode?" open":"")+'><summary>기록 백업과 불러오기</summary>';
@@ -1754,6 +1821,7 @@ function listHTML(){
   return h;
 }
 
+app.addEventListener("change",function(e){var t=e.target;if(t&&(t.id==="nffrom"||t.id==="nfto")){var hh=nfState().cfg.hourly;hh[t.id==="nffrom"?"from":"to"]=+t.value;if(hh.from>hh.to){var x=hh.from;hh.from=hh.to;hh.to=x;}nfChanged();}});
 app.addEventListener("click",function(e){
   var b=e.target.closest("[data-act]");if(!b||b.disabled)return;
   var a=b.getAttribute("data-act"),st=ses&&ses.st,s=ses&&ses.steps[ses.i];
@@ -1819,6 +1887,19 @@ app.addEventListener("click",function(e){
     DICT.start({language:"en"}).catch(function(){OVR=null;render();});
   }
   else if(a==="xmail"){view="mail";render();window.scrollTo(0,0);}
+  else if(a==="nfopen"){NF.msg="";view="notify";render();window.scrollTo(0,0);}
+  else if(a==="nfon"){nfOn();}
+  else if(a==="nfoff"){nfOff();}
+  else if(a==="nftest"){var P0=nfState();if(!P0.on)return;NF.msg="시험 알림을 보내는 중…";render();nfSave().then(function(){return nfPost("/test",{id:P0.id});}).then(function(j){NF.msg=j.ok?"보냈습니다. 몇 초 안에 알림이 오는지 확인해 주세요.":"알림 서버가 보내기에 실패했습니다(코드 "+j.status+"). '알림 다시 연결'을 눌러 주세요.";render();},function(){NF.msg="알림 서버에 연결하지 못했습니다. 인터넷 연결을 확인해 주세요.";render();});}
+  else if(a==="nfadd"){var tv=(document.getElementById("nftime")||{}).value||"";var c0=nfState().cfg;if(/^\d{2}:\d{2}$/.test(tv)&&c0.times.indexOf(tv)<0&&c0.times.length<12){c0.times.push(tv);c0.times.sort();nfChanged();}}
+  else if(a==="nfdel"){nfState().cfg.times.splice(+b.getAttribute("data-i"),1);nfChanged();}
+  else if(a==="nfhourly"){var hh=nfState().cfg.hourly;hh.on=!hh.on;nfChanged();}
+  else if(a==="nfday"){var dd=nfState().cfg.days,dv=+b.getAttribute("data-v"),di=dd.indexOf(dv);if(di>=0)dd.splice(di,1);else dd.push(dv);nfChanged();}
+  else if(a==="nfrep"){var rr=nfState().cfg.repeat;rr.on=!rr.on;nfChanged();}
+  else if(a==="nfevery"){nfState().cfg.repeat.every=+b.getAttribute("data-v");nfChanged();}
+  else if(a==="nfmax"){nfState().cfg.repeat.max=+b.getAttribute("data-v");nfChanged();}
+  else if(a==="nfstop"){nfState().cfg.stopWhenDone=true;nfChanged();}
+  else if(a==="nfstop2"){nfState().cfg.stopWhenDone=false;nfChanged();}
   else if(a==="nwopen"){nwOpen(b.getAttribute("data-d"));}
   else if(a==="nwplay"){nwPlay();}
   else if(a==="nwko"){NW.ko=!NW.ko;render();}
