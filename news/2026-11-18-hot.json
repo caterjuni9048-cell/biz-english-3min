@@ -70,7 +70,8 @@
    "ex_ko": "레이의 그래미 후보 소식 들으셨어요?",
    "cat": "p",
    "ipa": "/ˌnɑːmɪˈneɪʃən/",
-   "aud": "news/audio/2026-11-18-hot-w0.mp3"
+   "aud": "news/audio/2026-11-18-hot-w0.mp3",
+   "wa": "news/audio/2026-11-18-hot-k0.mp3"
   },
   {
    "en": "categories",
@@ -79,7 +80,8 @@
    "ex_ko": "올해 그래미에는 부문이 정말 많네요.",
    "cat": "t",
    "ipa": "/ˈkætɪɡəriz/",
-   "aud": "news/audio/2026-11-18-hot-w1.mp3"
+   "aud": "news/audio/2026-11-18-hot-w1.mp3",
+   "wa": "news/audio/2026-11-18-hot-k1.mp3"
   },
   {
    "en": "stood out",
@@ -88,7 +90,8 @@
    "ex_ko": "회의에서 발표가 정말 돋보였어요.",
    "cat": "t",
    "ipa": "/ˈstʊdˈ aʊt/",
-   "aud": "news/audio/2026-11-18-hot-w2.mp3"
+   "aud": "news/audio/2026-11-18-hot-w2.mp3",
+   "wa": "news/audio/2026-11-18-hot-k2.mp3"
   },
   {
    "en": "ceremony",
@@ -97,7 +100,8 @@
    "ex_ko": "올해 시상식 보실 건가요?",
    "cat": "p",
    "ipa": "/ˈsɛrɪməni/",
-   "aud": "news/audio/2026-11-18-hot-w3.mp3"
+   "aud": "news/audio/2026-11-18-hot-w3.mp3",
+   "wa": "news/audio/2026-11-18-hot-k3.mp3"
   },
   {
    "en": "trophy",
@@ -106,7 +110,8 @@
    "ex_ko": "이번엔 그녀가 트로피를 가져갈 것 같아요.",
    "cat": "p",
    "ipa": "/ˈtroʊfi/",
-   "aud": "news/audio/2026-11-18-hot-w4.mp3"
+   "aud": "news/audio/2026-11-18-hot-w4.mp3",
+   "wa": "news/audio/2026-11-18-hot-k4.mp3"
   }
  ]
 }

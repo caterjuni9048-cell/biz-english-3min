@@ -70,7 +70,8 @@
    "ex_ko": "화물은 금요일에 도착할 예정입니다.",
    "cat": "m",
    "ipa": "/ɛkˈspɛktɪd/",
-   "aud": "news/audio/2026-11-19-w0.mp3"
+   "aud": "news/audio/2026-11-19-w0.mp3",
+   "wa": "news/audio/2026-11-19-k0.mp3"
   },
   {
    "en": "demand",
@@ -79,7 +80,8 @@
    "ex_ko": "이번 달 이 제품 수요가 아주 강합니다.",
    "cat": "t",
    "ipa": "/dɪˈmænd/",
-   "aud": "news/audio/2026-11-19-w1.mp3"
+   "aud": "news/audio/2026-11-19-w1.mp3",
+   "wa": "news/audio/2026-11-19-k1.mp3"
   },
   {
    "en": "goods",
@@ -88,7 +90,8 @@
    "ex_ko": "다음 주에 물품을 해상으로 보내겠습니다.",
    "cat": "m",
    "ipa": "/ɡʊdz/",
-   "aud": "news/audio/2026-11-19-w2.mp3"
+   "aud": "news/audio/2026-11-19-w2.mp3",
+   "wa": "news/audio/2026-11-19-k2.mp3"
   },
   {
    "en": "growth",
@@ -97,7 +100,8 @@
    "ex_ko": "올해 아시아 주문이 크게 늘었습니다.",
    "cat": "t",
    "ipa": "/ɡroʊθ/",
-   "aud": "news/audio/2026-11-19-w3.mp3"
+   "aud": "news/audio/2026-11-19-w3.mp3",
+   "wa": "news/audio/2026-11-19-k3.mp3"
   },
   {
    "en": "records",
@@ -106,7 +110,8 @@
    "ex_ko": "지난 분기 매출이 기록을 깼습니다.",
    "cat": "p",
    "ipa": "/ˈrɛkərdz/",
-   "aud": "news/audio/2026-11-19-w4.mp3"
+   "aud": "news/audio/2026-11-19-w4.mp3",
+   "wa": "news/audio/2026-11-19-k4.mp3"
   }
  ]
 }

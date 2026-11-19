@@ -69,7 +69,8 @@
    "ex_ko": "이번 분기 베트남 수출이 늘었습니다.",
    "cat": "t",
    "ipa": "/ˈɛkspɔːrt/",
-   "aud": "news/audio/2026-11-17-w0.mp3"
+   "aud": "news/audio/2026-11-17-w0.mp3",
+   "wa": "news/audio/2026-11-17-k0.mp3"
   },
   {
    "en": "import",
@@ -78,7 +79,8 @@
    "ex_ko": "원자재는 중국에서 수입합니다.",
    "cat": "p",
    "ipa": "/ɪmˈpɔːrt/",
-   "aud": "news/audio/2026-11-17-w1.mp3"
+   "aud": "news/audio/2026-11-17-w1.mp3",
+   "wa": "news/audio/2026-11-17-k1.mp3"
   },
   {
    "en": "record",
@@ -87,7 +89,8 @@
    "ex_ko": "이번 달 매출은 우리 팀의 새 기록입니다.",
    "cat": "t",
    "ipa": "/ˈrɛkərd/",
-   "aud": "news/audio/2026-11-17-w2.mp3"
+   "aud": "news/audio/2026-11-17-w2.mp3",
+   "wa": "news/audio/2026-11-17-k2.mp3"
   },
   {
    "en": "percent",
@@ -96,7 +99,8 @@
    "ex_ko": "가격이 5% 올랐습니다.",
    "cat": "m",
    "ipa": "/pərˈsɛnt/",
-   "aud": "news/audio/2026-11-17-w3.mp3"
+   "aud": "news/audio/2026-11-17-w3.mp3",
+   "wa": "news/audio/2026-11-17-k3.mp3"
   },
   {
    "en": "expected",
@@ -105,7 +109,8 @@
    "ex_ko": "화물은 금요일에 도착할 예정입니다.",
    "cat": "m",
    "ipa": "/ɛkˈspɛktɪd/",
-   "aud": "news/audio/2026-11-17-w4.mp3"
+   "aud": "news/audio/2026-11-17-w4.mp3",
+   "wa": "news/audio/2026-11-17-k4.mp3"
   }
  ],
  "kind": "biz"

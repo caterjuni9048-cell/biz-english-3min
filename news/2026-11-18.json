@@ -70,7 +70,8 @@
    "ex_ko": "어제 대만으로 물건을 선적했습니다.",
    "cat": "m",
    "ipa": "/ʃɪpt/",
-   "aud": "news/audio/2026-11-18-w0.mp3"
+   "aud": "news/audio/2026-11-18-w0.mp3",
+   "wa": "news/audio/2026-11-18-k0.mp3"
   },
   {
    "en": "exports",
@@ -79,7 +80,8 @@
    "ex_ko": "이번 분기 아시아 수출이 많이 늘었습니다.",
    "cat": "t",
    "ipa": "/ˈɛkspɔːrts/",
-   "aud": "news/audio/2026-11-18-w1.mp3"
+   "aud": "news/audio/2026-11-18-w1.mp3",
+   "wa": "news/audio/2026-11-18-k1.mp3"
   },
   {
    "en": "imports",
@@ -88,7 +90,8 @@
    "ex_ko": "10월 수입 자료를 보내 주시겠어요?",
    "cat": "m",
    "ipa": "/ɪmˈpɔːrts/",
-   "aud": "news/audio/2026-11-18-w2.mp3"
+   "aud": "news/audio/2026-11-18-w2.mp3",
+   "wa": "news/audio/2026-11-18-k2.mp3"
   },
   {
    "en": "trade surplus",
@@ -97,7 +100,8 @@
    "ex_ko": "그 나라는 지난달 무역 흑자를 냈습니다.",
    "cat": "t",
    "ipa": "/ˈtreɪd ˈsɜːrplʌs/",
-   "aud": "news/audio/2026-11-18-w3.mp3"
+   "aud": "news/audio/2026-11-18-w3.mp3",
+   "wa": "news/audio/2026-11-18-k3.mp3"
   },
   {
    "en": "buyer",
@@ -106,7 +110,8 @@
    "ex_ko": "가장 큰 바이어가 다음 달 더 주문하고 싶어 합니다.",
    "cat": "p",
    "ipa": "/baɪər/",
-   "aud": "news/audio/2026-11-18-w4.mp3"
+   "aud": "news/audio/2026-11-18-w4.mp3",
+   "wa": "news/audio/2026-11-18-k4.mp3"
   }
  ]
 }

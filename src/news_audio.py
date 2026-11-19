@@ -53,6 +53,14 @@ def main(jpath):
         rel = 'news/audio/' + nid + '-w' + str(k) + '.mp3'
         subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', wav, '-ac', '1', '-ar', '24000', '-b:a', '64k', root + '/' + rel], check=True)
         w['aud'] = rel; exmap[w['ex']] = rel
+        # 단어 발음(단어 스피드 퀴즈용)
+        s3, sr3 = kok.create(w['en'].replace('~', '').strip(' ,'), voice='af_heart', speed=0.85, lang='en-us')
+        s3 = s3 / max(1e-6, float(abs(s3).max())) * 0.85
+        pad3 = np.zeros(int(sr3 * 0.08), np.float32)
+        sf.write(wav, np.concatenate([pad3, s3.astype(np.float32), pad3]), sr3)
+        relw = 'news/audio/' + nid + '-k' + str(k) + '.mp3'
+        subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', wav, '-ac', '1', '-ar', '24000', '-b:a', '40k', root + '/' + relw], check=True)
+        w['wa'] = relw
     json.dump(n, open(jpath, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     json.dump(exmap, open(mp, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     print('word audio:', len(ws))

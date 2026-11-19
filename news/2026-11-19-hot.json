@@ -70,7 +70,8 @@
    "ex_ko": "보이저의 큰 이정표 소식 들으셨어요?",
    "cat": "p",
    "ipa": "/ˈmaɪlstoʊn/",
-   "aud": "news/audio/2026-11-19-hot-w0.mp3"
+   "aud": "news/audio/2026-11-19-hot-w0.mp3",
+   "wa": "news/audio/2026-11-19-hot-k0.mp3"
   },
   {
    "en": "spacecraft",
@@ -79,7 +80,8 @@
    "ex_ko": "그 우주선이 그렇게 오랜 세월이 지나도 작동한다니 놀라워요.",
    "cat": "p",
    "ipa": "/ˈspeɪskræft/",
-   "aud": "news/audio/2026-11-19-hot-w1.mp3"
+   "aud": "news/audio/2026-11-19-hot-w1.mp3",
+   "wa": "news/audio/2026-11-19-hot-k1.mp3"
   },
   {
    "en": "distance",
@@ -88,7 +90,8 @@
    "ex_ko": "우리 사무실 사이 거리는 그렇게 멀지 않아요.",
    "cat": "t",
    "ipa": "/ˈdɪstəns/",
-   "aud": "news/audio/2026-11-19-hot-w2.mp3"
+   "aud": "news/audio/2026-11-19-hot-w2.mp3",
+   "wa": "news/audio/2026-11-19-hot-k2.mp3"
   },
   {
    "en": "celebrate",
@@ -97,7 +100,8 @@
    "ex_ko": "프로젝트 마무리를 함께 축하해요.",
    "cat": "t",
    "ipa": "/ˈsɛləˌbreɪt/",
-   "aud": "news/audio/2026-11-19-hot-w3.mp3"
+   "aud": "news/audio/2026-11-19-hot-w3.mp3",
+   "wa": "news/audio/2026-11-19-hot-k3.mp3"
   },
   {
    "en": "huge",
@@ -106,7 +110,8 @@
    "ex_ko": "이번 주 우주 분야에서 엄청난 뉴스였어요.",
    "cat": "p",
    "ipa": "/hjuːdʒ/",
-   "aud": "news/audio/2026-11-19-hot-w4.mp3"
+   "aud": "news/audio/2026-11-19-hot-w4.mp3",
+   "wa": "news/audio/2026-11-19-hot-k4.mp3"
   }
  ]
 }
