@@ -397,7 +397,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v16.1",APP_DATE="2026-11-19";
+var APP_VER="v17",APP_DATE="2026-11-19";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -1257,13 +1257,26 @@ function smoothLine(p,gap){var N=p.length,i,q,out=p.slice();
   for(i=0;i<N;i++){if(out[i]!==null)continue;var a=i-1;while(i<N&&out[i]===null)i++;if(a>=0&&i<N&&i-a-1<=gap){for(q=a+1;q<i;q++)out[q]=out[a]+(out[i]-out[a])*(q-a)/(i-a);}}
   var av=out.slice();for(i=0;i<N;i++){if(out[i]===null)continue;var s2=0,c=0;for(q=i-2;q<=i+2;q++)if(q>=0&&q<N&&out[q]!==null){s2+=out[q];c++;}av[i]=s2/c;}
   return av;}
-function pgCurve(an,N){
-  var st=semis(an.f0),M=st.length,pit=[],en=[];
+/* 끊긴 곳 이어 그리기: 첫 소리~마지막 소리 사이의 빈 곳(쉬는 틈·s,t,k 같은 바람 소리)을 앞뒤 높이로 잇고, 억양처럼 부드럽게 다듬는다 */
+function contour(p,r){var N=p.length,a=-1,b=-1,i,q,out=p.slice();for(i=0;i<N;i++)if(p[i]!==null){if(a<0)a=i;b=i;}
+  if(a<0)return out;
+  for(i=a;i<=b;i++){if(out[i]!==null)continue;var s0=i-1;while(i<=b&&out[i]===null)i++;for(q=s0+1;q<i;q++)out[q]=out[s0]+(out[i]-out[s0])*(q-s0)/(i-s0);}
+  for(var pass=0;pass<2;pass++){var t=out.slice();for(i=a;i<=b;i++){var s2=0,c=0;for(q=i-r;q<=i+r;q++)if(q>=a&&q<=b){var w=r+1-Math.abs(q-i);s2+=t[q]*w;c+=w;}out[i]=s2/c;}}
+  return out;}
+function curveFrames(st,db,mx,N){
+  var M=st.length,pit=[],en=[];
   for(var i=0;i<N;i++){var a=Math.floor(i*M/N),b=Math.max(a+1,Math.floor((i+1)*M/N)),s=0,c=0,e=-200;
-    for(var k=a;k<b&&k<M;k++){if(st[k]!==null){s+=st[k];c++;}if(an.db[k]>e)e=an.db[k];}
-    pit.push(c?s/c:null);en.push(Math.max(0,Math.min(1,(e-(an.mx-40))/40)));}
+    for(var k=a;k<b&&k<M;k++){if(st[k]!==null){s+=st[k];c++;}if(db[k]>e)e=db[k];}
+    pit.push(c?s/c:null);en.push(Math.max(0,Math.min(1,(e-(mx-40))/40)));}
   return {pit:smoothLine(pit,10),en:en};
 }
+function pgCurve(an,N){return curveFrames(semis(an.f0),an.db,an.mx,N);}
+/* 단어 위치 맞추기(DTW): 소리 크기·울림 모양이 비슷한 곳끼리 짝지어, 빠르게/느리게 말한 부분을 늘리고 줄인다 */
+function lvFeat(an){var o=[];for(var k=0;k+1<an.db.length;k+=2){var e=(Math.max(an.db[k],an.db[k+1])-(an.mx-40))/40;o.push(Math.max(0,Math.min(1,e))+((an.f0[k]>0||an.f0[k+1]>0)?0.3:0));}return o;}
+function dtwMap(a,b){var n=a.length,m=b.length,W=m+1,D=new Float32Array((n+1)*W).fill(1e9),band=Math.max(Math.abs(n-m)+8,Math.round(Math.max(n,m)*0.3)),i,j;D[0]=0;
+  for(i=1;i<=n;i++){var c0=Math.round(i*m/n),j0=Math.max(1,c0-band),j1=Math.min(m,c0+band);for(j=j0;j<=j1;j++){D[i*W+j]=Math.abs(a[i-1]-b[j-1])+Math.min(D[(i-1)*W+j],D[i*W+j-1],D[(i-1)*W+j-1]);}}
+  var acc={},i2=n,j2=m;while(i2>0&&j2>0){(acc[i2-1]=acc[i2-1]||[]).push(j2-1);var d=D[(i2-1)*W+j2-1],u=D[(i2-1)*W+j2],l=D[i2*W+j2-1];if(d<=u&&d<=l){i2--;j2--;}else if(u<l)i2--;else j2--;}
+  var map=[];for(i=0;i<n;i++){var L=acc[i];map.push(L?L.reduce(function(x,y){return x+y;},0)/L.length:(i?map[i-1]:0));}return map;}
 function pgCorr(a,b){var x=[],y=[];for(var i=0;i<a.length;i++)if(a[i]!==null&&b[i]!==null){x.push(a[i]);y.push(b[i]);}
   if(x.length<12)return null;var mx=0,my=0;x.forEach(function(v,i){mx+=v;my+=y[i];});mx/=x.length;my/=y.length;var sxy=0,sx=0,sy=0;x.forEach(function(v,i){sxy+=(v-mx)*(y[i]-my);sx+=(v-mx)*(v-mx);sy+=(y[i]-my)*(y[i]-my);});return sxy/Math.sqrt(sx*sy+1e-9);}
 var LV={id:"",phase:"idle",nat:null,natErr:"",raf:0,live:null,res:null,busy:false,dctx:null};
@@ -1274,7 +1287,7 @@ function lvNative(id){
   var src=audSrc(id),ctx=lvCtx();if(!src||!ctx)return Promise.reject(0);
   var get=/^data:/.test(src)?Promise.resolve(b64buf(src)):fetch(src).then(function(r){if(!r.ok)throw 0;return r.arrayBuffer();});
   return get.then(function(ab){return decodeAud(ctx,ab);}).then(function(nb){
-    var an=pgAnalyze(nb.getChannelData(0),nb.sampleRate);an.st=smoothLine(semis(an.f0).map(function(v,i,a){return v;}),15);an.total=nb.duration;
+    var an=pgAnalyze(nb.getChannelData(0),nb.sampleRate);an.real=smoothLine(semis(an.f0),15);an.st=contour(an.real,6);an.total=nb.duration;
     if(LV.id===id)LV.nat=an;return an;});
 }
 /* 그림: 가로축은 원어민 말하기 시간 × 1.3 */
@@ -1298,6 +1311,8 @@ function lvSVG(){
   if(LV.phase==="done"&&LV.res){
     var R=LV.res;if(R.none)return h+"</svg>";var N=R.A.pit.length,X=function(i){return 8+i*(LVW-16)/(N-1);};
     if(R.mark)h+='<rect data-act="lvseg" x="'+X(R.mark[0])+'" y="6" width="'+(X(R.mark[1])-X(R.mark[0]))+'" height="'+(LVH-12)+'" rx="6" style="fill:var(--bad);opacity:.16;cursor:pointer"/>';
+    h+=ln("",lvPath(R.A.line.map(function(v,i){return [X(i),v];})),"var(--accent)",3.5,".45");
+    h+=ln("",lvPath(R.B.line.map(function(v,i){return [X(i),v];})),"var(--near)",3,".45");
     h+=ln("",lvPath(R.A.pit.map(function(v,i){return [X(i),v];})),"var(--accent)",3.5);
     h+=ln("",lvPath(R.B.pit.map(function(v,i){return [X(i),v];})),"var(--near)",3);
     return h+"</svg>";
@@ -1319,7 +1334,7 @@ function lvLiveSemis(L){var v=L.fr.filter(function(f){return f>0;});if(v.length<
   if(!L.med||L.fr.length-L.medAt>=10){var s=v.slice().sort(function(a,b){return a-b;});L.med=s[Math.floor(s.length/2)];L.medAt=L.fr.length;}
   var st=smoothLine(foldSemis(L.fr,L.med),8),n=LV.nat,sh=0;
   if(n){var d=0,c=0;st.forEach(function(v,k){var q=Math.round(k*L.hop/n.hop);if(v!==null&&n.st[q]!==null&&n.st[q]!==undefined){d+=n.st[q]-v;c++;}});if(c>=5)sh=Math.max(-6,Math.min(6,d/c));}
-  return st.map(function(v){return v===null?null:Math.max(-9,Math.min(9,v+sh));});}
+  return contour(st.map(function(v){return v===null?null:Math.max(-9,Math.min(9,v+sh));}),3);}
 /* 움직이는 부분(선 모양·세로 막대·단어 밑줄)만 바꾼다. 그림 전체를 매번 다시 만들지 않아 버벅임이 줄어든다 */
 function lvDraw(){var el=document.getElementById("lvsvg");
   if(el){if(el.getAttribute("data-k")!==lvKey())el.outerHTML=lvSVG();else{var dy=lvDyn(),a=el.querySelector("#lvA"),b=el.querySelector("#lvB"),hd=el.querySelector("#lvHd");
@@ -1361,20 +1376,27 @@ function lvResult(id){
   if(LV.busy)return;LV.busy=true;
   var mine=REC.last.data,msr=AI.ctx.sampleRate;
   lvNative(id).then(function(n){
-    var ma=pgAnalyze(mine,msr),A=pgCurve(n,120),B=pgCurve(ma,120);
-    var ri=pgCorr(A.pit,B.pit),rr=pgCorr(A.en,B.en),sp=ma.speech/Math.max(0.2,n.speech),best=0,mark=null;
-    for(var i=0;i+16<=120;i+=2){var s=0,c=0;for(var k=i;k<i+16;k++)if(A.pit[k]!==null&&B.pit[k]!==null){s+=Math.abs(A.pit[k]-B.pit[k]);c++;}if(c>=8&&s/c>best){best=s/c;mark=[i,i+15];}}
+    var ma=pgAnalyze(mine,msr),nS=semis(n.f0),mS=semis(ma.f0),fa=lvFeat(n),fb=lvFeat(ma),map=fa.length&&fb.length?dtwMap(fa,fb):null;
+    var mAl=[],dbAl=[],k;
+    for(k=0;k<nS.length;k++){var mj=map?Math.min(mS.length-1,Math.round(map[Math.min(map.length-1,k>>1)]*2+(k&1))):Math.min(mS.length-1,Math.round(k*mS.length/nS.length));mAl.push(mS[mj]);dbAl.push(ma.db[mj]);}
+    var A=curveFrames(nS,n.db,n.mx,120),B=curveFrames(mAl,dbAl,ma.mx,120);
+    var ri=pgCorr(A.pit,B.pit),rr=null;
+    if(map&&fb.length>1){var dev=0;for(k=0;k<map.length;k++)dev+=Math.abs(map[k]/(fb.length-1)-k/Math.max(1,map.length-1));rr=Math.max(0,1-6*dev/map.length);}
+    var sp=ma.speech/Math.max(0.2,n.speech),best=0,mark=null;
+    for(var i=0;i+16<=120;i+=2){var s=0,c=0;for(k=i;k<i+16;k++)if(A.pit[k]!==null&&B.pit[k]!==null){s+=Math.abs(A.pit[k]-B.pit[k]);c++;}if(c>=8&&s/c>best){best=s/c;mark=[i,i+15];}}
     if(best<2.5)mark=null;
-    LV.res={A:A,B:B,ri:ri,rr:rr,sp:sp,nd:n.speech,md:ma.speech,mark:mark,na:n,ma:ma};LV.busy=false;if(LV.id===id)render();
+    A.line=contour(A.pit,3);B.line=contour(B.pit,3);
+    var mapT=function(fr){var kk=Math.min(nS.length-1,Math.max(0,Math.floor(fr*nS.length)));return map?Math.min(ma.dur,map[Math.min(map.length-1,kk>>1)]*2*ma.hop):fr*ma.dur;};
+    LV.res={A:A,B:B,ri:ri,rr:rr,sp:sp,nd:n.speech,md:ma.speech,mark:mark,na:n,ma:ma,mapT:mapT};LV.busy=false;if(LV.id===id)render();
   },function(){LV.busy=false;LV.res={none:true};render();});
 }
 function lvPlaySeg(){
   var R=LV.res;if(!R||!R.mark||!player)return;
-  var f0=R.mark[0]/120,f1=(R.mark[1]+1)/120,n=R.na,m=R.ma,rate=player.playbackRate||1;
+  var f0=R.mark[0]/120,f1=(R.mark[1]+1)/120,n=R.na,m=R.ma,rate=player.playbackRate||1,ms0=R.mapT(f0),ms1=Math.max(ms0+0.2,R.mapT(f1));
   speak(LV.id);player.currentTime=n.t0+f0*n.dur;
   setTimeout(function(){player.pause();setTimeout(function(){
     if(!REC.last||!AI.ctx)return;stopMine();var a=REC.last.data,b=AI.ctx.createBuffer(1,a.length,AI.ctx.sampleRate);if(b.copyToChannel)b.copyToChannel(a,0);else b.getChannelData(0).set(a);
-    var s2=AI.ctx.createBufferSource();s2.buffer=b;s2.connect(AI.ctx.destination);s2.start(0,m.t0+f0*m.dur,(f1-f0)*m.dur+0.05);REC.src=s2;},350);},((f1-f0)*n.dur/rate)*1000+60);
+    var s2=AI.ctx.createBufferSource();s2.buffer=b;s2.connect(AI.ctx.destination);s2.start(0,m.t0+ms0,ms1-ms0+0.05);REC.src=s2;},350);},((f1-f0)*n.dur/rate)*1000+60);
 }
 function cmpHTML(id){
   if(!aiSupported())return "";
@@ -1395,7 +1417,7 @@ function cmpHTML(id){
     else if(!R.none){var pct=function(r){return r===null?"–":Math.round(Math.max(0,r)*100)+"%";};
       var spd=Math.abs(R.sp-1)<0.1?"비슷함":(R.sp>1?R.sp.toFixed(1)+"배 느림":(1/R.sp).toFixed(1)+"배 빠름");
       h+='<div class="pgstat"><div><b>'+pct(R.ri)+'</b><span>억양 비슷함</span></div><div><b>'+pct(R.rr)+'</b><span>리듬 비슷함</span></div><div><b>'+spd+'</b><span>말한 시간 '+R.nd.toFixed(1)+'초 / '+R.md.toFixed(1)+'초</span></div></div>';
-      h+='<p class="note">'+(R.mark?'붉은 칸이 원어민과 가장 다른 부분입니다. 붉은 칸이나 아래 버튼을 누르면 그 부분만 원어민 → 내 목소리로 들려줍니다.':'크게 다른 부분이 없습니다. 잘했습니다.')+' 발음이 맞았는지 채점하는 것은 아닙니다.</p>';
+      h+='<p class="note">'+(R.mark?'진한 선은 실제 목소리, 흐린 선은 쉬는 틈을 이어 그린 부분입니다. 붉은 칸이 원어민과 가장 다른 부분입니다. 붉은 칸이나 아래 버튼을 누르면 그 부분만 원어민 → 내 목소리로 들려줍니다.':'진한 선은 실제 목소리, 흐린 선은 쉬는 틈을 이어 그린 부분입니다. 크게 다른 부분이 없습니다. 잘했습니다.')+' 발음이 맞았는지 채점하는 것은 아닙니다.</p>';
       if(R.mark)h+='<button class="ghost small" data-act="lvseg">차이 큰 부분만 비교해 듣기</button>';}
     h+='<div class="two"><button class="cta alt" data-act="lvrec" data-id="'+id+'">다시 따라 말하기</button><button class="cta alt" data-act="both" data-id="'+id+'">원어민 → 나 이어 듣기</button></div>';
     h+='<div class="two"><button class="ghost small" data-act="lvnat" data-id="'+id+'">원어민 다시 보기</button><button class="ghost small" data-act="mine">내 목소리만</button></div>';
