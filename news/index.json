@@ -61,5 +61,33 @@
 "kind": "ent",
 "title": "India Wins a Record 10th SAFF Football Title",
 "title_ko": "인도, 남아시아 축구 대회 역대 최다 10번째 우승"
+},
+{
+"id": "2026-11-21",
+"date": "2026-11-21",
+"kind": "biz",
+"title": "Strike Risk at the Ports of Los Angeles and Long Beach",
+"title_ko": "LA·롱비치 항만에 파업 위기"
+},
+{
+"id": "2026-11-21-biz2",
+"date": "2026-11-21",
+"kind": "biz",
+"title": "Walmart Raises Its Outlook for the Third Time",
+"title_ko": "월마트, 올해 세 번째로 전망 상향"
+},
+{
+"id": "2026-11-21-hot",
+"date": "2026-11-21",
+"kind": "hot",
+"title": "A Van Gogh Painting Sells for a Record Price",
+"title_ko": "반 고흐 그림, 최고가에 팔려"
+},
+{
+"id": "2026-11-21-ent",
+"date": "2026-11-21",
+"kind": "ent",
+"title": "MLB Asks About Korean Star Koo Ja-wook",
+"title_ko": "MLB, 한국 스타 구자욱 신분 조회"
 }
 ]

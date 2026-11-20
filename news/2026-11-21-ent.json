@@ -1,0 +1,129 @@
+{
+ "date": "2026-11-21",
+ "kind": "ent",
+ "title": "MLB Asks About Korean Star Koo Ja-wook",
+ "title_ko": "MLB, 한국 스타 구자욱 신분 조회",
+ "paras": [
+  "Major League Baseball has shown interest in Koo Ja-wook, a top Korean baseball player. On November 20, the KBO, Korea's pro baseball league, said MLB had formally asked about his status. This is the first step before an American team can talk with a Korean player.",
+  "The KBO answered that Koo is a free agent. This means he can sign with any team in Korea or in another country. He does not need to go through the posting system, so a new team would not have to pay a transfer fee to his old team.",
+  "Koo has played for the Samsung Lions for his whole career. He was named the MVP of this year's Korean Series. MLB did not say which teams are interested, so baseball fans in Korea will have to wait for more news."
+ ],
+ "paras_ko": [
+  "메이저리그(MLB)가 한국 최고 야구 선수 중 한 명인 구자욱에게 관심을 보였습니다. 11월 20일 한국 프로야구 리그인 KBO는 MLB가 공식적으로 그의 신분을 조회했다고 밝혔습니다. 이는 미국 팀이 한국 선수와 이야기를 나누기 전의 첫 단계입니다.",
+  "KBO는 구자욱이 자유계약선수(FA)라고 답했습니다. 한국이든 다른 나라든 어느 팀과도 계약할 수 있다는 뜻입니다. 포스팅 제도를 거칠 필요가 없어서, 새 팀은 원래 팀에 이적료를 내지 않아도 됩니다.",
+  "구자욱은 선수 생활 내내 삼성 라이온즈에서 뛰었습니다. 올해 한국시리즈 MVP로 뽑혔습니다. MLB는 어느 팀이 관심을 보였는지 밝히지 않아, 한국 야구팬들은 다음 소식을 기다려야 합니다."
+ ],
+ "sources": [
+  {
+   "name": "Korea Times",
+   "url": "https://www.koreatimes.co.kr/sports/20261120/mlb-tenders-status-check-on-korean-series-mvp-koo-ja-wook",
+   "published": "2026-11-20"
+  },
+  {
+   "name": "Korea JoongAng Daily",
+   "url": "https://www.koreajoongangdaily.com/sports/mlb-formally-asks-kbo-for-status-check-on-korean-series-mvp-koo-jawook/12983436",
+   "published": "2026-11-20"
+  },
+  {
+   "name": "SBS",
+   "url": "https://news.sbs.co.kr/english/article.do?news_id=N1008856466",
+   "published": "2026-11-20"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Koo Ja-wook retired from baseball",
+    "Koo Ja-wook joined a Japanese team",
+    "MLB formally asked about Koo Ja-wook's status"
+   ],
+   "a": 2,
+   "why_ko": "첫 문단: MLB가 구자욱의 신분을 공식 조회했습니다."
+  },
+  {
+   "q": "Why doesn't a new team need to pay a transfer fee?",
+   "opts": [
+    "Koo is a free agent",
+    "Koo has no agent",
+    "The KBO pays the fee"
+   ],
+   "a": 0,
+   "why_ko": "둘째 문단: FA라서 포스팅 제도를 거치지 않습니다."
+  },
+  {
+   "q": "Which team has Koo played for?",
+   "opts": [
+    "The Doosan Bears",
+    "The Samsung Lions",
+    "The LG Twins"
+   ],
+   "a": 1,
+   "why_ko": "셋째 문단: 선수 생활 내내 삼성 라이온즈에서 뛰었습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "interest",
+   "ko": "관심",
+   "pos": "명",
+   "easy": "wanting to know more",
+   "ex": "Many teams have shown interest in him.",
+   "ex_ko": "많은 팀이 그에게 관심을 보였어요.",
+   "cat": "p",
+   "ipa": "/ˈɪntrɛst/",
+   "aud": "news/audio/2026-11-21-ent-w0.mp3",
+   "wa": "news/audio/2026-11-21-ent-k0.mp3"
+  },
+  {
+   "en": "formally",
+   "ko": "공식적으로",
+   "pos": "부",
+   "easy": "officially",
+   "ex": "We will formally announce it next week.",
+   "ex_ko": "다음 주에 공식적으로 발표할 예정이에요.",
+   "cat": "t",
+   "ipa": "/ˈfɔːrməli/",
+   "aud": "news/audio/2026-11-21-ent-w1.mp3",
+   "wa": "news/audio/2026-11-21-ent-k1.mp3"
+  },
+  {
+   "en": "sign",
+   "ko": "계약하다, 서명하다",
+   "pos": "동",
+   "easy": "agree to join",
+   "ex": "Do you think he will sign with an American team?",
+   "ex_ko": "그가 미국 팀과 계약할 것 같아요?",
+   "cat": "p",
+   "ipa": "/saɪn/",
+   "aud": "news/audio/2026-11-21-ent-w2.mp3",
+   "wa": "news/audio/2026-11-21-ent-k2.mp3"
+  },
+  {
+   "en": "named",
+   "ko": "(~로) 선정된",
+   "pos": "동",
+   "base": "name",
+   "easy": "chosen as",
+   "ex": "She was named the best player of the year.",
+   "ex_ko": "그녀가 올해의 선수로 선정됐어요.",
+   "cat": "p",
+   "ipa": "/neɪmd/",
+   "aud": "news/audio/2026-11-21-ent-w3.mp3",
+   "wa": "news/audio/2026-11-21-ent-k3.mp3"
+  },
+  {
+   "en": "fans",
+   "ko": "팬",
+   "pos": "명",
+   "base": "fan",
+   "easy": "people who love a team",
+   "ex": "Baseball fans in Korea must be so excited!",
+   "ex_ko": "한국 야구팬들 정말 신나겠어요!",
+   "cat": "p",
+   "ipa": "/fænz/",
+   "aud": "news/audio/2026-11-21-ent-w4.mp3",
+   "wa": "news/audio/2026-11-21-ent-k4.mp3"
+  }
+ ]
+}

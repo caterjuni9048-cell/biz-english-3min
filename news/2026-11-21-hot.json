@@ -1,0 +1,127 @@
+{
+ "date": "2026-11-21",
+ "kind": "hot",
+ "title": "A Van Gogh Painting Sells for a Record Price",
+ "title_ko": "반 고흐 그림, 최고가에 팔려",
+ "paras": [
+  "A painting by Vincent van Gogh sold for 190.4 million dollars at Sotheby's in New York on November 18. The painting shows chestnut trees in flower, and van Gogh made it in 1890. It is now the most expensive van Gogh ever sold at auction.",
+  "The old record was 117.2 million dollars. That painting was sold at Christie's in 2022. The new price includes the buyer's fees.",
+  "The sale almost did not happen. A family said the painting had been sold unfairly in the 1930s, during the Nazi period. Just before the auction, the owners and this family made an agreement, so the sale could go ahead. The painting was part of a group of works from one private collection. It is a great story to share if your partners enjoy art."
+ ],
+ "paras_ko": [
+  "빈센트 반 고흐의 그림이 11월 18일 뉴욕 소더비 경매에서 1억 9,040만 달러에 팔렸습니다. 꽃이 핀 밤나무를 그린 이 작품은 1890년에 그려졌습니다. 이제 경매에서 팔린 반 고흐 작품 가운데 가장 비싼 그림입니다.",
+  "이전 기록은 1억 1,720만 달러였습니다. 그 그림은 2022년 크리스티 경매에서 팔렸습니다. 새 가격에는 구매자 수수료가 포함돼 있습니다.",
+  "이번 판매는 하마터면 무산될 뻔했습니다. 한 가문이 이 그림이 1930년대 나치 시대에 부당하게 팔렸다고 주장했습니다. 경매 직전 소유주와 이 가문이 합의해 판매가 진행될 수 있었습니다. 이 그림은 한 개인 소장품 묶음의 일부였습니다. 거래처가 미술을 좋아한다면 나누기 좋은 이야기입니다."
+ ],
+ "sources": [
+  {
+   "name": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/19/sothebys-van-gogh-painting-record-auction.html",
+   "published": "2026-11-19"
+  },
+  {
+   "name": "The Washington Post",
+   "url": "https://www.washingtonpost.com/style/2026/11/19/van-gogh-painting-nets-record-1904m-after-dispute-over-its-history/",
+   "published": "2026-11-19"
+  },
+  {
+   "name": "ARTnews",
+   "url": "https://www.artnews.com/art-news/market/van-gogh-auction-record-sothebys-chataigniers-en-fleurs-2026-1234806413/",
+   "published": "2026-11-19"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "A van Gogh painting was stolen",
+    "A van Gogh painting sold for a record price",
+    "A new van Gogh museum opened"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 반 고흐 그림이 경매 최고가에 팔렸습니다."
+  },
+  {
+   "q": "What was the old record?",
+   "opts": [
+    "117.2 million dollars",
+    "190.4 million dollars",
+    "50 million dollars"
+   ],
+   "a": 0,
+   "why_ko": "둘째 문단: 이전 기록은 1억 1,720만 달러입니다."
+  },
+  {
+   "q": "Why did the sale almost not happen?",
+   "opts": [
+    "The painting was damaged",
+    "Nobody wanted to buy it",
+    "A family said it was sold unfairly in the 1930s"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 한 가문이 1930년대에 부당하게 팔렸다고 주장했습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "auction",
+   "ko": "경매",
+   "pos": "명",
+   "easy": "public sale",
+   "ex": "Did you hear about the van Gogh auction?",
+   "ex_ko": "반 고흐 경매 소식 들으셨어요?",
+   "cat": "p",
+   "ipa": "/ˈɔːkʃən/",
+   "aud": "news/audio/2026-11-21-hot-w0.mp3",
+   "wa": "news/audio/2026-11-21-hot-k0.mp3"
+  },
+  {
+   "en": "expensive",
+   "ko": "비싼",
+   "pos": "형",
+   "easy": "costs a lot",
+   "ex": "Hotels in New York are really expensive this month.",
+   "ex_ko": "이번 달 뉴욕 호텔이 정말 비싸요.",
+   "cat": "p",
+   "ipa": "/ɛkˈspɛnsɪv/",
+   "aud": "news/audio/2026-11-21-hot-w1.mp3",
+   "wa": "news/audio/2026-11-21-hot-k1.mp3"
+  },
+  {
+   "en": "record",
+   "ko": "기록",
+   "pos": "명",
+   "easy": "best result",
+   "ex": "That price is a new world record, isn't it?",
+   "ex_ko": "그 가격이 세계 신기록이죠?",
+   "cat": "t",
+   "ipa": "/ˈrɛkərd/",
+   "aud": "news/audio/2026-11-21-hot-w2.mp3",
+   "wa": "news/audio/2026-11-21-hot-k2.mp3"
+  },
+  {
+   "en": "agreement",
+   "ko": "합의, 계약",
+   "pos": "명",
+   "easy": "deal",
+   "ex": "I'm glad we reached an agreement so quickly.",
+   "ex_ko": "이렇게 빨리 합의해서 기뻐요.",
+   "cat": "t",
+   "ipa": "/əɡˈriːmənt/",
+   "aud": "news/audio/2026-11-21-hot-w3.mp3",
+   "wa": "news/audio/2026-11-21-hot-k3.mp3"
+  },
+  {
+   "en": "collection",
+   "ko": "소장품, 수집품",
+   "pos": "명",
+   "easy": "group of things",
+   "ex": "The museum has a great collection of paintings.",
+   "ex_ko": "그 박물관은 멋진 그림 소장품이 있어요.",
+   "cat": "p",
+   "ipa": "/kəˈlɛkʃən/",
+   "aud": "news/audio/2026-11-21-hot-w4.mp3",
+   "wa": "news/audio/2026-11-21-hot-k4.mp3"
+  }
+ ]
+}

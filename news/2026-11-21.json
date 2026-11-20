@@ -1,0 +1,127 @@
+{
+ "date": "2026-11-21",
+ "kind": "biz",
+ "title": "Strike Risk at the Ports of Los Angeles and Long Beach",
+ "title_ko": "LA·롱비치 항만에 파업 위기",
+ "paras": [
+  "A small group of port workers may go on strike at Los Angeles and Long Beach, the busiest port complex in the United States. About 250 watchmen, who guard the container terminals, belong to a union called ILWU Local 26. Their contract was set to end at 12:01 a.m. on Saturday, November 21.",
+  "The union did not want to extend the contract again. The employers' group, the Pacific Maritime Association, said there was little movement in the talks. Both sides kept talking this week, but they have not reached a deal yet.",
+  "The watchmen group is small, but the effect could be big. Thousands of other port workers have a separate contract. However, they may refuse to cross a picket line. If that happens, work at many terminals could slow down. Shippers with cargo to Southern California should watch the news closely."
+ ],
+ "paras_ko": [
+  "미국에서 가장 붐비는 항만 단지인 로스앤젤레스·롱비치에서 소규모 항만 노동자들이 파업할 수 있습니다. 컨테이너 터미널을 지키는 경비원 약 250명은 ILWU 로컬 26이라는 노조에 속해 있습니다. 이들의 계약은 11월 21일 토요일 0시 1분에 끝날 예정이었습니다.",
+  "노조는 계약을 다시 연장하고 싶어 하지 않았습니다. 사용자 단체인 태평양해사협회(PMA)는 협상에 진전이 거의 없다고 밝혔습니다. 양측은 이번 주에도 협상을 이어 갔지만 아직 합의하지 못했습니다.",
+  "경비원 노조는 작지만, 영향은 클 수 있습니다. 다른 항만 노동자 수천 명은 별도의 계약을 맺고 있습니다. 하지만 이들이 피켓 라인을 넘지 않을 수도 있습니다. 그렇게 되면 많은 터미널의 작업이 느려질 수 있습니다. 남부 캘리포니아로 화물을 보내는 화주는 소식을 잘 지켜봐야 합니다."
+ ],
+ "sources": [
+  {
+   "name": "Seatrade Maritime",
+   "url": "https://www.seatrade-maritime.com/ports-logistics/la-long-beach-port-complex-braces-for-strike",
+   "published": "2026-11-20"
+  },
+  {
+   "name": "MyNewsLA",
+   "url": "https://mynewsla.com/business/2026/11/18/possible-strike-looms-over-ports-of-la-long-beach-amid-labor-talks/",
+   "published": "2026-11-18"
+  },
+  {
+   "name": "Maritime Executive",
+   "url": "https://maritime-executive.com/article/ilwu-watchmen-may-strike-at-la-long-beach-with-effects-on-half-the-port",
+   "published": "2026-11-19"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Port watchmen in Los Angeles and Long Beach may go on strike",
+    "The ports of Los Angeles and Long Beach will close forever",
+    "Port workers got a new contract with big raises"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: LA·롱비치 항만 경비원들이 파업할 수 있습니다."
+  },
+  {
+   "q": "When was the watchmen's contract set to end?",
+   "opts": [
+    "At the end of December",
+    "On Saturday, November 21",
+    "Next year"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 11월 21일 토요일 0시 1분에 끝날 예정이었습니다."
+  },
+  {
+   "q": "Why could a small strike have a big effect?",
+   "opts": [
+    "The watchmen drive all the ships",
+    "The ports have no other workers",
+    "Other workers may refuse to cross the picket line"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 다른 노동자들이 피켓 라인을 넘지 않을 수 있습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "strike",
+   "ko": "파업(하다)",
+   "pos": "명",
+   "easy": "stop working",
+   "ex": "Is there any news about the port strike?",
+   "ex_ko": "항만 파업 관련 소식이 있나요?",
+   "cat": "p",
+   "ipa": "/straɪk/",
+   "aud": "news/audio/2026-11-21-w0.mp3",
+   "wa": "news/audio/2026-11-21-k0.mp3"
+  },
+  {
+   "en": "contract",
+   "ko": "계약",
+   "pos": "명",
+   "easy": "agreement",
+   "ex": "Please check the contract before we sign it.",
+   "ex_ko": "서명하기 전에 계약서를 확인해 주세요.",
+   "cat": "m",
+   "ipa": "/ˈkɑːntrækt/",
+   "aud": "news/audio/2026-11-21-w1.mp3",
+   "wa": "news/audio/2026-11-21-k1.mp3"
+  },
+  {
+   "en": "extend",
+   "ko": "연장하다",
+   "pos": "동",
+   "easy": "make longer",
+   "ex": "Can we extend the deadline to next Friday?",
+   "ex_ko": "마감을 다음 주 금요일로 연장할 수 있을까요?",
+   "cat": "m",
+   "ipa": "/ɛkˈstɛnd/",
+   "aud": "news/audio/2026-11-21-w2.mp3",
+   "wa": "news/audio/2026-11-21-k2.mp3"
+  },
+  {
+   "en": "deal",
+   "ko": "합의, 거래",
+   "pos": "명",
+   "easy": "agreement",
+   "ex": "I hope both sides reach a deal soon.",
+   "ex_ko": "양측이 곧 합의하길 바랍니다.",
+   "cat": "t",
+   "ipa": "/diːl/",
+   "aud": "news/audio/2026-11-21-w3.mp3",
+   "wa": "news/audio/2026-11-21-k3.mp3"
+  },
+  {
+   "en": "cargo",
+   "ko": "화물",
+   "pos": "명",
+   "easy": "goods on a ship",
+   "ex": "Our cargo will arrive in Long Beach next week.",
+   "ex_ko": "저희 화물은 다음 주 롱비치에 도착합니다.",
+   "cat": "m",
+   "ipa": "/ˈkɑːrɡoʊ/",
+   "aud": "news/audio/2026-11-21-w4.mp3",
+   "wa": "news/audio/2026-11-21-k4.mp3"
+  }
+ ]
+}

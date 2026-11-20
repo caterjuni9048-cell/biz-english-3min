@@ -1,0 +1,129 @@
+{
+ "date": "2026-11-21",
+ "kind": "biz",
+ "title": "Walmart Raises Its Outlook for the Third Time",
+ "title_ko": "월마트, 올해 세 번째로 전망 상향",
+ "paras": [
+  "Walmart, the largest retailer in the United States, shared strong results on November 19. In its latest quarter, sales rose 5.2 percent to 188.8 billion dollars. The company also raised its forecast for the full year. This is the third time it has done this year.",
+  "Online shopping was a big reason for the growth. More customers ordered goods on the internet and then picked them up at a store or had them delivered to their homes.",
+  "Still, the new forecast was a little more careful than many analysts had expected. The busy holiday shopping season is about to start, and stores are watching how much people will spend. For companies that sell products to US retailers, Walmart's results are a useful sign of demand."
+ ],
+ "paras_ko": [
+  "미국 최대 유통업체 월마트가 11월 19일 좋은 실적을 발표했습니다. 최근 분기 매출은 5.2% 늘어난 1,888억 달러였습니다. 회사는 연간 전망도 올렸습니다. 올해 들어 세 번째입니다.",
+  "온라인 쇼핑이 성장의 큰 이유였습니다. 더 많은 고객이 인터넷으로 물건을 주문한 뒤 매장에서 찾아가거나 집으로 배달받았습니다.",
+  "그래도 새 전망은 많은 분석가의 예상보다 조금 더 신중했습니다. 바쁜 연말 쇼핑 시즌이 곧 시작되고, 매장들은 사람들이 얼마나 쓸지 지켜보고 있습니다. 미국 유통업체에 제품을 파는 회사에게 월마트 실적은 수요를 보여 주는 유용한 신호입니다."
+ ],
+ "sources": [
+  {
+   "name": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/19/walmart-wmt-q3-2026-earnings.html",
+   "published": "2026-11-19"
+  },
+  {
+   "name": "Transport Topics",
+   "url": "https://www.ttnews.com/articles/walmart-earnings-q3-2026",
+   "published": "2026-11-19"
+  },
+  {
+   "name": "The Washington Times",
+   "url": "https://www.washingtontimes.com/news/2026/nov/19/walmart-raises-outlook-year-3rd-time-solid-quarter-fueled-e-commerce/",
+   "published": "2026-11-19"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Walmart closed many stores",
+    "Walmart had strong results and raised its forecast",
+    "Walmart stopped selling online"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 좋은 실적을 내고 연간 전망을 올렸습니다."
+  },
+  {
+   "q": "What was a big reason for the growth?",
+   "opts": [
+    "Online shopping",
+    "Higher gas prices",
+    "New factories"
+   ],
+   "a": 0,
+   "why_ko": "둘째 문단: 온라인 쇼핑이 성장의 큰 이유였습니다."
+  },
+  {
+   "q": "How did analysts see the new forecast?",
+   "opts": [
+    "Much higher than expected",
+    "Exactly as expected",
+    "A little more careful than expected"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 예상보다 조금 더 신중했습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "retailer",
+   "ko": "소매업체, 유통업체",
+   "pos": "명",
+   "easy": "store company",
+   "ex": "We are in talks with a large US retailer.",
+   "ex_ko": "미국 대형 유통업체와 협의 중입니다.",
+   "cat": "t",
+   "ipa": "/ˈriːteɪlər/",
+   "aud": "news/audio/2026-11-21-biz2-w0.mp3",
+   "wa": "news/audio/2026-11-21-biz2-k0.mp3"
+  },
+  {
+   "en": "forecast",
+   "ko": "전망, 예측",
+   "pos": "명",
+   "easy": "guess about the future",
+   "ex": "Could you share your sales forecast for next year?",
+   "ex_ko": "내년 판매 전망을 공유해 주시겠어요?",
+   "cat": "m",
+   "ipa": "/ˈfɔːrkæst/",
+   "aud": "news/audio/2026-11-21-biz2-w1.mp3",
+   "wa": "news/audio/2026-11-21-biz2-k1.mp3"
+  },
+  {
+   "en": "delivered",
+   "ko": "배달된",
+   "pos": "동",
+   "base": "deliver",
+   "easy": "brought",
+   "ex": "The samples were delivered this morning.",
+   "ex_ko": "샘플이 오늘 아침 배달됐습니다.",
+   "cat": "p",
+   "ipa": "/dɪˈlɪvərd/",
+   "aud": "news/audio/2026-11-21-biz2-w2.mp3",
+   "wa": "news/audio/2026-11-21-biz2-k2.mp3"
+  },
+  {
+   "en": "analysts",
+   "ko": "분석가",
+   "pos": "명",
+   "base": "analyst",
+   "easy": "experts",
+   "ex": "Analysts say demand will stay strong.",
+   "ex_ko": "분석가들은 수요가 계속 강할 거라고 합니다.",
+   "cat": "t",
+   "ipa": "/ˈænəˌlɪsts/",
+   "aud": "news/audio/2026-11-21-biz2-w3.mp3",
+   "wa": "news/audio/2026-11-21-biz2-k3.mp3"
+  },
+  {
+   "en": "demand",
+   "ko": "수요",
+   "pos": "명",
+   "easy": "how much people want",
+   "ex": "Demand for our products is rising in the US.",
+   "ex_ko": "미국에서 저희 제품 수요가 늘고 있습니다.",
+   "cat": "t",
+   "ipa": "/dɪˈmænd/",
+   "aud": "news/audio/2026-11-21-biz2-w4.mp3",
+   "wa": "news/audio/2026-11-21-biz2-k4.mp3"
+  }
+ ]
+}
