@@ -71,7 +71,8 @@
    "cat": "p",
    "ipa": "/ˌnɑːmɪˈneɪʃən/",
    "aud": "news/audio/2026-11-18-hot-w0.mp3",
-   "wa": "news/audio/2026-11-18-hot-k0.mp3"
+   "wa": "news/audio/2026-11-18-hot-k0.mp3",
+   "pos": "명"
   },
   {
    "en": "categories",
@@ -81,7 +82,9 @@
    "cat": "t",
    "ipa": "/ˈkætɪɡəriz/",
    "aud": "news/audio/2026-11-18-hot-w1.mp3",
-   "wa": "news/audio/2026-11-18-hot-k1.mp3"
+   "wa": "news/audio/2026-11-18-hot-k1.mp3",
+   "pos": "명",
+   "base": "category"
   },
   {
    "en": "stood out",
@@ -91,7 +94,8 @@
    "cat": "t",
    "ipa": "/ˈstʊdˈ aʊt/",
    "aud": "news/audio/2026-11-18-hot-w2.mp3",
-   "wa": "news/audio/2026-11-18-hot-k2.mp3"
+   "wa": "news/audio/2026-11-18-hot-k2.mp3",
+   "pos": "구"
   },
   {
    "en": "ceremony",
@@ -101,7 +105,8 @@
    "cat": "p",
    "ipa": "/ˈsɛrɪməni/",
    "aud": "news/audio/2026-11-18-hot-w3.mp3",
-   "wa": "news/audio/2026-11-18-hot-k3.mp3"
+   "wa": "news/audio/2026-11-18-hot-k3.mp3",
+   "pos": "명"
   },
   {
    "en": "trophy",
@@ -111,7 +116,8 @@
    "cat": "p",
    "ipa": "/ˈtroʊfi/",
    "aud": "news/audio/2026-11-18-hot-w4.mp3",
-   "wa": "news/audio/2026-11-18-hot-k4.mp3"
+   "wa": "news/audio/2026-11-18-hot-k4.mp3",
+   "pos": "명"
   }
  ]
 }

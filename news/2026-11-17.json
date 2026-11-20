@@ -70,7 +70,8 @@
    "cat": "t",
    "ipa": "/ˈɛkspɔːrt/",
    "aud": "news/audio/2026-11-17-w0.mp3",
-   "wa": "news/audio/2026-11-17-k0.mp3"
+   "wa": "news/audio/2026-11-17-k0.mp3",
+   "pos": "명"
   },
   {
    "en": "import",
@@ -80,7 +81,8 @@
    "cat": "p",
    "ipa": "/ɪmˈpɔːrt/",
    "aud": "news/audio/2026-11-17-w1.mp3",
-   "wa": "news/audio/2026-11-17-k1.mp3"
+   "wa": "news/audio/2026-11-17-k1.mp3",
+   "pos": "명"
   },
   {
    "en": "record",
@@ -90,7 +92,8 @@
    "cat": "t",
    "ipa": "/ˈrɛkərd/",
    "aud": "news/audio/2026-11-17-w2.mp3",
-   "wa": "news/audio/2026-11-17-k2.mp3"
+   "wa": "news/audio/2026-11-17-k2.mp3",
+   "pos": "명"
   },
   {
    "en": "percent",
@@ -100,7 +103,8 @@
    "cat": "m",
    "ipa": "/pərˈsɛnt/",
    "aud": "news/audio/2026-11-17-w3.mp3",
-   "wa": "news/audio/2026-11-17-k3.mp3"
+   "wa": "news/audio/2026-11-17-k3.mp3",
+   "pos": "명"
   },
   {
    "en": "expected",
@@ -110,7 +114,9 @@
    "cat": "m",
    "ipa": "/ɛkˈspɛktɪd/",
    "aud": "news/audio/2026-11-17-w4.mp3",
-   "wa": "news/audio/2026-11-17-k4.mp3"
+   "wa": "news/audio/2026-11-17-k4.mp3",
+   "pos": "동",
+   "base": "expect"
   }
  ],
  "kind": "biz"

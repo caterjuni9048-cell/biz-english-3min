@@ -72,7 +72,8 @@
    "cat": "t",
    "ipa": "/ˈbɛntʃmɑːrk/",
    "aud": "news/audio/2026-11-20-biz2-w0.mp3",
-   "wa": "news/audio/2026-11-20-biz2-k0.mp3"
+   "wa": "news/audio/2026-11-20-biz2-k0.mp3",
+   "pos": "명"
   },
   {
    "en": "surcharge",
@@ -83,7 +84,8 @@
    "cat": "m",
    "ipa": "/ˈsɜːrtʃɑːrdʒ/",
    "aud": "news/audio/2026-11-20-biz2-w1.mp3",
-   "wa": "news/audio/2026-11-20-biz2-k1.mp3"
+   "wa": "news/audio/2026-11-20-biz2-k1.mp3",
+   "pos": "명"
   },
   {
    "en": "importer",
@@ -94,7 +96,8 @@
    "cat": "p",
    "ipa": "/ɪmˈpɔːrtər/",
    "aud": "news/audio/2026-11-20-biz2-w2.mp3",
-   "wa": "news/audio/2026-11-20-biz2-k2.mp3"
+   "wa": "news/audio/2026-11-20-biz2-k2.mp3",
+   "pos": "명"
   },
   {
    "en": "threat",
@@ -105,7 +108,8 @@
    "cat": "t",
    "ipa": "/θrɛt/",
    "aud": "news/audio/2026-11-20-biz2-w3.mp3",
-   "wa": "news/audio/2026-11-20-biz2-k3.mp3"
+   "wa": "news/audio/2026-11-20-biz2-k3.mp3",
+   "pos": "명"
   },
   {
    "en": "affect",
@@ -116,7 +120,8 @@
    "cat": "m",
    "ipa": "/əˈfɛkt/",
    "aud": "news/audio/2026-11-20-biz2-w4.mp3",
-   "wa": "news/audio/2026-11-20-biz2-k4.mp3"
+   "wa": "news/audio/2026-11-20-biz2-k4.mp3",
+   "pos": "동"
   }
  ]
 }

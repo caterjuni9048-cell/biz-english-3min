@@ -71,7 +71,9 @@
    "cat": "m",
    "ipa": "/ʃɪpt/",
    "aud": "news/audio/2026-11-18-w0.mp3",
-   "wa": "news/audio/2026-11-18-k0.mp3"
+   "wa": "news/audio/2026-11-18-k0.mp3",
+   "pos": "동",
+   "base": "ship"
   },
   {
    "en": "exports",
@@ -81,7 +83,9 @@
    "cat": "t",
    "ipa": "/ˈɛkspɔːrts/",
    "aud": "news/audio/2026-11-18-w1.mp3",
-   "wa": "news/audio/2026-11-18-k1.mp3"
+   "wa": "news/audio/2026-11-18-k1.mp3",
+   "pos": "명",
+   "base": "export"
   },
   {
    "en": "imports",
@@ -91,7 +95,9 @@
    "cat": "m",
    "ipa": "/ɪmˈpɔːrts/",
    "aud": "news/audio/2026-11-18-w2.mp3",
-   "wa": "news/audio/2026-11-18-k2.mp3"
+   "wa": "news/audio/2026-11-18-k2.mp3",
+   "pos": "명",
+   "base": "import"
   },
   {
    "en": "trade surplus",
@@ -101,7 +107,8 @@
    "cat": "t",
    "ipa": "/ˈtreɪd ˈsɜːrplʌs/",
    "aud": "news/audio/2026-11-18-w3.mp3",
-   "wa": "news/audio/2026-11-18-k3.mp3"
+   "wa": "news/audio/2026-11-18-k3.mp3",
+   "pos": "구"
   },
   {
    "en": "buyer",
@@ -111,7 +118,8 @@
    "cat": "p",
    "ipa": "/baɪər/",
    "aud": "news/audio/2026-11-18-w4.mp3",
-   "wa": "news/audio/2026-11-18-k4.mp3"
+   "wa": "news/audio/2026-11-18-k4.mp3",
+   "pos": "명"
   }
  ]
 }

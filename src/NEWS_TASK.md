@@ -78,7 +78,7 @@
     {"q": "...", "opts": ["...", "...", "..."], "a": 2, "why_ko": "..."}
   ],
   "words": [
-    {"en": "freight rate", "ko": "운임", "easy": "shipping price", "ex": "Could you check the freight rate for next month?", "ex_ko": "다음 달 운임을 확인해 주시겠어요?", "cat": "m"}
+    {"en": "freight rate", "ko": "운임", "easy": "shipping price", "pos": "구", "ex": "Could you check the freight rate for next month?", "ex_ko": "다음 달 운임을 확인해 주시겠어요?", "cat": "m"}
   ]
 }
 ```
@@ -96,6 +96,8 @@
 - `ex`는 학습자가 그대로 쓸 수 있는 짧은 새 문장이다. 그 단어를 꼭 넣는다.
   - 경제 뉴스: 메일·전화·회의에서 쓰는 업무 문장
   - 핫이슈·스포츠·연예 뉴스: 거래처와 나누는 스몰토크 문장(예: "Did you hear about ~?")
+- `pos`는 **그 기사 문장에서 쓰인** 품사다: `명`(명사) `동`(동사) `형`(형용사) `부`(부사) `전`(전치사) `대`(대명사) `구`(두 단어 이상 표현). 같은 단어도 문장에 따라 다르다(예: a new record → 명, record the call → 동).
+- `base`는 `en`이 변한 모양일 때만 기본형을 적는다(예: en "shipped" → base "ship", en "exports" → base "export"). 같으면 넣지 않는다.
 - `easy`는 같은 뜻의 더 쉬운 영어 단어나 짧은 표현이다(A2 수준, 예: purchase → buy). 이미 쉬운 단어면 비슷한 쉬운 말을 적는다.
 - `cat`은 그 예문을 쓰는 곳이다: `m` 메일, `p` 전화, `t` 회의.
   - 스몰토크 예문은 보통 `p`나 `t`다.

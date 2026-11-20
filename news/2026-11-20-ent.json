@@ -72,7 +72,8 @@
    "cat": "p",
    "ipa": "/ˈrɛkərd/",
    "aud": "news/audio/2026-11-20-ent-w0.mp3",
-   "wa": "news/audio/2026-11-20-ent-k0.mp3"
+   "wa": "news/audio/2026-11-20-ent-k0.mp3",
+   "pos": "명"
   },
   {
    "en": "in a row",
@@ -83,7 +84,8 @@
    "cat": "t",
    "ipa": "/ˌɪnə ˈroʊ/",
    "aud": "news/audio/2026-11-20-ent-w1.mp3",
-   "wa": "news/audio/2026-11-20-ent-k1.mp3"
+   "wa": "news/audio/2026-11-20-ent-k1.mp3",
+   "pos": "구"
   },
   {
    "en": "came back",
@@ -94,7 +96,8 @@
    "cat": "p",
    "ipa": "/ˈkeɪm ˈbæk/",
    "aud": "news/audio/2026-11-20-ent-w2.mp3",
-   "wa": "news/audio/2026-11-20-ent-k2.mp3"
+   "wa": "news/audio/2026-11-20-ent-k2.mp3",
+   "pos": "구"
   },
   {
    "en": "final",
@@ -105,7 +108,8 @@
    "cat": "p",
    "ipa": "/ˈfaɪnəl/",
    "aud": "news/audio/2026-11-20-ent-w3.mp3",
-   "wa": "news/audio/2026-11-20-ent-k3.mp3"
+   "wa": "news/audio/2026-11-20-ent-k3.mp3",
+   "pos": "명"
   },
   {
    "en": "proud",
@@ -116,7 +120,8 @@
    "cat": "t",
    "ipa": "/praʊd/",
    "aud": "news/audio/2026-11-20-ent-w4.mp3",
-   "wa": "news/audio/2026-11-20-ent-k4.mp3"
+   "wa": "news/audio/2026-11-20-ent-k4.mp3",
+   "pos": "형"
   }
  ]
 }

@@ -71,7 +71,9 @@
    "cat": "m",
    "ipa": "/ɛkˈspɛktɪd/",
    "aud": "news/audio/2026-11-19-w0.mp3",
-   "wa": "news/audio/2026-11-19-k0.mp3"
+   "wa": "news/audio/2026-11-19-k0.mp3",
+   "pos": "동",
+   "base": "expect"
   },
   {
    "en": "demand",
@@ -81,7 +83,8 @@
    "cat": "t",
    "ipa": "/dɪˈmænd/",
    "aud": "news/audio/2026-11-19-w1.mp3",
-   "wa": "news/audio/2026-11-19-k1.mp3"
+   "wa": "news/audio/2026-11-19-k1.mp3",
+   "pos": "명"
   },
   {
    "en": "goods",
@@ -91,7 +94,9 @@
    "cat": "m",
    "ipa": "/ɡʊdz/",
    "aud": "news/audio/2026-11-19-w2.mp3",
-   "wa": "news/audio/2026-11-19-k2.mp3"
+   "wa": "news/audio/2026-11-19-k2.mp3",
+   "pos": "명",
+   "base": "good"
   },
   {
    "en": "growth",
@@ -101,7 +106,8 @@
    "cat": "t",
    "ipa": "/ɡroʊθ/",
    "aud": "news/audio/2026-11-19-w3.mp3",
-   "wa": "news/audio/2026-11-19-k3.mp3"
+   "wa": "news/audio/2026-11-19-k3.mp3",
+   "pos": "명"
   },
   {
    "en": "records",
@@ -111,7 +117,9 @@
    "cat": "p",
    "ipa": "/ˈrɛkərdz/",
    "aud": "news/audio/2026-11-19-w4.mp3",
-   "wa": "news/audio/2026-11-19-k4.mp3"
+   "wa": "news/audio/2026-11-19-k4.mp3",
+   "pos": "명",
+   "base": "record"
   }
  ]
 }

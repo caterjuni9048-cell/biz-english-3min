@@ -71,7 +71,8 @@
    "cat": "p",
    "ipa": "/ˈmaɪlstoʊn/",
    "aud": "news/audio/2026-11-19-hot-w0.mp3",
-   "wa": "news/audio/2026-11-19-hot-k0.mp3"
+   "wa": "news/audio/2026-11-19-hot-k0.mp3",
+   "pos": "명"
   },
   {
    "en": "spacecraft",
@@ -81,7 +82,8 @@
    "cat": "p",
    "ipa": "/ˈspeɪskræft/",
    "aud": "news/audio/2026-11-19-hot-w1.mp3",
-   "wa": "news/audio/2026-11-19-hot-k1.mp3"
+   "wa": "news/audio/2026-11-19-hot-k1.mp3",
+   "pos": "명"
   },
   {
    "en": "distance",
@@ -91,7 +93,8 @@
    "cat": "t",
    "ipa": "/ˈdɪstəns/",
    "aud": "news/audio/2026-11-19-hot-w2.mp3",
-   "wa": "news/audio/2026-11-19-hot-k2.mp3"
+   "wa": "news/audio/2026-11-19-hot-k2.mp3",
+   "pos": "명"
   },
   {
    "en": "celebrate",
@@ -101,7 +104,8 @@
    "cat": "t",
    "ipa": "/ˈsɛləˌbreɪt/",
    "aud": "news/audio/2026-11-19-hot-w3.mp3",
-   "wa": "news/audio/2026-11-19-hot-k3.mp3"
+   "wa": "news/audio/2026-11-19-hot-k3.mp3",
+   "pos": "동"
   },
   {
    "en": "huge",
@@ -111,7 +115,8 @@
    "cat": "p",
    "ipa": "/hjuːdʒ/",
    "aud": "news/audio/2026-11-19-hot-w4.mp3",
-   "wa": "news/audio/2026-11-19-hot-k4.mp3"
+   "wa": "news/audio/2026-11-19-hot-k4.mp3",
+   "pos": "형"
   }
  ]
 }

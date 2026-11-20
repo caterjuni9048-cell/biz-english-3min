@@ -32,6 +32,7 @@ need(isinstance(ws, list) and len(ws) == 5, '단어는 정확히 5개')
 body = ' '.join(paras).lower() if isinstance(paras, list) else ''
 for w in ws if isinstance(ws, list) else []:
     need(all(w.get(k) for k in ['en', 'ko', 'ex', 'ex_ko', 'ipa']) and w.get('cat') in ('m', 'p', 't'), '단어 형식 오류(ipa 없으면 news_audio.py 먼저): %r' % w)
+    need(w.get('pos') in ('명', '동', '형', '부', '전', '대', '구'), '단어 품사(pos) 없음/잘못됨: %s' % w.get('en'))
     need(str(w.get('en', '')).lower().split()[0][:4] in body, '단어가 본문에 없음: %s' % w.get('en'))
     need(str(w.get('en', '')).lower().split()[0][:4] in str(w.get('ex', '')).lower(), '예문에 단어가 없음: %s' % w.get('ex'))
     need(w.get('aud') and os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(p))), w['aud'])), '예문 음성 없음 (src/news_audio.py 먼저 실행): %s' % w.get('ex'))

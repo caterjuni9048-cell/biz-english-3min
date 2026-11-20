@@ -72,7 +72,9 @@
    "cat": "p",
    "ipa": "/ɛkˈspɛkts/",
    "aud": "news/audio/2026-11-20-hot-w0.mp3",
-   "wa": "news/audio/2026-11-20-hot-k0.mp3"
+   "wa": "news/audio/2026-11-20-hot-k0.mp3",
+   "pos": "동",
+   "base": "expect"
   },
   {
    "en": "slightly",
@@ -83,7 +85,8 @@
    "cat": "p",
    "ipa": "/ˈslaɪtli/",
    "aud": "news/audio/2026-11-20-hot-w1.mp3",
-   "wa": "news/audio/2026-11-20-hot-k1.mp3"
+   "wa": "news/audio/2026-11-20-hot-k1.mp3",
+   "pos": "부"
   },
   {
    "en": "streak",
@@ -94,7 +97,8 @@
    "cat": "t",
    "ipa": "/striːk/",
    "aud": "news/audio/2026-11-20-hot-w2.mp3",
-   "wa": "news/audio/2026-11-20-hot-k2.mp3"
+   "wa": "news/audio/2026-11-20-hot-k2.mp3",
+   "pos": "명"
   },
   {
    "en": "travelers",
@@ -105,7 +109,9 @@
    "cat": "p",
    "ipa": "/ˈtrævələrz/",
    "aud": "news/audio/2026-11-20-hot-w3.mp3",
-   "wa": "news/audio/2026-11-20-hot-k3.mp3"
+   "wa": "news/audio/2026-11-20-hot-k3.mp3",
+   "pos": "명",
+   "base": "traveler"
   },
   {
    "en": "replies",
@@ -116,7 +122,9 @@
    "cat": "m",
    "ipa": "/rɪˈplaɪz/",
    "aud": "news/audio/2026-11-20-hot-w4.mp3",
-   "wa": "news/audio/2026-11-20-hot-k4.mp3"
+   "wa": "news/audio/2026-11-20-hot-k4.mp3",
+   "pos": "명",
+   "base": "reply"
   }
  ]
 }
