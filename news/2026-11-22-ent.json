@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-22",
+ "kind": "ent",
+ "title": "Leeds Beat Chelsea 4-1 at Stamford Bridge",
+ "title_ko": "리즈, 첼시 원정에서 4-1 대승",
+ "paras": [
+  "Leeds United won 4-1 against Chelsea in the Premier League on Saturday, November 21. The game was played at Stamford Bridge, Chelsea's home stadium in London. It was Leeds' first win there since 1999, so fans had waited more than 25 years for this moment.",
+  "Chelsea scored first, but Leeds came back strongly. Noah Okafor scored twice for Leeds. Dominic Calvert-Lewin scored from a penalty, and Brenden Aaronson added the fourth goal near the end of the game.",
+  "The big win moved Leeds up to sixth place in the league table, and Chelsea dropped to eighth place. For Leeds and their fans, it was a very special night. If your partners follow English football, this result is a great way to start a conversation."
+ ],
+ "paras_ko": [
+  "리즈 유나이티드가 11월 21일 토요일 프리미어리그에서 첼시를 4-1로 이겼습니다. 경기는 런던에 있는 첼시의 홈구장 스탬퍼드 브리지에서 열렸습니다. 리즈가 그곳에서 이긴 것은 1999년 이후 처음이라, 팬들은 25년 넘게 이 순간을 기다렸습니다.",
+  "첼시가 먼저 골을 넣었지만, 리즈가 강하게 역전했습니다. 노아 오카포가 리즈를 위해 두 골을 넣었습니다. 도미닉 칼버트루인이 페널티킥으로 골을 넣었고, 브렌든 애런슨이 경기 막판에 네 번째 골을 더했습니다.",
+  "이 대승으로 리즈는 리그 순위 6위로 올라섰고, 첼시는 8위로 떨어졌습니다. 리즈와 팬들에게는 아주 특별한 밤이었습니다. 거래처가 잉글랜드 축구를 즐겨 본다면, 이 경기 결과는 대화를 시작하기 좋은 소재입니다."
+ ],
+ "sources": [
+  {
+   "name": "NBC Sports",
+   "url": "https://www.nbcsports.com/soccer/live/chelsea-vs-leeds-live-updates-score-goals-highlights-stats-2026-november-21",
+   "published": "2026-11-21"
+  },
+  {
+   "name": "The Analyst",
+   "url": "https://theanalyst.com/articles/chelsea-1-4-leeds-stats-premier-league-11-2026",
+   "published": "2026-11-21"
+  },
+  {
+   "name": "The Tribune",
+   "url": "https://www.tribuneindia.com/news/sports/premier-league-leeds-stun-chelsea-4-1-at-stamford-bridge-as-okafor-scores-twice",
+   "published": "2026-11-22"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Chelsea beat Leeds 4-1",
+    "Leeds beat Chelsea 4-1 at Stamford Bridge",
+    "The game was cancelled"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 리즈가 스탬퍼드 브리지에서 첼시를 4-1로 이겼습니다."
+  },
+  {
+   "q": "Who scored two goals for Leeds?",
+   "opts": [
+    "Brenden Aaronson",
+    "Dominic Calvert-Lewin",
+    "Noah Okafor"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: 노아 오카포가 두 골을 넣었습니다."
+  },
+  {
+   "q": "What place is Leeds in now?",
+   "opts": [
+    "Sixth",
+    "Eighth",
+    "First"
+   ],
+   "a": 0,
+   "why_ko": "셋째 문단: 리즈는 6위로 올라섰습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "stadium",
+   "ko": "경기장",
+   "pos": "명",
+   "easy": "big sports ground",
+   "ex": "Have you ever been to a football stadium in England?",
+   "ex_ko": "잉글랜드 축구 경기장에 가 보신 적 있어요?",
+   "cat": "p",
+   "ipa": "/ˈsteɪdiəm/",
+   "aud": "news/audio/2026-11-22-ent-w0.mp3",
+   "wa": "news/audio/2026-11-22-ent-k0.mp3"
+  },
+  {
+   "en": "waited",
+   "ko": "기다렸다",
+   "pos": "동",
+   "base": "wait",
+   "easy": "stayed until",
+   "ex": "Leeds fans waited so long for this win!",
+   "ex_ko": "리즈 팬들은 이 승리를 정말 오래 기다렸네요!",
+   "cat": "p",
+   "ipa": "/ˈweɪtɪd/",
+   "aud": "news/audio/2026-11-22-ent-w1.mp3",
+   "wa": "news/audio/2026-11-22-ent-k1.mp3"
+  },
+  {
+   "en": "came back",
+   "ko": "역전했다, 되살아났다",
+   "pos": "구",
+   "base": "come back",
+   "easy": "fought back",
+   "ex": "Did you see how Leeds came back after the first goal?",
+   "ex_ko": "첫 골 이후 리즈가 어떻게 역전했는지 보셨어요?",
+   "cat": "p",
+   "ipa": "/ˈkeɪm ˈbæk/",
+   "aud": "news/audio/2026-11-22-ent-w2.mp3",
+   "wa": "news/audio/2026-11-22-ent-k2.mp3"
+  },
+  {
+   "en": "penalty",
+   "ko": "페널티킥, 벌칙",
+   "pos": "명",
+   "easy": "free shot at goal",
+   "ex": "I think the penalty changed the whole game.",
+   "ex_ko": "그 페널티킥이 경기 전체를 바꾼 것 같아요.",
+   "cat": "t",
+   "ipa": "/ˈpɛnəlti/",
+   "aud": "news/audio/2026-11-22-ent-w3.mp3",
+   "wa": "news/audio/2026-11-22-ent-k3.mp3"
+  },
+  {
+   "en": "dropped",
+   "ko": "떨어졌다",
+   "pos": "동",
+   "base": "drop",
+   "easy": "went down",
+   "ex": "Our team dropped to eighth place this week.",
+   "ex_ko": "우리 팀이 이번 주 8위로 떨어졌어요.",
+   "cat": "p",
+   "ipa": "/drɑːpt/",
+   "aud": "news/audio/2026-11-22-ent-w4.mp3",
+   "wa": "news/audio/2026-11-22-ent-k4.mp3"
+  }
+ ]
+}

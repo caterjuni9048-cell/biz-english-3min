@@ -1,0 +1,129 @@
+{
+ "date": "2026-11-22",
+ "kind": "biz",
+ "title": "Prices in Japan Rise at the Fastest Pace This Year",
+ "title_ko": "일본 물가, 올해 들어 가장 빠르게 올라",
+ "paras": [
+  "Prices in Japan went up faster in October. The country's core inflation rate, which does not include fresh food, rose to 2.2 percent from a year earlier. It was 2.1 percent in September. This is the fastest rise so far this year, according to data released on November 20.",
+  "Energy was the main reason. The government had been helping families pay for electricity and gas, but this support ended. Because of that, household energy bills became more expensive, and many families now pay more each month.",
+  "Japan is an important trade partner for Korea. When prices go up in Japan, Japanese companies may change their prices too. For businesses that buy from or sell to Japan, it is a good idea to watch these numbers and talk with partners about costs early."
+ ],
+ "paras_ko": [
+  "일본의 물가가 10월에 더 빠르게 올랐습니다. 신선식품을 뺀 일본의 근원 물가 상승률은 1년 전보다 2.2% 올랐습니다. 9월에는 2.1%였습니다. 11월 20일 발표된 자료에 따르면 올해 들어 가장 빠른 상승입니다.",
+  "에너지가 가장 큰 이유였습니다. 정부가 가정의 전기·가스 요금을 지원해 왔지만 이 지원이 끝났습니다. 그 때문에 가정의 에너지 요금이 비싸졌고, 이제 많은 가정이 매달 더 많이 내고 있습니다.",
+  "일본은 한국의 중요한 무역 상대국입니다. 일본 물가가 오르면 일본 기업들도 가격을 바꿀 수 있습니다. 일본과 거래하는 기업이라면 이 숫자를 지켜보고, 비용에 대해 거래처와 미리 이야기해 두는 것이 좋습니다."
+ ],
+ "sources": [
+  {
+   "name": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/20/japan-inflation-cpi-october.html",
+   "published": "2026-11-20"
+  },
+  {
+   "name": "Investing.com (Reuters)",
+   "url": "https://www.investing.com/news/economic-indicators/japan-oct-core-cpi-rises-22-yryr-5040343",
+   "published": "2026-11-20"
+  },
+  {
+   "name": "FX.co",
+   "url": "https://www.fx.co/en/forex-news/3300362",
+   "published": "2026-11-20"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Prices in Japan fell in October",
+    "Japan's core inflation rose to its fastest pace this year",
+    "Japan stopped selling electricity"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 근원 물가가 2.2%로 올해 가장 빠르게 올랐습니다."
+  },
+  {
+   "q": "What was the main reason for the rise?",
+   "opts": [
+    "Higher energy bills after support ended",
+    "Cheaper fresh food",
+    "A new tax on cars"
+   ],
+   "a": 0,
+   "why_ko": "둘째 문단: 에너지 지원이 끝나 요금이 올랐습니다."
+  },
+  {
+   "q": "What was the core inflation rate in September?",
+   "opts": [
+    "2.2 percent",
+    "3.0 percent",
+    "2.1 percent"
+   ],
+   "a": 2,
+   "why_ko": "첫 문단: 9월에는 2.1%였습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "inflation",
+   "ko": "물가 상승, 인플레이션",
+   "pos": "명",
+   "easy": "rising prices",
+   "ex": "Inflation is pushing up our material costs.",
+   "ex_ko": "물가 상승으로 원자재 비용이 오르고 있습니다.",
+   "cat": "t",
+   "ipa": "/ɪnˈfleɪʃən/",
+   "aud": "news/audio/2026-11-22-biz2-w0.mp3",
+   "wa": "news/audio/2026-11-22-biz2-k0.mp3"
+  },
+  {
+   "en": "released",
+   "ko": "발표된",
+   "pos": "동",
+   "base": "release",
+   "easy": "shared",
+   "ex": "The new price list will be released next Monday.",
+   "ex_ko": "새 가격표는 다음 주 월요일에 나옵니다.",
+   "cat": "m",
+   "ipa": "/rɪˈliːst/",
+   "aud": "news/audio/2026-11-22-biz2-w1.mp3",
+   "wa": "news/audio/2026-11-22-biz2-k1.mp3"
+  },
+  {
+   "en": "support",
+   "ko": "지원",
+   "pos": "명",
+   "easy": "help",
+   "ex": "Thank you for your support on this order.",
+   "ex_ko": "이번 주문에 도움 주셔서 감사합니다.",
+   "cat": "m",
+   "ipa": "/səˈpɔːrt/",
+   "aud": "news/audio/2026-11-22-biz2-w2.mp3",
+   "wa": "news/audio/2026-11-22-biz2-k2.mp3"
+  },
+  {
+   "en": "bills",
+   "ko": "요금 청구서",
+   "pos": "명",
+   "base": "bill",
+   "easy": "money you must pay",
+   "ex": "Our electricity bills went up this winter.",
+   "ex_ko": "이번 겨울 전기 요금이 올랐습니다.",
+   "cat": "p",
+   "ipa": "/bɪlz/",
+   "aud": "news/audio/2026-11-22-biz2-w3.mp3",
+   "wa": "news/audio/2026-11-22-biz2-k3.mp3"
+  },
+  {
+   "en": "partner",
+   "ko": "상대, 협력사",
+   "pos": "명",
+   "easy": "company you work with",
+   "ex": "Japan is our biggest trade partner.",
+   "ex_ko": "일본은 저희의 가장 큰 거래 상대국입니다.",
+   "cat": "t",
+   "ipa": "/ˈpɑːrtnər/",
+   "aud": "news/audio/2026-11-22-biz2-w4.mp3",
+   "wa": "news/audio/2026-11-22-biz2-k4.mp3"
+  }
+ ]
+}

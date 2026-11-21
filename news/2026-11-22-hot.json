@@ -1,0 +1,128 @@
+{
+ "date": "2026-11-22",
+ "kind": "hot",
+ "title": "BepiColombo Reaches Mercury After Eight Years",
+ "title_ko": "베피콜롬보, 8년 만에 수성 도착",
+ "paras": [
+  "A spacecraft that left Earth eight years ago has finally reached Mercury, the planet closest to the Sun. The mission is called BepiColombo, and it is a joint project of the European Space Agency (ESA) and Japan's space agency, JAXA. It was planned to enter orbit around Mercury on November 21.",
+  "The trip took longer than first expected. The arrival was planned for late 2025, but problems with the engines, called thrusters, pushed it back by about a year.",
+  "The spacecraft carries two orbiters that will study the small planet. One of its tools is an X-ray telescope. This month, scientists shared its first pictures, a test image of the Crab Nebula, and said the instrument is working well. If you talk with partners who like science, Mercury is a fun topic this week."
+ ],
+ "paras_ko": [
+  "8년 전 지구를 떠난 우주선이 마침내 태양에서 가장 가까운 행성인 수성에 도착했습니다. 이 임무의 이름은 베피콜롬보이며, 유럽우주국(ESA)과 일본 우주항공연구개발기구(JAXA)의 공동 프로젝트입니다. 11월 21일 수성 궤도에 들어갈 계획이었습니다.",
+  "여정은 처음 예상보다 길어졌습니다. 도착은 원래 2025년 말로 계획됐지만, 추진기라고 부르는 엔진에 문제가 생겨 약 1년 늦어졌습니다.",
+  "우주선에는 이 작은 행성을 연구할 궤도선 두 대가 실려 있습니다. 장비 중 하나는 X선 망원경입니다. 이번 달 과학자들은 게 성운을 시험 촬영한 첫 사진을 공개하고, 장비가 잘 작동한다고 밝혔습니다. 과학을 좋아하는 거래처와 이야기한다면 이번 주 수성은 재미있는 주제입니다."
+ ],
+ "sources": [
+  {
+   "name": "ESA",
+   "url": "https://www.esa.int/Science_Exploration/Space_Science/BepiColombo/Latest_updates_BepiColombo_s_arrival_at_Mercury",
+   "published": "2026-11-21"
+  },
+  {
+   "name": "Space.com",
+   "url": "https://www.space.com/space-exploration/missions/a-new-mission-starting-today-8-years-after-launch-bepicolombo-begins-mercury-arrival",
+   "published": "2026-11-21"
+  },
+  {
+   "name": "Phys.org",
+   "url": "https://phys.org/news/2026-11-mercury-bound-ray-telescope-images.html",
+   "published": "2026-11-20"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "A spacecraft reached Mercury after eight years",
+    "Scientists found water on Mercury",
+    "A new planet was discovered"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 8년 만에 우주선이 수성에 도착했습니다."
+  },
+  {
+   "q": "Why was the arrival delayed?",
+   "opts": [
+    "The Sun was too hot",
+    "There were problems with the thrusters",
+    "The scientists changed the target"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 추진기 문제로 약 1년 늦어졌습니다."
+  },
+  {
+   "q": "What did the X-ray telescope take a picture of first?",
+   "opts": [
+    "The Moon",
+    "Mercury",
+    "The Crab Nebula"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 첫 시험 사진은 게 성운입니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "finally",
+   "ko": "마침내",
+   "pos": "부",
+   "easy": "at last",
+   "ex": "The parts finally arrived this morning!",
+   "ex_ko": "부품이 마침내 오늘 아침 도착했어요!",
+   "cat": "p",
+   "ipa": "/ˈfaɪnəli/",
+   "aud": "news/audio/2026-11-22-hot-w0.mp3",
+   "wa": "news/audio/2026-11-22-hot-k0.mp3"
+  },
+  {
+   "en": "joint",
+   "ko": "공동의",
+   "pos": "형",
+   "easy": "shared",
+   "ex": "Let's start a joint project next year.",
+   "ex_ko": "내년에 공동 프로젝트를 시작해요.",
+   "cat": "t",
+   "ipa": "/dʒɔɪnt/",
+   "aud": "news/audio/2026-11-22-hot-w1.mp3",
+   "wa": "news/audio/2026-11-22-hot-k1.mp3"
+  },
+  {
+   "en": "orbit",
+   "ko": "궤도",
+   "pos": "명",
+   "easy": "path around a planet",
+   "ex": "Did you know the spacecraft is now in orbit around Mercury?",
+   "ex_ko": "그 우주선이 이제 수성 궤도에 있다는 거 아셨어요?",
+   "cat": "p",
+   "ipa": "/ˈɔːrbɪt/",
+   "aud": "news/audio/2026-11-22-hot-w2.mp3",
+   "wa": "news/audio/2026-11-22-hot-k2.mp3"
+  },
+  {
+   "en": "pushed",
+   "ko": "(일정을) 밀었다",
+   "pos": "동",
+   "base": "push",
+   "easy": "moved",
+   "ex": "The meeting was pushed back to Friday.",
+   "ex_ko": "회의가 금요일로 미뤄졌어요.",
+   "cat": "t",
+   "ipa": "/pʊʃt/",
+   "aud": "news/audio/2026-11-22-hot-w3.mp3",
+   "wa": "news/audio/2026-11-22-hot-k3.mp3"
+  },
+  {
+   "en": "instrument",
+   "ko": "장비, 기구",
+   "pos": "명",
+   "easy": "tool",
+   "ex": "This instrument checks the temperature of the cargo.",
+   "ex_ko": "이 장비는 화물 온도를 확인합니다.",
+   "cat": "t",
+   "ipa": "/ˈɪnstrəmənt/",
+   "aud": "news/audio/2026-11-22-hot-w4.mp3",
+   "wa": "news/audio/2026-11-22-hot-k4.mp3"
+  }
+ ]
+}

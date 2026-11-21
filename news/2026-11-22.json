@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-22",
+ "kind": "biz",
+ "title": "The US Dollar Stays Near a 19-Month High",
+ "title_ko": "미국 달러, 19개월 만의 최고 수준 유지",
+ "paras": [
+  "The US dollar is very strong right now. On November 20, the dollar index, which compares the dollar with other major currencies, stayed near its highest level in 19 months. The dollar was also on track for its fourth weekly gain in a row.",
+  "One reason is fear about AI. Many investors are worried that prices of AI-related stocks went up too much. When markets feel risky, people often move their money into safe places, and the US dollar is one of them.",
+  "Another reason is the US central bank. Markets think the Federal Reserve may raise interest rates again, and higher rates usually make a currency stronger. A strong dollar matters for trading companies. Goods bought in dollars become more expensive for importers, while exporters who are paid in dollars may earn more in their own currency."
+ ],
+ "paras_ko": [
+  "미국 달러가 지금 매우 강합니다. 11월 20일, 달러를 다른 주요 통화와 비교하는 달러 지수가 19개월 만의 최고 수준 근처에 머물렀습니다. 달러는 4주 연속 상승도 눈앞에 두고 있었습니다.",
+  "한 가지 이유는 인공지능(AI)에 대한 불안입니다. 많은 투자자가 AI 관련 주식 가격이 너무 많이 올랐다고 걱정합니다. 시장이 위험하게 느껴지면 사람들은 흔히 돈을 안전한 곳으로 옮기는데, 미국 달러가 그중 하나입니다.",
+  "또 다른 이유는 미국 중앙은행입니다. 시장은 연준(Fed)이 금리를 다시 올릴 수 있다고 봅니다. 금리가 오르면 보통 그 나라 통화가 강해집니다. 달러 강세는 무역 회사에 중요합니다. 달러로 사는 물건은 수입업체에게 더 비싸지고, 달러로 대금을 받는 수출업체는 자국 통화로 더 많이 벌 수 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "CNBC (Reuters)",
+   "url": "https://www.cnbc.com/2026/11/20/dollar-price-currency-euro-yen.html",
+   "published": "2026-11-20"
+  },
+  {
+   "name": "Business Recorder",
+   "url": "https://www.brecorder.com/news/40449951/dollar-near-19-month-peak-as-ai-jitters-sap-risk-appetite",
+   "published": "2026-11-20"
+  },
+  {
+   "name": "EconoTimes",
+   "url": "https://econotimes.com/Dollar-Index-Holds-Near-19-Month-High-as-Fed-Tightening-Bets-Persist-1780133",
+   "published": "2026-11-20"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "The US dollar is near its highest level in 19 months",
+    "The US dollar fell to a record low",
+    "The US stopped using the dollar"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 달러 지수가 19개월 만의 최고 수준 근처입니다."
+  },
+  {
+   "q": "Why do investors move money into the dollar?",
+   "opts": [
+    "The dollar pays no interest",
+    "It is seen as a safe place when markets feel risky",
+    "AI stocks are getting cheaper"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 시장이 불안하면 안전한 달러로 돈을 옮깁니다."
+  },
+  {
+   "q": "Who may be hurt by a strong dollar?",
+   "opts": [
+    "Exporters paid in dollars",
+    "Nobody",
+    "Importers who buy goods in dollars"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 달러로 사는 물건이 수입업체에게 더 비싸집니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "currencies",
+   "ko": "통화",
+   "pos": "명",
+   "base": "currency",
+   "easy": "kinds of money",
+   "ex": "We accept payment in two currencies, dollars and euros.",
+   "ex_ko": "저희는 달러와 유로, 두 가지 통화로 결제를 받습니다.",
+   "cat": "m",
+   "ipa": "/ˈkɜːrənsiz/",
+   "aud": "news/audio/2026-11-22-w0.mp3",
+   "wa": "news/audio/2026-11-22-k0.mp3"
+  },
+  {
+   "en": "investors",
+   "ko": "투자자",
+   "pos": "명",
+   "base": "investor",
+   "easy": "people who put in money",
+   "ex": "Investors are watching the exchange rate closely.",
+   "ex_ko": "투자자들이 환율을 주의 깊게 보고 있습니다.",
+   "cat": "t",
+   "ipa": "/ɪnˈvɛstərz/",
+   "aud": "news/audio/2026-11-22-w1.mp3",
+   "wa": "news/audio/2026-11-22-k1.mp3"
+  },
+  {
+   "en": "interest rates",
+   "ko": "금리",
+   "pos": "구",
+   "easy": "cost of borrowing money",
+   "ex": "Higher interest rates may affect our bank loan.",
+   "ex_ko": "금리가 오르면 은행 대출에 영향이 있을 수 있습니다.",
+   "cat": "t",
+   "ipa": "/ˈɪntrɛst ˈreɪts/",
+   "aud": "news/audio/2026-11-22-w2.mp3",
+   "wa": "news/audio/2026-11-22-k2.mp3"
+  },
+  {
+   "en": "importers",
+   "ko": "수입업체",
+   "pos": "명",
+   "base": "importer",
+   "easy": "companies that buy from abroad",
+   "ex": "Many importers are asking for longer payment terms.",
+   "ex_ko": "많은 수입업체가 더 긴 결제 기간을 요청하고 있습니다.",
+   "cat": "m",
+   "ipa": "/ɪmˈpɔːrtərz/",
+   "aud": "news/audio/2026-11-22-w3.mp3",
+   "wa": "news/audio/2026-11-22-k3.mp3"
+  },
+  {
+   "en": "earn",
+   "ko": "벌다",
+   "pos": "동",
+   "easy": "get money",
+   "ex": "We earn more when the dollar is strong.",
+   "ex_ko": "달러가 강하면 저희가 더 많이 법니다.",
+   "cat": "t",
+   "ipa": "/ɜːrn/",
+   "aud": "news/audio/2026-11-22-w4.mp3",
+   "wa": "news/audio/2026-11-22-k4.mp3"
+  }
+ ]
+}
