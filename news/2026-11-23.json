@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-23",
+ "kind": "biz",
+ "title": "Korea's Car Trade Deficit With China Hits a Record",
+ "title_ko": "한국의 대중국 자동차 무역적자, 사상 최대",
+ "paras": [
+  "South Korea is buying many more cars from China than it sells there. From January to October this year, Korea's car trade deficit with China reached a record 4.23 billion dollars. A year earlier, it was about 2.2 billion dollars. The data comes from the Korea International Trade Association.",
+  "Imports of cars from China rose 79.2 percent to 4.39 billion dollars. The main reason was Tesla electric cars made in Shanghai. Many Korean drivers chose these cars, so imports grew quickly. At the same time, Korean car exports to China fell 34.9 percent.",
+  "This shows how fast Chinese-made electric cars are growing in the Korean market. For trade and logistics companies, it is a sign that more vehicles and parts may come from China in the future. Korean carmakers will need to work hard to keep their customers at home."
+ ],
+ "paras_ko": [
+  "한국이 중국에 파는 것보다 훨씬 많은 자동차를 중국에서 사 오고 있습니다. 올해 1~10월 한국의 대중국 자동차 무역적자는 사상 최대인 42억 3천만 달러였습니다. 1년 전에는 약 22억 달러였습니다. 이 자료는 한국무역협회가 발표했습니다.",
+  "중국산 자동차 수입은 79.2% 늘어난 43억 9천만 달러였습니다. 가장 큰 이유는 상하이에서 만든 테슬라 전기차였습니다. 많은 한국 운전자가 이 차를 골라 수입이 빠르게 늘었습니다. 같은 기간 한국의 대중국 자동차 수출은 34.9% 줄었습니다.",
+  "이는 중국산 전기차가 한국 시장에서 얼마나 빠르게 성장하는지 보여 줍니다. 무역·물류 회사에게는 앞으로 중국에서 들어오는 차량과 부품이 더 늘 수 있다는 신호입니다. 한국 자동차 회사들은 국내 고객을 지키기 위해 더 노력해야 할 것입니다."
+ ],
+ "sources": [
+  {
+   "name": "Seoul Economic Daily",
+   "url": "https://en.sedaily.com/business/2026/11/22/koreas-auto-trade-deficit-with-china-hits-record-on-tesla",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "Korea JoongAng Daily",
+   "url": "https://www.koreajoongangdaily.com/business/tesla-imports-push-koreas-car-trade-deficit-with-china-to-record-high/12984292",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "Korea Times",
+   "url": "https://www.koreatimes.co.kr/amp/business/20261122/koreas-car-trade-deficit-with-china-hits-record-on-tesla-ev-imports",
+   "published": "2026-11-22"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Korea's car trade deficit with China hit a record",
+    "Korea stopped buying cars from China",
+    "Korean car exports to China doubled"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 대중국 자동차 무역적자가 사상 최대입니다."
+  },
+  {
+   "q": "What was the main reason for the rise in imports?",
+   "opts": [
+    "Cheaper Korean cars",
+    "Tesla electric cars made in Shanghai",
+    "New trucks from Japan"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 상하이산 테슬라 전기차가 가장 큰 이유입니다."
+  },
+  {
+   "q": "What happened to Korean car exports to China?",
+   "opts": [
+    "They rose 79.2 percent",
+    "They stayed the same",
+    "They fell 34.9 percent"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: 대중국 자동차 수출은 34.9% 줄었습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "deficit",
+   "ko": "적자",
+   "pos": "명",
+   "easy": "loss",
+   "ex": "Our trade deficit with this supplier is getting bigger.",
+   "ex_ko": "이 공급처와의 무역 적자가 커지고 있습니다.",
+   "cat": "t",
+   "ipa": "/ˈdɛfɪˌsɪt/",
+   "aud": "news/audio/2026-11-23-w0.mp3",
+   "wa": "news/audio/2026-11-23-k0.mp3"
+  },
+  {
+   "en": "record",
+   "ko": "최고 기록",
+   "pos": "형",
+   "easy": "highest ever",
+   "ex": "We shipped a record number of containers this month.",
+   "ex_ko": "이번 달 역대 가장 많은 컨테이너를 보냈습니다.",
+   "cat": "m",
+   "ipa": "/ˈrɛkərd/",
+   "aud": "news/audio/2026-11-23-w1.mp3",
+   "wa": "news/audio/2026-11-23-k1.mp3"
+  },
+  {
+   "en": "electric cars",
+   "ko": "전기차",
+   "pos": "구",
+   "base": "electric car",
+   "easy": "cars that use batteries",
+   "ex": "We are importing parts for electric cars from China.",
+   "ex_ko": "중국에서 전기차 부품을 수입하고 있습니다.",
+   "cat": "p",
+   "ipa": "/ɪˈlɛktrɪk ˈkɑːrz/",
+   "aud": "news/audio/2026-11-23-w2.mp3",
+   "wa": "news/audio/2026-11-23-k2.mp3"
+  },
+  {
+   "en": "vehicles",
+   "ko": "차량",
+   "pos": "명",
+   "base": "vehicle",
+   "easy": "cars and trucks",
+   "ex": "How many vehicles can this ship carry?",
+   "ex_ko": "이 배에 차량을 몇 대 실을 수 있나요?",
+   "cat": "p",
+   "ipa": "/ˈviəkəlz/",
+   "aud": "news/audio/2026-11-23-w3.mp3",
+   "wa": "news/audio/2026-11-23-k3.mp3"
+  },
+  {
+   "en": "parts",
+   "ko": "부품",
+   "pos": "명",
+   "base": "part",
+   "easy": "pieces",
+   "ex": "The car parts will arrive at Busan port on Monday.",
+   "ex_ko": "자동차 부품은 월요일 부산항에 도착합니다.",
+   "cat": "m",
+   "ipa": "/pɑːrts/",
+   "aud": "news/audio/2026-11-23-w4.mp3",
+   "wa": "news/audio/2026-11-23-k4.mp3"
+  }
+ ]
+}

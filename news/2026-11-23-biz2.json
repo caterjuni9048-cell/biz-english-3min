@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-23",
+ "kind": "biz",
+ "title": "Korea Gets Ready to Calm the Stock Market",
+ "title_ko": "한국, 증시 안정 대책 준비",
+ "paras": [
+  "South Korea's top financial officials held an emergency meeting on Sunday, November 22. They met after the KOSPI, Korea's main stock index, fell 5.2 percent. The finance minister led the meeting, and the heads of the Bank of Korea and the financial regulators also joined.",
+  "The officials said they are preparing a special stock market fund. The fund is ready to be used if the market keeps falling, but it has not been used yet. They also decided to make it easier for companies to buy back their own shares for the next three months.",
+  "Officials said worries about AI and chip companies, and a sell-off in US stocks, were behind the fall. For companies, sharp market moves can also affect exchange rates and costs, so it is wise to follow the news this week."
+ ],
+ "paras_ko": [
+  "한국 금융당국 수장들이 11월 22일 일요일 긴급회의를 열었습니다. 한국의 대표 주가지수인 코스피가 5.2% 떨어진 뒤였습니다. 기획재정부 장관이 회의를 이끌었고, 한국은행 총재와 금융당국 수장들도 참석했습니다.",
+  "당국은 증시 안정 기금을 준비하고 있다고 밝혔습니다. 시장이 계속 떨어지면 쓸 수 있도록 준비만 해 둔 상태이며, 아직 쓰지는 않았습니다. 또 앞으로 3개월 동안 기업이 자기 주식을 더 쉽게 사들일 수 있게 하기로 했습니다.",
+  "당국은 AI·반도체 기업에 대한 걱정과 미국 증시 급락이 하락의 원인이라고 설명했습니다. 시장이 크게 움직이면 환율과 비용에도 영향을 줄 수 있으니, 기업들은 이번 주 소식을 잘 지켜보는 것이 좋습니다."
+ ],
+ "sources": [
+  {
+   "name": "Bloomberg",
+   "url": "https://bloomberg.com/news/articles/2026-11-22/s-korea-rolls-out-phased-measures-to-stabilize-volatile-markets",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/south-korea-prepares-stock-market-stabilization-fund-after-kospi-plunges-52-4974313",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "Aju Press",
+   "url": "https://www.ajupress.com/view/20261122212952430",
+   "published": "2026-11-22"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Korean officials are preparing steps to calm the stock market",
+    "The KOSPI reached a new record high",
+    "The Bank of Korea closed for a week"
+   ],
+   "a": 0,
+   "why_ko": "첫·둘째 문단: 당국이 증시 안정 대책을 준비하고 있습니다."
+  },
+  {
+   "q": "How much did the KOSPI fall?",
+   "opts": [
+    "0.5 percent",
+    "52 percent",
+    "5.2 percent"
+   ],
+   "a": 2,
+   "why_ko": "첫 문단: 코스피가 5.2% 떨어졌습니다."
+  },
+  {
+   "q": "What did officials say about the special fund?",
+   "opts": [
+    "It was used right away",
+    "It is ready but has not been used yet",
+    "It was cancelled"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 준비만 해 두었고 아직 쓰지 않았습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "emergency",
+   "ko": "긴급",
+   "pos": "명",
+   "easy": "sudden problem",
+   "ex": "We need an emergency meeting about the delayed cargo.",
+   "ex_ko": "지연된 화물 건으로 긴급회의가 필요합니다.",
+   "cat": "t",
+   "ipa": "/ɪˈmɜːrdʒənsi/",
+   "aud": "news/audio/2026-11-23-biz2-w0.mp3",
+   "wa": "news/audio/2026-11-23-biz2-k0.mp3"
+  },
+  {
+   "en": "officials",
+   "ko": "관계자, 당국자",
+   "pos": "명",
+   "base": "official",
+   "easy": "government workers",
+   "ex": "Customs officials asked for more documents.",
+   "ex_ko": "세관 관계자가 서류를 더 요청했습니다.",
+   "cat": "m",
+   "ipa": "/əˈfɪʃəlz/",
+   "aud": "news/audio/2026-11-23-biz2-w1.mp3",
+   "wa": "news/audio/2026-11-23-biz2-k1.mp3"
+  },
+  {
+   "en": "preparing",
+   "ko": "준비하는",
+   "pos": "동",
+   "base": "prepare",
+   "easy": "getting ready",
+   "ex": "We are preparing the shipping documents now.",
+   "ex_ko": "지금 선적 서류를 준비하고 있습니다.",
+   "cat": "m",
+   "ipa": "/prɪˈpɛrɪŋ/",
+   "aud": "news/audio/2026-11-23-biz2-w2.mp3",
+   "wa": "news/audio/2026-11-23-biz2-k2.mp3"
+  },
+  {
+   "en": "shares",
+   "ko": "주식",
+   "pos": "명",
+   "base": "share",
+   "easy": "parts of a company",
+   "ex": "Their shares fell sharply on Friday.",
+   "ex_ko": "그 회사 주가가 금요일에 크게 떨어졌습니다.",
+   "cat": "t",
+   "ipa": "/ʃɛrz/",
+   "aud": "news/audio/2026-11-23-biz2-w3.mp3",
+   "wa": "news/audio/2026-11-23-biz2-k3.mp3"
+  },
+  {
+   "en": "affect",
+   "ko": "영향을 주다",
+   "pos": "동",
+   "easy": "change",
+   "ex": "Will the exchange rate affect our prices?",
+   "ex_ko": "환율이 저희 가격에 영향을 줄까요?",
+   "cat": "p",
+   "ipa": "/əˈfɛkt/",
+   "aud": "news/audio/2026-11-23-biz2-w4.mp3",
+   "wa": "news/audio/2026-11-23-biz2-k4.mp3"
+  }
+ ]
+}

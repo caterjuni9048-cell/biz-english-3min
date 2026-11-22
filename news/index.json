@@ -117,5 +117,33 @@
 "kind": "ent",
 "title": "Leeds Beat Chelsea 4-1 at Stamford Bridge",
 "title_ko": "리즈, 첼시 원정에서 4-1 대승"
+},
+{
+"id": "2026-11-23",
+"date": "2026-11-23",
+"kind": "biz",
+"title": "Korea's Car Trade Deficit With China Hits a Record",
+"title_ko": "한국의 대중국 자동차 무역적자, 사상 최대"
+},
+{
+"id": "2026-11-23-biz2",
+"date": "2026-11-23",
+"kind": "biz",
+"title": "Korea Gets Ready to Calm the Stock Market",
+"title_ko": "한국, 증시 안정 대책 준비"
+},
+{
+"id": "2026-11-23-hot",
+"date": "2026-11-23",
+"kind": "hot",
+"title": "New Hunger Games Movie Opens With 120 Million Dollars",
+"title_ko": "헝거게임 신작, 1억 2천만 달러로 개봉"
+},
+{
+"id": "2026-11-23-ent",
+"date": "2026-11-23",
+"kind": "ent",
+"title": "Verstappen Wins the Las Vegas Grand Prix Again",
+"title_ko": "페르스타펀, 라스베이거스 그랑프리 또 우승"
 }
 ]

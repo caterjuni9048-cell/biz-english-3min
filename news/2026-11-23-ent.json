@@ -1,0 +1,128 @@
+{
+ "date": "2026-11-23",
+ "kind": "ent",
+ "title": "Verstappen Wins the Las Vegas Grand Prix Again",
+ "title_ko": "페르스타펀, 라스베이거스 그랑프리 또 우승",
+ "paras": [
+  "Max Verstappen won the Formula 1 Las Vegas Grand Prix on Saturday night, November 21. He started the race from pole position, the first place on the starting grid, and finished just ahead of Lando Norris. Oscar Piastri came third.",
+  "It was Verstappen's 75th Formula 1 win in his career and his fourth win this season. It was also his third victory in Las Vegas, after his wins there in 2023 and 2025. The Las Vegas race takes place at night on a street circuit along the city's famous Strip.",
+  "The race was full of drama from start to finish. The final laps were very exciting, and Verstappen held on to win by less than one second. If your partners like motor sports, this race is a great topic for a coffee break chat."
+ ],
+ "paras_ko": [
+  "막스 페르스타펀이 11월 21일 토요일 밤 포뮬러1 라스베이거스 그랑프리에서 우승했습니다. 그는 출발 순서 맨 앞자리인 폴 포지션에서 출발해 랜도 노리스보다 조금 앞서 들어왔습니다. 오스카 피아스트리가 3위를 했습니다.",
+  "이번이 페르스타펀의 통산 75번째 F1 우승이자 이번 시즌 네 번째 우승이었습니다. 라스베이거스에서는 2023년과 2025년에 이어 세 번째 우승입니다. 라스베이거스 경기는 밤에 도시의 유명한 스트립 거리를 따라 만든 시가지 서킷에서 열립니다.",
+  "경기는 처음부터 끝까지 드라마로 가득했습니다. 마지막 몇 바퀴는 아주 흥미진진했고, 페르스타펀은 1초도 안 되는 차이로 버텨 우승했습니다. 거래처가 모터스포츠를 좋아한다면 커피 타임에 나누기 좋은 주제입니다."
+ ],
+ "sources": [
+  {
+   "name": "ESPN",
+   "url": "https://www.espn.com/f1/story/_/id/50530089/las-vegas-grand-prix-2026-live-updates-results-analysis-commentary",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "PlanetF1",
+   "url": "https://www.planetf1.com/news/2026-las-vegas-grand-prix-race-report",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "F1-Fansite",
+   "url": "https://www.f1-fansite.com/f1-result/race-results-2026-las-vegas-formula-1-grand-prix-report/",
+   "published": "2026-11-22"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Max Verstappen won the Las Vegas Grand Prix",
+    "Lando Norris won the Las Vegas Grand Prix",
+    "The Las Vegas race was cancelled"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 페르스타펀이 라스베이거스 그랑프리에서 우승했습니다."
+  },
+  {
+   "q": "Who finished third?",
+   "opts": [
+    "Lando Norris",
+    "Max Verstappen",
+    "Oscar Piastri"
+   ],
+   "a": 2,
+   "why_ko": "첫 문단: 오스카 피아스트리가 3위입니다."
+  },
+  {
+   "q": "How many times has Verstappen won in Las Vegas?",
+   "opts": [
+    "Once",
+    "Three times",
+    "Five times"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 라스베이거스에서 세 번째 우승입니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "career",
+   "ko": "경력, 선수 생활",
+   "pos": "명",
+   "easy": "working life",
+   "ex": "That's an amazing career, isn't it?",
+   "ex_ko": "정말 대단한 경력이죠?",
+   "cat": "p",
+   "ipa": "/kəˈrɪr/",
+   "aud": "news/audio/2026-11-23-ent-w0.mp3",
+   "wa": "news/audio/2026-11-23-ent-k0.mp3"
+  },
+  {
+   "en": "victory",
+   "ko": "승리",
+   "pos": "명",
+   "easy": "win",
+   "ex": "Congratulations on your team's victory!",
+   "ex_ko": "팀 승리 축하드려요!",
+   "cat": "p",
+   "ipa": "/ˈvɪktəri/",
+   "aud": "news/audio/2026-11-23-ent-w1.mp3",
+   "wa": "news/audio/2026-11-23-ent-k1.mp3"
+  },
+  {
+   "en": "drama",
+   "ko": "극적인 일, 드라마",
+   "pos": "명",
+   "easy": "exciting events",
+   "ex": "There was so much drama in the last game!",
+   "ex_ko": "지난 경기 정말 극적이었어요!",
+   "cat": "p",
+   "ipa": "/ˈdrɑːmə/",
+   "aud": "news/audio/2026-11-23-ent-w2.mp3",
+   "wa": "news/audio/2026-11-23-ent-k2.mp3"
+  },
+  {
+   "en": "exciting",
+   "ko": "흥미진진한",
+   "pos": "형",
+   "easy": "very fun",
+   "ex": "The last part of the race was so exciting!",
+   "ex_ko": "경기 마지막 부분이 정말 흥미진진했어요!",
+   "cat": "p",
+   "ipa": "/ɛkˈsaɪtɪŋ/",
+   "aud": "news/audio/2026-11-23-ent-w3.mp3",
+   "wa": "news/audio/2026-11-23-ent-k3.mp3"
+  },
+  {
+   "en": "held on",
+   "ko": "버텼다",
+   "pos": "구",
+   "base": "hold on",
+   "easy": "kept going",
+   "ex": "He held on and won by less than a second.",
+   "ex_ko": "그는 끝까지 버텨 1초도 안 되는 차이로 이겼어요.",
+   "cat": "t",
+   "ipa": "/ˈhɛldˈ ɔn/",
+   "aud": "news/audio/2026-11-23-ent-w4.mp3",
+   "wa": "news/audio/2026-11-23-ent-k4.mp3"
+  }
+ ]
+}

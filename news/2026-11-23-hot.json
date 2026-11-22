@@ -1,0 +1,129 @@
+{
+ "date": "2026-11-23",
+ "kind": "hot",
+ "title": "New Hunger Games Movie Opens With 120 Million Dollars",
+ "title_ko": "헝거게임 신작, 1억 2천만 달러로 개봉",
+ "paras": [
+  "The new Hunger Games movie had a huge first weekend. The Hunger Games: Sunrise on the Reaping earned about 120 million dollars in the United States and Canada from November 20 to 22. It was the number one movie of the weekend by a wide margin.",
+  "The result was better than many people in the film industry had expected. The movie is a prequel, which means its story happens before the first Hunger Games books and films.",
+  "The Hunger Games series started as popular books for young readers and later became a big film series. With the holiday season starting, more people will go to the movies in the coming weeks. It is a nice topic for small talk. You could ask your partners, \"Have you seen any good movies lately?\""
+ ],
+ "paras_ko": [
+  "헝거게임 신작이 개봉 첫 주말에 엄청난 성적을 냈습니다. '헝거게임: 선라이즈 온 더 리핑'은 11월 20일부터 22일까지 미국과 캐나다에서 약 1억 2천만 달러를 벌었습니다. 큰 차이로 주말 1위 영화였습니다.",
+  "이 결과는 영화업계의 많은 사람이 예상한 것보다 좋았습니다. 이 영화는 프리퀄로, 첫 헝거게임 책과 영화보다 앞선 시기의 이야기입니다.",
+  "헝거게임 시리즈는 청소년 독자에게 인기 있는 책으로 시작해 나중에 큰 영화 시리즈가 됐습니다. 연말 시즌이 시작되면서 앞으로 몇 주 동안 더 많은 사람이 영화관을 찾을 것입니다. 스몰토크 주제로 좋습니다. 거래처에 \"요즘 재미있는 영화 보셨어요?\"라고 물어볼 수 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "Variety",
+   "url": "https://variety.com/2026/film/box-office/sunrise-on-the-reaping-box-office-hunger-games-opening-weekend-exceeds-expectations-1236953061/",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "The Hollywood Reporter",
+   "url": "https://www.hollywoodreporter.com/movies/movie-news/hunger-games-sunrise-on-the-reaping-box-office-opening-win-2-1236760511/",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "Boxoffice Pro",
+   "url": "https://www.boxofficepro.com/weekend-box-office-hunger-games-sunrise-on-the-reaping-sweeps-the-competition-with-120m-debut/",
+   "published": "2026-11-22"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "A new Hunger Games movie had a very big opening weekend",
+    "The Hunger Games books were banned",
+    "Movie theaters closed for the holidays"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 헝거게임 신작이 첫 주말에 큰 성적을 냈습니다."
+  },
+  {
+   "q": "What is a prequel?",
+   "opts": [
+    "A movie made for TV",
+    "A story that happens before the first story",
+    "A movie with no actors"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 프리퀄은 첫 이야기보다 앞선 시기의 이야기입니다."
+  },
+  {
+   "q": "How did the series begin?",
+   "opts": [
+    "As a TV show",
+    "As a video game",
+    "As popular books for young readers"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 청소년 독자에게 인기 있는 책으로 시작했습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "earned",
+   "ko": "벌었다",
+   "pos": "동",
+   "base": "earn",
+   "easy": "made money",
+   "ex": "That movie earned a lot this weekend, didn't it?",
+   "ex_ko": "그 영화 이번 주말에 많이 벌었죠?",
+   "cat": "p",
+   "ipa": "/ɜːrnd/",
+   "aud": "news/audio/2026-11-23-hot-w0.mp3",
+   "wa": "news/audio/2026-11-23-hot-k0.mp3"
+  },
+  {
+   "en": "margin",
+   "ko": "차이, 격차",
+   "pos": "명",
+   "easy": "difference",
+   "ex": "They won the game by a wide margin.",
+   "ex_ko": "그들이 큰 차이로 경기를 이겼어요.",
+   "cat": "p",
+   "ipa": "/ˈmɑːrdʒɪn/",
+   "aud": "news/audio/2026-11-23-hot-w1.mp3",
+   "wa": "news/audio/2026-11-23-hot-k1.mp3"
+  },
+  {
+   "en": "expected",
+   "ko": "예상했다",
+   "pos": "동",
+   "base": "expect",
+   "easy": "thought would happen",
+   "ex": "It was much better than I expected!",
+   "ex_ko": "생각했던 것보다 훨씬 좋았어요!",
+   "cat": "p",
+   "ipa": "/ɛkˈspɛktɪd/",
+   "aud": "news/audio/2026-11-23-hot-w2.mp3",
+   "wa": "news/audio/2026-11-23-hot-k2.mp3"
+  },
+  {
+   "en": "series",
+   "ko": "시리즈",
+   "pos": "명",
+   "easy": "set of stories",
+   "ex": "Have you read the whole series?",
+   "ex_ko": "그 시리즈 다 읽어 보셨어요?",
+   "cat": "p",
+   "ipa": "/ˈsɪriz/",
+   "aud": "news/audio/2026-11-23-hot-w3.mp3",
+   "wa": "news/audio/2026-11-23-hot-k3.mp3"
+  },
+  {
+   "en": "lately",
+   "ko": "최근에",
+   "pos": "부",
+   "easy": "recently",
+   "ex": "Have you seen any good movies lately?",
+   "ex_ko": "요즘 재미있는 영화 보셨어요?",
+   "cat": "p",
+   "ipa": "/ˈleɪtli/",
+   "aud": "news/audio/2026-11-23-hot-w4.mp3",
+   "wa": "news/audio/2026-11-23-hot-k4.mp3"
+  }
+ ]
+}
