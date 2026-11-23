@@ -1,0 +1,128 @@
+{
+ "date": "2026-11-24",
+ "kind": "biz",
+ "title": "US Stocks Bounce Back as Nvidia Jumps",
+ "title_ko": "엔비디아 급등에 미국 증시 큰 폭 반등",
+ "paras": [
+  "US stock markets had a very strong day on Monday, November 23. After a hard week, the major stock indexes rose sharply. The S&P 500 rose about 5 percent, and the Nasdaq, which has many technology companies, gained even more.",
+  "Nvidia, the large AI chipmaker, led the rally. Its shares rose more than 30 percent in one day. The jump came after the company's board brought back Jensen Huang as chief executive officer, effective immediately. Other AI-related stocks also went up.",
+  "Last week, US stocks fell sharply, and some major indexes fell into what is called a correction, which means a drop of 10 percent or more from a recent high. Monday's rise helped investors feel better. For companies in Korea, big moves in US markets can quickly affect Korean stocks and the won, so it is useful to keep an eye on them."
+ ],
+ "paras_ko": [
+  "11월 23일 월요일 미국 증시가 아주 강한 하루를 보냈습니다. 힘든 한 주를 보낸 뒤 주요 주가지수가 크게 올랐습니다. S&P 500 지수는 약 5% 올랐고, 기술 기업이 많은 나스닥은 그보다 더 올랐습니다.",
+  "대형 AI 반도체 기업 엔비디아가 상승을 이끌었습니다. 엔비디아 주가는 하루 만에 30% 넘게 올랐습니다. 회사 이사회가 젠슨 황을 최고경영자(CEO)로 즉시 복귀시킨 뒤였습니다. 다른 AI 관련 주식도 올랐습니다.",
+  "지난주 미국 주식은 크게 떨어졌고, 일부 주요 지수는 '조정' 국면에 들어갔습니다. 조정은 최근 고점에서 10% 이상 떨어진 상태를 말합니다. 월요일의 상승은 투자자들의 마음을 놓이게 했습니다. 미국 시장의 큰 움직임은 한국 주식과 원화에도 빠르게 영향을 줄 수 있으니, 한국 기업들도 지켜보는 것이 좋습니다."
+ ],
+ "sources": [
+  {
+   "name": "ABC News",
+   "url": "https://abcnews.com/Business/stock-market-rebounds-sharply-after-selloff/story?id=138373790",
+   "published": "2026-11-23"
+  },
+  {
+   "name": "BNN Bloomberg (AP)",
+   "url": "https://www.bnnbloomberg.ca/markets/dow-jones/2026/11/23/us-futures-climb-and-world-shares-are-mixed-as-big-tech-stocks-fall-in-asia/",
+   "published": "2026-11-23"
+  },
+  {
+   "name": "Benzinga",
+   "url": "https://www.benzinga.com/markets/equities/26/11/63551516/stock-market-today-nvidia-jensen-huang-return-nasdaq-100-anthropic-crowdstrike",
+   "published": "2026-11-23"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "US stocks rose sharply on Monday",
+    "US stock markets closed for a week",
+    "Nvidia stopped making chips"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 월요일 미국 증시가 크게 올랐습니다."
+  },
+  {
+   "q": "Why did Nvidia's shares jump?",
+   "opts": [
+    "It opened a new factory in Korea",
+    "Its board brought back Jensen Huang as CEO",
+    "It lowered its prices"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 이사회가 젠슨 황을 CEO로 복귀시켰습니다."
+  },
+  {
+   "q": "What is a correction?",
+   "opts": [
+    "A rise of 10 percent in one day",
+    "A new stock index",
+    "A drop of 10 percent or more from a recent high"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 최근 고점에서 10% 이상 떨어진 상태입니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "indexes",
+   "ko": "지수",
+   "pos": "명",
+   "base": "index",
+   "easy": "market scores",
+   "ex": "Stock indexes in Asia also moved up today.",
+   "ex_ko": "오늘 아시아 주가지수도 올랐습니다.",
+   "cat": "t",
+   "ipa": "/ˈɪndɛksɪz/",
+   "aud": "news/audio/2026-11-24-biz2-w0.mp3",
+   "wa": "news/audio/2026-11-24-biz2-k0.mp3"
+  },
+  {
+   "en": "sharply",
+   "ko": "급격히",
+   "pos": "부",
+   "easy": "very quickly",
+   "ex": "Shipping costs rose sharply this year.",
+   "ex_ko": "올해 운송비가 급격히 올랐습니다.",
+   "cat": "t",
+   "ipa": "/ˈʃɑːrpli/",
+   "aud": "news/audio/2026-11-24-biz2-w1.mp3",
+   "wa": "news/audio/2026-11-24-biz2-k1.mp3"
+  },
+  {
+   "en": "rally",
+   "ko": "(주가) 반등, 상승",
+   "pos": "명",
+   "easy": "big rise",
+   "ex": "The rally in chip stocks surprised many investors.",
+   "ex_ko": "반도체 주식 상승에 많은 투자자가 놀랐습니다.",
+   "cat": "t",
+   "ipa": "/ˈræli/",
+   "aud": "news/audio/2026-11-24-biz2-w2.mp3",
+   "wa": "news/audio/2026-11-24-biz2-k2.mp3"
+  },
+  {
+   "en": "effective immediately",
+   "ko": "즉시 효력이 있는",
+   "pos": "구",
+   "easy": "starting now",
+   "ex": "The new prices are effective immediately.",
+   "ex_ko": "새 가격은 즉시 적용됩니다.",
+   "cat": "m",
+   "ipa": "/ɪˈfɛktɪv ɪˈmiːdɪətli/",
+   "aud": "news/audio/2026-11-24-biz2-w3.mp3",
+   "wa": "news/audio/2026-11-24-biz2-k3.mp3"
+  },
+  {
+   "en": "keep an eye on",
+   "ko": "~을 지켜보다",
+   "pos": "구",
+   "easy": "watch",
+   "ex": "Please keep an eye on the exchange rate this week.",
+   "ex_ko": "이번 주 환율을 잘 지켜봐 주세요.",
+   "cat": "m",
+   "ipa": "/ˈkiːp ənˈ aɪˈ ɔn/",
+   "aud": "news/audio/2026-11-24-biz2-w4.mp3",
+   "wa": "news/audio/2026-11-24-biz2-k4.mp3"
+  }
+ ]
+}

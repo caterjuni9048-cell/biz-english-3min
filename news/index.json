@@ -145,5 +145,33 @@
 "kind": "ent",
 "title": "Verstappen Wins the Las Vegas Grand Prix Again",
 "title_ko": "페르스타펀, 라스베이거스 그랑프리 또 우승"
+},
+{
+"id": "2026-11-24",
+"date": "2026-11-24",
+"kind": "biz",
+"title": "CrowdStrike Agrees to Buy Zscaler in a 44 Billion Dollar Deal",
+"title_ko": "크라우드스트라이크, 지스케일러 약 440억 달러에 인수 합의"
+},
+{
+"id": "2026-11-24-biz2",
+"date": "2026-11-24",
+"kind": "biz",
+"title": "US Stocks Bounce Back as Nvidia Jumps",
+"title_ko": "엔비디아 급등에 미국 증시 큰 폭 반등"
+},
+{
+"id": "2026-11-24-hot",
+"date": "2026-11-24",
+"kind": "hot",
+"title": "Delta System Problem Delays Many Flights",
+"title_ko": "델타항공 시스템 문제로 항공편 대거 지연"
+},
+{
+"id": "2026-11-24-ent",
+"date": "2026-11-24",
+"kind": "ent",
+"title": "Liverpool Beat Manchester United 4-0",
+"title_ko": "리버풀, 맨체스터 유나이티드에 4-0 대승"
 }
 ]

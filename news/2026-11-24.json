@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-24",
+ "kind": "biz",
+ "title": "CrowdStrike Agrees to Buy Zscaler in a 44 Billion Dollar Deal",
+ "title_ko": "크라우드스트라이크, 지스케일러 약 440억 달러에 인수 합의",
+ "paras": [
+  "Two big cybersecurity companies plan to join together. On November 23, CrowdStrike agreed to buy Zscaler in a deal worth about 44 billion dollars. CrowdStrike will not pay in cash. Instead, Zscaler shareholders will receive CrowdStrike shares.",
+  "CrowdStrike is known for protecting computers and other devices from hackers. Zscaler focuses on network security, which keeps company networks and internet traffic safe. By combining the two, CrowdStrike hopes to offer customers more types of protection from one company.",
+  "The boards of both companies have already said yes, but the deal is not finished yet. Zscaler shareholders and government regulators must still approve it. After the news, Zscaler's share price jumped, while CrowdStrike's shares fell. Deals like this one could change the security services that many companies use in the future."
+ ],
+ "paras_ko": [
+  "대형 사이버보안 회사 두 곳이 하나로 합칠 계획입니다. 11월 23일 크라우드스트라이크는 약 440억 달러 규모로 지스케일러를 인수하기로 합의했습니다. 크라우드스트라이크는 현금으로 내지 않습니다. 대신 지스케일러 주주들은 크라우드스트라이크 주식을 받습니다.",
+  "크라우드스트라이크는 컴퓨터와 기기를 해커로부터 지키는 것으로 알려져 있습니다. 지스케일러는 기업 네트워크와 인터넷 통신을 안전하게 지키는 네트워크 보안에 집중합니다. 두 회사를 합쳐 크라우드스트라이크는 고객에게 한 회사에서 더 많은 종류의 보호를 제공하려 합니다.",
+  "두 회사 이사회는 이미 찬성했지만, 거래는 아직 끝나지 않았습니다. 지스케일러 주주와 정부 규제 당국의 승인을 받아야 합니다. 소식이 나온 뒤 지스케일러 주가는 뛰었고, 크라우드스트라이크 주가는 내렸습니다. 이런 거래는 앞으로 많은 기업이 쓰는 보안 서비스를 바꿀 수 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/23/crowdstrike-zscaler-aquisition-ai-cyberattacks.html",
+   "published": "2026-11-23"
+  },
+  {
+   "name": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/23/crowdstrike-to-acquire-zscaler-for-44-billion/",
+   "published": "2026-11-23"
+  },
+  {
+   "name": "ABC News",
+   "url": "https://abcnews.com/Business/wireStory/crowdstrike-acquire-zscaler-44-billion-deal-create-cybersecurity-138373706",
+   "published": "2026-11-23"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "CrowdStrike agreed to buy Zscaler",
+    "Zscaler agreed to buy CrowdStrike",
+    "Both companies are closing"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 크라우드스트라이크가 지스케일러 인수에 합의했습니다."
+  },
+  {
+   "q": "How will CrowdStrike pay for the deal?",
+   "opts": [
+    "With cash",
+    "With its own shares",
+    "With a bank loan"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 현금 대신 자사 주식을 줍니다."
+  },
+  {
+   "q": "What still needs to happen before the deal is finished?",
+   "opts": [
+    "Nothing",
+    "CrowdStrike must change its name",
+    "Shareholders and regulators must approve it"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 주주와 규제 당국의 승인이 필요합니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "deal",
+   "ko": "거래",
+   "pos": "명",
+   "easy": "agreement",
+   "ex": "We closed a deal with a new buyer in Vietnam.",
+   "ex_ko": "베트남의 새 바이어와 거래를 성사시켰습니다.",
+   "cat": "t",
+   "ipa": "/diːl/",
+   "aud": "news/audio/2026-11-24-w0.mp3",
+   "wa": "news/audio/2026-11-24-k0.mp3"
+  },
+  {
+   "en": "shareholders",
+   "ko": "주주",
+   "pos": "명",
+   "base": "shareholder",
+   "easy": "owners of shares",
+   "ex": "The shareholders will vote on the plan next month.",
+   "ex_ko": "주주들이 다음 달 그 계획에 투표합니다.",
+   "cat": "t",
+   "ipa": "/ˈʃɛrhoʊldərz/",
+   "aud": "news/audio/2026-11-24-w1.mp3",
+   "wa": "news/audio/2026-11-24-k1.mp3"
+  },
+  {
+   "en": "protecting",
+   "ko": "보호하는",
+   "pos": "동",
+   "base": "protect",
+   "easy": "keeping safe",
+   "ex": "We use strong boxes for protecting fragile goods.",
+   "ex_ko": "깨지기 쉬운 물건을 보호하려고 튼튼한 상자를 씁니다.",
+   "cat": "m",
+   "ipa": "/prəˈtɛktɪŋ/",
+   "aud": "news/audio/2026-11-24-w2.mp3",
+   "wa": "news/audio/2026-11-24-k2.mp3"
+  },
+  {
+   "en": "approve",
+   "ko": "승인하다",
+   "pos": "동",
+   "easy": "say yes to",
+   "ex": "Could you approve the purchase order today?",
+   "ex_ko": "오늘 발주서를 승인해 주실 수 있나요?",
+   "cat": "m",
+   "ipa": "/əˈpruːv/",
+   "aud": "news/audio/2026-11-24-w3.mp3",
+   "wa": "news/audio/2026-11-24-k3.mp3"
+  },
+  {
+   "en": "regulators",
+   "ko": "규제 당국",
+   "pos": "명",
+   "base": "regulator",
+   "easy": "government checkers",
+   "ex": "The regulators asked for more information about the product.",
+   "ex_ko": "규제 당국이 제품 정보를 더 요청했습니다.",
+   "cat": "m",
+   "ipa": "/ˈrɛɡjʊˌleɪtərz/",
+   "aud": "news/audio/2026-11-24-w4.mp3",
+   "wa": "news/audio/2026-11-24-k4.mp3"
+  }
+ ]
+}

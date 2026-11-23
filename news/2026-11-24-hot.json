@@ -1,0 +1,128 @@
+{
+ "date": "2026-11-24",
+ "kind": "hot",
+ "title": "Delta System Problem Delays Many Flights",
+ "title_ko": "델타항공 시스템 문제로 항공편 대거 지연",
+ "paras": [
+  "A computer problem at Delta Air Lines caused long delays for many travelers on Sunday, November 22. The problem was in Delta's weight and balance system. This system helps each plane carry the right amount of weight in the right places before it takes off.",
+  "Because of the problem, the US Federal Aviation Administration briefly stopped Delta flights heading to Atlanta, the airline's biggest hub. Many flights across the country were delayed. Delta said the system was working normally again by Sunday afternoon, and that a hacker did not cause the problem.",
+  "The timing was bad for travelers. Thanksgiving is this week, one of the busiest times of the year for air travel in the United States. If you plan a business trip to the US soon, it is a good idea to leave extra time at the airport."
+ ],
+ "paras_ko": [
+  "11월 22일 일요일, 델타항공의 컴퓨터 문제로 많은 여행객이 오래 기다려야 했습니다. 문제가 생긴 곳은 델타의 중량·균형 시스템이었습니다. 이 시스템은 비행기가 이륙하기 전에 알맞은 무게를 알맞은 자리에 싣도록 돕습니다.",
+  "이 문제로 미국 연방항공청(FAA)은 델타의 최대 거점 공항인 애틀랜타로 가는 델타 항공편을 잠시 멈췄습니다. 전국에서 많은 항공편이 지연됐습니다. 델타는 일요일 오후에 시스템이 정상으로 돌아왔고, 해커 때문에 생긴 문제는 아니라고 밝혔습니다.",
+  "여행객에게는 좋지 않은 시기였습니다. 이번 주는 미국에서 1년 중 항공 여행이 가장 붐비는 때 중 하나인 추수감사절입니다. 곧 미국 출장을 계획한다면 공항에 여유 시간을 두고 가는 것이 좋습니다."
+ ],
+ "sources": [
+  {
+   "name": "CNN",
+   "url": "https://www.cnn.com/2026/11/22/us/delta-airlines-ground-delay",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "ABC News",
+   "url": "https://abcnews.com/US/equipment-outage-atlanta-causes-1300-delta-flight-delays/story?id=138360900",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "Deseret News",
+   "url": "https://www.deseret.com/business/2026/11/23/delta-technical-outage-thanksgiving-travel/",
+   "published": "2026-11-23"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Delta bought a new airport",
+    "A Delta computer problem delayed many flights",
+    "Delta stopped flying to Atlanta forever"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 델타의 컴퓨터 문제로 많은 항공편이 지연됐습니다."
+  },
+  {
+   "q": "What does the weight and balance system do?",
+   "opts": [
+    "It helps planes carry the right weight in the right places",
+    "It sells tickets online",
+    "It cleans the planes"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 알맞은 무게를 알맞은 자리에 싣도록 돕습니다."
+  },
+  {
+   "q": "Why was the timing bad?",
+   "opts": [
+    "It was a holiday in Korea",
+    "Planes were too full of cargo",
+    "Thanksgiving travel is this week"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 이번 주가 바쁜 추수감사절입니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "delays",
+   "ko": "지연",
+   "pos": "명",
+   "base": "delay",
+   "easy": "waiting longer",
+   "ex": "Sorry, there are some delays with your shipment.",
+   "ex_ko": "죄송하지만 화물 배송이 조금 지연되고 있습니다.",
+   "cat": "m",
+   "ipa": "/dɪˈleɪz/",
+   "aud": "news/audio/2026-11-24-hot-w0.mp3",
+   "wa": "news/audio/2026-11-24-hot-k0.mp3"
+  },
+  {
+   "en": "briefly",
+   "ko": "잠시",
+   "pos": "부",
+   "easy": "for a short time",
+   "ex": "The system was briefly down this morning.",
+   "ex_ko": "오늘 아침 시스템이 잠시 멈췄어요.",
+   "cat": "p",
+   "ipa": "/ˈbriːfli/",
+   "aud": "news/audio/2026-11-24-hot-w1.mp3",
+   "wa": "news/audio/2026-11-24-hot-k1.mp3"
+  },
+  {
+   "en": "hub",
+   "ko": "거점, 허브",
+   "pos": "명",
+   "easy": "main center",
+   "ex": "Incheon is a big hub for flights to Asia.",
+   "ex_ko": "인천은 아시아행 항공편의 큰 허브예요.",
+   "cat": "p",
+   "ipa": "/hʌb/",
+   "aud": "news/audio/2026-11-24-hot-w2.mp3",
+   "wa": "news/audio/2026-11-24-hot-k2.mp3"
+  },
+  {
+   "en": "normally",
+   "ko": "정상적으로",
+   "pos": "부",
+   "easy": "as usual",
+   "ex": "Is everything working normally now?",
+   "ex_ko": "이제 모든 게 정상적으로 작동하나요?",
+   "cat": "p",
+   "ipa": "/ˈnɔːrməli/",
+   "aud": "news/audio/2026-11-24-hot-w3.mp3",
+   "wa": "news/audio/2026-11-24-hot-k3.mp3"
+  },
+  {
+   "en": "extra",
+   "ko": "추가의, 여분의",
+   "pos": "형",
+   "easy": "more",
+   "ex": "Let's leave extra time for traffic.",
+   "ex_ko": "교통 체증을 생각해 시간을 여유 있게 두죠.",
+   "cat": "t",
+   "ipa": "/ˈɛkstrə/",
+   "aud": "news/audio/2026-11-24-hot-w4.mp3",
+   "wa": "news/audio/2026-11-24-hot-k4.mp3"
+  }
+ ]
+}

@@ -1,0 +1,128 @@
+{
+ "date": "2026-11-24",
+ "kind": "ent",
+ "title": "Liverpool Beat Manchester United 4-0",
+ "title_ko": "리버풀, 맨체스터 유나이티드에 4-0 대승",
+ "paras": [
+  "Liverpool won 4-0 against Manchester United at Anfield on Sunday, November 22. It was a big win in one of the most famous rivalries in English football. It was also a very hard day for Mauricio Pochettino, who was in charge of Manchester United for the first time.",
+  "Manchester United had a problem early in the game. One of their players got a red card, so the team had to play with only ten men. Liverpool soon took control. Dominik Szoboszlai scored first, and Florian Wirtz added a second goal soon after.",
+  "In the second half, Rio Ngumoha and Victor Munoz scored to make it 4-0. Liverpool fans enjoyed a great afternoon, while United's new manager has a lot of work to do. Do your partners support Liverpool or Manchester United? This game is an easy way to start a friendly chat."
+ ],
+ "paras_ko": [
+  "리버풀이 11월 22일 일요일 안필드에서 맨체스터 유나이티드를 4-0으로 이겼습니다. 잉글랜드 축구에서 가장 유명한 라이벌전 중 하나에서 거둔 큰 승리였습니다. 맨유를 처음 이끈 마우리시오 포체티노 감독에게는 아주 힘든 하루였습니다.",
+  "맨유는 경기 초반에 문제가 생겼습니다. 선수 한 명이 레드카드를 받아 10명으로 싸워야 했습니다. 리버풀은 곧 경기를 장악했습니다. 도미니크 소보슬러이가 첫 골을 넣었고, 곧이어 플로리안 비르츠가 두 번째 골을 더했습니다.",
+  "후반에는 리오 은구모하와 빅토르 무뇨스가 골을 넣어 4-0을 만들었습니다. 리버풀 팬들은 즐거운 오후를 보냈고, 맨유의 새 감독에게는 할 일이 많아졌습니다. 거래처가 리버풀 팬인가요, 맨유 팬인가요? 이 경기는 편하게 대화를 시작하기 좋은 소재입니다."
+ ],
+ "sources": [
+  {
+   "name": "NBC Sports",
+   "url": "https://www.nbcsports.com/soccer/live/liverpool-vs-manchester-united-live-updates-score-goals-highlights-stats-2026-november-22",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "TNT Sports",
+   "url": "https://www.tntsports.co.uk/football/premier-league/2026-2027/liverpool-manchester-united_mtc21883249/live-commentary.shtml",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "Fox Sports",
+   "url": "https://www.foxsports.com/soccer/premier-league-liverpool-vs-manchester-utd-nov-22-2026-game-boxscore-891172",
+   "published": "2026-11-22"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Liverpool beat Manchester United 4-0",
+    "Manchester United beat Liverpool 4-0",
+    "The game ended 0-0"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 리버풀이 맨유를 4-0으로 이겼습니다."
+  },
+  {
+   "q": "Why did Manchester United play with ten men?",
+   "opts": [
+    "A player was sick",
+    "A player got a red card",
+    "They came late"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 선수 한 명이 레드카드를 받았습니다."
+  },
+  {
+   "q": "Who scored Liverpool's first goal?",
+   "opts": [
+    "Florian Wirtz",
+    "Rio Ngumoha",
+    "Dominik Szoboszlai"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: 소보슬러이가 프리킥으로 첫 골을 넣었습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "rivalries",
+   "ko": "라이벌 관계",
+   "pos": "명",
+   "base": "rivalry",
+   "easy": "long fights between teams",
+   "ex": "It's one of the biggest rivalries in football, right?",
+   "ex_ko": "축구에서 가장 큰 라이벌전 중 하나죠?",
+   "cat": "p",
+   "ipa": "/ˈraɪvəlriz/",
+   "aud": "news/audio/2026-11-24-ent-w0.mp3",
+   "wa": "news/audio/2026-11-24-ent-k0.mp3"
+  },
+  {
+   "en": "in charge of",
+   "ko": "~을 맡은, 책임지는",
+   "pos": "구",
+   "easy": "leading",
+   "ex": "Who is in charge of this project now?",
+   "ex_ko": "지금 이 프로젝트 담당이 누구예요?",
+   "cat": "t",
+   "ipa": "/ɪn ˈtʃɑːrdʒ ʌv/",
+   "aud": "news/audio/2026-11-24-ent-w1.mp3",
+   "wa": "news/audio/2026-11-24-ent-k1.mp3"
+  },
+  {
+   "en": "control",
+   "ko": "장악, 통제",
+   "pos": "명",
+   "easy": "power over",
+   "ex": "Liverpool had control of the game from the start.",
+   "ex_ko": "리버풀이 처음부터 경기를 장악했어요.",
+   "cat": "p",
+   "ipa": "/kənˈtroʊl/",
+   "aud": "news/audio/2026-11-24-ent-w2.mp3",
+   "wa": "news/audio/2026-11-24-ent-k2.mp3"
+  },
+  {
+   "en": "manager",
+   "ko": "감독, 관리자",
+   "pos": "명",
+   "easy": "team leader",
+   "ex": "The new manager will need some time.",
+   "ex_ko": "새 감독은 시간이 좀 필요할 거예요.",
+   "cat": "p",
+   "ipa": "/ˈmænɪdʒər/",
+   "aud": "news/audio/2026-11-24-ent-w3.mp3",
+   "wa": "news/audio/2026-11-24-ent-k3.mp3"
+  },
+  {
+   "en": "support",
+   "ko": "응원하다",
+   "pos": "동",
+   "easy": "be a fan of",
+   "ex": "Which football team do you support?",
+   "ex_ko": "어느 축구팀을 응원하세요?",
+   "cat": "p",
+   "ipa": "/səˈpɔːrt/",
+   "aud": "news/audio/2026-11-24-ent-w4.mp3",
+   "wa": "news/audio/2026-11-24-ent-k4.mp3"
+  }
+ ]
+}
