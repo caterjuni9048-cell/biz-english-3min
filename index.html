@@ -229,7 +229,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .qzq{font-size:28px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}
 .call{display:flex;flex-direction:column;gap:12px;align-items:stretch}
 .callhead{display:flex;justify-content:space-between;font-weight:700}
-.orb{align-self:center;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,var(--accent),var(--soft) 70%);margin:6px 0}
+.orb{border:0;padding:0;cursor:pointer;align-self:center;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,var(--accent),var(--soft) 70%);margin:6px 0}
 .orb i{width:60%;height:60%;border-radius:50%;background:var(--surface);opacity:.35}
 .orb-ai{animation:orbtalk 0.9s ease-in-out infinite}
 .orb-listen{background:radial-gradient(circle at 35% 30%,var(--good),var(--good-bg) 70%);animation:orbbreath 1.6s ease-in-out infinite}
@@ -460,7 +460,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v26",APP_DATE="2026-11-19";
+var APP_VER="v27",APP_DATE="2026-11-19";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -2135,26 +2135,38 @@ function rvHTML(){
 
 /* ---- AI 영어 통화 (Claude 링크): 음성 대화 앱처럼 AI 말하기 → 자동 듣기 → AI 대답 ----
    Alex(AI)가 "Hi Jun!" 스몰톡으로 시작 → 오늘 틀린/배운 표현을 대화 속 짧은 상황극으로 연습 → 틀리면 다시 말하게 → 마무리 요약 */
-var CALL={phase:"start",turns:[],targets:[],stat:{},cc:true,err:"",ctl:null,t0:0,poll:0,last:"",lastT:0,heard:"",n:0,summary:null};
+var CALL={koVoice:false,phase:"start",turns:[],targets:[],stat:{},cc:true,err:"",ctl:null,t0:0,poll:0,last:"",lastT:0,heard:"",n:0,summary:null};
 function callTargets(){var src=rvSource();if(!src)return [];var w=src.wrong;return src.ids.slice().sort(function(a,b){return (w.indexOf(b)>=0)-(w.indexOf(a)>=0);}).slice(0,4);}
-/* 목소리: 영어는 Claude 목소리, 한국어는 폰의 한국어 목소리(자연스러운 한국어 발음). 폰에 한국어 목소리가 없으면 Claude 목소리로 */
+/* ===== AI 영어 통화 엔진 (v27) =====
+ 1 말 끝 판단: 2.5초 조용하면 끝(문장이 and/the 등으로 끝나면 4초), 공을 탭하면 바로 끝
+ 2 통화 시작 때 AI에게 한 번만 물어 오늘 통화 대본(연결 대사·구절·상황극)을 미리 받음 → 이후는 준의 답에 따라 필요한 때만 AI 호출
+ 3 AI를 기다리는 동안 Alex가 짧게 맞장구(Hmm, okay…)
+ 4 목소리 하나: 코칭도 Alex가 쉬운 영어로, 한국어는 자막(설정하면 폰 한국어 목소리)
+ 5 짧은 구절 → 문장 순서로 따라 하기, 비슷하면 통과
+ 6 지난 통화 요약을 기억해 이어 감
+ 7 Alex가 말할 때 공을 탭하면 끊고 바로 말하기 */
 function koVoice(){try{var vs=window.speechSynthesis?speechSynthesis.getVoices():[];return vs.filter(function(v){return /^ko/i.test(v.lang)&&/google/i.test(v.name);})[0]||vs.filter(function(v){return /^ko/i.test(v.lang);})[0]||null;}catch(x){return null;}}
-try{if(window.speechSynthesis)speechSynthesis.onvoiceschanged=function(){};}catch(x){}
 function sayKo(t){return new Promise(function(res){var v=koVoice();
   if(!v){if(TTS){try{TTS.speak(t,{language:"ko"}).then(res,res);}catch(x){res();}}else setTimeout(res,600+t.length*120);return;}
   try{var u=new SpeechSynthesisUtterance(t);u.voice=v;u.lang=v.lang;u.rate=1.05;u.onend=res;u.onerror=res;speechSynthesis.speak(u);setTimeout(res,1500+t.length*250);}catch(x){res();}});}
-function sayEn(t,slow){return new Promise(function(res){if(TTS){try{TTS.speak(t,{language:"en",rate:slow?0.8:1}).then(res,res);}catch(x){res();}return;}
+function sayEn(t,slow){return new Promise(function(res){if(TTS){try{TTS.speak(t,{language:"en",rate:slow?0.85:1}).then(res,res);}catch(x){res();}return;}
   try{var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=slow?0.8:0.95;u.onend=res;u.onerror=res;speechSynthesis.speak(u);setTimeout(res,1500+t.length*120);}catch(x){setTimeout(res,800+t.length*50);}});}
-/* lines: [{ko:"..."}|{en:"...",slow:true}] 순서대로 말하고 자막에 남긴 뒤 next */
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function stopVoice(){try{if(TTS)TTS.stop();}catch(x){}try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(x){}}
+/* lines: [{en:"..",slow},{ko:".."}]. 한국어는 자막으로만(설정 시 소리). 맞장구가 아직 말하는 중이면 끝나길 기다림 */
 function callSay(lines,next){
-  stopDict();CALL.phase="ai";var tok=CALL.tok=(CALL.tok||0)+1;
+  stopDict();var tok=CALL.tok=(CALL.tok||0)+1;var wait=CALL.fillP||Promise.resolve();CALL.fillP=null;CALL.sayNext=next;
+  CALL.phase="ai";
   lines.forEach(function(l){if(l.ko)CALL.turns.push({who:"coach",ko:l.ko});else if(l.en)CALL.turns.push({who:"ai",en:l.en});});
   render();callScroll();
-  var i=0,step=function(){if(CALL.tok!==tok||CALL.phase==="end")return;if(i>=lines.length){if(CALL.phase==="ai")next();return;}var l=lines[i++];
-    if(l.ko&&CALL.koVoice===false){step();return;}(l.ko?sayKo(l.ko):sayEn(l.en,l.slow)).then(step,step);};
-  step();
+  var i=0,step=function(){if(CALL.tok!==tok||CALL.phase==="end")return;if(i>=lines.length){if(CALL.phase==="ai"){CALL.sayNext=null;next();}return;}var l=lines[i++];
+    if(l.ko){if(CALL.koVoice===true)sayKo(l.ko).then(step,step);else step();return;}sayEn(l.en,l.slow).then(step,step);};
+  wait.then(step,step);
 }
-/* 듣기: 마이크 자동 켜기 → 1.5초 조용하면 끝. 들은 말을 onHeard 로 넘김 */
+/* 맞장구: AI를 부르기 직전 바로 짧게 */
+function callFiller(kind){var f=pick(kind==="judge"?["Hmm, let me see.","Okay, one sec.","Alright."]:["Oh, nice!","I see!","Okay!","Haha, got it."]);
+  CALL.turns.push({who:"ai",en:f,filler:true});CALL.fillP=sayEn(f);render();callScroll();}
+/* 듣기: 2.5초 조용하면 끝, 문장이 끝나지 않은 모양이면 4초. 공을 탭하면 바로 끝 */
 function callListen(onHeard){
   if(onHeard)CALL.onHeard=onHeard;
   if(view!=="aireview"||CALL.phase==="end")return;
@@ -2164,85 +2176,111 @@ function callListen(onHeard){
     onUpdate:function(){var cur=(OVR.text+" "+(OVR.partial||"")).trim();CALL.heard=cur;var el=document.getElementById("callheard");if(el)el.textContent=cur||"듣고 있어요…";},
     done:function(o){clearInterval(CALL.poll);var tx=(o.text+" "+(o.partial||"")).trim();if(CALL.phase!=="listen")return;if(!tx){CALL.phase="tap";render();return;}CALL.turns.push({who:"me",en:tx});CALL.heard="";var f=CALL.onHeard;if(f)f(tx);}};
   clearInterval(CALL.poll);
-  CALL.poll=setInterval(function(){if(!OVR||!OVR.call){clearInterval(CALL.poll);return;}var cur=(OVR.text+" "+(OVR.partial||"")).trim();if(cur!==CALL.last){CALL.last=cur;CALL.lastT=Date.now();if(OVR.onUpdate)OVR.onUpdate();}
-    else if(cur&&Date.now()-CALL.lastT>1500){clearInterval(CALL.poll);stopDict();}
-    else if(!cur&&Date.now()-CALL.lastT>12000){clearInterval(CALL.poll);stopDict();}},200);
+  CALL.poll=setInterval(function(){if(!OVR||!OVR.call){clearInterval(CALL.poll);return;}var cur=(OVR.text+" "+(OVR.partial||"")).trim();
+    if(cur!==CALL.last){CALL.last=cur;CALL.lastT=Date.now();if(OVR.onUpdate)OVR.onUpdate();return;}
+    var open=/\b(and|but|so|or|because|the|a|an|to|of|for|with|in|on|at|my|your|our|i|we|you|it's|um|uh|is|are|will|can|could|would)$/i.test(cur);
+    var quiet=Date.now()-CALL.lastT;
+    if(cur&&quiet>(open?4000:2500)){clearInterval(CALL.poll);stopDict();}
+    else if(!cur&&quiet>12000){clearInterval(CALL.poll);stopDict();}},200);
   DICT.start({language:"en"}).catch(function(){clearInterval(CALL.poll);OVR=null;CALL.phase="tap";render();});
 }
 function callTargets(){var src=rvSource();if(!src)return [];return callTargetsPreview(src);}
 function callKey(it){var t=String(it.tip||""),m=/^\s*([A-Za-z][A-Za-z ,'~-]*?)\s*(?:\/[^=:]*)?[=:]/.exec(t);var k=m?m[1].replace(/~/g,"").trim().replace(/,$/,""):"";
-  if(!k||k.split(" ").length>3){var hw=(it.en.match(/[A-Za-z]+/g)||[]).filter(function(w){return HARDIPA[w.toLowerCase()];})[0];k=hw||k||it.en.split(" ").slice(0,3).join(" ");}return k;}
-function callStat(id){return CALL.stat[id]||(CALL.stat[id]={word:null,sent:null,rp:null,tries:0});}
-/* 진행 순서: 스몰톡 → (표현마다) 소개 → 단어 따라 하기 → 문장 따라 하기 → 주고받기 상황극 → 마무리 */
-function callStart(){
-  CALL.targets=callTargets();if(!CALL.targets.length||!SAMPLE)return;
-  CALL.turns=[];CALL.stat={};CALL.err="";CALL.n=0;CALL.si=0;CALL.tries=0;
-  CALL.steps=[{k:"chat",n:0}];CALL.targets.forEach(function(id,i){CALL.steps.push({k:"intro",id:id,first:i===0},{k:"word",id:id},{k:"sent",id:id},{k:"rp",id:id,n:0,hist:[]});});CALL.steps.push({k:"wrap"});
-  CALL.phase="think";CALL.t0=Date.now();markExtra();render();
-  clearInterval(CALL.tick);CALL.tick=setInterval(function(){var el=document.getElementById("calltime");if(el&&CALL.phase!=="end"){var s2=Math.floor((Date.now()-CALL.t0)/1000);el.textContent=Math.floor(s2/60)+":"+String(s2%60).padStart(2,"0");}},1000);
-  try{if(window.speechSynthesis)speechSynthesis.getVoices();}catch(x){}
-  callStep();
+  if(!k||k.split(" ").length>4){var hw=(it.en.match(/[A-Za-z]+/g)||[]).filter(function(w){return HARDIPA[w.toLowerCase()];})[0];k=hw||k||it.en.split(" ").slice(0,3).join(" ");}
+  if(k.split(" ").length===1){var ws=it.en.replace(/[.,!?]/g,"").split(" "),ix=ws.map(function(w){return w.toLowerCase();}).indexOf(k.toLowerCase());if(ix>=0)k=ws.slice(Math.max(0,ix-1),ix+1).join(" ");}
+  return k;}
+function callStat(id){return CALL.stat[id]||(CALL.stat[id]={chunk:null,sent:null,rp:null,tries:0});}
+function callMemText(){var m=(S.callMem||[]).slice(-2);return m.length?m.map(function(x){return x.d+": practiced "+x.all.join(" / ")+(x.weak.length?" — struggled with "+x.weak.join(" / "):"");}).join("\n"):"";}
+/* 2. 대본: 통화 시작과 동시에 한 번만 AI에게 요청(스몰톡 하는 동안 준비됨). 실패하면 기본 대본 */
+function callScriptFallback(){var o={bridge_en:"By the way, let's practice a few expressions from today.",wrap_en:"Great job today, Jun! Talk soon.",items:{}};
+  CALL.targets.forEach(function(id,k){var it=BYID[id];o.items[id]={intro_en:(k?"Next one. ":"First one. ")+"Here's a useful sentence:",chunk_en:callKey(it),scene_en:"Okay, let's try it in a situation.",partner_en:"Hi, this is Alex. How can I help you?",scene_ko:"상황: "+(it.sit||"")+" — '"+it.ko+"'라고 말해 보세요.",followup_en:"Sure. Anything else?",close_en:"Great, thanks!"};});return o;}
+function callScriptLoad(){
+  var T=CALL.targets.map(function(id){var it=BYID[id];return "- id "+id+": \""+it.en+"\" (Korean: "+it.ko+"; used when: "+(it.sit||"")+")";}).join("\n");
+  var mem=callMemText();
+  var prompt="Write a short script for a friendly English VOICE CALL between Alex (warm coworker-like tutor) and Jun (Korean office worker in trade/logistics, English A2-B1). After small talk, Alex helps Jun practice these target sentences, one by one:\n"+T+"\n"+(mem?"Previous calls (you may mention briefly in bridge_en): "+mem+"\n":"")+
+  "Use simple, natural spoken English. Every *_en line max 1-2 short sentences. No emojis.\n"+
+  "For each target give: intro_en (natural way to introduce it, e.g. \"First one — when you need a price, you can say this:\"), chunk_en (a 2-4 word key chunk copied from the sentence), chunk_ko (Korean meaning of the chunk), scene_en (set up a tiny role-play, e.g. \"Now I'm your supplier.\"), partner_en (what the partner says so that Jun should reply with the target sentence; do not include the target sentence), scene_ko (Korean caption: who Alex is and what Jun should say), followup_en (partner's natural follow-up after Jun answers well), close_en (short warm reaction to end that mini dialogue).\n"+
+  "Also bridge_en (move from small talk to practice; mention these are today's tricky ones) and wrap_en (warm goodbye).\n"+
+  "Reply ONLY JSON: {\"bridge_en\":\"\",\"wrap_en\":\"\",\"items\":{\"<id>\":{\"intro_en\":\"\",\"chunk_en\":\"\",\"chunk_ko\":\"\",\"scene_en\":\"\",\"partner_en\":\"\",\"scene_ko\":\"\",\"followup_en\":\"\",\"close_en\":\"\"}}}";
+  CALL.script=null;var fb=callScriptFallback();
+  CALL.scriptP=SAMPLE.json(prompt,{modelTier:"quick",cache:false}).then(function(r){var o=fb;if(r&&r.items){o={bridge_en:r.bridge_en||fb.bridge_en,wrap_en:r.wrap_en||fb.wrap_en,items:{}};
+      CALL.targets.forEach(function(id){var a=r.items[id]||{},b=fb.items[id],c={};Object.keys(b).forEach(function(k){c[k]=String(a[k]||b[k]);});c.chunk_ko=String(a.chunk_ko||"");
+        if(!new RegExp(c.chunk_en.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"i").test(BYID[id].en))c.chunk_en=b.chunk_en;o.items[id]=c;});}
+    CALL.script=o;return o;},function(){CALL.script=fb;return fb;});
 }
-function callNext(){CALL.si++;CALL.tries=0;callStep();}
-function callStep(){
-  if(view!=="aireview"||CALL.phase==="end")return;
-  var st=CALL.steps[CALL.si];if(!st){callEnd();return;}
-  var it=st.id?BYID[st.id]:null;
-  if(st.k==="chat")return callChat(st,null);
-  if(st.k==="intro")return callSay([{ko:(st.first?"좋아요, 이제 오늘 어려웠던 표현부터 같이 연습해 볼게요. ":"다음 표현이에요. ")+"'"+it.ko+"' 라는 뜻이에요."},{en:it.en,slow:true}],callNext);
-  if(st.k==="word"){var key=callKey(it);
-    return callSay([{ko:CALL.tries?"한 번 더 들어 보세요.":"먼저 핵심 단어를 따라 말해 보세요."},{en:key,slow:true}],function(){callListen(function(tx){
-      var r=diff(key,tx),ok=r.ratio>=0.7;var S2=callStat(st.id);if(S2.word===null)S2.word=ok&&!CALL.tries;
-      if(ok)return callSay([{ko:"좋아요!"}],callNext);
-      CALL.tries++;if(CALL.tries<3)return callStep();callSay([{ko:"괜찮아요. 문장으로 다시 연습해 봐요."}],callNext);});});}
-  if(st.k==="sent")return callSay([{ko:CALL.tries?"다시 한번 잘 듣고 따라 해 보세요.":"이번엔 문장 전체를 따라 말해 보세요."},{en:it.en,slow:CALL.tries>0}],function(){callListen(function(tx){
-      var r=diff(it.en,tx),ok=r.content&&r.ratio>=0.8;var S2=callStat(st.id);S2.tries++;if(S2.sent===null)S2.sent=ok&&!CALL.tries;
-      if(ok)return callSay([{en:CALL.tries?"Much better!":"Perfect!"}],callNext);
-      var miss=r.words.filter(function(w,i){return r.wst[i]===0&&!r.wmin[i];}).slice(0,3).map(function(w){return w.replace(/[.,!?;:]/g,"");});
-      CALL.tries++;if(CALL.tries<3)return callSay([{ko:miss.length?"'"+miss.join(", ")+"' 부분을 놓쳤어요.":"조금 달랐어요."}],callStep);
-      callSay([{ko:"좋아요, 상황 속에서 써 보면서 익혀 봐요."}],callNext);});});
-  if(st.k==="rp")return callRP(st,null);
-  if(st.k==="wrap"){var good=CALL.targets.filter(function(id){var s3=CALL.stat[id];return s3&&s3.sent&&s3.rp==="good";}).length;
-    return callAI("You are Alex, Jun's friendly English partner on a voice call. The practice is over. Say a warm 1-sentence goodbye in simple English. Reply ONLY JSON: {\"say_en\":\"...\"}",function(r){callSay([{en:r.say_en||"Great job today, Jun! See you tomorrow."},{ko:"오늘 연습한 표현 "+CALL.targets.length+"개 중 "+good+"개를 잘 말했어요. 나머지는 내일 다시 복습해요."}],callEnd);});}
-}
-function callAI(prompt,cb){
+function callAI(prompt,cb,filler){
+  if(filler)callFiller(filler);
   CALL.phase="think";render();var ctl=CALL.ctl=new AbortController();
   SAMPLE.json(prompt,{modelTier:"quick",cache:false,signal:ctl.signal}).then(function(r){if(CALL.ctl!==ctl||CALL.phase==="end")return;cb(r||{});},
     function(e){if(CALL.ctl!==ctl)return;CALL.err=aiErr(e);CALL.phase="tap";CALL.retry=function(){callAI(prompt,cb);};render();});
 }
-/* 스몰톡: 인사 → 2번 주고받기 → 연습으로 넘어감 */
-function callChat(st,tx){
-  var H=CALL.turns.filter(function(t){return t.who!=="coach";}).slice(-6).map(function(t){return (t.who==="ai"?"Alex: ":"Jun: ")+t.en;}).join("\n");
-  var task=st.n===0?"Start the call: greet him exactly like \"Hi Jun! ...\" and ask ONE easy small-talk question (his day, lunch, weather, or weekend).":st.n===1?"React naturally to what Jun said (1 short sentence) and ask ONE more easy follow-up question.":"React naturally to what Jun said in 1 short sentence, then say you'll practice a few of today's expressions together. Do not ask a question.";
-  callAI("You are Alex, a warm, upbeat English conversation partner on a VOICE CALL with Jun, a Korean office worker (English level A2-B1). Use simple, natural spoken English, max 2 short sentences, no emojis.\n"+task+"\nConversation so far:\n"+(H||"(none)")+"\nReply ONLY JSON: {\"say_en\":\"...\"}",function(r){
-    var en=String(r.say_en||"").trim()||"Hi Jun! How's your day going?";
-    callSay([{en:en}],function(){if(st.n>=2)return callNext();callListen(function(t2){st.n++;callChat(st,t2);});});
-  });
+function callStart(){
+  CALL.targets=callTargets();if(!CALL.targets.length||!SAMPLE)return;
+  CALL.turns=[];CALL.stat={};CALL.err="";CALL.si=0;CALL.tries=0;CALL.fillP=null;
+  CALL.steps=[{k:"chat",n:0}];CALL.targets.forEach(function(id,i){CALL.steps.push({k:"intro",id:id,first:i===0},{k:"chunk",id:id},{k:"sent",id:id},{k:"rp",id:id,n:0,stage:0});});CALL.steps.push({k:"wrap"});
+  CALL.phase="think";CALL.t0=Date.now();markExtra();render();
+  clearInterval(CALL.tick);CALL.tick=setInterval(function(){var el=document.getElementById("calltime");if(el&&CALL.phase!=="end"){var s2=Math.floor((Date.now()-CALL.t0)/1000);el.textContent=Math.floor(s2/60)+":"+String(s2%60).padStart(2,"0");}},1000);
+  try{if(window.speechSynthesis)speechSynthesis.getVoices();}catch(x){}
+  callScriptLoad();callStep();
 }
-/* 주고받기 상황극: Alex가 상대 역할 → 준이 오늘 표현으로 답 → 평가(틀리면 다시) → 한 번 더 주고받고 마무리 */
-function callRP(st,tx){
+function callNext(){CALL.si++;CALL.tries=0;callStep();}
+function withScript(fn){if(CALL.script)return fn(CALL.script);callAI&&(CALL.phase="think");render();CALL.scriptP.then(fn,function(){fn(callScriptFallback());});}
+function callStep(){
+  if(view!=="aireview"||CALL.phase==="end")return;
+  var st=CALL.steps[CALL.si];if(!st){callEnd();return;}
+  var it=st.id?BYID[st.id]:null;
+  if(st.k==="chat")return callChat(st);
+  if(st.k==="intro")return withScript(function(sc){var x=sc.items[st.id];callSay([{en:x.intro_en},{en:it.en,slow:true},{ko:"'"+it.ko+"'"}],callNext);});
+  if(st.k==="chunk")return withScript(function(sc){var x=sc.items[st.id],ch=x.chunk_en;
+    callSay([{en:CALL.tries?pick(["Close! Listen again:","One more time:"]):pick(["Let me say it first. Then you try:","Say this part with me:","Repeat after me:"])},{en:ch,slow:true},{ko:"따라 말하기: "+ch+(x.chunk_ko?" ("+x.chunk_ko+")":"")}],function(){callListen(function(tx){
+      var ok=diff(ch,tx).ratio>=0.6;var S2=callStat(st.id);if(S2.chunk===null)S2.chunk=ok&&!CALL.tries;
+      if(ok)return callSay([{en:pick(["Nice!","Good!","That's it!"])}],callNext);
+      CALL.tries++;if(CALL.tries<2)return callStep();callSay([{en:"No worries. Let's try the whole sentence."}],callNext);});});});
+  if(st.k==="sent")return callSay([{en:CALL.tries?pick(["Almost! Listen again:","Close! Once more:"]):pick(["Now the whole sentence:","Let's put it together:","Great. Now the full sentence:"])},{en:it.en,slow:CALL.tries>0}],function(){callListen(function(tx){
+      var r=diff(it.en,tx),ok=r.content&&r.ratio>=0.75;var S2=callStat(st.id);S2.tries++;if(S2.sent===null)S2.sent=ok&&!CALL.tries;
+      if(ok)return callSay([{en:CALL.tries?"Much better!":pick(["Perfect!","That sounds natural!","Great!"])}],callNext);
+      var miss=r.words.filter(function(w,i){return r.wst[i]===0&&!r.wmin[i];}).slice(0,3).map(function(w){return w.replace(/[.,!?;:]/g,"");});
+      CALL.tries++;if(CALL.tries<3)return callSay([{ko:miss.length?"놓친 단어: "+miss.join(", "):"조금 달랐어요. 다시 들어 보세요."}],callStep);
+      callSay([{en:"Good effort. Let's use it in a real situation."}],callNext);});});
+  if(st.k==="rp")return withScript(function(sc){callRP(st,sc.items[st.id],null);});
+  if(st.k==="wrap")return withScript(function(sc){var good=CALL.targets.filter(function(id){var s3=CALL.stat[id];return s3&&s3.sent&&s3.rp==="good";}).length;
+    callSay([{en:sc.wrap_en},{ko:"오늘 연습한 표현 "+CALL.targets.length+"개 중 "+good+"개를 잘 말했어요."}],callEnd);});
+}
+/* 스몰톡: 지난 통화를 기억해 인사 → 2번 주고받기 → 대본의 연결 대사로 연습 시작 */
+function callChat(st){
+  var H=CALL.turns.filter(function(t){return t.who!=="coach"&&!t.filler;}).slice(-6).map(function(t){return (t.who==="ai"?"Alex: ":"Jun: ")+t.en;}).join("\n");
+  var mem=callMemText();
+  var task=st.n===0?"Start the call: greet him like \"Hi Jun! ...\" and ask ONE easy small-talk question (his day, lunch, weather, weekend)."+(mem?" You remember previous calls: "+mem+" — you may mention it in a few words.":""):"React naturally to what Jun just said (1 short sentence)"+(st.n===1?" and ask ONE more easy follow-up question.":". Do not ask a question.");
+  var go=function(){callAI("You are Alex, a warm, upbeat English conversation partner on a VOICE CALL with Jun, a Korean office worker (English A2-B1). Simple, natural spoken English, max 2 short sentences, no emojis.\n"+task+"\nConversation so far:\n"+(H||"(none)")+"\nReply ONLY JSON: {\"say_en\":\"...\"}",function(r){
+    var en=String(r.say_en||"").trim()||"Hi Jun! How's your day going?";
+    if(st.n>=2)return withScript(function(sc){callSay([{en:en},{en:sc.bridge_en}],callNext);});
+    callSay([{en:en}],function(){callListen(function(){st.n++;callChat(st);});});
+  },st.n?"chat":null);};
+  go();
+}
+/* 상황극: 대본의 상대 대사 → 준의 답을 폰에서 먼저 확인(맞으면 AI 없이 바로 진행) → 애매하면 AI가 평가·교정 → 이어지는 질문 한 번 더 → 마무리 */
+function callRP(st,x,tx){
   var it=BYID[st.id],S2=callStat(st.id);
-  var H=st.hist.map(function(h){return (h.who==="ai"?"Alex: ":"Jun: ")+h.en;}).join("\n");
-  var stage=!tx?"START: In one short sentence set the scene (e.g. \"Let's say I'm your client and I call you about...\"), then say your partner line that Jun should answer using the target expression. Put the Korean scene/goal in say_ko (1 short sentence, natural Korean, e.g. \"제가 거래처예요. 견적서를 보내 달라고 해 보세요.\"). next=\"answer\".":
-    "Jun just replied. Judge if his reply uses the target expression naturally (ignore small speech-recognition errors). "+
-    "If good and this was his first main answer: react as the partner and continue with ONE more short partner line he can answer freely (next=\"followup\"). "+
-    "If he already did the follow-up: close the mini dialogue warmly in 1 sentence (next=\"finish\"). "+
-    "If not good: say the natural sentence and ask him to say it again (next=\"again\"); say_ko = 1 short Korean tip."+(st.n>=4?" (Too many turns: finish now, next=\"finish\".)":"");
-  callAI("You are Alex on a VOICE CALL, playing a role-play partner (client, supplier or colleague) to help Jun (Korean, A2-B1, trade/logistics) practice this target expression:\n\""+it.en+"\" (Korean: "+it.ko+"; used when: "+(it.sit||"")+").\nSpoken English only in say_en: max 2 short simple sentences.\n"+stage+"\nMini dialogue so far:\n"+(H||"(not started)")+"\nReply ONLY JSON: {\"say_en\":\"...\",\"say_ko\":\"... or empty\",\"result\":\"good|ok|retry|none\",\"next\":\"answer|followup|again|finish\"}",function(r){
-    var en=String(r.say_en||"").trim();if(!en){callNext();return;}
-    if(tx&&["good","ok","retry"].indexOf(r.result)>=0&&S2.rp===null&&st.n<=2)S2.rp=r.result==="retry"?null:r.result;
-    if(tx&&r.result==="retry")S2.rpRetry=(S2.rpRetry||0)+1;
-    st.hist.push({who:"ai",en:en});var lines=[{en:en}];if(r.say_ko)lines.push({ko:String(r.say_ko)});
-    var fin=r.next==="finish"||st.n>=4||(S2.rpRetry||0)>=3;
-    if(fin&&S2.rp===null)S2.rp="retry";
-    callSay(lines,function(){if(fin)return callNext();callListen(function(t2){st.n++;st.hist.push({who:"me",en:t2});callRP(st,t2);});});
-  });
+  if(st.stage===0){st.stage=1;return callSay([{en:x.scene_en},{en:x.partner_en},{ko:x.scene_ko}],function(){callListen(function(t2){callRP(st,x,t2);});});}
+  if(st.stage===1){
+    st.n++;var r=diff(it.en,tx),chunkOK=diff(x.chunk_en,tx).ratio>=0.6;
+    var good=function(res){if(S2.rp===null)S2.rp=res;st.stage=2;callSay([{en:pick(["Sounds good!","Perfect.","Great answer!"])+" "+x.followup_en}],function(){callListen(function(t3){callRP(st,x,t3);});});};
+    if(r.ratio>=0.6&&chunkOK)return good("good");
+    return callAI("You are Alex on a voice call, playing a role-play partner. Situation: "+x.scene_ko+"\nAlex said: \""+x.partner_en+"\"\nJun should reply using (or close to) the target sentence: \""+it.en+"\" ("+it.ko+").\nJun said (speech recognition, ignore small errors): \""+tx+"\"\nIs his reply natural and does it do the job? If yes: result \"good\" (or \"ok\" if understandable but could be better). If no: result \"retry\".\nsay_en: for retry, 1 short sentence like \"Try saying: ...\" with the natural sentence; for good/ok: \"\".\ntip_ko: one short Korean tip (empty if good).\nReply ONLY JSON: {\"result\":\"good|ok|retry\",\"say_en\":\"\",\"tip_ko\":\"\"}",function(j){
+      if(j.result==="good"||j.result==="ok"){if(j.tip_ko)CALL.turns.push({who:"coach",ko:String(j.tip_ko)});return good(j.result);}
+      S2.rpRetry=(S2.rpRetry||0)+1;
+      if(S2.rpRetry>=3){S2.rp="retry";return callSay([{en:"That's okay. Let's keep going."}],callNext);}
+      callSay([{en:String(j.say_en||("Try saying: "+it.en))},{ko:String(j.tip_ko||"")}].filter(function(l){return l.en||l.ko;}),function(){callSay([{en:x.partner_en}],function(){callListen(function(t2){callRP(st,x,t2);});});});
+    },"judge");
+  }
+  callSay([{en:x.close_en}],callNext);
 }
 function callEnd(){
   clearInterval(CALL.poll);clearInterval(CALL.tick);stopDict();if(CALL.ctl)CALL.ctl.abort();try{if(TTS)TTS.stop();}catch(x){}
   CALL.phase="end";
   try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(x){}
   CALL.targets.forEach(function(id){var st=CALL.stat[id];if(!st||!st.sent||st.rp==='retry'||!st.rp)grade(id,false);else if(st.rp==='ok')grade(id,'mid');});
+  var done=CALL.targets.filter(function(id){return CALL.stat[id];});if(done.length){S.callMem=(S.callMem||[]).concat([{d:today(),all:done.map(function(id){return BYID[id].en;}),weak:done.filter(function(id){var s4=CALL.stat[id];return !(s4.sent&&s4.rp==='good');}).map(function(id){return BYID[id].en;})}]).slice(-5);}
   save();render();window.scrollTo(0,0);
 }
 function callScroll(){setTimeout(function(){var el=document.getElementById("callcc");if(el)el.scrollTop=el.scrollHeight;},30);}
@@ -2251,10 +2289,10 @@ function callHTML(){
   var h=backBar("AI 영어 통화");
   if(CALL.phase==="start"){
     var src=rvSource();
-    h+='<div class="notice"><b>AI 친구 Alex와 영어로 통화합니다</b><p>"Hi Jun!" 가벼운 대화로 시작해서, 오늘 어려웠던 표현을 하나씩 ① 단어 따라 하기 → ② 문장 따라 하기 → ③ 주고받는 상황극 순서로 함께 연습합니다. Alex가 말을 마치면 마이크가 자동으로 켜지고, 말을 멈추면(1.5초) 다음으로 넘어갑니다. 한국어 설명은 폰의 한국어 목소리로 읽습니다.</p></div>';
+    h+='<div class="notice"><b>AI 친구 Alex와 영어로 통화합니다</b><p>"Hi Jun!" 가벼운 대화로 시작해서, 오늘 어려웠던 표현을 하나씩 ① 짧은 구절 따라 하기 → ② 문장 따라 하기 → ③ 주고받는 상황극으로 함께 연습합니다. Alex가 말을 마치면 마이크가 자동으로 켜지고, 2.5초 쉬면 다음으로 넘어갑니다(다 말했으면 공을 탭). Alex 말을 끊고 싶으면 공을 탭하세요. 한국어 설명은 자막으로 나옵니다. 지난 통화도 기억합니다.</p></div>';
     h+='<label class="fld"><span>폰 앱에서 복사한 복습 코드 (없으면 이 링크의 기록으로 합니다)</span><textarea id="rvcode" class="code" rows="2" placeholder="3M:m1.m4…">'+esc(RV.code)+"</textarea></label>";
     if(src){h+='<div class="block"><h2>오늘 연습할 표현</h2>';callTargetsPreview(src).forEach(function(id){var it=BYID[id];h+='<div class="li"><div><b lang="en">'+esc(it.en)+"</b><span>"+esc(it.ko)+(src.wrong.indexOf(id)>=0?" · 오늘 틀림":"")+"</span></div></div>";});h+="</div>";}
-    h+='<div class="chips"><button class="chip" data-act="callko" aria-pressed="'+(CALL.koVoice!==false)+'">한국어 도움말도 소리로</button></div>';
+    h+='<div class="chips"><button class="chip" data-act="callko" aria-pressed="'+(CALL.koVoice===true)+'">한국어 자막도 소리로 읽기</button></div>';
     h+='<button class="cta" data-act="callstart"'+(SAMPLE?"":" disabled")+'>📞 통화 시작</button>';
     if(!SAMPLE)h+='<p class="note">AI를 불러오는 중입니다. Claude 사용 허용 창이 뜨면 허용해 주세요.</p>';
     if(!TTS)h+='<p class="note">이 화면에서는 AI 목소리를 쓸 수 없어 글자로만 보입니다. 폰 크롬에서 열면 목소리가 나옵니다(미확인).</p>';
@@ -2263,14 +2301,14 @@ function callHTML(){
   if(CALL.phase==="end"){
     var ok=CALL.targets.filter(function(id){var s=CALL.stat[id];return s&&s.sent&&s.rp==="good";});
     h+='<div class="card" style="text-align:center"><p class="big-num">'+ok.length+'<span style="font-size:18px"> / '+CALL.targets.length+'</span></p><p>문장과 상황극 모두 잘 말한 표현</p></div><div class="block"><h2>오늘 통화에서 연습한 표현</h2>';
-    CALL.targets.forEach(function(id){var it=BYID[id],s=CALL.stat[id],g=s&&s.sent&&s.rp==="good";h+='<div class="li"><div><b lang="en">'+esc(it.en)+"</b><span>"+(!s?"이번 통화에서는 못 다뤘어요":g?"잘했어요":"다시 연습: 단어 "+(s.word?"○":"△")+" · 문장 "+(s.sent?"○":"△")+" · 상황 "+(s.rp==="good"?"○":"△"))+"</span></div>"+(g?'<span class="badge">OK</span>':'<span class="badge" style="background:var(--bad-bg);color:var(--bad)">복습</span>')+"</div>";});
+    CALL.targets.forEach(function(id){var it=BYID[id],s=CALL.stat[id],g=s&&s.sent&&s.rp==="good";h+='<div class="li"><div><b lang="en">'+esc(it.en)+"</b><span>"+(!s?"이번 통화에서는 못 다뤘어요":g?"잘했어요":"다시 연습: 구절 "+(s.chunk?"○":"△")+" · 문장 "+(s.sent?"○":"△")+" · 상황 "+(s.rp==="good"?"○":"△"))+"</span></div>"+(g?'<span class="badge">OK</span>':'<span class="badge" style="background:var(--bad-bg);color:var(--bad)">복습</span>')+"</div>";});
     h+='</div><p class="note">"복습" 표현은 내일 세 판에 다시 나옵니다(이 링크의 기록).</p><button class="cta" data-act="callagain">다시 통화하기</button>';
     h+=callCaptions(true);
     return h;
   }
   var ph=CALL.phase,lab={ai:"Alex가 말하는 중",listen:"듣고 있어요 — 영어로 말해 보세요",think:"Alex가 생각하는 중…",tap:"말하기 버튼을 눌러 말해 주세요"}[ph]||"";
-  h+='<div class="call"><div class="callhead"><span>📞 Alex</span><span class="mono" id="calltime">0:00</span></div>';
-  h+='<div class="orb orb-'+ph+'"><i></i></div><p class="callstat">'+lab+"</p>";
+  h+='<div class="call"><div class="callhead"><span>📞 Alex</span><span class="mono" id="calltime">'+(function(){var t=CALL.t0?Math.floor((Date.now()-CALL.t0)/1000):0;return Math.floor(t/60)+":"+String(t%60).padStart(2,"0");})()+'</span></div>';
+  h+='<button class="orb orb-'+ph+'" data-act="callorb" aria-label="'+(ph==="ai"?"끊고 말하기":ph==="listen"?"다 말했어요":"통화 상태")+'"><i></i></button><p class="callstat">'+lab+"</p>"+(ph==="listen"?'<p class="note" style="text-align:center">다 말했으면 공을 탭하세요</p>':ph==="ai"?'<p class="note" style="text-align:center">공을 탭하면 끊고 바로 말할 수 있어요</p>':"");
   if(ph==="listen")h+='<p class="callheard" id="callheard" lang="en">'+esc(CALL.heard||"듣고 있어요…")+"</p>";
   h+='<div class="callprog">'+CALL.targets.map(function(id){var s=CALL.stat[id];return '<span class="'+(!s||s.rp===null?"":s.sent&&s.rp==="good"?"ok":"no")+'" title="'+esc(BYID[id].en)+'"></span>';}).join("")+"</div>";
   if(CALL.err)h+='<p class="fb no">'+esc(CALL.err)+"</p>";
@@ -2371,10 +2409,11 @@ app.addEventListener("click",function(e){
   else if(a==="airlgo"){var code=rvCode();var go=function(){window.open(CLAUDE_URL,"_blank","noopener");};copyText(code,function(){AIRL.msg="복습 코드를 복사했습니다: "+code;render();go();},function(){AIRL.msg="자동 복사가 안 됩니다. 이 코드를 직접 복사하세요: "+code;render();go();});}
   else if(a==="airlvoice"){var vt=rvVoiceText();copyText(vt,function(){AIRL.msg="시작 글을 복사했습니다. Claude 앱 '3분 영어 튜터'에 붙여 넣고 음성 대화를 켜세요.";render();},function(){AIRL.msg="자동 복사가 안 됩니다.";render();});}
   else if(a==="callstart"){RV.code=(document.getElementById("rvcode")||{}).value||RV.code;callStart();}
-  else if(a==="callko"){CALL.koVoice=CALL.koVoice===false;render();}
+  else if(a==="callko"){CALL.koVoice=CALL.koVoice!==true;render();}
   else if(a==="callcc"){CALL.cc=!CALL.cc;render();callScroll();}
   else if(a==="calltalk"){CALL.err="";callListen();}
   else if(a==="calldone"){clearInterval(CALL.poll);stopDict();}
+  else if(a==="callorb"){if(CALL.phase==="ai"){CALL.tok++;stopVoice();var nx=CALL.sayNext;CALL.sayNext=null;if(nx)nx();}else if(CALL.phase==="listen"){clearInterval(CALL.poll);stopDict();}else if(CALL.phase==="tap"&&!CALL.err){callListen();}}
   else if(a==="callskip"){CALL.tok++;try{if(TTS)TTS.stop();}catch(x){}try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(x){}callListen();}
   else if(a==="callretry"){CALL.err="";if(CALL.retry){var rf=CALL.retry;CALL.retry=null;rf();}}
   else if(a==="callend"){callEnd();}
