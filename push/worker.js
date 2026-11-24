@@ -63,6 +63,7 @@ export function decide(rec, nowMs) {
   const k = kstParts(nowMs);
   const days = cfg.days && cfg.days.length ? cfg.days : [0, 1, 2, 3, 4, 5, 6];
   if (days.indexOf(k.dow) < 0) return null;
+  if (cfg.aiTime && hm(cfg.aiTime) === k.min) return { title: '3분 영어 · AI 복습', body: '오늘 배운 표현으로 AI와 3분 대화 복습해요', tag: 'bizeng-ai', url: APP_URL + '#aireview' };
   const allDone = rec.allDoneDate === k.date;
   if (allDone && cfg.stopWhenDone !== false) return null;
   const left = 3 - (rec.doneDate === k.date ? (rec.doneCount || 0) : 0);
@@ -102,6 +103,7 @@ function cleanCfg(c) {
     days: (Array.isArray(c.days) ? c.days : [0, 1, 2, 3, 4, 5, 6]).map(Number).filter(d => d >= 0 && d <= 6),
     repeat: { on: !!r.on, every: [5, 10, 15, 20, 30].indexOf(+r.every) >= 0 ? +r.every : 10, max: Math.min(3, Math.max(1, +r.max || 2)) },
     stopWhenDone: c.stopWhenDone !== false,
+    aiTime: hm(c.aiTime) >= 0 ? c.aiTime : '',
   };
 }
 
@@ -156,7 +158,7 @@ export default {
       const rec = await getRec(env, id); if (!rec || !rec.sub) continue;
       const msg = decide(rec, now); if (!msg) continue;
       try {
-        const st = await sendPush(rec.sub, { ...msg, url: APP_URL }, env);
+        const st = await sendPush(rec.sub, { url: APP_URL, ...msg }, env);
         rec.lastSend = { t: now, status: st }; await putRec(env, id, rec);
         if (st === 404 || st === 410) { await env.KV.delete('sub:' + id); ids.splice(ids.indexOf(id), 1); changed = true; }
       } catch (e) { rec.lastSend = { t: now, error: String(e).slice(0, 120) }; await putRec(env, id, rec); }

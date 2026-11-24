@@ -424,7 +424,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v23",APP_DATE="2026-11-19";
+var APP_VER="v24",APP_DATE="2026-11-19";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -619,6 +619,8 @@ function render(){
   else if(view==="news")app.innerHTML=newsHTML();
   else if(view==="notify")app.innerHTML=notifyHTML();
   else if(view==="quiz")app.innerHTML=quizHTML();
+  else if(view==="airl")app.innerHTML=airlHTML();
+  else if(view==="aireview")app.innerHTML=rvHTML();
 }
 function homeHTML(){
   var d=day(),nx=nextRound(),t=new Date(),st=streak(),h="";
@@ -1500,6 +1502,7 @@ function extraHTML(){
   h+='<button class="xbtn" data-act="xdlg"><b>대화 듣기</b><span>전화·회의 대화를 듣고 문제 풀기</span></button>';
   h+='<button class="xbtn" data-act="xdict"><b>받아쓰기</b><span>들은 문장을 영어로 쓰기</span></button>';
   h+='<button class="xbtn" data-act="xrp"><b>AI 역할극</b><span>AI 거래처와 영어로 대화하기'+(C?"":" · Claude 링크 전용")+'</span></button>';
+  h+='<button class="xbtn" data-act="xai"><b>AI 복습 대화</b><span>오늘 배운 표현으로 AI와 상황 연습'+(C?"":" · Claude 링크에서")+'</span></button>';
   h+='<button class="xbtn" data-act="xquiz"><b>단어 스피드 퀴즈</b><span>60초 타임어택 · 10문제 빠른 퀴즈</span></button>';
   h+='<button class="xbtn" data-act="xmail"><b>메일 첨삭</b><span>내 영어 메일 고치기'+(C?"":" · Claude 링크 전용")+'</span></button>';
   return h+"</div></div>";
@@ -1613,7 +1616,8 @@ function dlgHTML(){
 
 /* ---- F. AI 역할극 / G. 메일 첨삭 (Claude 링크에서만: 내 Claude 계정으로 AI 호출) ---- */
 var SAMPLE=null;
-if(C){C.use("sample").then(function(s){SAMPLE=s||null;if(view==="home"||view==="rp"||view==="mail"||view==="news")render();}).catch(function(){});}
+if(C){C.use("sample").then(function(s){SAMPLE=s||null;if(view==="home"||view==="rp"||view==="mail"||view==="news"||view==="aireview")render();}).catch(function(){});C.use("tts").then(function(t){TTS=t||null;}).catch(function(){});}
+var TTS=null;
 function aiErr(e){var c=e&&e.code;return c==="not_granted"?"Claude 사용을 허용해야 쓸 수 있습니다. 화면의 허용 버튼을 눌러 주세요.":c==="rate_limited"?"요청이 많습니다. 잠시 뒤 다시 눌러 주세요.":c==="invalid_json"?"AI 답을 읽지 못했습니다. 다시 눌러 주세요.":c==="cancelled"?"멈췄습니다.":"AI 응답에 실패했습니다. 잠시 뒤 다시 눌러 주세요.";}
 function claudeOnly(title){return backBar(title)+'<div class="notice"><b>Claude 링크에서 쓸 수 있습니다</b><p>이 기능은 준의 Claude 계정으로 AI를 불러 쓰기 때문에 Claude 링크에서만 동작합니다. 추가 비용은 없습니다.</p><a href="https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW" target="_blank" rel="noopener">https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW</a></div>';}
 var RPS=[
@@ -1817,7 +1821,7 @@ var NF_URL="https://bizeng-push.bizeng3min.workers.dev",NF={msg:"",busy:false,pe
 var NF_DAYS=["일","월","화","수","목","금","토"];
 function nfOK(){return !C&&"serviceWorker" in navigator&&"PushManager" in window&&window.Notification&&/^https:|^http:\/\/localhost/.test(location.href);}
 function nfIOSBrowser(){return /iPhone|iPad|iPod/.test(navigator.userAgent)&&!(window.navigator.standalone||matchMedia("(display-mode: standalone)").matches);}
-function nfState(){if(!S.push)S.push={id:"",on:false,cfg:{times:["08:30","12:30","21:00"],hourly:{on:false,from:9,to:18},days:[0,1,2,3,4,5,6],repeat:{on:true,every:10,max:2},stopWhenDone:true}};return S.push;}
+function nfState(){if(!S.push)S.push={id:"",on:false,cfg:{times:["08:30","12:30","21:00"],hourly:{on:false,from:9,to:18},days:[0,1,2,3,4,5,6],repeat:{on:true,every:10,max:2},stopWhenDone:true}};if(S.push.cfg.aiTime===undefined)S.push.cfg.aiTime="";return S.push;}
 function nfId(){var P=nfState();if(!P.id){var a=new Uint8Array(18);crypto.getRandomValues(a);P.id=Array.prototype.map.call(a,function(b){return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_".charAt(b%64);}).join("");save();}return P.id;}
 function nfPost(path,body){return fetch(NF_URL+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||r.status);return j;});});}
 function u8(b64){var s=b64.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";var r=atob(s),a=new Uint8Array(r.length);for(var i=0;i<r.length;i++)a[i]=r.charCodeAt(i);return a;}
@@ -1871,6 +1875,7 @@ function notifyHTML(){
   h+='<div class="block"><h2>연속 알람 (다시 알림)</h2><div class="chips"><button class="chip" data-act="nfrep" aria-pressed="'+!!c.repeat.on+'">'+(c.repeat.on?"켜짐":"꺼짐")+"</button></div>";
   if(c.repeat.on)h+='<div class="chips">'+[10,20,30].map(function(m){return '<button class="chip" data-act="nfevery" data-v="'+m+'" aria-pressed="'+(c.repeat.every===m)+'">'+m+"분 뒤</button>";}).join("")+'</div><div class="chips">'+[1,2,3].map(function(m){return '<button class="chip" data-act="nfmax" data-v="'+m+'" aria-pressed="'+(c.repeat.max===m)+'">최대 '+m+"번</button>";}).join("")+'</div><p class="note">알림 시각 뒤에 공부를 안 하면 '+c.repeat.every+"분마다 최대 "+c.repeat.max+"번 다시 알립니다. 한 판이라도 하면 그 알림의 반복은 멈춥니다.</p>";
   h+="</div>";
+  h+='<div class="block"><h2>AI 복습 알림</h2><div class="two"><input id="nfai" type="time" value="'+(c.aiTime||"21:30")+'" step="300" class="code big" style="margin:0"><button class="cta alt" data-act="nfaiset">'+(c.aiTime?"시각 바꾸기":"켜기")+"</button></div>"+(c.aiTime?'<p class="note">매일 '+c.aiTime+'에 "AI 복습 대화" 알림이 옵니다. 누르면 오늘 복습할 표현과 시작 버튼이 나옵니다.</p><button class="ghost small" data-act="nfaioff">AI 복습 알림 끄기</button>':'<p class="note">꺼져 있습니다.</p>')+"</div>";
   h+='<div class="block"><h2>세 판을 다 끝낸 날</h2><div class="chips"><button class="chip" data-act="nfstop" aria-pressed="'+(c.stopWhenDone!==false)+'">남은 알림 끄기</button><button class="chip" data-act="nfstop2" aria-pressed="'+(c.stopWhenDone===false)+'">계속 알림</button></div></div>';
   h+='<p class="note">알림은 홈 화면에 설치한 앱에서 옵니다. 폰 절전 설정에 따라 조금 늦게 올 수 있습니다. 구글 캘린더의 "3분 영어" 알림과 겹치면 캘린더 쪽을 꺼 주세요.</p>';
   return h;
@@ -1973,6 +1978,124 @@ function quizHTML(){
   h+='<div class="two"><button class="cta" data-act="qzgo">다시 하기</button><button class="cta alt" data-act="qzmenu">설정 바꾸기</button></div>';
   return h;
 }
+
+/* ---- AI 복습 대화 ----
+   폰 앱(GitHub): 오늘 공부한 문장을 '복습 코드'로 복사해 Claude 링크를 연다(AI는 Claude 링크에서만, 준의 Claude 구독으로 동작 · 추가 결제 없음).
+   Claude 링크: AI가 상황 질문 → 내 답 평가·교정 → 안 되면 다시 → 궁금한 점 질문 → 끝나면 약한 표현을 복습 목록에 올림. */
+var CLAUDE_URL="https://claude.ai/artifact/CsmdafRahLn7fdGEgpaKCW";
+function rvTodayIds(){
+  var d=day(),t=today(),ids=[],wr=(d.wrong||[]).filter(function(id){return BYID[id];});
+  var add=function(id){if(BYID[id]&&ids.indexOf(id)<0)ids.push(id);};
+  wr.forEach(add);(d["new"]||[]).forEach(add);
+  Object.keys(S.items).filter(function(id){return BYID[id]&&S.items[id].due<=t;}).forEach(add);
+  Object.keys(S.items).filter(function(id){return BYID[id];}).sort(function(a,b){return (S.items[a].learned<S.items[b].learned)?1:-1;}).forEach(add);
+  return {ids:ids.slice(0,8),wrong:wr};
+}
+function rvCode(){var r=rvTodayIds();return "3M:"+r.ids.join(".")+(r.wrong.length?"|w:"+r.wrong.join("."):"");}
+function rvParse(code){var m=/3M:([a-z0-9.]+)(?:\|w:([a-z0-9.]+))?/.exec(String(code||""));if(!m)return null;
+  var ids=m[1].split(".").filter(function(id){return BYID[id];}),w=(m[2]||"").split(".").filter(function(id){return BYID[id];});return ids.length?{ids:ids,wrong:w}:null;}
+function rvVoiceText(){var r=rvTodayIds();var L=r.ids.map(function(id){var it=BYID[id];return "- "+it.en+" ("+it.ko+")";}).join("\n");
+  return "3분 영어 복습을 시작하자. 오늘 공부한 표현은 아래와 같아. 하나씩 거래처 상황을 만들어서 영어로 말을 걸어 주고, 내 대답을 듣고 더 자연스럽게 고쳐 줘. 설명은 한국어로 짧게 해 줘.\n"+L;}
+/* 폰 앱: AI 복습 시작 화면 */
+var AIRL={msg:""};
+function airlHTML(){
+  var h=backBar("AI 복습 대화"),r=rvTodayIds();
+  h+='<div class="notice"><b>AI 복습은 Claude 링크에서 합니다</b><p>준의 Claude 구독으로 AI를 쓰므로 추가 결제가 없습니다. 아래 버튼을 누르면 오늘 공부한 문장이 <b>복습 코드</b>로 복사되고 Claude 링크가 열립니다. 열린 화면의 "AI 복습 대화"에서 코드를 붙여 넣으세요.</p></div>';
+  h+='<div class="block"><h2>오늘 복습할 표현 '+r.ids.length+"개</h2>";
+  if(!r.ids.length)h+='<p class="note">아직 배운 표현이 없습니다. 1판부터 해 보세요.</p>';
+  r.ids.forEach(function(id){var it=BYID[id];h+='<div class="li"><div><b lang="en">'+esc(it.en)+"</b><span>"+esc(it.ko)+(r.wrong.indexOf(id)>=0?" · 오늘 틀림":"")+"</span></div></div>";});
+  h+="</div>";
+  h+='<button class="cta" data-act="airlgo"'+(r.ids.length?"":" disabled")+'>복습 코드 복사하고 Claude 링크 열기</button>';
+  h+='<p class="note">말로 하려면 Claude 링크를 <b>크롬 브라우저</b>에서 여세요. Claude 앱 안에서 열리면 마이크가 안 될 수 있습니다.</p>';
+  h+='<div class="block"><h2>음성으로 대화하기 (Claude 앱)</h2><p class="note">Claude 앱의 "3분 영어 튜터" 프로젝트에서 음성 대화를 켜고, 아래 버튼으로 복사한 글을 첫 메시지로 붙여 넣으세요. 설정 방법은 "Claude_음성튜터_설정.md"에 있습니다.</p><button class="ghost" data-act="airlvoice"'+(r.ids.length?"":" disabled")+'>음성 대화용 시작 글 복사</button></div>';
+  if(AIRL.msg)h+='<p class="bkmsg" role="status">'+esc(AIRL.msg)+"</p>";
+  return h;
+}
+function copyText(t,ok,no){try{navigator.clipboard.writeText(t).then(ok,no);}catch(x){no();}}
+/* Claude 링크: AI 복습 대화 */
+var RV={phase:"start",code:"",items:[],i:0,q:null,input:"",tries:0,res:null,busy:false,err:"",ask:"",ans:null,log:[],ctl:null};
+function rvSource(){var p=rvParse(RV.code);if(p)return p;var r=rvTodayIds();return r.ids.length?r:null;}
+function rvStart(){
+  RV.code=(document.getElementById("rvcode")||{}).value||RV.code;
+  var src=rvSource();if(!src)return;
+  var w=src.wrong,ids=src.ids.slice().sort(function(a,b){return (w.indexOf(b)>=0)-(w.indexOf(a)>=0);});
+  RV.items=ids.slice(0,5);RV.i=0;RV.log=[];RV.phase="q";markExtra();rvAsk();
+}
+function rvAsk(){
+  var it=BYID[RV.items[RV.i]];RV.q=null;RV.res=null;RV.input="";RV.tries=0;RV.ans=null;RV.ask="";RV.err="";RV.busy=true;render();window.scrollTo(0,0);
+  var prev=RV.log.map(function(l){return l.sit;}).join(" / ");
+  var prompt="You are a friendly business English tutor for a Korean office worker at a trade/logistics company (CEFR A2-B1).\nCreate ONE short, realistic workplace situation (email, phone call, or meeting) where the learner must naturally use this target expression:\n\""+it.en+"\" (Korean meaning: "+it.ko+"; typical use: "+(it.sit||"")+").\nThe partner (a client or colleague) speaks first with one short sentence in simple English. Do not put the target sentence itself in the partner line.\n"+(prev?"Avoid these situations already used: "+prev+"\n":"")+"Reply with ONLY this JSON: {\"situation_ko\":\"상황 설명 1~2문장(한국어)\",\"partner_en\":\"partner's line\",\"partner_ko\":\"한국어 뜻\",\"goal_ko\":\"학습자가 해야 할 말(한국어, 짧게)\",\"model_en\":\"natural model answer using the target expression\",\"easy_en\":\"simpler acceptable answer\"}";
+  var ctl=RV.ctl=new AbortController();
+  SAMPLE.json(prompt,{modelTier:"quick",cache:false,signal:ctl.signal}).then(function(r){if(RV.ctl!==ctl)return;RV.busy=false;
+    if(!r||!r.partner_en){RV.err="AI 질문을 만들지 못했습니다. 다시 눌러 주세요.";render();return;}RV.q=r;render();rvSpeak(r.partner_en);},
+    function(e){if(RV.ctl!==ctl)return;RV.busy=false;RV.err=aiErr(e);render();});
+}
+function rvSpeak(t){if(TTS&&t){try{TTS.speak(String(t),{language:"en"}).catch(function(){});}catch(x){}}}
+function rvCheck(){
+  RV.input=(document.getElementById("rvin")||{}).value||RV.input;var tx=RV.input.trim();if(!tx||RV.busy||!RV.q)return;
+  var it=BYID[RV.items[RV.i]],q=RV.q;RV.busy=true;RV.err="";RV.tries++;render();
+  var prompt="You are a kind business English tutor for a Korean learner (CEFR A2-B1).\nSituation: "+q.situation_ko+"\nPartner said: \""+q.partner_en+"\"\nTarget expression: \""+it.en+"\"\nModel answer: \""+q.model_en+"\" (simpler OK answer: \""+q.easy_en+"\")\nLearner answered (may come from speech recognition, ignore small recognition errors and punctuation): \""+tx+"\"\nJudge whether the answer works in this situation (meaning, politeness, natural English).\nReply with ONLY this JSON: {\"result\":\"good|ok|retry\",\"feedback_ko\":\"한두 문장 한국어: 잘한 점 또는 무엇이 문제인지\",\"better_en\":\"the learner's answer corrected / made natural\",\"tip_ko\":\"기억할 점 한 줄(한국어)\"}\ngood = natural and correct. ok = understandable but could be more natural. retry = wrong meaning, missing the key part, or not English.";
+  var ctl=RV.ctl=new AbortController();
+  SAMPLE.json(prompt,{modelTier:"quick",cache:false,signal:ctl.signal}).then(function(r){if(RV.ctl!==ctl)return;RV.busy=false;
+    r=r||{};if(["good","ok","retry"].indexOf(r.result)<0)r.result="ok";RV.res=r;render();if(r.result!=="good"&&r.better_en)setTimeout(function(){rvSpeak(r.better_en);},300);},
+    function(e){if(RV.ctl!==ctl)return;RV.busy=false;RV.tries--;RV.err=aiErr(e);render();});
+}
+function rvNext(){
+  var it=RV.items[RV.i],r=RV.res;
+  RV.log.push({id:it,sit:RV.q?RV.q.situation_ko:"",result:r?r.result:"retry",tries:RV.tries,better:r?r.better_en:""});
+  if(!r||r.result==="retry"||RV.tries>1)grade(it,false);else if(r.result==="ok")grade(it,"mid");
+  save();RV.i++;if(RV.i>=RV.items.length){RV.phase="done";render();window.scrollTo(0,0);return;}rvAsk();
+}
+function rvAskQ(){
+  RV.ask=(document.getElementById("rvq")||{}).value||RV.ask;var qq=RV.ask.trim();if(!qq||RV.busy)return;
+  var it=BYID[RV.items[RV.i]],q=RV.q||{};RV.busy=true;RV.ans=null;render();
+  var prompt="You are a kind business English tutor for a Korean learner (CEFR A2-B1). Context — situation: "+(q.situation_ko||"")+"; partner: \""+(q.partner_en||"")+"\"; target expression: \""+it.en+"\" ("+it.ko+"); model answer: \""+(q.model_en||"")+"\"; learner's last answer: \""+RV.input+"\".\nThe learner asks: \""+qq+"\"\nAnswer simply in Korean (2-4 sentences). Give up to 2 short English examples.\nReply with ONLY this JSON: {\"answer_ko\":\"...\",\"examples\":[{\"en\":\"...\",\"ko\":\"...\"}]}";
+  var ctl=RV.ctl=new AbortController();
+  SAMPLE.json(prompt,{cache:false,signal:ctl.signal}).then(function(r){if(RV.ctl!==ctl)return;RV.busy=false;RV.ans=r||{};RV.ask="";render();},function(e){if(RV.ctl!==ctl)return;RV.busy=false;RV.err=aiErr(e);render();});
+}
+function rvHTML(){
+  if(!C)return claudeOnly("AI 복습 대화");
+  var h=backBar("AI 복습 대화",RV.phase==="q"?(RV.i+1)+" / "+RV.items.length:"");
+  if(!SAMPLE)h+='<p class="note">AI를 불러오는 중입니다. 잠시 기다려도 안 되면 Claude 사용 허용을 눌러 주세요.</p>';
+  if(RV.phase==="start"){
+    var src=rvSource();
+    h+='<div class="notice"><b>AI가 오늘 표현으로 상황 질문을 합니다</b><p>답하면 AI가 더 자연스럽게 고쳐 주고, 잘 안 된 표현은 다시 말해 보게 합니다. 궁금한 점은 언제든 물어보세요.</p></div>';
+    h+='<label class="fld"><span>폰 앱에서 복사한 복습 코드 (없으면 이 링크의 기록으로 합니다)</span><textarea id="rvcode" class="code" rows="2" placeholder="3M:m1.m4…">'+esc(RV.code)+"</textarea></label>";
+    if(src){h+='<div class="block"><h2>복습할 표현</h2>';src.ids.slice(0,5).forEach(function(id){var it=BYID[id];h+='<div class="li"><div><b lang="en">'+esc(it.en)+"</b><span>"+esc(it.ko)+"</span></div></div>";});h+="</div>";}
+    h+='<button class="cta" data-act="rvstart"'+(SAMPLE?"":" disabled")+">AI 복습 시작 (3~5분)</button>";
+    if(RV.err)h+='<p class="fb no">'+esc(RV.err)+"</p>";
+    return h;
+  }
+  if(RV.phase==="done"){
+    var good=RV.log.filter(function(l){return l.result==="good"&&l.tries<=1;});
+    h+='<div class="card" style="text-align:center"><p class="big-num">'+good.length+"<span style=\"font-size:18px\"> / "+RV.log.length+'</span></p><p>한 번에 자연스럽게 말한 표현</p></div>';
+    h+='<div class="block"><h2>결과</h2>';RV.log.forEach(function(l){var it=BYID[l.id],ok=l.result==="good"&&l.tries<=1;h+='<div class="li"><div><b lang="en">'+esc(it.en)+"</b><span>"+(ok?"잘했어요":l.result==="ok"?"통했지만 더 자연스럽게: ":"다시 연습: ")+(ok?"":esc(l.better||""))+"</span></div>"+(ok?'<span class="badge">OK</span>':'<span class="badge" style="background:var(--bad-bg);color:var(--bad)">복습</span>')+"</div>";});h+="</div>";
+    h+='<p class="note">"복습" 표시된 표현은 내일 세 판 복습에 다시 나옵니다(이 링크의 기록).</p><button class="cta" data-act="rvagain">다시 하기</button>';
+    return h;
+  }
+  var it=BYID[RV.items[RV.i]],q=RV.q,r=RV.res;
+  h+='<p class="note">목표 표현: <b lang="en">'+esc(it.en)+"</b> ("+esc(it.ko)+")</p>";
+  if(RV.err)h+='<p class="fb no">'+esc(RV.err)+"</p>";
+  if(!q){h+='<div class="bub ai"><p class="sko">'+(RV.busy?"AI가 상황을 만드는 중…":"")+"</p></div>";if(!RV.busy)h+='<button class="cta" data-act="rvretryq">다시 시도</button>';return h;}
+  h+='<div class="notice"><b>상황</b><p>'+esc(q.situation_ko)+'</p><p class="sko">해야 할 말: '+esc(q.goal_ko||"")+"</p></div>";
+  h+='<div class="chat"><div class="bub ai"><p lang="en">'+esc(q.partner_en)+'</p><p class="sko">'+esc(q.partner_ko||"")+"</p>"+(TTS?'<button class="lnk" data-act="rvsay">다시 듣기</button>':"")+"</div>";
+  if(RV.input&&(r||RV.busy))h+='<div class="bub me"><p lang="en">'+esc(RV.input)+"</p></div>";
+  h+="</div>";
+  if(r){
+    h+='<div class="fb '+(r.result==="good"?"ok":r.result==="ok"?"mid":"no")+'">'+(r.result==="good"?"좋아요! ":r.result==="ok"?"통해요. ":"다시 해 봐요. ")+esc(r.feedback_ko||"")+"</div>";
+    if(r.result!=="good"&&r.better_en)h+='<div class="fixbox" style="align-self:stretch;max-width:none"><span class="lbl2">이렇게 말해 보세요</span><p lang="en">'+esc(r.better_en)+'</p><p class="sko">'+esc(r.tip_ko||"")+"</p></div>";
+    h+='<div class="two">'+(r.result!=="good"&&RV.tries<3?'<button class="cta alt" data-act="rvretry">다시 말해 보기 ('+RV.tries+'/3)</button>':'<button class="cta alt" data-act="rvmodel">모범 답 보기</button>')+'<button class="cta" data-act="rvnext">'+(RV.i+1>=RV.items.length?"결과 보기":"다음 질문")+"</button></div>";
+    if(RV.showModel)h+='<p class="note">모범 답: <span lang="en">'+esc(q.model_en)+"</span> · 쉬운 답: <span lang=\"en\">"+esc(q.easy_en||"")+"</span></p>";
+  }else{
+    h+='<div class="say"><textarea id="rvin" lang="en" rows="2" autocapitalize="sentences" placeholder="영어로 답하세요">'+esc(RV.input)+"</textarea>";
+    if(dictOK())h+='<button class="mic'+(OVR&&OVR.rv?" on":"")+'" data-act="rvmic">'+MIC+"<span>"+(OVR&&OVR.rv?"멈추기":"말하기")+"</span></button>";
+    h+='</div><button class="cta" data-act="rvcheck"'+(RV.busy?" disabled":"")+">"+(RV.busy?"AI가 보는 중…":"확인")+"</button>";
+    h+='<details class="howto"><summary>힌트 보기</summary><p lang="en">'+esc(hintText(it.en,2))+"</p></details>";
+  }
+  h+='<div class="block"><h2>궁금한 점 묻기</h2><div class="say"><textarea id="rvq" rows="2" placeholder="예: 왜 would like to 를 써요? / 더 공손하게 말하려면?">'+esc(RV.ask)+'</textarea></div><button class="ghost small" data-act="rvaskq"'+(RV.busy?" disabled":"")+">AI에게 묻기</button>";
+  if(RV.ans){h+='<div class="notice"><p>'+esc(RV.ans.answer_ko||"")+"</p>"+(RV.ans.examples||[]).map(function(x){return '<p><span lang="en">'+esc(x.en||"")+'</span> <span class="sko">'+esc(x.ko||"")+"</span></p>";}).join("")+"</div>";}
+  return h+"</div>";
+}
 var bk={mode:"",msg:""};
 function backupHTML(){
   var h='<details class="howto" id="bkbox"'+(bk.mode?" open":"")+'><summary>기록 백업과 불러오기</summary>';
@@ -2053,6 +2176,29 @@ app.addEventListener("click",function(e){
   else if(a==="rpko"){RP.showKo[+b.getAttribute("data-k")]=true;render();}
   else if(a==="rpsend"){RP.input=(document.getElementById("rpin")||{}).value||RP.input;rpSend();}
   else if(a==="rpend"){rpFinish();}
+  else if(a==="xai"){if(C){RV.phase="start";view="aireview";}else{AIRL.msg="";view="airl";}render();window.scrollTo(0,0);}
+  else if(a==="airlgo"){var code=rvCode();var go=function(){window.open(CLAUDE_URL,"_blank","noopener");};copyText(code,function(){AIRL.msg="복습 코드를 복사했습니다: "+code;render();go();},function(){AIRL.msg="자동 복사가 안 됩니다. 이 코드를 직접 복사하세요: "+code;render();go();});}
+  else if(a==="airlvoice"){var vt=rvVoiceText();copyText(vt,function(){AIRL.msg="시작 글을 복사했습니다. Claude 앱 '3분 영어 튜터'에 붙여 넣고 음성 대화를 켜세요.";render();},function(){AIRL.msg="자동 복사가 안 됩니다.";render();});}
+  else if(a==="rvstart"){rvStart();}
+  else if(a==="rvagain"){RV.phase="start";render();}
+  else if(a==="rvretryq"){rvAsk();}
+  else if(a==="rvsay"){if(RV.q)rvSpeak(RV.q.partner_en);}
+  else if(a==="rvcheck"){rvCheck();}
+  else if(a==="rvretry"){RV.res=null;RV.input="";render();}
+  else if(a==="rvmodel"){RV.showModel=true;render();}
+  else if(a==="rvnext"){RV.showModel=false;rvNext();}
+  else if(a==="rvaskq"){rvAskQ();}
+  else if(a==="rvmic"){
+    if(!DICT)return;
+    if(OVR&&OVR.rv){stopDict();return;}
+    RV.input=(document.getElementById("rvin")||{}).value||RV.input;
+    var base2=RV.input;
+    OVR={rv:true,target:"",text:"",partial:"",heard:false,
+      onUpdate:function(full){var el=document.getElementById("rvin");if(el)el.value=(base2+" "+OVR.text+" "+(OVR.partial||"")).trim();if(full)render();},
+      done:function(o){RV.input=(base2+" "+o.text).trim();render();}};
+    render();
+    DICT.start({language:"en"}).catch(function(){OVR=null;render();});
+  }
   else if(a==="rpmic"){
     if(!DICT)return;
     if(OVR&&OVR.rp){stopDict();return;}
@@ -2085,6 +2231,8 @@ app.addEventListener("click",function(e){
   else if(a==="nfrep"){var rr=nfState().cfg.repeat;rr.on=!rr.on;nfChanged();}
   else if(a==="nfevery"){nfState().cfg.repeat.every=+b.getAttribute("data-v");nfChanged();}
   else if(a==="nfmax"){nfState().cfg.repeat.max=+b.getAttribute("data-v");nfChanged();}
+  else if(a==="nfaiset"){var av=(document.getElementById("nfai")||{}).value||"";if(/^\d{2}:\d{2}$/.test(av)){nfState().cfg.aiTime=av;nfChanged();}}
+  else if(a==="nfaioff"){nfState().cfg.aiTime="";nfChanged();}
   else if(a==="nfstop"){nfState().cfg.stopWhenDone=true;nfChanged();}
   else if(a==="nfstop2"){nfState().cfg.stopWhenDone=false;nfChanged();}
   else if(a==="nwopen"){nwOpen(b.getAttribute("data-d"));}
@@ -2177,6 +2325,7 @@ app.addEventListener("input",function(e){
   st.text=e.target.value;st.partial="";
   var b=app.querySelector('[data-act="checkSay"]');if(b)b.disabled=!st.text.trim();
 });
+if(/aireview/.test(location.hash)){if(C){view="aireview";}else{view="airl";}try{history.replaceState(null,"",location.pathname);}catch(x){}}
 render();
 })();
 </script>

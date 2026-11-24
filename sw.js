@@ -40,7 +40,7 @@ self.addEventListener('notificationclick', e => {
   e.notification.close();
   const url = (e.notification.data && e.notification.data.url) || './';
   e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
-    for (const c of list) if (c.url.indexOf('/biz-english-3min/') >= 0 && 'focus' in c) return c.focus();
+    for (const c of list) if (c.url.indexOf('/biz-english-3min/') >= 0 && 'focus' in c) return (url.indexOf('#') >= 0 && c.navigate ? c.navigate(url).then(w => (w || c).focus()) : c.focus());
     return self.clients.openWindow(url);
   }));
 });
