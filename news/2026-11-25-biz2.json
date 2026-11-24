@@ -1,0 +1,129 @@
+{
+ "date": "2026-11-25",
+ "kind": "biz",
+ "title": "Bank of Korea Expected to Raise Interest Rates",
+ "title_ko": "한국은행, 기준금리 인상 전망",
+ "paras": [
+  "The Bank of Korea will decide on interest rates on Thursday, November 26. Most economists expect the central bank to raise its main rate from 3.00 percent to 3.25 percent. In a Reuters poll, 32 of 34 economists said they expect a hike.",
+  "The bank already raised its rate in July and August this year, and then kept it the same in October. If it raises the rate again this week, it will be the third increase this year. However, not everyone agrees. Two of the economists in the poll did not expect a hike this week.",
+  "Interest rates matter for businesses. Higher rates make bank loans more expensive, and they can also affect the value of the won. Companies that borrow money or trade in dollars should watch the decision closely and check their plans for next year."
+ ],
+ "paras_ko": [
+  "한국은행이 11월 26일 목요일 기준금리를 결정합니다. 대부분의 경제학자는 한국은행이 기준금리를 3.00%에서 3.25%로 올릴 것으로 예상합니다. 로이터 설문에서는 경제학자 34명 중 32명이 인상을 예상했습니다.",
+  "한국은행은 올해 7월과 8월에 이미 금리를 올렸고, 10월에는 동결했습니다. 이번 주에 다시 올리면 올해 세 번째 인상이 됩니다. 하지만 모두가 같은 생각은 아닙니다. 설문에 참여한 경제학자 중 2명은 이번 주 인상을 예상하지 않았습니다.",
+  "금리는 기업에 중요합니다. 금리가 오르면 은행 대출이 비싸지고, 원화 가치에도 영향을 줄 수 있습니다. 돈을 빌리거나 달러로 거래하는 기업은 이번 결정을 잘 지켜보고 내년 계획을 점검하는 것이 좋습니다."
+ ],
+ "sources": [
+  {
+   "name": "EBC (Reuters poll)",
+   "url": "https://www.ebc.com/forex/bank-of-korea-rate-hike-november-2026",
+   "published": "2026-11-24"
+  },
+  {
+   "name": "UPI",
+   "url": "https://www.upi.com/Top_News/World-News/2026/11/22/bank-of-korea-monetary-policy/7171795388502/",
+   "published": "2026-11-22"
+  },
+  {
+   "name": "EconoTimes",
+   "url": "https://econotimes.com/DBS-Expects-Bank-of-Korea-to-Raise-Rate-to-3-25-on-Nov-26-1780421",
+   "published": "2026-11-24"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Most economists expect the Bank of Korea to raise rates",
+    "The Bank of Korea will cut rates to zero",
+    "The Bank of Korea will close next week"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 대부분 금리 인상을 예상합니다."
+  },
+  {
+   "q": "What rate do most economists expect?",
+   "opts": [
+    "2.75 percent",
+    "3.50 percent",
+    "3.25 percent"
+   ],
+   "a": 2,
+   "why_ko": "첫 문단: 3.00%에서 3.25%로 인상을 예상합니다."
+  },
+  {
+   "q": "What happens when interest rates go up?",
+   "opts": [
+    "Bank loans become cheaper",
+    "Bank loans become more expensive",
+    "Nothing changes"
+   ],
+   "a": 1,
+   "why_ko": "셋째 문단: 금리가 오르면 대출이 비싸집니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "economists",
+   "ko": "경제학자",
+   "pos": "명",
+   "base": "economist",
+   "easy": "money experts",
+   "ex": "Economists expect prices to rise next year.",
+   "ex_ko": "경제학자들은 내년에 물가가 오를 거라고 예상합니다.",
+   "cat": "t",
+   "ipa": "/ɪˈkɑːnəˌmɪsts/",
+   "aud": "news/audio/2026-11-25-biz2-w0.mp3",
+   "wa": "news/audio/2026-11-25-biz2-k0.mp3"
+  },
+  {
+   "en": "poll",
+   "ko": "설문 조사",
+   "pos": "명",
+   "easy": "survey",
+   "ex": "The poll shows most customers want faster delivery.",
+   "ex_ko": "설문 결과 대부분의 고객이 더 빠른 배송을 원합니다.",
+   "cat": "t",
+   "ipa": "/poʊl/",
+   "aud": "news/audio/2026-11-25-biz2-w1.mp3",
+   "wa": "news/audio/2026-11-25-biz2-k1.mp3"
+  },
+  {
+   "en": "hike",
+   "ko": "인상",
+   "pos": "명",
+   "easy": "increase",
+   "ex": "The price hike will start next month.",
+   "ex_ko": "가격 인상은 다음 달부터 시작됩니다.",
+   "cat": "m",
+   "ipa": "/haɪk/",
+   "aud": "news/audio/2026-11-25-biz2-w2.mp3",
+   "wa": "news/audio/2026-11-25-biz2-k2.mp3"
+  },
+  {
+   "en": "loans",
+   "ko": "대출",
+   "pos": "명",
+   "base": "loan",
+   "easy": "borrowed money",
+   "ex": "Our bank loans will cost more if rates go up.",
+   "ex_ko": "금리가 오르면 은행 대출 비용이 늘어납니다.",
+   "cat": "t",
+   "ipa": "/loʊnz/",
+   "aud": "news/audio/2026-11-25-biz2-w3.mp3",
+   "wa": "news/audio/2026-11-25-biz2-k3.mp3"
+  },
+  {
+   "en": "closely",
+   "ko": "주의 깊게",
+   "pos": "부",
+   "easy": "carefully",
+   "ex": "Please watch the delivery schedule closely.",
+   "ex_ko": "배송 일정을 주의 깊게 봐 주세요.",
+   "cat": "m",
+   "ipa": "/ˈkloʊsli/",
+   "aud": "news/audio/2026-11-25-biz2-w4.mp3",
+   "wa": "news/audio/2026-11-25-biz2-k4.mp3"
+  }
+ ]
+}

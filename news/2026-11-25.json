@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-25",
+ "kind": "biz",
+ "title": "The US Prepares New Tariffs on China, the EU and Others",
+ "title_ko": "미국, 중국·EU 등에 새 관세 준비",
+ "paras": [
+  "The United States is getting ready to raise tariffs on goods from China, the European Union and more than a dozen other economies. Reports on November 24 said the plan could be announced very soon. The final rates and the exact timing are not decided yet.",
+  "The new tariffs come from a US investigation into excess manufacturing capacity. The tariffs would target economies that are accused of using government money to support their factories, so the factories can make more goods than the world needs. The US Trade Representative is leading the investigation.",
+  "For Korea, reports say the rate is expected to be 15 percent or lower, like the EU and Japan. China could face a higher rate. Korean exporters to the US should check how the final rules affect their products, because a change of a few percent can make a big difference to prices and orders."
+ ],
+ "paras_ko": [
+  "미국이 중국, 유럽연합(EU), 그리고 10여 개 다른 경제권에서 들어오는 물건에 관세를 올릴 준비를 하고 있습니다. 11월 24일 보도에 따르면 이 계획은 곧 발표될 수 있습니다. 최종 세율과 정확한 시기는 아직 정해지지 않았습니다.",
+  "새 관세는 미국의 '과잉 생산 능력' 조사에서 나왔습니다. 정부 돈으로 자국 공장을 지원해 세계 수요보다 많은 물건을 만들게 한다는 의혹을 받는 경제권이 대상입니다. 이 조사는 미국 무역대표부(USTR)가 맡고 있습니다.",
+  "보도에 따르면 한국은 EU, 일본과 마찬가지로 15% 이하의 세율이 예상됩니다. 중국은 더 높은 세율을 받을 수 있습니다. 미국에 수출하는 한국 기업은 최종 규정이 자사 제품에 어떤 영향을 주는지 확인해야 합니다. 몇 %의 차이가 가격과 주문에 큰 영향을 줄 수 있기 때문입니다."
+ ],
+ "sources": [
+  {
+   "name": "Bloomberg",
+   "url": "https://www.bloomberg.com/news/articles/2026-11-24/us-readies-tariff-hike-on-china-eu-goods-as-soon-as-tuesday",
+   "published": "2026-11-24"
+  },
+  {
+   "name": "Seoul Economic Daily",
+   "url": "https://en.sedaily.com/world/2026/11/24/us-overproduction-tariffs-may-land-this-week-with-korea",
+   "published": "2026-11-24"
+  },
+  {
+   "name": "Time News",
+   "url": "https://time.news/ustr-proposes-new-tariffs-on-16-jurisdictions-after-court-ruling/",
+   "published": "2026-11-24"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "The US is preparing new tariffs on China, the EU and others",
+    "The US removed all tariffs",
+    "Korea raised tariffs on US goods"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 미국이 새 관세를 준비하고 있습니다."
+  },
+  {
+   "q": "What rate is expected for Korea?",
+   "opts": [
+    "More than 50 percent",
+    "15 percent or lower",
+    "Exactly 30 percent"
+   ],
+   "a": 1,
+   "why_ko": "셋째 문단: 한국은 15% 이하가 예상됩니다."
+  },
+  {
+   "q": "What is the investigation about?",
+   "opts": [
+    "Cheap oil prices",
+    "Shipping delays",
+    "Excess manufacturing capacity"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: 과잉 생산 능력 조사입니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "tariffs",
+   "ko": "관세",
+   "pos": "명",
+   "base": "tariff",
+   "easy": "import taxes",
+   "ex": "New tariffs may raise the price of our products in the US.",
+   "ex_ko": "새 관세로 미국 내 저희 제품 가격이 오를 수 있습니다.",
+   "cat": "t",
+   "ipa": "/ˈtærɪfs/",
+   "aud": "news/audio/2026-11-25-w0.mp3",
+   "wa": "news/audio/2026-11-25-k0.mp3"
+  },
+  {
+   "en": "investigation",
+   "ko": "조사",
+   "pos": "명",
+   "easy": "careful check",
+   "ex": "Customs started an investigation into the shipment.",
+   "ex_ko": "세관이 그 화물에 대한 조사를 시작했습니다.",
+   "cat": "m",
+   "ipa": "/ɪnˌvɛstɪˈɡeɪʃən/",
+   "aud": "news/audio/2026-11-25-w1.mp3",
+   "wa": "news/audio/2026-11-25-k1.mp3"
+  },
+  {
+   "en": "accused",
+   "ko": "비난받는, 혐의를 받는",
+   "pos": "동",
+   "base": "accuse",
+   "easy": "blamed",
+   "ex": "The supplier was accused of selling below cost.",
+   "ex_ko": "그 공급사는 원가 이하로 판매한다는 혐의를 받았습니다.",
+   "cat": "t",
+   "ipa": "/əˈkjuːzd/",
+   "aud": "news/audio/2026-11-25-w2.mp3",
+   "wa": "news/audio/2026-11-25-k2.mp3"
+  },
+  {
+   "en": "exporters",
+   "ko": "수출업체",
+   "pos": "명",
+   "base": "exporter",
+   "easy": "companies that sell abroad",
+   "ex": "Many Korean exporters are checking the new rules.",
+   "ex_ko": "많은 한국 수출업체가 새 규정을 확인하고 있습니다.",
+   "cat": "t",
+   "ipa": "/ɛkˈspɔːrtərz/",
+   "aud": "news/audio/2026-11-25-w3.mp3",
+   "wa": "news/audio/2026-11-25-k3.mp3"
+  },
+  {
+   "en": "affect",
+   "ko": "영향을 주다",
+   "pos": "동",
+   "easy": "change",
+   "ex": "How will the new tariff affect our order?",
+   "ex_ko": "새 관세가 저희 주문에 어떤 영향을 줄까요?",
+   "cat": "m",
+   "ipa": "/əˈfɛkt/",
+   "aud": "news/audio/2026-11-25-w4.mp3",
+   "wa": "news/audio/2026-11-25-k4.mp3"
+  }
+ ]
+}

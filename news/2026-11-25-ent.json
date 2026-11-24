@@ -1,0 +1,128 @@
+{
+ "date": "2026-11-25",
+ "kind": "ent",
+ "title": "Real Madrid Come Back to Beat PSV 5-1",
+ "title_ko": "레알 마드리드, PSV에 5-1 역전승",
+ "paras": [
+  "Real Madrid beat PSV Eindhoven 5-1 in the UEFA Champions League on Tuesday, November 24. The game was played at the Bernabeu, Real Madrid's home stadium in Spain.",
+  "PSV surprised the home fans by scoring first. Ivan Perisic scored from a penalty in the first half, and the Dutch team led 1-0 at halftime. But Real Madrid came back strongly in the second half.",
+  "Federico Valverde scored to make it 1-1. Then Jude Bellingham scored a beautiful goal, and Kylian Mbappe added two more. Vinicius Junior scored the fifth goal near the end of the game. It was a great comeback for the Spanish club in Europe's biggest club competition. If your partners love football, you could ask them, \"Did you see Real Madrid's second half last night?\" It is an easy way to start a friendly chat."
+ ],
+ "paras_ko": [
+  "레알 마드리드가 11월 24일 화요일 UEFA 챔피언스리그에서 PSV 에인트호번을 5-1로 이겼습니다. 경기는 스페인에 있는 레알 마드리드의 홈구장 베르나베우에서 열렸습니다.",
+  "PSV가 먼저 골을 넣어 홈 팬들을 놀라게 했습니다. 이반 페리시치가 전반에 페널티킥으로 골을 넣었고, 네덜란드 팀은 1-0으로 앞선 채 전반을 마쳤습니다. 하지만 레알 마드리드는 후반에 강하게 반격했습니다.",
+  "페데리코 발베르데가 동점골을 넣었습니다. 이어 주드 벨링엄이 멋진 골을 넣었고, 킬리안 음바페가 두 골을 더했습니다. 비니시우스 주니오르가 경기 막판 다섯 번째 골을 넣었습니다. 유럽 최고의 클럽 대회에서 스페인 클럽이 보여 준 멋진 역전승이었습니다. 거래처가 축구를 좋아한다면 \"어젯밤 레알 마드리드 후반전 보셨어요?\"라고 물어볼 수 있습니다. 편하게 대화를 시작하는 좋은 방법입니다."
+ ],
+ "sources": [
+  {
+   "name": "UEFA",
+   "url": "https://www.uefa.com/uefachampionsleague/match/2049625--real-madrid-vs-psv/",
+   "published": "2026-11-24"
+  },
+  {
+   "name": "Foot Mercato",
+   "url": "https://www.footmercato.net/live/6090460548682596452-real-madrid-vs-psv-eindhoven",
+   "published": "2026-11-24"
+  },
+  {
+   "name": "TNT Sports",
+   "url": "https://www.tntsports.co.uk/football/champions-league/2026-2027/real-madrid-psv_mtc21878582/live-commentary.shtml",
+   "published": "2026-11-24"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Real Madrid came back to beat PSV 5-1",
+    "PSV beat Real Madrid 5-1",
+    "The game ended 1-1"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 레알 마드리드가 PSV를 5-1로 이겼습니다."
+  },
+  {
+   "q": "Who scored first in the game?",
+   "opts": [
+    "Kylian Mbappe",
+    "Ivan Perisic",
+    "Jude Bellingham"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: PSV의 페리시치가 먼저 골을 넣었습니다."
+  },
+  {
+   "q": "How many goals did Mbappe score?",
+   "opts": [
+    "One",
+    "Three",
+    "Two"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 음바페가 두 골을 넣었습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "surprised",
+   "ko": "놀라게 했다",
+   "pos": "동",
+   "base": "surprise",
+   "easy": "shocked",
+   "ex": "The result surprised a lot of fans.",
+   "ex_ko": "그 결과에 많은 팬이 놀랐어요.",
+   "cat": "p",
+   "ipa": "/sərˈpraɪzd/",
+   "aud": "news/audio/2026-11-25-ent-w0.mp3",
+   "wa": "news/audio/2026-11-25-ent-k0.mp3"
+  },
+  {
+   "en": "halftime",
+   "ko": "하프타임, 전반 종료",
+   "pos": "명",
+   "easy": "middle break",
+   "ex": "They were losing at halftime, weren't they?",
+   "ex_ko": "하프타임엔 지고 있었죠?",
+   "cat": "p",
+   "ipa": "/ˈhæftaɪm/",
+   "aud": "news/audio/2026-11-25-ent-w1.mp3",
+   "wa": "news/audio/2026-11-25-ent-k1.mp3"
+  },
+  {
+   "en": "comeback",
+   "ko": "역전, 재기",
+   "pos": "명",
+   "easy": "winning after losing",
+   "ex": "What an amazing comeback that was!",
+   "ex_ko": "정말 놀라운 역전승이었어요!",
+   "cat": "p",
+   "ipa": "/ˈkʌmbæk/",
+   "aud": "news/audio/2026-11-25-ent-w2.mp3",
+   "wa": "news/audio/2026-11-25-ent-k2.mp3"
+  },
+  {
+   "en": "competition",
+   "ko": "대회, 경쟁",
+   "pos": "명",
+   "easy": "contest",
+   "ex": "It's the biggest club competition in Europe.",
+   "ex_ko": "유럽에서 가장 큰 클럽 대회예요.",
+   "cat": "t",
+   "ipa": "/ˌkɑːmpəˈtɪʃən/",
+   "aud": "news/audio/2026-11-25-ent-w3.mp3",
+   "wa": "news/audio/2026-11-25-ent-k3.mp3"
+  },
+  {
+   "en": "beautiful",
+   "ko": "멋진, 아름다운",
+   "pos": "형",
+   "easy": "very nice",
+   "ex": "Did you see that beautiful goal?",
+   "ex_ko": "그 멋진 골 보셨어요?",
+   "cat": "p",
+   "ipa": "/ˈbjuːtifəl/",
+   "aud": "news/audio/2026-11-25-ent-w4.mp3",
+   "wa": "news/audio/2026-11-25-ent-k4.mp3"
+  }
+ ]
+}

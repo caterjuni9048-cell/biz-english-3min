@@ -173,5 +173,33 @@
 "kind": "ent",
 "title": "Liverpool Beat Manchester United 4-0",
 "title_ko": "리버풀, 맨체스터 유나이티드에 4-0 대승"
+},
+{
+"id": "2026-11-25",
+"date": "2026-11-25",
+"kind": "biz",
+"title": "The US Prepares New Tariffs on China, the EU and Others",
+"title_ko": "미국, 중국·EU 등에 새 관세 준비"
+},
+{
+"id": "2026-11-25-biz2",
+"date": "2026-11-25",
+"kind": "biz",
+"title": "Bank of Korea Expected to Raise Interest Rates",
+"title_ko": "한국은행, 기준금리 인상 전망"
+},
+{
+"id": "2026-11-25-hot",
+"date": "2026-11-25",
+"kind": "hot",
+"title": "US Airports Get Ready for Thanksgiving Travelers",
+"title_ko": "미국 공항, 추수감사절 여행객 맞이 준비"
+},
+{
+"id": "2026-11-25-ent",
+"date": "2026-11-25",
+"kind": "ent",
+"title": "Real Madrid Come Back to Beat PSV 5-1",
+"title_ko": "레알 마드리드, PSV에 5-1 역전승"
 }
 ]
