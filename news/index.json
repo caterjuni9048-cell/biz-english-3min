@@ -201,5 +201,33 @@
 "kind": "ent",
 "title": "Real Madrid Come Back to Beat PSV 5-1",
 "title_ko": "레알 마드리드, PSV에 5-1 역전승"
+},
+{
+"id": "2026-11-26",
+"date": "2026-11-26",
+"kind": "biz",
+"title": "easyJet's Profit Falls Sharply as Fuel Costs Rise",
+"title_ko": "이지젯, 연료비 상승으로 이익 급감"
+},
+{
+"id": "2026-11-26-biz2",
+"date": "2026-11-26",
+"kind": "biz",
+"title": "US Economic Growth Revised Up to 4.3 Percent",
+"title_ko": "미국 3분기 성장률 4.3%로 상향 수정"
+},
+{
+"id": "2026-11-26-hot",
+"date": "2026-11-26",
+"kind": "hot",
+"title": "First Foreign Astronaut Flies to China's Space Station",
+"title_ko": "중국 우주정거장에 첫 외국인 우주비행사"
+},
+{
+"id": "2026-11-26-ent",
+"date": "2026-11-26",
+"kind": "ent",
+"title": "Christmas Songs Return to the Billboard Top 10",
+"title_ko": "크리스마스 노래, 빌보드 톱10 복귀"
 }
 ]

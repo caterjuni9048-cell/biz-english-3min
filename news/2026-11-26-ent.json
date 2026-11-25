@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-26",
+ "kind": "ent",
+ "title": "Christmas Songs Return to the Billboard Top 10",
+ "title_ko": "크리스마스 노래, 빌보드 톱10 복귀",
+ "paras": [
+  "The holiday season has started on the music charts. In the new Billboard Hot 100 chart, announced on November 24, Mariah Carey's famous song \"All I Want for Christmas Is You\" jumped from number 18 to number 4. Other holiday songs also moved into the top 10.",
+  "The Hot 100 is the main song chart in the United States. It measures how much each song is streamed, bought and played on the radio. Every year, Christmas songs come back as people start listening to holiday music in late November.",
+  "The number one song is still \"Choosin' Texas\" by the country singer Ella Langley. Her song has stayed at the top for a record number of weeks. Many fans now wonder if Mariah Carey's song will reach number one again before Christmas. This is an easy small talk topic: \"What is your favorite Christmas song?\""
+ ],
+ "paras_ko": [
+  "음악 차트에 연말 시즌이 시작됐습니다. 11월 24일 발표된 새 빌보드 핫100 차트에서 머라이어 캐리의 유명한 노래 '올 아이 원트 포 크리스마스 이즈 유'가 18위에서 4위로 뛰어올랐습니다. 다른 크리스마스 노래들도 톱10에 들어왔습니다.",
+  "핫100은 미국의 대표 노래 차트입니다. 각 노래가 얼마나 스트리밍되고, 팔리고, 라디오에서 나오는지를 잽니다. 해마다 11월 말 사람들이 캐럴을 듣기 시작하면서 크리스마스 노래들이 돌아옵니다.",
+  "1위는 여전히 컨트리 가수 엘라 랭글리의 '추진 텍사스'입니다. 이 노래는 역대 가장 오랜 기간 1위를 지키고 있습니다. 많은 팬은 머라이어 캐리의 노래가 크리스마스 전에 다시 1위에 오를지 궁금해합니다. 쉬운 스몰토크 주제입니다. \"가장 좋아하는 크리스마스 노래가 뭐예요?\""
+ ],
+ "sources": [
+  {
+   "name": "Billboard",
+   "url": "https://www.billboard.com/lists/ella-langley-choosin-texas-hot-100-number-one-29th-week/",
+   "published": "2026-11-24"
+  },
+  {
+   "name": "Billboard",
+   "url": "https://www.billboard.com/music/chart-beat/mariah-carey-wham-christmas-number-one-race-1236388804/",
+   "published": "2026-11-24"
+  },
+  {
+   "name": "Creative Disc",
+   "url": "https://creativedisc.com/2026/11/mariah-carey-dan-lagu-lagu-natal-sudah-serbu-10-besar-billboard-hot-100/",
+   "published": "2026-11-25"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Christmas songs came back to the Billboard top 10",
+    "Billboard stopped making charts",
+    "Mariah Carey released a new album"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 크리스마스 노래들이 톱10에 돌아왔습니다."
+  },
+  {
+   "q": "Where did Mariah Carey's song move on the chart?",
+   "opts": [
+    "From 4 to 18",
+    "From 18 to 4",
+    "From 1 to 2"
+   ],
+   "a": 1,
+   "why_ko": "첫 문단: 18위에서 4위로 올랐습니다."
+  },
+  {
+   "q": "Which song is still number one?",
+   "opts": [
+    "All I Want for Christmas Is You",
+    "A new K-pop song",
+    "Choosin' Texas"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 1위는 여전히 '추진 텍사스'입니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "famous",
+   "ko": "유명한",
+   "pos": "형",
+   "easy": "well-known",
+   "ex": "This restaurant is famous for its noodles.",
+   "ex_ko": "이 식당은 국수로 유명해요.",
+   "cat": "p",
+   "ipa": "/ˈfeɪməs/",
+   "aud": "news/audio/2026-11-26-ent-w0.mp3",
+   "wa": "news/audio/2026-11-26-ent-k0.mp3"
+  },
+  {
+   "en": "jumped",
+   "ko": "뛰어올랐다",
+   "pos": "동",
+   "base": "jump",
+   "easy": "went up fast",
+   "ex": "Our sales jumped after the holiday ads.",
+   "ex_ko": "연말 광고 뒤 판매가 확 늘었어요.",
+   "cat": "t",
+   "ipa": "/dʒʌmpt/",
+   "aud": "news/audio/2026-11-26-ent-w1.mp3",
+   "wa": "news/audio/2026-11-26-ent-k1.mp3"
+  },
+  {
+   "en": "measures",
+   "ko": "측정하다, 재다",
+   "pos": "동",
+   "base": "measure",
+   "easy": "checks how much",
+   "ex": "This report measures how fast we ship orders.",
+   "ex_ko": "이 보고서는 주문 발송 속도를 측정해요.",
+   "cat": "t",
+   "ipa": "/ˈmɛʒərz/",
+   "aud": "news/audio/2026-11-26-ent-w2.mp3",
+   "wa": "news/audio/2026-11-26-ent-k2.mp3"
+  },
+  {
+   "en": "streamed",
+   "ko": "스트리밍된",
+   "pos": "동",
+   "base": "stream",
+   "easy": "played online",
+   "ex": "That song was streamed millions of times.",
+   "ex_ko": "그 노래는 수백만 번 스트리밍됐어요.",
+   "cat": "p",
+   "ipa": "/striːmd/",
+   "aud": "news/audio/2026-11-26-ent-w3.mp3",
+   "wa": "news/audio/2026-11-26-ent-k3.mp3"
+  },
+  {
+   "en": "favorite",
+   "ko": "가장 좋아하는",
+   "pos": "형",
+   "easy": "liked best",
+   "ex": "What is your favorite Christmas song?",
+   "ex_ko": "가장 좋아하는 크리스마스 노래가 뭐예요?",
+   "cat": "p",
+   "ipa": "/ˈfeɪvərɪt/",
+   "aud": "news/audio/2026-11-26-ent-w4.mp3",
+   "wa": "news/audio/2026-11-26-ent-k4.mp3"
+  }
+ ]
+}

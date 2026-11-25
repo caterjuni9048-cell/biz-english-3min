@@ -1,0 +1,127 @@
+{
+ "date": "2026-11-26",
+ "kind": "biz",
+ "title": "easyJet's Profit Falls Sharply as Fuel Costs Rise",
+ "title_ko": "이지젯, 연료비 상승으로 이익 급감",
+ "paras": [
+  "easyJet, a large budget airline in Europe, said on November 25 that its profit fell sharply last year. Its headline profit before tax dropped 89 percent to 71 million pounds, compared with 665 million pounds a year earlier.",
+  "The main reason was fuel. The airline paid much more for jet fuel because of the conflict in the Middle East. Fuel is one of the biggest costs for any airline, so even a small rise in its price can make a big difference to profit.",
+  "These were the last yearly results before the company gets new owners. Investment firm Apollo is buying easyJet. For trading and logistics companies, this news is a reminder that fuel prices can quickly change transport costs, including air cargo and travel budgets for business trips."
+ ],
+ "paras_ko": [
+  "유럽의 대형 저비용 항공사 이지젯이 11월 25일 지난해 이익이 크게 줄었다고 밝혔습니다. 대표 세전 이익은 89% 줄어 7,100만 파운드였습니다. 1년 전에는 6억 6,500만 파운드였습니다.",
+  "가장 큰 이유는 연료였습니다. 중동 분쟁 때문에 항공사가 항공유에 훨씬 많은 돈을 냈습니다. 연료는 어느 항공사에게나 가장 큰 비용 중 하나라서, 가격이 조금만 올라도 이익에 큰 차이가 납니다.",
+  "이번 실적은 회사가 새 주인을 맞기 전 마지막 연간 실적입니다. 투자회사 아폴로가 이지젯을 인수합니다. 무역·물류 회사에게 이 소식은 연료 가격이 항공 화물과 출장 여행 예산 등 운송비를 빠르게 바꿀 수 있다는 점을 다시 일깨워 줍니다."
+ ],
+ "sources": [
+  {
+   "name": "Quartz",
+   "url": "https://qz.com/easyjet-annual-profit-falls-middle-east-war-fuel-costs-112526",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "Travelers Today",
+   "url": "https://www.travelerstoday.com/articles/61422/20261125/easyjet-profit-collapses-war-driven-fuel-costs-budget-airline-prepares-new-owners.htm",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "Lynn News (PA)",
+   "url": "https://www.lynnnews.co.uk/national/easyjet-profits-plunge-on-244-million-fuel-cost-hit-174724/",
+   "published": "2026-11-25"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "easyJet's profit fell sharply",
+    "easyJet's profit doubled",
+    "easyJet stopped flying"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 이지젯의 이익이 크게 줄었습니다."
+  },
+  {
+   "q": "What was the main reason?",
+   "opts": [
+    "Fewer airports",
+    "Higher fuel costs",
+    "A new tax on tickets"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 연료비가 크게 올랐습니다."
+  },
+  {
+   "q": "Who is buying easyJet?",
+   "opts": [
+    "Another airline",
+    "The government",
+    "Investment firm Apollo"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 투자회사 아폴로가 인수합니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "budget",
+   "ko": "저가의; 예산",
+   "pos": "형",
+   "easy": "cheap",
+   "ex": "We booked a budget hotel for the business trip.",
+   "ex_ko": "출장용으로 저렴한 호텔을 예약했습니다.",
+   "cat": "m",
+   "ipa": "/ˈbʌdʒɪt/",
+   "aud": "news/audio/2026-11-26-w0.mp3",
+   "wa": "news/audio/2026-11-26-k0.mp3"
+  },
+  {
+   "en": "profit",
+   "ko": "이익",
+   "pos": "명",
+   "easy": "money earned",
+   "ex": "Our profit was lower this quarter because of shipping costs.",
+   "ex_ko": "운송비 때문에 이번 분기 이익이 낮았습니다.",
+   "cat": "t",
+   "ipa": "/ˈprɑːfɪt/",
+   "aud": "news/audio/2026-11-26-w1.mp3",
+   "wa": "news/audio/2026-11-26-k1.mp3"
+  },
+  {
+   "en": "fuel",
+   "ko": "연료",
+   "pos": "명",
+   "easy": "gas for machines",
+   "ex": "The carrier added a fuel surcharge this month.",
+   "ex_ko": "운송사가 이번 달 유류할증료를 붙였습니다.",
+   "cat": "m",
+   "ipa": "/ˈfjuːəl/",
+   "aud": "news/audio/2026-11-26-w2.mp3",
+   "wa": "news/audio/2026-11-26-k2.mp3"
+  },
+  {
+   "en": "conflict",
+   "ko": "분쟁, 갈등",
+   "pos": "명",
+   "easy": "fight",
+   "ex": "The conflict may delay some shipments to Europe.",
+   "ex_ko": "그 분쟁으로 유럽행 화물 일부가 늦어질 수 있습니다.",
+   "cat": "m",
+   "ipa": "/ˈkɑːnflɪkt/",
+   "aud": "news/audio/2026-11-26-w3.mp3",
+   "wa": "news/audio/2026-11-26-k3.mp3"
+  },
+  {
+   "en": "reminder",
+   "ko": "상기시키는 것, 알림",
+   "pos": "명",
+   "easy": "something that helps you remember",
+   "ex": "This is a friendly reminder about the payment due Friday.",
+   "ex_ko": "금요일 결제 건 다시 한번 알려 드립니다.",
+   "cat": "m",
+   "ipa": "/rɪˈmaɪndər/",
+   "aud": "news/audio/2026-11-26-w4.mp3",
+   "wa": "news/audio/2026-11-26-k4.mp3"
+  }
+ ]
+}

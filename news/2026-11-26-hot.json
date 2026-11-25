@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-26",
+ "kind": "hot",
+ "title": "First Foreign Astronaut Flies to China's Space Station",
+ "title_ko": "중국 우주정거장에 첫 외국인 우주비행사",
+ "paras": [
+  "China launched its Shenzhou 24 spacecraft on Wednesday, November 25. On board were two Chinese astronauts and one astronaut from Pakistan. It was the first time a foreign astronaut flew to China's space station, called Tiangong.",
+  "The Pakistani astronaut is Muhammad Zeeshan Ali, and he is also Pakistan's first astronaut. Many people in Pakistan watched the launch. After the launch, the spacecraft docked with the space station.",
+  "Ali will stay on the station for a short mission and do science experiments there. The trip is part of an agreement between China and Pakistan to work together in space. It shows that space travel is becoming more international. If your partners enjoy science, this is a fun story to talk about. You could ask, \"Would you ever want to go to space?\""
+ ],
+ "paras_ko": [
+  "중국이 11월 25일 수요일 선저우 24호 우주선을 발사했습니다. 중국인 우주비행사 2명과 파키스탄 우주비행사 1명이 탔습니다. 외국인 우주비행사가 '톈궁'이라는 중국 우주정거장에 간 것은 처음입니다.",
+  "파키스탄 우주비행사의 이름은 무함마드 지샨 알리이며, 그는 파키스탄의 첫 우주비행사이기도 합니다. 파키스탄의 많은 사람이 발사 장면을 지켜봤습니다. 발사 뒤 우주선은 우주정거장과 도킹했습니다.",
+  "알리는 짧은 임무 동안 정거장에 머물며 과학 실험을 합니다. 이번 비행은 중국과 파키스탄이 우주에서 협력하기로 한 합의의 일부입니다. 우주여행이 점점 국제적으로 바뀌고 있음을 보여 줍니다. 거래처가 과학을 좋아한다면 재미있는 이야깃거리입니다. \"우주에 가 보고 싶으세요?\"라고 물어볼 수 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "ABC News (AP)",
+   "url": "https://abcnews.com/Technology/wireStory/china-launches-shenzhou-24-spacecraft-carrying-2-chinese-138427131",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "NBC News",
+   "url": "https://www.nbcnews.com/world/china/china-shenzhou-24-spacecraft-docks-space-station-foreign-astronaut-rcna611251",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "Al Jazeera",
+   "url": "https://www.aljazeera.com/features/2026/11/25/from-stargazing-to-space-pakistan-watches-its-first-astronaut-take-flight",
+   "published": "2026-11-25"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "A foreign astronaut flew to China's space station for the first time",
+    "China closed its space station",
+    "Pakistan built its own space station"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 외국인 우주비행사가 처음으로 중국 우주정거장에 갔습니다."
+  },
+  {
+   "q": "Where is the foreign astronaut from?",
+   "opts": [
+    "Japan",
+    "Pakistan",
+    "Korea"
+   ],
+   "a": 1,
+   "why_ko": "첫·둘째 문단: 파키스탄 출신입니다."
+  },
+  {
+   "q": "What will Ali do on the station?",
+   "opts": [
+    "Build a new rocket",
+    "Take tourists on tours",
+    "Do science experiments"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 짧은 임무 동안 과학 실험을 합니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "launched",
+   "ko": "발사했다",
+   "pos": "동",
+   "base": "launch",
+   "easy": "sent up",
+   "ex": "They launched a new product line this week.",
+   "ex_ko": "그들이 이번 주 새 제품군을 출시했어요.",
+   "cat": "t",
+   "ipa": "/lɑːntʃt/",
+   "aud": "news/audio/2026-11-26-hot-w0.mp3",
+   "wa": "news/audio/2026-11-26-hot-k0.mp3"
+  },
+  {
+   "en": "astronaut",
+   "ko": "우주비행사",
+   "pos": "명",
+   "easy": "space traveler",
+   "ex": "Did you want to be an astronaut as a child?",
+   "ex_ko": "어릴 때 우주비행사가 되고 싶었어요?",
+   "cat": "p",
+   "ipa": "/ˈæstrəˌnɔːt/",
+   "aud": "news/audio/2026-11-26-hot-w1.mp3",
+   "wa": "news/audio/2026-11-26-hot-k1.mp3"
+  },
+  {
+   "en": "watched",
+   "ko": "지켜봤다",
+   "pos": "동",
+   "base": "watch",
+   "easy": "looked at",
+   "ex": "Many people watched the launch live online.",
+   "ex_ko": "많은 사람이 발사를 온라인 생중계로 봤어요.",
+   "cat": "p",
+   "ipa": "/wɑːtʃt/",
+   "aud": "news/audio/2026-11-26-hot-w2.mp3",
+   "wa": "news/audio/2026-11-26-hot-k2.mp3"
+  },
+  {
+   "en": "experiments",
+   "ko": "실험",
+   "pos": "명",
+   "base": "experiment",
+   "easy": "science tests",
+   "ex": "They do many experiments in space.",
+   "ex_ko": "우주에서 많은 실험을 해요.",
+   "cat": "p",
+   "ipa": "/ɛkˈspɛrɪmənts/",
+   "aud": "news/audio/2026-11-26-hot-w3.mp3",
+   "wa": "news/audio/2026-11-26-hot-k3.mp3"
+  },
+  {
+   "en": "international",
+   "ko": "국제적인",
+   "pos": "형",
+   "easy": "between countries",
+   "ex": "Our business is becoming more international.",
+   "ex_ko": "저희 사업이 점점 국제화되고 있어요.",
+   "cat": "t",
+   "ipa": "/ˌɪntərˈnæʃənəl/",
+   "aud": "news/audio/2026-11-26-hot-w4.mp3",
+   "wa": "news/audio/2026-11-26-hot-k4.mp3"
+  }
+ ]
+}

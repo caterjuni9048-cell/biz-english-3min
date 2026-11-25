@@ -1,0 +1,128 @@
+{
+ "date": "2026-11-26",
+ "kind": "biz",
+ "title": "US Economic Growth Revised Up to 4.3 Percent",
+ "title_ko": "미국 3분기 성장률 4.3%로 상향 수정",
+ "paras": [
+  "The US economy grew faster than first thought in the third quarter. On November 25, the US Bureau of Economic Analysis said that GDP grew at an annual rate of 4.3 percent from July to September. The first estimate had been 3.4 percent.",
+  "The higher number came mainly from stronger investment and consumer spending. Business spending on software was an important part of the change. Many economists had expected a smaller revision.",
+  "A strong economy is usually good news, but it can also mean higher interest rates. Some economists said the data could give the US central bank more reason to raise rates in December. For Korean exporters, strong US demand can bring more orders, but higher US rates can also push up the dollar and change prices."
+ ],
+ "paras_ko": [
+  "미국 경제가 3분기에 처음 생각보다 빠르게 성장했습니다. 11월 25일 미국 경제분석국(BEA)은 7~9월 국내총생산(GDP)이 연율 4.3% 성장했다고 밝혔습니다. 처음 추정치는 3.4%였습니다.",
+  "수치가 높아진 것은 주로 투자와 소비 지출이 더 강했기 때문입니다. 기업의 소프트웨어 투자가 이번 수정의 중요한 부분이었습니다. 많은 경제학자는 더 작은 수정을 예상했었습니다.",
+  "경제가 강한 것은 보통 좋은 소식이지만, 금리가 오를 수 있다는 뜻이기도 합니다. 일부 경제학자는 이번 자료가 미국 중앙은행이 12월에 금리를 올릴 이유를 더 줄 수 있다고 말했습니다. 한국 수출업체에게 미국의 강한 수요는 주문 증가로 이어질 수 있지만, 미국 금리가 오르면 달러가 강해져 가격이 달라질 수도 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "BEA",
+   "url": "https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "Fox Business",
+   "url": "https://www.foxbusiness.com/economy/us-economy-q3-2026-second-estimate",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "StockTitan",
+   "url": "https://www.stocktitan.net/articles/q3-2026-gdp-second-estimate",
+   "published": "2026-11-25"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "US growth in the third quarter was revised up to 4.3 percent",
+    "The US economy shrank in the third quarter",
+    "The US stopped measuring GDP"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 3분기 성장률이 4.3%로 상향 수정됐습니다."
+  },
+  {
+   "q": "What was the first estimate?",
+   "opts": [
+    "4.3 percent",
+    "2.2 percent",
+    "3.4 percent"
+   ],
+   "a": 2,
+   "why_ko": "첫 문단: 처음 추정치는 3.4%였습니다."
+  },
+  {
+   "q": "What kind of business spending was important in the change?",
+   "opts": [
+    "Spending on software",
+    "Spending on ships",
+    "Spending on food"
+   ],
+   "a": 0,
+   "why_ko": "둘째 문단: 소프트웨어 투자가 중요했습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "estimate",
+   "ko": "추정치",
+   "pos": "명",
+   "easy": "best guess",
+   "ex": "Can you send me a cost estimate by Friday?",
+   "ex_ko": "금요일까지 비용 견적을 보내 주시겠어요?",
+   "cat": "m",
+   "ipa": "/ˈɛstɪmət/",
+   "aud": "news/audio/2026-11-26-biz2-w0.mp3",
+   "wa": "news/audio/2026-11-26-biz2-k0.mp3"
+  },
+  {
+   "en": "investment",
+   "ko": "투자",
+   "pos": "명",
+   "easy": "money put into business",
+   "ex": "The company made a big investment in new machines.",
+   "ex_ko": "그 회사는 새 기계에 큰 투자를 했습니다.",
+   "cat": "t",
+   "ipa": "/ɪnˈvɛstmənt/",
+   "aud": "news/audio/2026-11-26-biz2-w1.mp3",
+   "wa": "news/audio/2026-11-26-biz2-k1.mp3"
+  },
+  {
+   "en": "revision",
+   "ko": "수정",
+   "pos": "명",
+   "easy": "change",
+   "ex": "We need a small revision to the contract.",
+   "ex_ko": "계약서를 조금 수정해야 합니다.",
+   "cat": "m",
+   "ipa": "/rɪˈvɪʒən/",
+   "aud": "news/audio/2026-11-26-biz2-w2.mp3",
+   "wa": "news/audio/2026-11-26-biz2-k2.mp3"
+  },
+  {
+   "en": "demand",
+   "ko": "수요",
+   "pos": "명",
+   "easy": "how much people want",
+   "ex": "Demand from US customers is getting stronger.",
+   "ex_ko": "미국 고객 수요가 강해지고 있습니다.",
+   "cat": "t",
+   "ipa": "/dɪˈmænd/",
+   "aud": "news/audio/2026-11-26-biz2-w3.mp3",
+   "wa": "news/audio/2026-11-26-biz2-k3.mp3"
+  },
+  {
+   "en": "orders",
+   "ko": "주문",
+   "pos": "명",
+   "base": "order",
+   "easy": "requests to buy",
+   "ex": "We received three new orders this morning.",
+   "ex_ko": "오늘 아침 새 주문을 세 건 받았습니다.",
+   "cat": "p",
+   "ipa": "/ˈɔːrdərz/",
+   "aud": "news/audio/2026-11-26-biz2-w4.mp3",
+   "wa": "news/audio/2026-11-26-biz2-k4.mp3"
+  }
+ ]
+}
