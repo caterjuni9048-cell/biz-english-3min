@@ -1,0 +1,129 @@
+{
+ "date": "2026-11-27",
+ "kind": "hot",
+ "title": "Macy's Thanksgiving Parade Moved Because of Bad Weather",
+ "title_ko": "메이시스 추수감사절 퍼레이드, 악천후로 연기",
+ "paras": [
+  "The famous Macy's Thanksgiving Day Parade in New York did not happen on Thanksgiving this year. On November 25, Macy's said it was postponing the parade because of severe weather. The parade will now take place on Saturday, November 28, at 8:30 a.m.",
+  "This was a special year, because it is the 100th Macy's parade. Forecasters expected heavy rain, strong winds and thunderstorms in New York on Thanksgiving Day. Strong wind is dangerous for the parade's giant balloons, which float high above the city streets.",
+  "According to reports, it is the first time in the parade's long history that it has been postponed because of weather. Many families watch the parade on TV every year, so the change was big news. If you have partners in New York, you could ask them, \"Are you going to watch the parade on Saturday?\""
+ ],
+ "paras_ko": [
+  "뉴욕의 유명한 메이시스 추수감사절 퍼레이드가 올해는 추수감사절 당일에 열리지 않았습니다. 11월 25일 메이시스는 악천후 때문에 퍼레이드를 연기한다고 밝혔습니다. 퍼레이드는 이제 11월 28일 토요일 오전 8시 30분에 열립니다.",
+  "올해는 100번째 메이시스 퍼레이드라 특별한 해였습니다. 기상 예보관들은 추수감사절 당일 뉴욕에 많은 비와 강풍, 뇌우를 예상했습니다. 강한 바람은 도시 거리 위로 높이 떠다니는 퍼레이드의 대형 풍선에 위험합니다.",
+  "보도에 따르면 퍼레이드의 긴 역사에서 날씨 때문에 연기된 것은 이번이 처음입니다. 해마다 많은 가족이 TV로 퍼레이드를 보기 때문에 이번 변경은 큰 뉴스였습니다. 뉴욕에 거래처가 있다면 \"토요일에 퍼레이드 보실 거예요?\"라고 물어볼 수 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "ABC News",
+   "url": "https://abcnews.com/US/macys-thanksgiving-day-parade-postponed-sources/story?id=138452401",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/25/macys-thanksgiving-day-parade-postponed.html",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "NBC News",
+   "url": "https://www.nbcnews.com/news/us-news/macys-thanksgiving-day-parade-weather-delay-rcna611355",
+   "published": "2026-11-25"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "The Macy's parade was moved because of bad weather",
+    "The Macy's parade was cancelled forever",
+    "The parade moved to another city"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 악천후로 퍼레이드가 연기됐습니다."
+  },
+  {
+   "q": "When will the parade take place now?",
+   "opts": [
+    "Friday, November 27",
+    "Sunday, November 29",
+    "Saturday, November 28"
+   ],
+   "a": 2,
+   "why_ko": "첫 문단: 11월 28일 토요일에 열립니다."
+  },
+  {
+   "q": "Why is strong wind a problem?",
+   "opts": [
+    "It is dangerous for the giant balloons",
+    "It makes the music too loud",
+    "It closes the subway"
+   ],
+   "a": 0,
+   "why_ko": "둘째 문단: 강풍은 대형 풍선에 위험합니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "postponing",
+   "ko": "연기하는",
+   "pos": "동",
+   "base": "postpone",
+   "easy": "moving to a later time",
+   "ex": "We are postponing the meeting until next week.",
+   "ex_ko": "회의를 다음 주로 연기합니다.",
+   "cat": "m",
+   "ipa": "/poʊstˈpoʊnɪŋ/",
+   "aud": "news/audio/2026-11-27-hot-w0.mp3",
+   "wa": "news/audio/2026-11-27-hot-k0.mp3"
+  },
+  {
+   "en": "severe",
+   "ko": "심한, 극심한",
+   "pos": "형",
+   "easy": "very bad",
+   "ex": "Severe weather may delay the flight.",
+   "ex_ko": "악천후로 비행기가 지연될 수 있어요.",
+   "cat": "p",
+   "ipa": "/sɪˈvɪr/",
+   "aud": "news/audio/2026-11-27-hot-w1.mp3",
+   "wa": "news/audio/2026-11-27-hot-k1.mp3"
+  },
+  {
+   "en": "forecasters",
+   "ko": "기상 예보관",
+   "pos": "명",
+   "base": "forecaster",
+   "easy": "weather experts",
+   "ex": "Forecasters say it will snow tomorrow.",
+   "ex_ko": "예보관들은 내일 눈이 온다고 해요.",
+   "cat": "p",
+   "ipa": "/ˈfɔːrkæstərz/",
+   "aud": "news/audio/2026-11-27-hot-w2.mp3",
+   "wa": "news/audio/2026-11-27-hot-k2.mp3"
+  },
+  {
+   "en": "giant",
+   "ko": "거대한",
+   "pos": "형",
+   "easy": "very big",
+   "ex": "There is a giant Christmas tree in the lobby.",
+   "ex_ko": "로비에 거대한 크리스마스트리가 있어요.",
+   "cat": "p",
+   "ipa": "/dʒaɪənt/",
+   "aud": "news/audio/2026-11-27-hot-w3.mp3",
+   "wa": "news/audio/2026-11-27-hot-k3.mp3"
+  },
+  {
+   "en": "history",
+   "ko": "역사",
+   "pos": "명",
+   "easy": "past",
+   "ex": "This is the first time in our company's history.",
+   "ex_ko": "저희 회사 역사상 처음 있는 일이에요.",
+   "cat": "t",
+   "ipa": "/ˈhɪstəri/",
+   "aud": "news/audio/2026-11-27-hot-w4.mp3",
+   "wa": "news/audio/2026-11-27-hot-k4.mp3"
+  }
+ ]
+}

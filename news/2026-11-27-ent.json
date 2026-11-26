@@ -1,0 +1,129 @@
+{
+ "date": "2026-11-27",
+ "kind": "ent",
+ "title": "Kim Do-young Wins His Second KBO MVP Award",
+ "title_ko": "김도영, 두 번째 KBO MVP 수상",
+ "paras": [
+  "Kim Do-young of the KIA Tigers was named the Most Valuable Player of the 2026 KBO season. He received the award at the KBO awards ceremony in Seoul on Thursday, November 26. It was his second MVP award.",
+  "Kim won 80 of the 136 votes. Doosan Bears pitcher Kwak Bin came second with 34 votes. At 23 years old, Kim became the youngest player ever to win the MVP award twice.",
+  "Kim had a great season. He hit 45 home runs and drove in 118 runs, with a batting average of .308. He also won the home run title. Korean baseball fans now look forward to seeing what the young star can do next season. If your partners like baseball, you could ask, \"Have you heard of Kim Do-young?\""
+ ],
+ "paras_ko": [
+  "KIA 타이거즈의 김도영이 2026 KBO 시즌 최우수선수(MVP)로 뽑혔습니다. 그는 11월 26일 목요일 서울에서 열린 KBO 시상식에서 상을 받았습니다. 두 번째 MVP 수상입니다.",
+  "김도영은 136표 중 80표를 받았습니다. 두산 베어스 투수 곽빈이 34표로 2위를 했습니다. 23세의 김도영은 MVP를 두 번 받은 역대 최연소 선수가 됐습니다.",
+  "김도영은 멋진 시즌을 보냈습니다. 홈런 45개, 118타점, 타율 0.308을 기록했습니다. 홈런왕도 차지했습니다. 한국 야구팬들은 이 젊은 스타가 다음 시즌에 무엇을 보여 줄지 기대하고 있습니다. 거래처가 야구를 좋아한다면 \"김도영 선수 아세요?\"라고 물어볼 수 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "Seoul Economic Daily",
+   "url": "https://en.sedaily.com/sports/2026/11/26/kim-do-young-reclaims-kbo-mvp-youngest-ever-with-two-awards",
+   "published": "2026-11-26"
+  },
+  {
+   "name": "Star News",
+   "url": "https://www.starnewskorea.com/en/sports/2026/11/26/2026112615295878910",
+   "published": "2026-11-26"
+  },
+  {
+   "name": "SBS",
+   "url": "https://news.sbs.co.kr/english/article.do?news_id=N1008865355",
+   "published": "2026-11-26"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Kim Do-young won his second KBO MVP award",
+    "Kim Do-young moved to a Japanese team",
+    "Kwak Bin won the MVP award"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 김도영이 두 번째 MVP를 받았습니다."
+  },
+  {
+   "q": "How many votes did Kim get?",
+   "opts": [
+    "34",
+    "136",
+    "80"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: 136표 중 80표를 받았습니다."
+  },
+  {
+   "q": "How many home runs did Kim hit this season?",
+   "opts": [
+    "45",
+    "118",
+    "23"
+   ],
+   "a": 0,
+   "why_ko": "셋째 문단: 홈런 45개를 쳤습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "award",
+   "ko": "상",
+   "pos": "명",
+   "easy": "prize",
+   "ex": "Our team won an award for good service.",
+   "ex_ko": "저희 팀이 우수 서비스상을 받았어요.",
+   "cat": "t",
+   "ipa": "/əˈwɔːrd/",
+   "aud": "news/audio/2026-11-27-ent-w0.mp3",
+   "wa": "news/audio/2026-11-27-ent-k0.mp3"
+  },
+  {
+   "en": "ceremony",
+   "ko": "시상식, 의식",
+   "pos": "명",
+   "easy": "special event",
+   "ex": "Did you watch the awards ceremony last night?",
+   "ex_ko": "어젯밤 시상식 보셨어요?",
+   "cat": "p",
+   "ipa": "/ˈsɛrɪməni/",
+   "aud": "news/audio/2026-11-27-ent-w1.mp3",
+   "wa": "news/audio/2026-11-27-ent-k1.mp3"
+  },
+  {
+   "en": "votes",
+   "ko": "표",
+   "pos": "명",
+   "base": "vote",
+   "easy": "choices people make",
+   "ex": "He got the most votes from the reporters.",
+   "ex_ko": "그가 기자단 투표에서 가장 많은 표를 받았어요.",
+   "cat": "p",
+   "ipa": "/voʊts/",
+   "aud": "news/audio/2026-11-27-ent-w2.mp3",
+   "wa": "news/audio/2026-11-27-ent-k2.mp3"
+  },
+  {
+   "en": "youngest",
+   "ko": "가장 어린",
+   "pos": "형",
+   "base": "young",
+   "easy": "least old",
+   "ex": "She is the youngest manager in our office.",
+   "ex_ko": "그녀는 저희 사무실에서 가장 젊은 관리자예요.",
+   "cat": "t",
+   "ipa": "/ˈjʌŋɡɪst/",
+   "aud": "news/audio/2026-11-27-ent-w3.mp3",
+   "wa": "news/audio/2026-11-27-ent-k3.mp3"
+  },
+  {
+   "en": "look forward to",
+   "ko": "~을 기대하다",
+   "pos": "구",
+   "easy": "wait happily for",
+   "ex": "I look forward to working with you next year.",
+   "ex_ko": "내년에도 함께 일하길 기대합니다.",
+   "cat": "m",
+   "ipa": "/ˈlʊk ˈfɔːrwərd tuː/",
+   "aud": "news/audio/2026-11-27-ent-w4.mp3",
+   "wa": "news/audio/2026-11-27-ent-k4.mp3"
+  }
+ ]
+}

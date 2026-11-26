@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-27",
+ "kind": "biz",
+ "title": "UN Says Sea Trade Will Not Grow in 2026",
+ "title_ko": "유엔 \"올해 해상 교역 성장 없을 것\"",
+ "paras": [
+  "Global trade by sea is expected to stop growing this year. On November 26, UNCTAD, the United Nations trade and development agency, released its yearly Review of Maritime Transport. It said world maritime trade will show zero growth in 2026, after growing 1.9 percent in 2025.",
+  "The main reasons are problems on important shipping routes, especially around the Strait of Hormuz and the Red Sea. Many ships have had to take longer routes. This keeps trade moving, but it also makes shipping more expensive and takes more time.",
+  "There is some good news. UNCTAD expects maritime trade to recover in 2027, with growth of about 3.2 percent. Container trade is also expected to grow faster than total sea trade this year. For importers and exporters, the report is a reminder to plan for longer transit times and higher freight costs."
+ ],
+ "paras_ko": [
+  "올해 바닷길 세계 교역이 성장을 멈출 것으로 보입니다. 11월 26일 유엔무역개발회의(UNCTAD)는 연례 '해운 보고서'를 발표했습니다. 보고서는 세계 해상 교역이 2025년 1.9% 성장한 뒤 2026년에는 성장률 0%를 기록할 것이라고 밝혔습니다.",
+  "주된 이유는 중요한 항로, 특히 호르무즈 해협과 홍해 주변의 문제입니다. 많은 배가 더 먼 길로 돌아가야 했습니다. 이 덕분에 교역은 계속되지만, 운송비가 비싸지고 시간도 더 걸립니다.",
+  "좋은 소식도 있습니다. UNCTAD는 2027년 해상 교역이 약 3.2% 성장하며 회복할 것으로 봅니다. 컨테이너 교역도 올해 전체 해상 교역보다 빠르게 성장할 전망입니다. 수입·수출 업체에게 이 보고서는 더 긴 운송 기간과 높은 운임에 대비하라는 신호입니다."
+ ],
+ "sources": [
+  {
+   "name": "UNCTAD",
+   "url": "https://unctad.org/publication/review-maritime-transport-2026",
+   "published": "2026-11-26"
+  },
+  {
+   "name": "France 24 (AFP)",
+   "url": "https://www.france24.com/en/live-news/20261126-global-maritime-trade-set-for-zero-growth-in-2026-un",
+   "published": "2026-11-26"
+  },
+  {
+   "name": "Phys.org (AFP)",
+   "url": "https://phys.org/news/2026-11-global-maritime-growth.html",
+   "published": "2026-11-26"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Global sea trade is expected to show zero growth in 2026",
+    "Global sea trade will double in 2026",
+    "All ships stopped using the Red Sea forever"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 2026년 해상 교역 성장률 0% 전망입니다."
+  },
+  {
+   "q": "What problem do longer routes cause?",
+   "opts": [
+    "Ships become faster",
+    "Shipping becomes more expensive and slower",
+    "Ports close at night"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 운송비가 비싸지고 시간이 더 걸립니다."
+  },
+  {
+   "q": "What does UNCTAD expect for 2027?",
+   "opts": [
+    "Another year of zero growth",
+    "A big fall in trade",
+    "A recovery of about 3.2 percent"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 2027년 약 3.2% 성장을 예상합니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "maritime",
+   "ko": "해상의, 해운의",
+   "pos": "형",
+   "easy": "of the sea",
+   "ex": "We need maritime insurance for this shipment.",
+   "ex_ko": "이 화물에는 해상 보험이 필요합니다.",
+   "cat": "m",
+   "ipa": "/ˈmærɪˌtaɪm/",
+   "aud": "news/audio/2026-11-27-w0.mp3",
+   "wa": "news/audio/2026-11-27-k0.mp3"
+  },
+  {
+   "en": "routes",
+   "ko": "항로, 경로",
+   "pos": "명",
+   "base": "route",
+   "easy": "ways to travel",
+   "ex": "Some routes to Europe are taking longer now.",
+   "ex_ko": "지금 유럽행 일부 항로가 더 오래 걸립니다.",
+   "cat": "t",
+   "ipa": "/raʊts/",
+   "aud": "news/audio/2026-11-27-w1.mp3",
+   "wa": "news/audio/2026-11-27-k1.mp3"
+  },
+  {
+   "en": "recover",
+   "ko": "회복하다",
+   "pos": "동",
+   "easy": "get better",
+   "ex": "We hope sales will recover next quarter.",
+   "ex_ko": "다음 분기에 판매가 회복되길 바랍니다.",
+   "cat": "t",
+   "ipa": "/rɪˈkʌvər/",
+   "aud": "news/audio/2026-11-27-w2.mp3",
+   "wa": "news/audio/2026-11-27-k2.mp3"
+  },
+  {
+   "en": "transit times",
+   "ko": "운송 기간",
+   "pos": "구",
+   "base": "transit time",
+   "easy": "travel time for goods",
+   "ex": "Transit times to Rotterdam are about 40 days now.",
+   "ex_ko": "로테르담까지 운송 기간이 지금 약 40일입니다.",
+   "cat": "m",
+   "ipa": "/ˈtrænsɪt ˈtaɪmz/",
+   "aud": "news/audio/2026-11-27-w3.mp3",
+   "wa": "news/audio/2026-11-27-k3.mp3"
+  },
+  {
+   "en": "freight costs",
+   "ko": "운송비, 운임",
+   "pos": "구",
+   "base": "freight cost",
+   "easy": "shipping prices",
+   "ex": "Freight costs went up again this month.",
+   "ex_ko": "이번 달 운송비가 또 올랐습니다.",
+   "cat": "p",
+   "ipa": "/ˈfreɪt ˈkɔsts/",
+   "aud": "news/audio/2026-11-27-w4.mp3",
+   "wa": "news/audio/2026-11-27-k4.mp3"
+  }
+ ]
+}

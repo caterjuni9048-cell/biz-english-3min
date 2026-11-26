@@ -1,0 +1,135 @@
+{
+ "date": "2026-11-27",
+ "kind": "biz",
+ "title": "Americans Spend More Online Before Thanksgiving",
+ "title_ko": "미국인, 추수감사절 전 온라인 소비 늘어",
+ "paras": [
+  "Holiday shopping in the United States has started strongly. According to Adobe, which tracks online sales, US shoppers spent more than 82.5 billion dollars online in the first 22 days of November. That is 9.1 percent more than the same period last year.",
+  "The biggest days are still ahead. Adobe expects US shoppers to spend about 12.9 billion dollars online on Black Friday and about 15.1 billion dollars on Cyber Monday. Cyber Monday is expected to be the biggest online shopping day of the year.",
+  "Adobe expects the whole holiday season, from November to December, to be a record for online sales. For companies that sell goods to the US, strong online demand can mean more orders, so it is a good time to check stock and delivery schedules."
+ ],
+ "paras_ko": [
+  "미국의 연말 쇼핑이 힘차게 시작됐습니다. 온라인 판매를 추적하는 어도비에 따르면, 미국 소비자들은 11월 첫 22일 동안 온라인에서 825억 달러 넘게 썼습니다. 작년 같은 기간보다 9.1% 많은 금액입니다.",
+  "가장 큰 날들은 아직 남아 있습니다. 어도비는 미국 소비자들이 블랙프라이데이에 약 129억 달러, 사이버먼데이에 약 151억 달러를 온라인에서 쓸 것으로 예상합니다. 사이버먼데이는 올해 가장 큰 온라인 쇼핑일이 될 전망입니다.",
+  "어도비는 11~12월 연말 시즌 전체 온라인 판매가 역대 최대가 될 것으로 예상합니다. 미국에 물건을 파는 회사에게 강한 온라인 수요는 주문 증가를 뜻할 수 있으니, 재고와 배송 일정을 점검하기 좋은 때입니다."
+ ],
+ "sources": [
+  {
+   "name": "Digital Commerce 360",
+   "url": "https://www.digitalcommerce360.com/2026/11/25/adobe-online-holiday-spending-data/",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "US Brief",
+   "url": "https://us-brief.com/article/fin-online-holiday-spending-82-5-billion-adobe",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "Adobe",
+   "url": "https://news.adobe.com/news/2026/09/adobe-us-holiday-shopping-season-to-hit-record",
+   "published": "2026-09-28"
+  },
+  {
+   "name": "Retail TouchPoints",
+   "url": "https://www.retailtouchpoints.com/news/adobe-forecasts-record-275-1-billion-in-u-s-holiday-online-sales/621583/",
+   "published": "2026-09-29"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "US online holiday spending is up strongly before Thanksgiving",
+    "Americans stopped shopping online",
+    "Black Friday was cancelled"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 추수감사절 전 온라인 소비가 크게 늘었습니다."
+  },
+  {
+   "q": "Which day is expected to be the biggest online shopping day?",
+   "opts": [
+    "Thanksgiving",
+    "Cyber Monday",
+    "Christmas Day"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 사이버먼데이가 가장 큰 온라인 쇼핑일이 될 전망입니다."
+  },
+  {
+   "q": "What does Adobe expect for the whole season?",
+   "opts": [
+    "A big drop",
+    "No change",
+    "A record for online sales"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 시즌 전체 온라인 판매가 역대 최대가 될 전망입니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "tracks",
+   "ko": "추적하다",
+   "pos": "동",
+   "base": "track",
+   "easy": "follows",
+   "ex": "Our system tracks every shipment in real time.",
+   "ex_ko": "저희 시스템은 모든 화물을 실시간으로 추적합니다.",
+   "cat": "m",
+   "ipa": "/træks/",
+   "aud": "news/audio/2026-11-27-biz2-w0.mp3",
+   "wa": "news/audio/2026-11-27-biz2-k0.mp3"
+  },
+  {
+   "en": "shoppers",
+   "ko": "쇼핑객, 소비자",
+   "pos": "명",
+   "base": "shopper",
+   "easy": "people who buy",
+   "ex": "Shoppers in the US want faster delivery.",
+   "ex_ko": "미국 소비자들은 더 빠른 배송을 원합니다.",
+   "cat": "t",
+   "ipa": "/ˈʃɑːpərz/",
+   "aud": "news/audio/2026-11-27-biz2-w1.mp3",
+   "wa": "news/audio/2026-11-27-biz2-k1.mp3"
+  },
+  {
+   "en": "period",
+   "ko": "기간",
+   "pos": "명",
+   "easy": "time",
+   "ex": "Sales were strong during the holiday period.",
+   "ex_ko": "연휴 기간 판매가 좋았습니다.",
+   "cat": "t",
+   "ipa": "/ˈpiərɪəd/",
+   "aud": "news/audio/2026-11-27-biz2-w2.mp3",
+   "wa": "news/audio/2026-11-27-biz2-k2.mp3"
+  },
+  {
+   "en": "stock",
+   "ko": "재고",
+   "pos": "명",
+   "easy": "goods you have",
+   "ex": "Do you have enough stock for December orders?",
+   "ex_ko": "12월 주문에 맞춰 재고가 충분한가요?",
+   "cat": "p",
+   "ipa": "/stɑːk/",
+   "aud": "news/audio/2026-11-27-biz2-w3.mp3",
+   "wa": "news/audio/2026-11-27-biz2-k3.mp3"
+  },
+  {
+   "en": "schedules",
+   "ko": "일정",
+   "pos": "명",
+   "base": "schedule",
+   "easy": "plans with times",
+   "ex": "Please send the updated delivery schedules.",
+   "ex_ko": "변경된 배송 일정을 보내 주세요.",
+   "cat": "m",
+   "ipa": "/ˈskɛdʒuːlz/",
+   "aud": "news/audio/2026-11-27-biz2-w4.mp3",
+   "wa": "news/audio/2026-11-27-biz2-k4.mp3"
+  }
+ ]
+}

@@ -229,5 +229,33 @@
 "kind": "ent",
 "title": "Christmas Songs Return to the Billboard Top 10",
 "title_ko": "크리스마스 노래, 빌보드 톱10 복귀"
+},
+{
+"id": "2026-11-27",
+"date": "2026-11-27",
+"kind": "biz",
+"title": "UN Says Sea Trade Will Not Grow in 2026",
+"title_ko": "유엔 \"올해 해상 교역 성장 없을 것\""
+},
+{
+"id": "2026-11-27-biz2",
+"date": "2026-11-27",
+"kind": "biz",
+"title": "Americans Spend More Online Before Thanksgiving",
+"title_ko": "미국인, 추수감사절 전 온라인 소비 늘어"
+},
+{
+"id": "2026-11-27-hot",
+"date": "2026-11-27",
+"kind": "hot",
+"title": "Macy's Thanksgiving Parade Moved Because of Bad Weather",
+"title_ko": "메이시스 추수감사절 퍼레이드, 악천후로 연기"
+},
+{
+"id": "2026-11-27-ent",
+"date": "2026-11-27",
+"kind": "ent",
+"title": "Kim Do-young Wins His Second KBO MVP Award",
+"title_ko": "김도영, 두 번째 KBO MVP 수상"
 }
 ]
