@@ -1,0 +1,123 @@
+{
+ "date": "2026-11-28",
+ "kind": "ent",
+ "title": "Close Finishes on NFL Thanksgiving Day",
+ "title_ko": "NFL 추수감사절 경기, 접전 속출",
+ "paras": [
+  "American football fans enjoyed a very exciting Thanksgiving on Thursday, November 26. Watching NFL games is a big Thanksgiving tradition in the United States, and this year three games were decided in the final moments.",
+  "In the first game, the Chicago Bears beat the Detroit Lions 39-35. Chicago scored the winning touchdown with only three seconds left. The win put the Bears in first place in their division. In the second game, the Philadelphia Eagles came back from far behind to beat the Dallas Cowboys 39-38.",
+  "The night game was very different. It was a low-scoring battle, and the Buffalo Bills beat the Kansas City Chiefs 13-10 with a field goal as time ran out. Many people watch these games with their families after the holiday meal. If your partners are American, you could ask, \"Did you watch the football games on Thanksgiving?\""
+ ],
+ "paras_ko": [
+  "미식축구 팬들이 11월 26일 목요일 아주 신나는 추수감사절을 보냈습니다. 미국에서 NFL 경기를 보는 것은 추수감사절의 큰 전통인데, 올해는 세 경기가 마지막 순간에 승부가 났습니다.",
+  "첫 경기에서 시카고 베어스가 디트로이트 라이언스를 39-35로 이겼습니다. 시카고는 경기 종료 3초를 남기고 결승 터치다운을 넣었습니다. 이 승리로 베어스는 지구 1위에 올랐습니다. 두 번째 경기에서는 필라델피아 이글스가 크게 뒤지다가 역전해 댈러스 카우보이스를 39-38로 이겼습니다.",
+  "저녁 경기는 아주 달랐습니다. 점수가 적게 난 접전 끝에 버펄로 빌스가 경기 종료와 함께 필드골을 넣어 캔자스시티 치프스를 13-10으로 이겼습니다. 많은 사람이 명절 식사 후 가족과 함께 이 경기들을 봅니다. 거래처가 미국인이라면 \"추수감사절에 미식축구 보셨어요?\"라고 물어볼 수 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "ESPN",
+   "url": "https://www.espn.com/nfl/story/_/id/50609153/thanksgiving-games-bears-lions-eagles-cowboys-bills-chiefs",
+   "published": "2026-11-27"
+  },
+  {
+   "name": "Yahoo Sports",
+   "url": "https://sports.yahoo.com/nfl/articles/nfl-thanksgiving-breakdown-4-takeaways-131234275.html",
+   "published": "2026-11-27"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Three NFL Thanksgiving games had very close finishes",
+    "All NFL games were cancelled on Thanksgiving",
+    "The Lions won every game"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 세 경기가 마지막 순간에 승부가 났습니다."
+  },
+  {
+   "q": "What was the score of the Bears and Lions game?",
+   "opts": [
+    "13-10",
+    "39-38",
+    "39-35"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: 베어스가 39-35로 이겼습니다."
+  },
+  {
+   "q": "How did the Bills win?",
+   "opts": [
+    "With a field goal as time ran out",
+    "With a touchdown in the first minute",
+    "The other team did not play"
+   ],
+   "a": 0,
+   "why_ko": "셋째 문단: 종료와 함께 필드골로 이겼습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "tradition",
+   "ko": "전통",
+   "pos": "명",
+   "easy": "old custom",
+   "ex": "Eating turkey is a Thanksgiving tradition, right?",
+   "ex_ko": "칠면조 먹는 게 추수감사절 전통이죠?",
+   "cat": "p",
+   "ipa": "/trəˈdɪʃən/",
+   "aud": "news/audio/2026-11-28-ent-w0.mp3",
+   "wa": "news/audio/2026-11-28-ent-k0.mp3"
+  },
+  {
+   "en": "decided",
+   "ko": "결정된",
+   "pos": "동",
+   "base": "decide",
+   "easy": "settled",
+   "ex": "The game was decided in the last minute.",
+   "ex_ko": "그 경기는 마지막 1분에 승부가 갈렸어요.",
+   "cat": "p",
+   "ipa": "/dɪˈsaɪdɪd/",
+   "aud": "news/audio/2026-11-28-ent-w1.mp3",
+   "wa": "news/audio/2026-11-28-ent-k1.mp3"
+  },
+  {
+   "en": "division",
+   "ko": "지구, 부문",
+   "pos": "명",
+   "easy": "group of teams",
+   "ex": "Which team is first in the division now?",
+   "ex_ko": "지금 지구 1위가 어느 팀이에요?",
+   "cat": "p",
+   "ipa": "/dɪˈvɪʒən/",
+   "aud": "news/audio/2026-11-28-ent-w2.mp3",
+   "wa": "news/audio/2026-11-28-ent-k2.mp3"
+  },
+  {
+   "en": "battle",
+   "ko": "싸움, 접전",
+   "pos": "명",
+   "easy": "fight",
+   "ex": "It was a real battle until the end.",
+   "ex_ko": "끝까지 정말 접전이었어요.",
+   "cat": "p",
+   "ipa": "/ˈbætəl/",
+   "aud": "news/audio/2026-11-28-ent-w3.mp3",
+   "wa": "news/audio/2026-11-28-ent-k3.mp3"
+  },
+  {
+   "en": "holiday",
+   "ko": "명절, 휴일",
+   "pos": "명",
+   "easy": "special day off",
+   "ex": "How was your holiday with your family?",
+   "ex_ko": "가족과 명절 잘 보내셨어요?",
+   "cat": "p",
+   "ipa": "/ˈhɑːlɪˌdeɪ/",
+   "aud": "news/audio/2026-11-28-ent-w4.mp3",
+   "wa": "news/audio/2026-11-28-ent-k4.mp3"
+  }
+ ]
+}

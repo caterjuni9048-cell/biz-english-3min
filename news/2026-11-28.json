@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-28",
+ "kind": "biz",
+ "title": "China's Factory Profits Jump 20 Percent in October",
+ "title_ko": "중국 10월 산업 이익 20% 급증",
+ "paras": [
+  "Big factories in China made much more money in October. On November 27, China's National Bureau of Statistics said profits at large industrial companies rose 20.1 percent from a year earlier. In September, the increase was 14.4 percent.",
+  "For the first ten months of the year, profits grew 16.0 percent. Much of the growth came from companies linked to artificial intelligence, such as makers of electronics and computer parts. In other words, the AI boom is helping some companies much more than others.",
+  "China is Korea's largest trading partner, so its factories matter to many Korean companies. When Chinese factories earn more, they may buy more parts and materials from abroad. For Korean exporters of chips and electronic parts, this is a good sign, but competition from Chinese makers could also grow."
+ ],
+ "paras_ko": [
+  "중국의 대형 공장들이 10월에 훨씬 많은 돈을 벌었습니다. 11월 27일 중국 국가통계국은 대형 산업 기업의 이익이 1년 전보다 20.1% 늘었다고 밝혔습니다. 9월에는 14.4% 늘었습니다.",
+  "올해 첫 10개월 동안 이익은 16.0% 늘었습니다. 성장의 많은 부분은 전자제품과 컴퓨터 부품 제조사 같은 인공지능(AI) 관련 기업에서 나왔습니다. 다시 말해 AI 호황이 일부 기업을 다른 기업보다 훨씬 더 많이 돕고 있습니다.",
+  "중국은 한국의 최대 교역 상대국이라 중국 공장의 상황은 많은 한국 기업에 중요합니다. 중국 공장이 더 많이 벌면 해외에서 부품과 원자재를 더 살 수 있습니다. 반도체와 전자 부품을 수출하는 한국 기업에게는 좋은 신호이지만, 중국 업체와의 경쟁도 커질 수 있습니다."
+ ],
+ "sources": [
+  {
+   "name": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/27/china-industrial-profits-october.html",
+   "published": "2026-11-27"
+  },
+  {
+   "name": "Bloomberg",
+   "url": "https://www.bloomberg.com/news/articles/2026-11-27/china-s-industrial-profits-jump-at-fastest-pace-in-five-months",
+   "published": "2026-11-27"
+  },
+  {
+   "name": "TokenPost",
+   "url": "https://www.tokenpost.com/news/business/63128",
+   "published": "2026-11-27"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Profits at big Chinese factories rose 20.1 percent in October",
+    "Chinese factories closed in October",
+    "China stopped selling electronics"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 대형 산업 기업 이익이 20.1% 늘었습니다."
+  },
+  {
+   "q": "Where did much of the growth come from?",
+   "opts": [
+    "Furniture makers",
+    "Farms",
+    "AI-related companies like electronics makers"
+   ],
+   "a": 2,
+   "why_ko": "둘째 문단: AI 관련 전자·부품 기업에서 나왔습니다."
+  },
+  {
+   "q": "What was the increase in September?",
+   "opts": [
+    "14.4 percent",
+    "20.1 percent",
+    "16.0 percent"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 9월에는 14.4% 늘었습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "profits",
+   "ko": "이익",
+   "pos": "명",
+   "base": "profit",
+   "easy": "money earned",
+   "ex": "Our profits rose this quarter thanks to new orders.",
+   "ex_ko": "새 주문 덕분에 이번 분기 이익이 늘었습니다.",
+   "cat": "t",
+   "ipa": "/ˈprɑːfɪts/",
+   "aud": "news/audio/2026-11-28-w0.mp3",
+   "wa": "news/audio/2026-11-28-k0.mp3"
+  },
+  {
+   "en": "industrial",
+   "ko": "산업의, 공업의",
+   "pos": "형",
+   "easy": "of factories",
+   "ex": "We supply industrial parts to factories in China.",
+   "ex_ko": "저희는 중국 공장에 산업용 부품을 공급합니다.",
+   "cat": "m",
+   "ipa": "/ɪnˈdʌstrɪəl/",
+   "aud": "news/audio/2026-11-28-w1.mp3",
+   "wa": "news/audio/2026-11-28-k1.mp3"
+  },
+  {
+   "en": "linked",
+   "ko": "연결된, 관련된",
+   "pos": "동",
+   "base": "link",
+   "easy": "connected",
+   "ex": "Higher costs are linked to the new tariffs.",
+   "ex_ko": "비용 상승은 새 관세와 관련이 있습니다.",
+   "cat": "t",
+   "ipa": "/lɪŋkt/",
+   "aud": "news/audio/2026-11-28-w2.mp3",
+   "wa": "news/audio/2026-11-28-k2.mp3"
+  },
+  {
+   "en": "materials",
+   "ko": "원자재, 재료",
+   "pos": "명",
+   "base": "material",
+   "easy": "things used to make goods",
+   "ex": "The price of raw materials went up again.",
+   "ex_ko": "원자재 가격이 또 올랐습니다.",
+   "cat": "m",
+   "ipa": "/məˈtɪriəlz/",
+   "aud": "news/audio/2026-11-28-w3.mp3",
+   "wa": "news/audio/2026-11-28-k3.mp3"
+  },
+  {
+   "en": "competition",
+   "ko": "경쟁",
+   "pos": "명",
+   "easy": "trying to win against others",
+   "ex": "Competition in this market is getting stronger.",
+   "ex_ko": "이 시장의 경쟁이 점점 치열해지고 있습니다.",
+   "cat": "t",
+   "ipa": "/ˌkɑːmpəˈtɪʃən/",
+   "aud": "news/audio/2026-11-28-w4.mp3",
+   "wa": "news/audio/2026-11-28-k4.mp3"
+  }
+ ]
+}

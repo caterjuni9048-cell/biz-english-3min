@@ -1,0 +1,129 @@
+{
+ "date": "2026-11-28",
+ "kind": "biz",
+ "title": "Asia to US West Coast Shipping Rates Fall Below 8,000 Dollars",
+ "title_ko": "아시아–미국 서안 운임, 8,000달러 아래로",
+ "paras": [
+  "The cost of shipping a container from Asia to the US West Coast has dropped. According to the Freightos index, the spot rate fell 6 percent in one week to 7,985 dollars for a 40-foot container. It was the first weekly reading below 8,000 dollars in this latest report.",
+  "One reason is good news from the ports of Los Angeles and Long Beach. Port employers and a union of security workers reached a tentative deal, so a strike was avoided. This lowered the risk of delays at the busiest port complex in the United States.",
+  "Even so, rates are still much higher than a year ago. Experts say prices could go up again. Carriers are cancelling some sailings, and new US tariffs and a trade truce deadline in January could change demand. For importers and exporters, it is a good idea to watch rates closely before booking cargo for the new year."
+ ],
+ "paras_ko": [
+  "아시아에서 미국 서안으로 컨테이너를 보내는 비용이 내려갔습니다. 프레이토스 지수에 따르면 스팟 운임은 일주일 새 6% 내려 40피트 컨테이너당 7,985달러가 됐습니다. 이번 발표에서 8,000달러 아래로 내려갔습니다.",
+  "한 가지 이유는 로스앤젤레스·롱비치 항만에서 들려온 좋은 소식입니다. 항만 사용자 측과 경비원 노조가 잠정 합의해 파업을 피했습니다. 미국에서 가장 붐비는 항만 단지의 지연 위험이 줄었습니다.",
+  "그래도 운임은 여전히 1년 전보다 훨씬 높습니다. 전문가들은 가격이 다시 오를 수 있다고 말합니다. 선사들은 일부 운항을 취소하고 있고, 미국의 새 관세와 1월 무역 휴전 시한이 수요를 바꿀 수 있습니다. 수입·수출 업체는 새해 화물을 예약하기 전에 운임을 잘 지켜보는 것이 좋습니다."
+ ],
+ "sources": [
+  {
+   "name": "FreightWaves",
+   "url": "https://www.freightwaves.com/news/asia-us-west-coast-container-spot-rates-fall-below-8000-as-us-avoids-la-long-beach-port-strike",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "Mundoscope",
+   "url": "https://mundoscope.com/en/2026-11-26-asia-us-west-coast-container/",
+   "published": "2026-11-26"
+  },
+  {
+   "name": "WiseVoter",
+   "url": "https://wisevoter.com/world/2026/11/25/asia-us-container-rates-fall-port-deal",
+   "published": "2026-11-25"
+  }
+ ],
+ "qs": [
+  {
+   "q": "What is the main point of this news?",
+   "opts": [
+    "Asia to US West Coast shipping rates fell below 8,000 dollars",
+    "Shipping rates doubled this week",
+    "All ports in the US closed"
+   ],
+   "a": 0,
+   "why_ko": "첫 문단: 운임이 8,000달러 아래로 내려갔습니다."
+  },
+  {
+   "q": "Why did shippers feel less pressure?",
+   "opts": [
+    "Fuel became free",
+    "A port strike was avoided",
+    "Ships became bigger"
+   ],
+   "a": 1,
+   "why_ko": "둘째 문단: 잠정 합의로 파업을 피했습니다."
+  },
+  {
+   "q": "What could push rates up again?",
+   "opts": [
+    "Lower demand in Asia",
+    "Cheaper fuel",
+    "Cancelled sailings and new tariffs"
+   ],
+   "a": 2,
+   "why_ko": "셋째 문단: 운항 취소와 새 관세 등이 운임을 다시 올릴 수 있습니다."
+  }
+ ],
+ "words": [
+  {
+   "en": "spot rate",
+   "ko": "스팟 운임(현물 운임)",
+   "pos": "구",
+   "easy": "price for shipping now",
+   "ex": "The spot rate to Los Angeles dropped this week.",
+   "ex_ko": "로스앤젤레스행 스팟 운임이 이번 주 내렸습니다.",
+   "cat": "m",
+   "ipa": "/ˈspɑːt ˈreɪt/",
+   "aud": "news/audio/2026-11-28-biz2-w0.mp3",
+   "wa": "news/audio/2026-11-28-biz2-k0.mp3"
+  },
+  {
+   "en": "tentative",
+   "ko": "잠정적인",
+   "pos": "형",
+   "easy": "not final yet",
+   "ex": "We have a tentative schedule for the next shipment.",
+   "ex_ko": "다음 선적의 잠정 일정이 있습니다.",
+   "cat": "m",
+   "ipa": "/ˈtɛntəˌtɪv/",
+   "aud": "news/audio/2026-11-28-biz2-w1.mp3",
+   "wa": "news/audio/2026-11-28-biz2-k1.mp3"
+  },
+  {
+   "en": "avoided",
+   "ko": "피했다",
+   "pos": "동",
+   "base": "avoid",
+   "easy": "stopped from happening",
+   "ex": "We avoided extra costs by booking early.",
+   "ex_ko": "일찍 예약해서 추가 비용을 피했습니다.",
+   "cat": "t",
+   "ipa": "/əˈvɔɪdɪd/",
+   "aud": "news/audio/2026-11-28-biz2-w2.mp3",
+   "wa": "news/audio/2026-11-28-biz2-k2.mp3"
+  },
+  {
+   "en": "carriers",
+   "ko": "선사, 운송사",
+   "pos": "명",
+   "base": "carrier",
+   "easy": "shipping companies",
+   "ex": "Some carriers added a peak season surcharge.",
+   "ex_ko": "일부 선사가 성수기 할증료를 붙였습니다.",
+   "cat": "t",
+   "ipa": "/ˈkærɪrz/",
+   "aud": "news/audio/2026-11-28-biz2-w3.mp3",
+   "wa": "news/audio/2026-11-28-biz2-k3.mp3"
+  },
+  {
+   "en": "truce",
+   "ko": "휴전",
+   "pos": "명",
+   "easy": "short peace",
+   "ex": "The trade truce will end in January.",
+   "ex_ko": "무역 휴전은 1월에 끝납니다.",
+   "cat": "t",
+   "ipa": "/truːs/",
+   "aud": "news/audio/2026-11-28-biz2-w4.mp3",
+   "wa": "news/audio/2026-11-28-biz2-k4.mp3"
+  }
+ ]
+}

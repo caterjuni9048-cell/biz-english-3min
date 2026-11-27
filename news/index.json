@@ -257,5 +257,33 @@
 "kind": "ent",
 "title": "Kim Do-young Wins His Second KBO MVP Award",
 "title_ko": "김도영, 두 번째 KBO MVP 수상"
+},
+{
+"id": "2026-11-28",
+"date": "2026-11-28",
+"kind": "biz",
+"title": "China's Factory Profits Jump 20 Percent in October",
+"title_ko": "중국 10월 산업 이익 20% 급증"
+},
+{
+"id": "2026-11-28-biz2",
+"date": "2026-11-28",
+"kind": "biz",
+"title": "Asia to US West Coast Shipping Rates Fall Below 8,000 Dollars",
+"title_ko": "아시아–미국 서안 운임, 8,000달러 아래로"
+},
+{
+"id": "2026-11-28-hot",
+"date": "2026-11-28",
+"kind": "hot",
+"title": "SpaceX Gets Approval for One Million Data Center Satellites",
+"title_ko": "스페이스X, 데이터센터 위성 100만 기 승인받아"
+},
+{
+"id": "2026-11-28-ent",
+"date": "2026-11-28",
+"kind": "ent",
+"title": "Close Finishes on NFL Thanksgiving Day",
+"title_ko": "NFL 추수감사절 경기, 접전 속출"
 }
 ]
