@@ -449,7 +449,7 @@ var ROUNDS=[
 
 function pad(n){return n<10?"0"+n:""+n;}
 function dstr(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
-var APP_VER="v28",APP_DATE="2026-11-19";
+var APP_VER="v29",APP_DATE="2026-11-19";
 function today(){return dstr(new Date());}
 function addDays(s,n){var p=s.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+n);return dstr(d);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -2136,6 +2136,9 @@ function koVoice(){try{var vs=window.speechSynthesis?speechSynthesis.getVoices()
 function sayKo(t){return new Promise(function(res){var v=koVoice();if(!v){setTimeout(res,300);return;}
   try{var u=new SpeechSynthesisUtterance(t);u.voice=v;u.lang=v.lang;u.rate=1.05;u.onend=res;u.onerror=res;speechSynthesis.speak(u);setTimeout(res,1500+t.length*250);}catch(x){res();}});}
 function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function clog(m){try{var t=CALL.t0?((Date.now()-CALL.t0)/1000).toFixed(1):"-";(CALL.log=CALL.log||[]).push(t+"s "+m);if(CALL.log.length>200)CALL.log.shift();}catch(x){}}
+window.addEventListener("error",function(e){if(view==="aireview")clog("JS오류: "+(e&&e.message));});
+window.addEventListener("unhandledrejection",function(e){if(view==="aireview"){var r=e&&e.reason;clog("거부: "+(r&&(r.code||r.message)||r));}});
 function stopVoice(){try{if(TTS)TTS.stop().catch(function(){});}catch(x){}try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(x){}}
 function stopDictP(){try{if(DICT&&DICT.active())return DICT.stop().catch(function(){});}catch(x){}return Promise.resolve();}
 var CALLVOICES=[["buttery","부드러운"],["airy","가벼운"],["glassy","맑은"],["rounded","둥근"]];
@@ -2145,13 +2148,13 @@ function speakEn(arr){
   if(!arr.length)return Promise.resolve();
   if(!TTS)return arr.reduce(function(p,l){return p.then(function(){return new Promise(function(res){try{var u=new SpeechSynthesisUtterance(l.en);u.lang="en-US";u.rate=l.slow?0.85:0.95;u.onend=res;u.onerror=res;speechSynthesis.speak(u);setTimeout(res,1500+l.en.length*120);}catch(x){setTimeout(res,800+l.en.length*50);}});});},Promise.resolve());
   var lines=arr.map(function(l){var id=l.id||callLid(l);CALL.ltext[id]=l.en;return {text:l.en,rate:l.slow?0.9:1,language:"en",voice:callVoice(),id:id};});
-  var fn=TTS.add||TTS.speak;
-  var go=function(n){return fn(lines).catch(function(e){if(e&&e.code==="busy"&&n<5)return new Promise(function(r){setTimeout(r,300);}).then(function(){return go(n+1);});throw e;});};
+  var go=function(n){var pr;try{pr=TTS.add?TTS.add(lines):TTS.speak(lines);}catch(x){clog("목소리 오류: "+x.message);return Promise.resolve();}
+    return pr.catch(function(e){if(e&&e.code==="busy"&&n<5)return new Promise(function(r){setTimeout(r,300);}).then(function(){return go(n+1);});clog("목소리 멈춤: "+(e&&(e.code+(e.reason?"/"+e.reason:""))));throw e;});};
   return go(0);
 }
 function callLid(l){return l.id=l.id||"c:"+(CALL.lid=(CALL.lid||0)+1);}
 function callShow(arr){CALL.now=arr.map(function(l){return {id:callLid(l),en:l.en};});CALL.nowCur="";}
-function callWait(p){var w=CALL.waitP||Promise.resolve();CALL.waitP=w.then(function(){return p;}).catch(function(){});}
+function callWait(p){p.catch(function(){});var w=CALL.waitP||Promise.resolve();CALL.waitP=w.then(function(){return p;}).catch(function(){});}
 /* lines: [{en, slow}, {ko}] — 앞에 남겨 둔 칭찬(CALL.carry)과 합쳐 한 번에 말함. 한국어는 자막(설정하면 폰 목소리) */
 function callSay(lines,next){
   lines=(CALL.carry||[]).concat(lines);CALL.carry=[];
@@ -2168,10 +2171,11 @@ function callFiller(kind){var ctl=CALL.ctl;setTimeout(function(){if(CALL.phase!=
 function callFiller2(kind){var f=pick(kind==="judge"?["Hmm, let me see.","Okay, one sec.","Alright, let me think."]:["Oh, nice!","I see!","Ah, okay!","Haha, got it."]);
   var L=[{en:f}];CALL.turns.push({who:"ai",en:f,filler:true});callShow(L);render();callWait(stopDictP().then(function(){return speakEn(L);}));}
 function callBeep(){try{var ac=CALL.ac;if(!ac)return;var o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;o.frequency.value=880;g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.15,t+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+0.18);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+0.2);}catch(x){}}
-function callListen(onHeard){
+function callListen(onHeard,tap){
+  if(CALL.tapNow)tap=true;
   if(onHeard)CALL.onHeard=onHeard;
   if(view!=="aireview"||CALL.phase==="end")return;
-  if(!dictOK()){CALL.phase="tap";render();return;}
+  if(!dictOK()||(!tap&&CALL.noAuto)){CALL.phase="tap";render();return;}
   CALL.phase="listen";CALL.heard="";CALL.last="";CALL.lastT=Date.now();CALL.beeped=false;render();
   OVR={call:true,target:"",text:"",partial:"",heard:false,
     onUpdate:function(){if(OVR&&OVR.state==="listening"&&!CALL.beeped){CALL.beeped=true;CALL.lastT=Date.now();callBeep();var sl=document.getElementById("callstat");if(sl)sl.textContent="지금 말하세요";}
@@ -2183,11 +2187,13 @@ function callListen(onHeard){
   CALL.poll=setInterval(function(){if(!OVR||!OVR.call){clearInterval(CALL.poll);return;}var cur=(OVR.text+" "+(OVR.partial||"")).trim();
     if(cur!==CALL.last){CALL.last=cur;CALL.lastT=Date.now();if(OVR.onUpdate)OVR.onUpdate();return;}
     var open=/\b(and|but|so|or|because|the|a|an|to|my|your|our|um|uh|uhm|like)$/i.test(cur);
+    if(OVR.state!=="listening"){CALL.lastT=Date.now();return;}
     var settled=!OVR.partial&&!!OVR.text,quiet=Date.now()-CALL.lastT;
     var lim=open?3500:settled?1300:2200;
     if(cur&&quiet>lim){clearInterval(CALL.poll);stopDict();}
     else if(!cur&&quiet>10000){clearInterval(CALL.poll);stopDict();}},150);
-  DICT.start({language:"en"}).catch(function(){clearInterval(CALL.poll);OVR=null;CALL.phase="tap";render();});
+  var myO=OVR;clog(tap?"마이크 켜기(탭)":"마이크 자동 켜기");
+  DICT.start({language:"en"}).catch(function(e){var c=e&&e.code;clog("마이크 실패: "+c);if(c==="no_gesture")CALL.noAuto=true;if(OVR!==myO||CALL.phase!=="listen")return;clearInterval(CALL.poll);OVR=null;CALL.phase="tap";render();});
 }
 function callTargets(){var src=rvSource();if(!src)return [];return callTargetsPreview(src);}
 function callKey(it){var t=String(it.tip||""),m=/^\s*([A-Za-z][A-Za-z ,'~-]*?)\s*(?:\/[^=:]*)?[=:]/.exec(t);var k=m?m[1].replace(/~/g,"").trim().replace(/,$/,""):"";
@@ -2206,21 +2212,21 @@ function callScriptLoad(){
   "For each target give: intro_en (casual lead-in that ends right before the sentence, e.g. \"First one. When you need a price, you can say:\"), chunk_en (a 2-4 word key chunk copied from the sentence), chunk_ko (Korean meaning of the chunk), scene_en (set up a tiny role-play, e.g. \"Okay, now I'm your supplier.\"), partner_en (what the partner says so that Jun should reply with the target sentence; do not include the target sentence), scene_ko (Korean caption: who Alex is and what Jun should say), followup_en (partner's natural follow-up question after Jun answers well), close_en (short warm reaction to end that mini dialogue).\n"+
   "Also bridge_en (casual move from small talk to practice) and wrap_en (warm goodbye).\n"+
   "Reply ONLY JSON: {\"bridge_en\":\"\",\"wrap_en\":\"\",\"items\":{\"<id>\":{\"intro_en\":\"\",\"chunk_en\":\"\",\"chunk_ko\":\"\",\"scene_en\":\"\",\"partner_en\":\"\",\"scene_ko\":\"\",\"followup_en\":\"\",\"close_en\":\"\"}}}";
-  CALL.script=null;var fb=callScriptFallback();
+  CALL.script=null;var fb=callScriptFallback(),cid=CALL.cid;
   CALL.scriptP=SAMPLE.json(prompt,{modelTier:"quick",cache:false}).then(function(r){var o=fb;if(r&&r.items){o={bridge_en:r.bridge_en||fb.bridge_en,wrap_en:r.wrap_en||fb.wrap_en,items:{}};
       CALL.targets.forEach(function(id){var a=r.items[id]||{},b=fb.items[id],c={};Object.keys(b).forEach(function(k){c[k]=String(a[k]||b[k]);});c.chunk_ko=String(a.chunk_ko||"");
         if(!new RegExp(c.chunk_en.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"i").test(BYID[id].en))c.chunk_en=b.chunk_en;o.items[id]=c;});}
-    CALL.script=o;return o;},function(){CALL.script=fb;return fb;});
+    if(CALL.cid===cid)CALL.script=o;return o;},function(e){clog("대본 실패: "+(e&&e.code)+" → 기본 대본");if(CALL.cid===cid)CALL.script=fb;return fb;});
 }
 function callAI(prompt,cb,filler){
   CALL.phase="think";render();var ctl=CALL.ctl=new AbortController();
   if(filler)callFiller(filler);
   SAMPLE.json(prompt,{modelTier:"quick",cache:false,signal:ctl.signal}).then(function(r){if(CALL.ctl!==ctl||CALL.phase==="end")return;cb(r||{});},
-    function(e){if(CALL.ctl!==ctl)return;CALL.err=aiErr(e);CALL.phase="tap";CALL.retry=function(){callAI(prompt,cb);};render();});
+    function(e){if(CALL.ctl!==ctl||CALL.phase==="end")return;clog("AI 오류: "+(e&&e.code));CALL.err=aiErr(e);CALL.phase="tap";CALL.retry=function(){callAI(prompt,cb);};render();});
 }
 function callStart(){
   CALL.targets=callTargets();if(!CALL.targets.length||!SAMPLE)return;
-  CALL.turns=[];CALL.stat={};CALL.err="";CALL.si=0;CALL.carry=[];CALL.waitP=null;CALL.miss=0;CALL.now=[];CALL.nowCur="";CALL.ltext={};
+  CALL.cid=(CALL.cid||0)+1;CALL.log=[];CALL.ctl=null;CALL.retry=null;CALL.turns=[];CALL.stat={};CALL.err="";CALL.si=0;CALL.carry=[];CALL.waitP=null;CALL.miss=0;CALL.now=[];CALL.nowCur="";CALL.ltext={};
   CALL.steps=[{k:"chat",n:0}];CALL.targets.forEach(function(id){CALL.steps.push({k:"t",id:id,s:"intro",n:0});});CALL.steps.push({k:"wrap"});
   try{if(!CALL.ac){var AC=window.AudioContext||window.webkitAudioContext;if(AC)CALL.ac=new AC();}if(CALL.ac&&CALL.ac.resume)CALL.ac.resume();}catch(x){}
   if(TTS&&TTS.onLine&&!CALL.hooked){CALL.hooked=true;try{TTS.onLine(function(e){var id=e&&e.id;if(!id||!CALL.ltext[id]||view!=="aireview")return;CALL.nowCur=id;var el=document.getElementById("callnow");if(el)Array.prototype.forEach.call(el.querySelectorAll("span"),function(sp){sp.className=sp.getAttribute("data-l")===id?"cur":"";});});}catch(x){}}
@@ -2230,7 +2236,7 @@ function callStart(){
   callScriptLoad();callStep();
 }
 function callNext(){CALL.si++;callStep();}
-function withScript(fn){if(CALL.script)return fn(CALL.script);CALL.phase="think";render();CALL.scriptP.then(function(){fn(CALL.script||callScriptFallback());});}
+function withScript(fn){if(CALL.script)return fn(CALL.script);var cid=CALL.cid;CALL.phase="think";render();CALL.scriptP.then(function(){if(CALL.cid!==cid||CALL.phase==="end")return;fn(CALL.script||callScriptFallback());});}
 function callStep(){
   if(view!=="aireview"||CALL.phase==="end")return;
   var st=CALL.steps[CALL.si];if(!st){callEnd();return;}
@@ -2241,7 +2247,7 @@ function callStep(){
 }
 /* 표현 하나 연습 */
 function callT(st,tx){
-  var it=BYID[st.id],S2=callStat(st.id),x=CALL.script.items[st.id];
+  var it=BYID[st.id],S2=callStat(st.id),x=(CALL.script&&CALL.script.items[st.id])||callScriptFallback().items[st.id];
   var hear=function(){callListen(function(t){callT(st,t);});};
   if(st.s==="intro"){st.s="try1";return callSay([{en:x.intro_en},{en:it.en,slow:true},{en:pick(["Your turn!","Can you say it?","You try!"])},{ko:"'"+it.ko+"' — 따라 말해 보세요"}],hear);}
   if(st.s==="try1"){var r=diff(it.en,tx);
@@ -2272,26 +2278,26 @@ function callChat(st){
   var prompt="You are Alex, a warm, upbeat English conversation partner on a VOICE CALL with Jun, a Korean office worker (English A2-B1). Simple, natural spoken English, max 2 short sentences, no emojis.\n"+task+"\nConversation so far:\n"+(H||"(none)")+"\nReply with ONLY Alex's words, plain text, no quotes or labels.";
   CALL.phase="think";render();
   var ctl=CALL.ctl=new AbortController(),said="";
+  var after=function(){st.n++;callChat(st);};
   if(st.n)callFiller("chat");
   var clean=function(t){return String(t||"").replace(/^\s*(Alex\s*:)?\s*["“]?/i,"").replace(/["”]\s*$/,"").trim();};
   SAMPLE(prompt,{modelTier:"quick",cache:false,signal:ctl.signal,onText:function(e){
     if(said||CALL.ctl!==ctl||!TTS)return;var t=clean(e&&e.text);if(/^Thinking/i.test(t))return;
     var m=/^(.{6,}?[.!?])\s+\S/.exec(t);if(!m)return;said=m[1];
-    var L=[{en:said}];CALL.phase="ai";CALL.turns.push({who:"ai",en:said});callShow(L);render();callWait(stopDictP().then(function(){return speakEn(L);}));}}).then(function(r){
-    if(CALL.ctl!==ctl||CALL.phase==="end")return;
+    var L=[{en:said}];CALL.phase="ai";CALL.turns.push({who:"ai",en:said});callShow(L);CALL.sayNext=function(){CALL.cut=ctl;if(st.n<2)callListen(after);};render();callWait(stopDictP().then(function(){return speakEn(L);}));}}).then(function(r){
+    if(CALL.ctl!==ctl||CALL.phase==="end"||CALL.cut===ctl)return;
     var full=clean(r&&r.text)||"Hi Jun! How's your day going?",rest=full;
-    if(said){rest=full.indexOf(said)===0?full.slice(said.length).trim():"";if(rest&&CALL.turns.length){var lt=CALL.turns[CALL.turns.length-1];}}
+    if(said){var ix=full.indexOf(said);rest=ix>=0?full.slice(ix+said.length).trim():full;}
     var lines=rest?[{en:rest}]:[];
-    var after=function(){st.n++;callChat(st);};
-    if(st.n>=2)return withScript(function(sc){callSay(lines.concat([{en:sc.bridge_en}]),callNext);});
+    if(st.n>=2)return withScript(function(sc){if(CALL.phase==="end")return;callSay(lines.concat([{en:sc.bridge_en}]),callNext);});
     callSay(lines,function(){callListen(after);});
-  },function(e){if(CALL.ctl!==ctl)return;CALL.err=aiErr(e);CALL.phase="tap";CALL.retry=function(){callChat(st);};render();});
+  },function(e){if(CALL.ctl!==ctl||CALL.phase==="end")return;clog("AI 오류: "+(e&&e.code));CALL.err=aiErr(e);CALL.phase="tap";CALL.retry=function(){callChat(st);};render();});
 }
 function callEnd(){
-  clearInterval(CALL.poll);clearInterval(CALL.tick);stopDict();if(CALL.ctl)CALL.ctl.abort();try{if(TTS)TTS.stop();}catch(x){}
+  clearInterval(CALL.poll);clearInterval(CALL.tick);var wasOn=CALL.phase!=="start"&&CALL.phase!=="end";CALL.phase="end";if(OVR&&OVR.call){OVR.done=null;}stopDict();OVR=null;if(CALL.ctl){var c0=CALL.ctl;CALL.ctl=null;try{c0.abort();}catch(x){}}CALL.tok=(CALL.tok||0)+1;CALL.err="";stopVoice();clog("통화 종료");
   CALL.phase="end";
   try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(x){}
-  CALL.targets.forEach(function(id){var st=CALL.stat[id];if(!st||!st.sent||st.rp==='retry'||!st.rp)grade(id,false);else if(st.rp==='ok')grade(id,'mid');});
+  CALL.targets.forEach(function(id){var st=CALL.stat[id];if(!st)return;if(!st.sent||st.rp==='retry'||!st.rp)grade(id,false);else if(st.rp==='ok')grade(id,'mid');});
   var done=CALL.targets.filter(function(id){return CALL.stat[id];});if(done.length){S.callMem=(S.callMem||[]).concat([{d:today(),all:done.map(function(id){return BYID[id].en;}),weak:done.filter(function(id){var s4=CALL.stat[id];return !(s4.sent&&s4.rp==='good');}).map(function(id){return BYID[id].en;})}]).slice(-5);}
   save();render();window.scrollTo(0,0);
 }
@@ -2301,11 +2307,12 @@ function callHTML(){
   var h=backBar("AI 영어 통화");
   if(CALL.phase==="start"){
     var src=rvSource();
-    h+='<div class="notice"><b>AI 친구 Alex와 영어로 통화합니다</b><p>"Hi Jun!" 가벼운 대화로 시작해서, 오늘 어려웠던 표현을 하나씩 말해 보고 바로 짧은 상황극으로 주고받습니다(어려우면 짧은 구절부터). Alex가 말을 마치면 "띵" 소리와 함께 마이크가 켜집니다. 말을 마치고 잠깐 쉬면 넘어가고, 공을 탭하면 바로 넘어갑니다. Alex가 말할 때 공을 탭하면 끊고 말할 수 있어요. 한국어 설명은 자막으로 나옵니다.</p></div>';
+    h+='<div class="notice"><b>AI 친구 Alex와 영어로 통화합니다</b><p>"Hi Jun!" 가벼운 대화로 시작해서, 오늘 어려웠던 표현을 하나씩 말해 보고 바로 짧은 상황극으로 주고받습니다(어려우면 짧은 구절부터). Alex가 말을 마치면 내 차례입니다. 🎤(또는 공)를 탭하고 말하세요 — "띵" 소리가 나면 말하면 됩니다. 말을 마치고 잠깐 쉬거나 "다 말했어요"를 누르면 넘어갑니다. Alex가 말할 때 공을 탭하면 끊고 바로 말할 수 있어요. 한국어 설명은 자막으로 나옵니다.</p></div>';
     h+='<label class="fld"><span>폰 앱에서 복사한 복습 코드 (없으면 이 링크의 기록으로 합니다)</span><textarea id="rvcode" class="code" rows="2" placeholder="3M:m1.m4…">'+esc(RV.code)+"</textarea></label>";
     if(src){h+='<div class="block"><h2>오늘 연습할 표현</h2>';callTargetsPreview(src).forEach(function(id){var it=BYID[id];h+='<div class="li"><div><b lang="en">'+esc(it.en)+"</b><span>"+esc(it.ko)+(src.wrong.indexOf(id)>=0?" · 오늘 틀림":"")+"</span></div></div>";});h+="</div>";}
     h+='<p class="lbl">Alex 목소리 (누르면 들어 봄)</p><div class="chips">'+CALLVOICES.map(function(v){return '<button class="chip" data-act="callvoice" data-v="'+v[0]+'" aria-pressed="'+(callVoice()===v[0])+'">'+v[1]+"</button>";}).join("")+'</div>';
     h+='<div class="chips"><button class="chip" data-act="callko" aria-pressed="'+(CALL.koVoice===true)+'">한국어 자막도 소리로 읽기</button></div>';
+    if(!src)h+='<p class="note">연습할 표현이 없습니다. 오늘 세 판을 하거나 폰 앱의 복습 코드를 붙여 넣으세요.</p>';
     h+='<button class="cta" data-act="callstart"'+(SAMPLE?"":" disabled")+'>📞 통화 시작</button>';
     if(!SAMPLE)h+='<p class="note">AI를 불러오는 중입니다. Claude 사용 허용 창이 뜨면 허용해 주세요.</p>';
     if(!TTS)h+='<p class="note">이 화면에서는 AI 목소리를 쓸 수 없어 글자로만 보입니다. 폰 크롬에서 열면 목소리가 나옵니다(미확인).</p>';
@@ -2314,12 +2321,13 @@ function callHTML(){
   if(CALL.phase==="end"){
     var ok=CALL.targets.filter(function(id){var s=CALL.stat[id];return s&&s.sent&&s.rp==="good";});
     h+='<div class="card" style="text-align:center"><p class="big-num">'+ok.length+'<span style="font-size:18px"> / '+CALL.targets.length+'</span></p><p>문장과 상황극 모두 잘 말한 표현</p></div><div class="block"><h2>오늘 통화에서 연습한 표현</h2>';
-    CALL.targets.forEach(function(id){var it=BYID[id],s=CALL.stat[id],g=s&&s.sent&&s.rp==="good";h+='<div class="li"><div><b lang="en">'+esc(it.en)+"</b><span>"+(!s?"이번 통화에서는 못 다뤘어요":g?"잘했어요":"다시 연습: 구절 "+(s.chunk?"○":"△")+" · 문장 "+(s.sent?"○":"△")+" · 상황 "+(s.rp==="good"?"○":"△"))+"</span></div>"+(g?'<span class="badge">OK</span>':'<span class="badge" style="background:var(--bad-bg);color:var(--bad)">복습</span>')+"</div>";});
+    CALL.targets.forEach(function(id){var it=BYID[id],s=CALL.stat[id],g=s&&s.sent&&s.rp==="good";h+='<div class="li"><div><b lang="en">'+esc(it.en)+"</b><span>"+(!s?"이번 통화에서는 못 다뤘어요":g?"잘했어요":"다시 연습: 구절 "+(s.chunk===null?"–":s.chunk?"○":"△")+" · 문장 "+(s.sent?"○":"△")+" · 상황 "+(s.rp==="good"?"○":"△"))+"</span></div>"+(g?'<span class="badge">OK</span>':'<span class="badge" style="background:var(--bad-bg);color:var(--bad)">복습</span>')+"</div>";});
     h+='</div><p class="note">"복습" 표현은 내일 세 판에 다시 나옵니다(이 링크의 기록).</p><button class="cta" data-act="callagain">다시 통화하기</button>';
     h+=callCaptions(true);
+    if(CALL.log&&CALL.log.length)h+='<details class="howto"><summary>통화 진단 기록 (문제가 있으면 복사해서 보내 주세요)</summary><textarea class="code" rows="8" readonly>'+esc(APP_VER+"\n"+CALL.log.join("\n"))+"</textarea></details>";
     return h;
   }
-  var ph=CALL.phase,lab={ai:"Alex가 말하는 중",listen:"마이크 켜는 중…",think:"Alex가 생각하는 중…",tap:"공을 탭하고 말해 주세요"}[ph]||"";
+  var ph=CALL.phase,lab={ai:"Alex가 말하는 중",listen:"마이크 켜는 중…",think:"Alex가 생각하는 중…",tap:dictOK()?"내 차례 — 🎤를 탭하고 말하세요":"내 차례 — 영어로 써서 보내세요"}[ph]||"";
   if(ph==="listen"&&OVR&&OVR.state==="listening")lab="지금 말하세요";
   var ko="";for(var k=CALL.turns.length-1;k>=0;k--){var tt=CALL.turns[k];if(tt.who==="me")break;if(tt.who==="coach"&&!ko)ko=tt.ko;}
   var mine="";if(ph!=="listen"){for(var k2=CALL.turns.length-1;k2>=0;k2--){if(CALL.turns[k2].who==="me"){mine=CALL.turns[k2].en;break;}if(CALL.turns[k2].who==="ai"&&!CALL.turns[k2].filler&&k2<CALL.turns.length-3)break;}}
@@ -2331,6 +2339,9 @@ function callHTML(){
   else if(mine)h+='<p class="callmine" lang="en">나: '+esc(mine)+"</p>";
   if(ph==="ai")h+='<p class="note" style="text-align:center">공을 탭하면 Alex 말을 끊고 바로 말할 수 있어요</p>';
   if(CALL.err)h+='<p class="fb no">'+esc(CALL.err)+'</p><button class="cta alt" data-act="callretry">다시 시도</button>';
+  else if(ph==="tap"&&dictOK())h+='<button class="cta" data-act="callorb">🎤 말하기</button>';
+  else if(ph==="tap")h+='<p class="note">마이크(받아쓰기)를 쓸 수 없어 글자로 답합니다.</p><input id="calltxt" class="code" lang="en" autocomplete="off" placeholder="English…"><button class="cta" data-act="callsend">보내기</button>';
+  else if(ph==="listen")h+='<button class="cta alt" data-act="callorb">✓ 다 말했어요</button>';
   h+="</div>";
   return h;
 }
@@ -2428,10 +2439,11 @@ app.addEventListener("click",function(e){
   else if(a==="callvoice"){S.callVoice=b.getAttribute("data-v");save();render();if(TTS){try{TTS.speak("Hi Jun! This is Alex. How are you today?",{voice:S.callVoice,language:"en"}).catch(function(){});}catch(x){}}}
   else if(a==="callko"){CALL.koVoice=CALL.koVoice!==true;render();}
   else if(a==="callcc"){CALL.cc=!CALL.cc;render();callScroll();}
-  else if(a==="calltalk"){CALL.err="";callListen();}
+  else if(a==="calltalk"){CALL.err="";callListen(null,true);}
+  else if(a==="callsend"){var ti=document.getElementById("calltxt"),tv=ti?ti.value.trim():"";if(tv&&CALL.phase==="tap"&&CALL.onHeard){CALL.turns.push({who:"me",en:tv});clog("글자로 답함");CALL.onHeard(tv);}}
   else if(a==="calldone"){clearInterval(CALL.poll);stopDict();}
-  else if(a==="callorb"){if(CALL.phase==="ai"){CALL.tok++;CALL.waitP=null;stopVoice();var nx=CALL.sayNext;CALL.sayNext=null;if(nx)nx();}else if(CALL.phase==="listen"){clearInterval(CALL.poll);stopDict();}else if(CALL.phase==="tap"&&!CALL.err){callListen();}}
-  else if(a==="callskip"){CALL.tok++;try{if(TTS)TTS.stop();}catch(x){}try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(x){}callListen();}
+  else if(a==="callorb"){if(CALL.phase==="ai"){CALL.tok++;CALL.waitP=null;stopVoice();clog("탭으로 끊기");var nx=CALL.sayNext;CALL.sayNext=null;CALL.tapNow=true;try{if(nx)nx();}finally{CALL.tapNow=false;}}else if(CALL.phase==="listen"){clearInterval(CALL.poll);stopDict();}else if(CALL.phase==="tap"&&!CALL.err&&dictOK()){callListen(null,true);}}
+  else if(a==="callskip"){CALL.tok++;stopVoice();try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(x){}callListen();}
   else if(a==="callretry"){CALL.err="";if(CALL.retry){var rf=CALL.retry;CALL.retry=null;rf();}}
   else if(a==="callend"){callEnd();}
   else if(a==="callagain"){CALL.phase="start";render();}
